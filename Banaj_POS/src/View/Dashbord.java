@@ -11,7 +11,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -67,6 +70,24 @@ public class Dashbord extends javax.swing.JFrame {
         panel_contenDashbord = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         panel_contenBarang = new javax.swing.JPanel();
+        panel_navigasiBarang = new RoundedPanel(20, new Color(255, 255, 255));
+        label_navigasi_barang = new javax.swing.JLabel();
+        label_navigasi_Kategori = new javax.swing.JLabel();
+        label_navigasi_supplier = new javax.swing.JLabel();
+        label_navigasi_return = new javax.swing.JLabel();
+        panel_totalBarang = new RoundedPanel(20, new Color(255, 255, 255));
+        label_totalBarang = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        panel_CariBarang = new RoundedPanel(8, new Color(255, 255, 255));
+        textField_CariBarang = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new RoundedPanel(8, new Color(255, 255, 255));
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btn_TambahBrg = new javax.swing.JButton();
+        btn_TambahReturn = new javax.swing.JButton();
         panel_contenKasir = new javax.swing.JPanel();
         panel_contenSetting = new javax.swing.JPanel();
         panel_contenManageUser = new javax.swing.JPanel();
@@ -353,30 +374,219 @@ public class Dashbord extends javax.swing.JFrame {
             .addGroup(panel_contenDashbordLayout.createSequentialGroup()
                 .addGap(324, 324, 324)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(857, Short.MAX_VALUE))
+                .addContainerGap(949, Short.MAX_VALUE))
         );
         panel_contenDashbordLayout.setVerticalGroup(
             panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_contenDashbordLayout.createSequentialGroup()
                 .addGap(153, 153, 153)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addContainerGap(520, Short.MAX_VALUE))
         );
 
         ConntainerPanel.add(panel_contenDashbord, "card13");
 
-        panel_contenBarang.setBackground(new java.awt.Color(102, 102, 255));
-        panel_contenBarang.setForeground(new java.awt.Color(153, 102, 255));
+        panel_contenBarang.setForeground(new java.awt.Color(255, 255, 255));
+
+        label_navigasi_barang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_navigasi_barang.setText("Barang");
+        label_navigasi_barang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_navigasi_barangMouseClicked(evt);
+            }
+        });
+
+        label_navigasi_Kategori.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_navigasi_Kategori.setText("Kategori");
+        label_navigasi_Kategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_navigasi_KategoriMouseClicked(evt);
+            }
+        });
+
+        label_navigasi_supplier.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_navigasi_supplier.setText("Supplier");
+        label_navigasi_supplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_navigasi_supplierMouseClicked(evt);
+            }
+        });
+
+        label_navigasi_return.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_navigasi_return.setText("Return");
+        label_navigasi_return.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_navigasi_returnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_navigasiBarangLayout = new javax.swing.GroupLayout(panel_navigasiBarang);
+        panel_navigasiBarang.setLayout(panel_navigasiBarangLayout);
+        panel_navigasiBarangLayout.setHorizontalGroup(
+            panel_navigasiBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_navigasiBarangLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(label_navigasi_barang)
+                .addGap(29, 29, 29)
+                .addComponent(label_navigasi_Kategori)
+                .addGap(18, 18, 18)
+                .addComponent(label_navigasi_supplier)
+                .addGap(18, 18, 18)
+                .addComponent(label_navigasi_return)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        panel_navigasiBarangLayout.setVerticalGroup(
+            panel_navigasiBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_navigasiBarangLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(panel_navigasiBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_navigasi_barang)
+                    .addComponent(label_navigasi_Kategori)
+                    .addComponent(label_navigasi_supplier)
+                    .addComponent(label_navigasi_return))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        label_totalBarang.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        label_totalBarang.setText("Total Barang");
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel1.setText("1090");
+
+        javax.swing.GroupLayout panel_totalBarangLayout = new javax.swing.GroupLayout(panel_totalBarang);
+        panel_totalBarang.setLayout(panel_totalBarangLayout);
+        panel_totalBarangLayout.setHorizontalGroup(
+            panel_totalBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_totalBarangLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(label_totalBarang)
+                .addContainerGap(93, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_totalBarangLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35))
+        );
+        panel_totalBarangLayout.setVerticalGroup(
+            panel_totalBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_totalBarangLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_totalBarang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(23, 23, 23))
+        );
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori", " " }));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/magnifying-glass.png"))); // NOI18N
+
+        javax.swing.GroupLayout panel_CariBarangLayout = new javax.swing.GroupLayout(panel_CariBarang);
+        panel_CariBarang.setLayout(panel_CariBarangLayout);
+        panel_CariBarangLayout.setHorizontalGroup(
+            panel_CariBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_CariBarangLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(textField_CariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        panel_CariBarangLayout.setVerticalGroup(
+            panel_CariBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(panel_CariBarangLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_CariBarangLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(textField_CariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        textField_CariBarang.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Kode Barang", "Nama Barang", "Stok", "Jenis Barang", "Supplier"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+        );
+
+        btn_TambahBrg.setBackground(new java.awt.Color(255, 164, 164));
+        btn_TambahBrg.setForeground(new java.awt.Color(255, 255, 255));
+        btn_TambahBrg.setText("Tambah");
+        btn_TambahBrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TambahBrgActionPerformed(evt);
+            }
+        });
+
+        btn_TambahReturn.setBackground(new java.awt.Color(132, 172, 228));
+        btn_TambahReturn.setText("Return Barang");
 
         javax.swing.GroupLayout panel_contenBarangLayout = new javax.swing.GroupLayout(panel_contenBarang);
         panel_contenBarang.setLayout(panel_contenBarangLayout);
         panel_contenBarangLayout.setHorizontalGroup(
             panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1281, Short.MAX_VALUE)
+            .addGroup(panel_contenBarangLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panel_contenBarangLayout.createSequentialGroup()
+                        .addGroup(panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panel_totalBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panel_contenBarangLayout.createSequentialGroup()
+                        .addComponent(panel_CariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 656, Short.MAX_VALUE)
+                        .addComponent(btn_TambahReturn)
+                        .addGap(15, 15, 15)
+                        .addComponent(btn_TambahBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
         );
         panel_contenBarangLayout.setVerticalGroup(
             panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(panel_contenBarangLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(panel_totalBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel_CariBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_TambahBrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panel_contenBarangLayout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btn_TambahReturn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         ConntainerPanel.add(panel_contenBarang, "card8");
@@ -387,11 +597,11 @@ public class Dashbord extends javax.swing.JFrame {
         panel_contenKasir.setLayout(panel_contenKasirLayout);
         panel_contenKasirLayout.setHorizontalGroup(
             panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1281, Short.MAX_VALUE)
+            .addGap(0, 1373, Short.MAX_VALUE)
         );
         panel_contenKasirLayout.setVerticalGroup(
             panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGap(0, 773, Short.MAX_VALUE)
         );
 
         ConntainerPanel.add(panel_contenKasir, "card9");
@@ -402,11 +612,11 @@ public class Dashbord extends javax.swing.JFrame {
         panel_contenSetting.setLayout(panel_contenSettingLayout);
         panel_contenSettingLayout.setHorizontalGroup(
             panel_contenSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1281, Short.MAX_VALUE)
+            .addGap(0, 1373, Short.MAX_VALUE)
         );
         panel_contenSettingLayout.setVerticalGroup(
             panel_contenSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGap(0, 773, Short.MAX_VALUE)
         );
 
         ConntainerPanel.add(panel_contenSetting, "card10");
@@ -417,11 +627,11 @@ public class Dashbord extends javax.swing.JFrame {
         panel_contenManageUser.setLayout(panel_contenManageUserLayout);
         panel_contenManageUserLayout.setHorizontalGroup(
             panel_contenManageUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1281, Short.MAX_VALUE)
+            .addGap(0, 1373, Short.MAX_VALUE)
         );
         panel_contenManageUserLayout.setVerticalGroup(
             panel_contenManageUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGap(0, 773, Short.MAX_VALUE)
         );
 
         ConntainerPanel.add(panel_contenManageUser, "card11");
@@ -439,6 +649,11 @@ public class Dashbord extends javax.swing.JFrame {
 
         label_laporanPenjualan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label_laporanPenjualan.setText("Laporan Penjualan");
+        label_laporanPenjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_laporanPenjualanMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_laporanPenjualanLayout = new javax.swing.GroupLayout(panel_laporanPenjualan);
         panel_laporanPenjualan.setLayout(panel_laporanPenjualanLayout);
@@ -467,6 +682,11 @@ public class Dashbord extends javax.swing.JFrame {
         label_laporanTransaksi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label_laporanTransaksi.setForeground(new java.awt.Color(252, 164, 164));
         label_laporanTransaksi.setText("Laporan Trasaksi");
+        label_laporanTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_laporanTransaksiMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_laporanTransaksiLayout = new javax.swing.GroupLayout(panel_laporanTransaksi);
         panel_laporanTransaksi.setLayout(panel_laporanTransaksiLayout);
@@ -581,7 +801,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(panel_contenLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ContainerPanel_Laporan, javax.swing.GroupLayout.PREFERRED_SIZE, 1242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel_navigasiLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         panel_contenLaporanLayout.setVerticalGroup(
             panel_contenLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -590,7 +810,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(panel_navigasiLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(ContainerPanel_Laporan, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         ConntainerPanel.add(panel_contenLaporan, "card12");
@@ -693,6 +913,9 @@ public class Dashbord extends javax.swing.JFrame {
         icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
         
+        //set Label Page
+        label_page.setText("Dashbord");
+        
     }//GEN-LAST:event_icon_dashbordMouseClicked
 
     private void icon_productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_productMouseClicked
@@ -709,7 +932,14 @@ public class Dashbord extends javax.swing.JFrame {
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
+        //visibilitas label navigasi
+        label_navigasi_barang.setForeground(new Color(255, 164, 164));
+        label_navigasi_Kategori.setForeground(new Color(0, 0, 0));
+        label_navigasi_supplier.setForeground(new Color(0, 0, 0));
+        label_navigasi_return.setForeground(new Color(0, 0, 0));
         
+        //set Text labelPage
+        label_page.setText("Manajemen Product");
         
     }//GEN-LAST:event_icon_productMouseClicked
 
@@ -726,6 +956,10 @@ public class Dashbord extends javax.swing.JFrame {
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/manager (1).png")));
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
+        
+          
+        //set Text labelPage
+        label_page.setText("User Management");
         
         
     }//GEN-LAST:event_icon_managerMouseClicked
@@ -744,6 +978,10 @@ public class Dashbord extends javax.swing.JFrame {
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
+        
+          
+        //set Text labelPage
+        label_page.setText("Laporan Transaksi");
     }//GEN-LAST:event_icon_laporanMouseClicked
 
     private void icon_kasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_kasirMouseClicked
@@ -761,7 +999,8 @@ public class Dashbord extends javax.swing.JFrame {
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         
-        
+        //set label Page
+        label_page.setText("Kasir");
         
     }//GEN-LAST:event_icon_kasirMouseClicked
 
@@ -782,7 +1021,9 @@ public class Dashbord extends javax.swing.JFrame {
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
 
 
-         
+           
+        //set Text labelPage
+        label_page.setText("Setting's");
 
     }//GEN-LAST:event_icon_settingMouseClicked
 
@@ -911,6 +1152,56 @@ public class Dashbord extends javax.swing.JFrame {
         label_laporanTransaksi.setForeground(new Color(0,0,0));
     }//GEN-LAST:event_panel_laporanPenjualanMouseClicked
 
+    private void label_laporanTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_laporanTransaksiMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_laporanTransaksiMouseClicked
+
+    private void label_laporanPenjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_laporanPenjualanMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_laporanPenjualanMouseClicked
+
+    private void label_navigasi_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_barangMouseClicked
+          // TODO add your handling code here:
+          
+          label_navigasi_barang.setForeground(new Color(255, 164, 164));
+          label_navigasi_Kategori.setForeground(new Color(0, 0, 0));
+          label_navigasi_supplier.setForeground(new Color(0, 0, 0));
+          label_navigasi_return.setForeground(new Color(0, 0, 0));
+         
+         
+    }//GEN-LAST:event_label_navigasi_barangMouseClicked
+
+    private void label_navigasi_KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_KategoriMouseClicked
+         // TODO add your handling code here:
+         //visibiliras label navigasi
+          label_navigasi_barang.setForeground(new Color(0, 0, 0));
+          label_navigasi_Kategori.setForeground(new Color(255, 164, 164));
+          label_navigasi_supplier.setForeground(new Color(0, 0, 0));
+          label_navigasi_return.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_label_navigasi_KategoriMouseClicked
+
+    private void label_navigasi_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_supplierMouseClicked
+         // TODO add your handling code here:
+         
+          label_navigasi_barang.setForeground(new Color(0, 0, 0));
+          label_navigasi_Kategori.setForeground(new Color(0, 0, 0));
+          label_navigasi_supplier.setForeground(new Color(255, 164, 164));
+          label_navigasi_return.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_label_navigasi_supplierMouseClicked
+
+    private void label_navigasi_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_returnMouseClicked
+         // TODO add your handling code here:
+         
+          label_navigasi_barang.setForeground(new Color(0, 0, 0));
+          label_navigasi_Kategori.setForeground(new Color(0, 0, 0));
+          label_navigasi_supplier.setForeground(new Color(0, 0, 0));
+          label_navigasi_return.setForeground(new Color(255, 164, 164));
+    }//GEN-LAST:event_label_navigasi_returnMouseClicked
+
+    private void btn_TambahBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TambahBrgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_TambahBrgActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -988,7 +1279,32 @@ public class Dashbord extends javax.swing.JFrame {
 //            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
 //             
         }
+        
+        
     }
+    public class RoundJTextField extends JTextField {
+    private Shape shape;
+    public RoundJTextField(int size) {
+        super(size);
+        setOpaque(false); // As suggested by @AVD in comment.
+    }
+    protected void paintComponent(Graphics g) {
+         g.setColor(getBackground());
+         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+         super.paintComponent(g);
+    }
+    protected void paintBorder(Graphics g) {
+         g.setColor(getForeground());
+         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+    }
+    public boolean contains(int x, int y) {
+         if (shape == null || !shape.getBounds().equals(getBounds())) {
+             shape = new RoundRectangle2D.Float(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+         }
+         return shape.contains(x, y);
+    }
+}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ConntainerPanel;
@@ -997,6 +1313,8 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JPanel ContainerPanel_LaporanTransaksi;
     private javax.swing.JTable Table_LaporanPenjualan;
     private javax.swing.JTable Table_LaporanTransaksi;
+    private javax.swing.JButton btn_TambahBrg;
+    private javax.swing.JButton btn_TambahReturn;
     private javax.swing.JPanel frame_logo_toko;
     private javax.swing.JPanel header_panel;
     private javax.swing.JLabel icon_dashbord;
@@ -1006,16 +1324,28 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel icon_product;
     private javax.swing.JLabel icon_setting;
     private javax.swing.JLabel icon_user;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel label_laporanPenjualan;
     private javax.swing.JLabel label_laporanTransaksi;
     private javax.swing.JLabel label_namatoko;
     private javax.swing.JLabel label_namauser;
+    private javax.swing.JLabel label_navigasi_Kategori;
+    private javax.swing.JLabel label_navigasi_barang;
+    private javax.swing.JLabel label_navigasi_return;
+    private javax.swing.JLabel label_navigasi_supplier;
     private javax.swing.JLabel label_page;
     private javax.swing.JLabel label_tanggal;
+    private javax.swing.JLabel label_totalBarang;
     private javax.swing.JPanel navigasi_panel;
+    private javax.swing.JPanel panel_CariBarang;
     private javax.swing.JPanel panel_contenBarang;
     private javax.swing.JPanel panel_contenDashbord;
     private javax.swing.JPanel panel_contenKasir;
@@ -1028,8 +1358,11 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JPanel panel_laporanPenjualan;
     private javax.swing.JPanel panel_laporanTransaksi;
     private javax.swing.JPanel panel_manager;
+    private javax.swing.JPanel panel_navigasiBarang;
     private javax.swing.JPanel panel_navigasiLaporan;
     private javax.swing.JPanel panel_product;
     private javax.swing.JPanel panel_setting;
+    private javax.swing.JPanel panel_totalBarang;
+    private javax.swing.JTextField textField_CariBarang;
     // End of variables declaration//GEN-END:variables
 }
