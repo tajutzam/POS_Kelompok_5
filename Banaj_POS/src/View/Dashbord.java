@@ -65,6 +65,7 @@ public class Dashbord extends javax.swing.JFrame {
         icon_setting = new javax.swing.JLabel();
         ConntainerPanel = new javax.swing.JPanel();
         panel_contenDashbord = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         panel_contenBarang = new javax.swing.JPanel();
         panel_contenKasir = new javax.swing.JPanel();
         panel_contenSetting = new javax.swing.JPanel();
@@ -332,17 +333,34 @@ public class Dashbord extends javax.swing.JFrame {
 
         ConntainerPanel.setLayout(new java.awt.CardLayout());
 
-        panel_contenDashbord.setBackground(new java.awt.Color(255, 0, 51));
+        panel_contenDashbord.setBackground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout panel_contenDashbordLayout = new javax.swing.GroupLayout(panel_contenDashbord);
         panel_contenDashbord.setLayout(panel_contenDashbordLayout);
         panel_contenDashbordLayout.setHorizontalGroup(
             panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1281, Short.MAX_VALUE)
+            .addGroup(panel_contenDashbordLayout.createSequentialGroup()
+                .addGap(324, 324, 324)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(857, Short.MAX_VALUE))
         );
         panel_contenDashbordLayout.setVerticalGroup(
             panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(panel_contenDashbordLayout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(465, Short.MAX_VALUE))
         );
 
         ConntainerPanel.add(panel_contenDashbord, "card13");
@@ -988,10 +1006,7 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel icon_product;
     private javax.swing.JLabel icon_setting;
     private javax.swing.JLabel icon_user;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label_laporanPenjualan;
