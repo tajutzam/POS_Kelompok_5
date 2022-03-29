@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import service.barangService;
+import service.kategoriService;
 
 /**
  *
@@ -119,7 +120,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         icon_cariKategori1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_kategori = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         panel_contenKasir = new javax.swing.JPanel();
         panel_contenSetting = new javax.swing.JPanel();
@@ -794,7 +795,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
 
         txt_cariKategori1.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_kategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -805,7 +806,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(jTable1);
+        jScrollPane5.setViewportView(table_kategori);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1200,7 +1201,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         label_page.setText("Manajemen Product");
         
         barangService br = new barangService();
+        kategoriService kt = new kategoriService();
+        
         br.showBarang(table_barang);
+        kt.showKategori(tabel_kategori);
+        
         
     }//GEN-LAST:event_icon_productMouseClicked
 
@@ -1618,7 +1623,6 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel label_namatoko;
     private javax.swing.JLabel label_namauser;
     private javax.swing.JLabel label_navigasi_Kategori;
@@ -1655,6 +1659,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
     private javax.swing.JPanel panel_totalKategori1;
     private javax.swing.JTable tabel_kategori;
     private javax.swing.JTable table_barang;
+    private javax.swing.JTable table_kategori;
     private javax.swing.JTextField txt_cariBrng;
     private javax.swing.JTextField txt_cariKategori;
     private javax.swing.JTextField txt_cariKategori1;
