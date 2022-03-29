@@ -39,6 +39,9 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         this.setMaximumSize(dimAx);
         this.setMinimumSize(dimIn);
         this.setBackground(new Color(255,255,255));
+        table_barang.setRowHeight(30);
+     
+        table_kategori.setRowHeight(30);
        
         this.setLocationRelativeTo(null);
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
@@ -553,6 +556,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
 
         txt_cariBrng.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
+        table_barang.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         table_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -794,6 +798,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         );
 
         txt_cariKategori1.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
+        jScrollPane5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
         table_kategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

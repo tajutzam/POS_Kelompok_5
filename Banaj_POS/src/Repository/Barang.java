@@ -31,7 +31,7 @@ public class Barang implements BarangInterface{
           //  sql = "SELECT barang.kode_barang, barang.nama_barang, kategori.nama_kategori, barang.harga, barang.stok, supplier.nama_supplier FROM barang JOIN kategori ON barang.kategori = kategori.id_kategori JOIN supplier ON barang.supplier = supplier.id_supplier ORDER BY barang.nama_barang ASC";
 
             String sql = "select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier order by product.kode_product asc ";
-            String sqlKategori ="select kode_kategori, nama_kategori, deksripsi from kategori order by kode_kategori asc";
+            String sqlKategori ="select kode_kategori, nama_kategori from kategori order by kode_kategori asc";
 //            String sqlSupplier ="select kode_supplier, nama_supplier"
             
             Connection con = dt.conectDatabase();
@@ -73,7 +73,7 @@ public class Barang implements BarangInterface{
                     model.addColumn("No");
                     model.addColumn("Kode Kategori");
                     model.addColumn("Nama Kategori");
-                    model.addColumn("Deskripsi Kategori");
+          
                     
                     while(res.next()){
                     
@@ -81,7 +81,7 @@ public class Barang implements BarangInterface{
                     no,
                     res.getString("kode_kategori"),
                     res.getString("nama_kategori"),
-                    res.getString("deksripsi"),
+                  
                   
                    
                     });

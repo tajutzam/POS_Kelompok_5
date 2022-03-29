@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Mar 2022 pada 02.34
+-- Waktu pembuatan: 29 Mar 2022 pada 03.49
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.27
 
@@ -68,16 +68,15 @@ CREATE TABLE `kategori` (
   `kode_kategori` varchar(8) NOT NULL,
   `nama_kategori` varchar(64) NOT NULL,
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `deksripsi` varchar(256) DEFAULT NULL
+  `update_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kategori`
 --
 
-INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`, `deksripsi`) VALUES
-('kt001', 'sampo', '2022-03-23 15:36:49', '2022-03-23 15:36:49', 'tentang sampo');
+INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
+('kt001', 'sampo', '2022-03-23 15:36:49', '2022-03-23 15:36:49');
 
 -- --------------------------------------------------------
 
