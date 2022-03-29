@@ -18,6 +18,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import service.barangService;
 
 /**
  *
@@ -36,6 +37,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setMaximumSize(dimAx);
         this.setMinimumSize(dimIn);
+        this.setBackground(new Color(255,255,255));
        
         this.setLocationRelativeTo(null);
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
@@ -136,7 +138,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        header_panel = new RoundedPanel(8, new Color(255, 164, 164));
+        header_panel = new RoundedPanel(8, new Color(250, 164, 164));
         label_page = new javax.swing.JLabel();
         label_namatoko = new javax.swing.JLabel();
         label_namauser = new javax.swing.JLabel();
@@ -599,7 +601,6 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(panel_tablebarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(contenBarangLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBox_show, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -739,7 +740,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         conten_manajemen.add(contenKategori, "card3");
 
         label_totalBarang2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        label_totalBarang2.setText("Total Kategori");
+        label_totalBarang2.setText("Total Supplier");
 
         txt_totalBrg2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         txt_totalBrg2.setText("1020");
@@ -820,6 +821,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         jButton1.setBackground(new java.awt.Color(250, 164, 164));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton1.setText("Tambah");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -832,15 +838,12 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
             contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(contenSupplierLayout.createSequentialGroup()
-                .addGroup(contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contenSupplierLayout.createSequentialGroup()
-                        .addComponent(panel_totalKategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(contenSupplierLayout.createSequentialGroup()
-                        .addComponent(panel_cariKategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+                .addComponent(panel_totalKategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(contenSupplierLayout.createSequentialGroup()
+                .addComponent(panel_cariKategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         contenSupplierLayout.setVerticalGroup(
             contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1196,6 +1199,9 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         //set Text labelPage
         label_page.setText("Manajemen Product");
         
+        barangService br = new barangService();
+        br.showBarang(table_barang);
+        
     }//GEN-LAST:event_icon_productMouseClicked
 
     private void icon_managerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_managerMouseClicked
@@ -1462,6 +1468,12 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+          // TODO add your handling code here:
+          JFrame jfSupplier = new DataTambahSupplier();
+          jfSupplier.show();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

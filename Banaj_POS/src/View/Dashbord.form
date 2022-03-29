@@ -629,7 +629,6 @@
                           </Group>
                           <Component id="panel_tablebarang" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="panel_cariBarang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="comboBox_show" min="-2" pref="130" max="-2" attributes="0"/>
@@ -1053,18 +1052,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel3" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="panel_totalKategori1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="panel_cariKategori1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="panel_totalKategori1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="panel_cariKategori1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1123,7 +1117,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Trebuchet MS" size="18" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Total Kategori"/>
+                            <Property name="text" type="java.lang.String" value="Total Supplier"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="txt_totalBrg2">
@@ -1231,6 +1225,7 @@
                         <Property name="text" type="java.lang.String" value="Tambah"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
                       </Events>
                     </Component>
@@ -1649,7 +1644,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel(8, new Color(255, 164, 164))"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel(8, new Color(250, 164, 164))"/>
       </AuxValues>
 
       <Layout>
