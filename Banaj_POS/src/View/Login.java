@@ -57,23 +57,21 @@ public class Login extends javax.swing.JFrame {
         Panel_Right_Login.setBackground(new java.awt.Color(255, 164, 164));
         Panel_Right_Login.setPreferredSize(new java.awt.Dimension(683, 768));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2391523603cbd5153d7eb4e37eb3c882-removebg-preview (1) (1).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/login_picture (2).jpg"))); // NOI18N
 
         javax.swing.GroupLayout Panel_Right_LoginLayout = new javax.swing.GroupLayout(Panel_Right_Login);
         Panel_Right_Login.setLayout(Panel_Right_LoginLayout);
         Panel_Right_LoginLayout.setHorizontalGroup(
             Panel_Right_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_Right_LoginLayout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+            .addGroup(Panel_Right_LoginLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         Panel_Right_LoginLayout.setVerticalGroup(
             Panel_Right_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Right_LoginLayout.createSequentialGroup()
-                .addGap(192, 192, 192)
                 .addComponent(jLabel1)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         panel_left_login.setBackground(new java.awt.Color(255, 255, 255));
@@ -98,8 +96,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(252, 164, 164));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(111, 59, 160));
+        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
