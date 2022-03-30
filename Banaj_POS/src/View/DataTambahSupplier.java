@@ -67,15 +67,29 @@ public class DataTambahSupplier extends javax.swing.JFrame {
 
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jButton1.setBackground(new java.awt.Color(250, 164, 164));
+        jButton1.setBackground(new java.awt.Color(111, 59, 160));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Simpan");
 
-        jButton2.setBackground(new java.awt.Color(132, 172, 228));
+        jButton2.setBackground(new java.awt.Color(51, 45, 45));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cancel");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
+        jButton3.setBackground(new java.awt.Color(96, 96, 96));
         jButton3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -169,6 +183,15 @@ public class DataTambahSupplier extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        this.disable();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

@@ -77,6 +77,11 @@ public class DataTambahKategori extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cancel");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(96, 96, 96));
         jButton3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -189,6 +194,11 @@ public class DataTambahKategori extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+         // TODO add your handling code here:
+         this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

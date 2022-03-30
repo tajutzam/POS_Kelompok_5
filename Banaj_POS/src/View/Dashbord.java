@@ -46,7 +46,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         this.setLocationRelativeTo(null);
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
-        icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplayPink.png")));
+        icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplayPurple.png")));
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
@@ -1421,7 +1421,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         //visibilitas
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
-        icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplayPink.png")));
+        icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplayPurple.png")));
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
@@ -1444,7 +1444,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         
         
         //visibilitas icon
-        icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfumePink.png")));
+        icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfumePurple.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
@@ -1473,7 +1473,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
-        icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/manager (1).png")));
+        icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerPurple.png")));
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         
@@ -1494,7 +1494,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         //visibilitas icon
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
-        icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulsePink.png")));
+        icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulsePurple.png")));
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
         icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
@@ -1503,7 +1503,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         //set Text labelPage
         label_page.setText("Laporan Transaksi");
         label_laporan_penjualan.setForeground(new Color(111, 59, 160));
-        
+        label_laporanPemebelian.setForeground(new Color(90, 90, 90));
         //
           panel_containerLaporan.removeAll();
           panel_containerLaporan.add(container_laporanPenjualan);
@@ -1519,7 +1519,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         ConntainerPanel.revalidate();
         
         //visibilitas icon
-        icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cartPink.png")));
+        icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cartPurple.png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
@@ -1543,7 +1543,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
-        icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingPink.png")));
+        icon_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingsPurple.png")));
         icon_laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         icon_manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
 
