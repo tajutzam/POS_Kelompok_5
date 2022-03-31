@@ -41,7 +41,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         this.setBackground(new Color(255,255,255));
         table_barang.setRowHeight(30);
      
-        table_kategori.setRowHeight(30);
+        table_supplier.setRowHeight(30);
        
         this.setLocationRelativeTo(null);
         icon_product.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
@@ -120,7 +120,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
         icon_cariSupplier = new javax.swing.JLabel();
         panel_tablesupplier = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        table_kategori = new javax.swing.JTable();
+        table_supplier = new javax.swing.JTable();
         btn_tambahSupplier = new javax.swing.JButton();
         panel_totalBarang1 = new RoundedPanel(8, new Color(255, 255, 255));
         label_totalBarang4 = new javax.swing.JLabel();
@@ -749,6 +749,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabel_kategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel_kategoriMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tabel_kategori);
 
         javax.swing.GroupLayout panel_tableBarangLayout = new javax.swing.GroupLayout(panel_tableBarang);
@@ -828,7 +833,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
 
         jScrollPane5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
-        table_kategori.setModel(new javax.swing.table.DefaultTableModel(
+        table_supplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -839,7 +844,12 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(table_kategori);
+        table_supplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_supplierMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(table_supplier);
 
         javax.swing.GroupLayout panel_tablesupplierLayout = new javax.swing.GroupLayout(panel_tablesupplier);
         panel_tablesupplier.setLayout(panel_tablesupplierLayout);
@@ -974,6 +984,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        table_kategori1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_kategori1MouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(table_kategori1);
 
         javax.swing.GroupLayout panel_TablereturnLayout = new javax.swing.GroupLayout(panel_Tablereturn);
@@ -1728,8 +1743,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
     private void btn_TambahBarang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TambahBarang1MouseClicked
         // TODO add your handling code here:
         
-        JFrame jfTambahKategori = new DataTambahKategori();
-        jfTambahKategori.show();
+      DataTambahKategori dt = new DataTambahKategori();
+      dt.Action("add");
     }//GEN-LAST:event_btn_TambahBarang1MouseClicked
 
     private void btn_TambahBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TambahBarangActionPerformed
@@ -1742,8 +1757,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
 
     private void btn_tambahSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahSupplierMouseClicked
           // TODO add your handling code here:
-          JFrame jfSupplier = new DataTambahSupplier();
-          jfSupplier.show();
+         DataTambahSupplier supplier = new DataTambahSupplier();
+         supplier.Action("add");
     }//GEN-LAST:event_btn_tambahSupplierMouseClicked
 
     private void label_laporan_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_laporan_penjualanMouseClicked
@@ -1782,15 +1797,40 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
     }//GEN-LAST:event_btn_TambahBarang1ActionPerformed
 
     private void btn_tambahReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahReturnMouseClicked
-        // TODO add your handling code here:
-        
-        JFrame jfReturn = new dataTambahReturn();
-        jfReturn.show();
+         // TODO add your handling code here:
+        dataTambahReturn dt = new dataTambahReturn();
+        dt.Action("add");
+      
     }//GEN-LAST:event_btn_tambahReturnMouseClicked
 
     private void btn_tambahReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahReturnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_tambahReturnActionPerformed
+
+    private void table_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_supplierMouseClicked
+          // TODO add your handling code here:
+        
+         DataTambahSupplier suplier = new DataTambahSupplier();
+         suplier.Action("edit");
+         
+         
+        
+     
+         
+    }//GEN-LAST:event_table_supplierMouseClicked
+
+    private void tabel_kategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_kategoriMouseClicked
+         // TODO add your handling code here:
+         DataTambahKategori dt = new DataTambahKategori();
+         dt.Action("edit");
+         
+    }//GEN-LAST:event_tabel_kategoriMouseClicked
+
+    private void table_kategori1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_kategori1MouseClicked
+         // TODO add your handling code here:
+        dataTambahReturn dt = new dataTambahReturn();
+        dt.Action("edit");
+    }//GEN-LAST:event_table_kategori1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1980,10 +2020,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1080, 720);
     private javax.swing.JLabel show_laporanPenjualan;
     private javax.swing.JTable tabel_kategori;
     private javax.swing.JTable table_barang;
-    private javax.swing.JTable table_kategori;
     private javax.swing.JTable table_kategori1;
     private javax.swing.JTable table_laporanPembelian;
     private javax.swing.JTable table_laporanPenjualan;
+    private javax.swing.JTable table_supplier;
     private javax.swing.JTextField txt_cariBrng;
     private javax.swing.JTextField txt_cariKategori;
     private javax.swing.JTextField txt_cariSupplier;

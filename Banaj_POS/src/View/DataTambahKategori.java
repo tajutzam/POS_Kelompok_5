@@ -37,118 +37,35 @@ public class DataTambahKategori extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new RoundedPanel(8, new Color(255, 255, 255));
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new RoundedPanel(8, new Color(255,255,255));
-        jLabel1 = new javax.swing.JLabel();
+        labelNavigasi = new javax.swing.JLabel();
+        contenPanel = new RoundedPanel(8, new Color(255, 255, 255));
+        conten_Add = new RoundedPanel(8, new Color(255, 255, 255));
+        label_kodeKategori = new javax.swing.JLabel();
+        TXT_kategori = new javax.swing.JTextField();
+        label_namaKategori = new javax.swing.JLabel();
+        TXT_namaKategori = new javax.swing.JTextField();
+        label_createAtKategori = new javax.swing.JLabel();
+        TXT_createAt = new javax.swing.JTextField();
+        btn_simpanTambahKategori = new javax.swing.JButton();
+        btn_cancelKategori = new javax.swing.JButton();
+        btn_clearKategori = new javax.swing.JButton();
+        conten_edit = new RoundedPanel(8, new Color(255, 255, 255));
+        label_kodeKategoriEdit = new javax.swing.JLabel();
+        TXT_kodeKategoriEdit = new javax.swing.JTextField();
+        label_namaKategoriEdit = new javax.swing.JLabel();
+        TXT_namaKategoriEdit = new javax.swing.JTextField();
+        label_updateAtkategoriEdit = new javax.swing.JLabel();
+        TXT_updateAtKategori = new javax.swing.JTextField();
+        btn_simpanKategoriEdit = new javax.swing.JButton();
+        brn_cancelEditKategori = new javax.swing.JButton();
+        btn_clearEditKategori = new javax.swing.JButton();
+        btn_hapusKategori = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel2.setText("Kode Kategori");
-
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel3.setText("Nama Kategori");
-
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel4.setText("Create at");
-
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-
-        jButton1.setBackground(new java.awt.Color(111, 59, 160));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Simpan");
-
-        jButton2.setBackground(new java.awt.Color(51, 45, 45));
-        jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Cancel");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-
-        jButton3.setBackground(new java.awt.Color(96, 96, 96));
-        jButton3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel5.setText("Deskripsi");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(84, 84, 84)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(87, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel2)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addComponent(jLabel5)
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
-
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel1.setText("Kategori > Tambah Kategori");
+        labelNavigasi.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        labelNavigasi.setText("Kategori > Tambah Kategori");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,16 +73,220 @@ public class DataTambahKategori extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(labelNavigasi)
                 .addContainerGap(304, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(labelNavigasi)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
+
+        contenPanel.setLayout(new java.awt.CardLayout());
+
+        label_kodeKategori.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        label_kodeKategori.setText("Kode Kategori");
+
+        TXT_kategori.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        label_namaKategori.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        label_namaKategori.setText("Nama Kategori");
+
+        TXT_namaKategori.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        label_createAtKategori.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        label_createAtKategori.setText("Create at");
+
+        TXT_createAt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        btn_simpanTambahKategori.setBackground(new java.awt.Color(111, 59, 160));
+        btn_simpanTambahKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_simpanTambahKategori.setForeground(new java.awt.Color(255, 255, 255));
+        btn_simpanTambahKategori.setText("Simpan");
+
+        btn_cancelKategori.setBackground(new java.awt.Color(51, 45, 45));
+        btn_cancelKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_cancelKategori.setForeground(new java.awt.Color(255, 255, 255));
+        btn_cancelKategori.setText("Cancel");
+        btn_cancelKategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cancelKategoriMouseClicked(evt);
+            }
+        });
+
+        btn_clearKategori.setBackground(new java.awt.Color(96, 96, 96));
+        btn_clearKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_clearKategori.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clearKategori.setText("Clear");
+        btn_clearKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearKategoriActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout conten_AddLayout = new javax.swing.GroupLayout(conten_Add);
+        conten_Add.setLayout(conten_AddLayout);
+        conten_AddLayout.setHorizontalGroup(
+            conten_AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(conten_AddLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(conten_AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_createAtKategori)
+                    .addComponent(label_namaKategori)
+                    .addComponent(label_kodeKategori)
+                    .addGroup(conten_AddLayout.createSequentialGroup()
+                        .addGroup(conten_AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TXT_createAt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(TXT_namaKategori, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TXT_kategori, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(84, 84, 84)
+                        .addGroup(conten_AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btn_clearKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_cancelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_simpanTambahKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        conten_AddLayout.setVerticalGroup(
+            conten_AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(conten_AddLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(label_kodeKategori)
+                .addGap(12, 12, 12)
+                .addGroup(conten_AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conten_AddLayout.createSequentialGroup()
+                        .addComponent(TXT_kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(label_namaKategori)
+                        .addGap(12, 12, 12)
+                        .addComponent(TXT_namaKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(label_createAtKategori)
+                        .addGap(12, 12, 12)
+                        .addComponent(TXT_createAt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conten_AddLayout.createSequentialGroup()
+                        .addComponent(btn_simpanTambahKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btn_cancelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btn_clearKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
+
+        contenPanel.add(conten_Add, "card2");
+
+        label_kodeKategoriEdit.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        label_kodeKategoriEdit.setText("Kode Kategori");
+
+        TXT_kodeKategoriEdit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        label_namaKategoriEdit.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        label_namaKategoriEdit.setText("Nama Kategori");
+
+        TXT_namaKategoriEdit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        label_updateAtkategoriEdit.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        label_updateAtkategoriEdit.setText("Update At");
+
+        TXT_updateAtKategori.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        btn_simpanKategoriEdit.setBackground(new java.awt.Color(111, 59, 160));
+        btn_simpanKategoriEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_simpanKategoriEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btn_simpanKategoriEdit.setText("Simpan");
+
+        brn_cancelEditKategori.setBackground(new java.awt.Color(51, 45, 45));
+        brn_cancelEditKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        brn_cancelEditKategori.setForeground(new java.awt.Color(255, 255, 255));
+        brn_cancelEditKategori.setText("Cancel");
+        brn_cancelEditKategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                brn_cancelEditKategoriMouseClicked(evt);
+            }
+        });
+
+        btn_clearEditKategori.setBackground(new java.awt.Color(96, 96, 96));
+        btn_clearEditKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_clearEditKategori.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clearEditKategori.setText("Clear");
+        btn_clearEditKategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_clearEditKategoriMouseClicked(evt);
+            }
+        });
+        btn_clearEditKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearEditKategoriActionPerformed(evt);
+            }
+        });
+
+        btn_hapusKategori.setBackground(new java.awt.Color(204, 0, 0));
+        btn_hapusKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_hapusKategori.setForeground(new java.awt.Color(255, 255, 255));
+        btn_hapusKategori.setText("Hapus");
+        btn_hapusKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapusKategoriActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout conten_editLayout = new javax.swing.GroupLayout(conten_edit);
+        conten_edit.setLayout(conten_editLayout);
+        conten_editLayout.setHorizontalGroup(
+            conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(conten_editLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_kodeKategoriEdit)
+                    .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, conten_editLayout.createSequentialGroup()
+                            .addComponent(label_namaKategoriEdit)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(brn_cancelEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(conten_editLayout.createSequentialGroup()
+                            .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(TXT_updateAtKategori, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(TXT_namaKategoriEdit, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TXT_kodeKategoriEdit, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(label_updateAtkategoriEdit))
+                            .addGap(84, 84, 84)
+                            .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btn_simpanKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_hapusKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_clearEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        conten_editLayout.setVerticalGroup(
+            conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(conten_editLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(label_kodeKategoriEdit)
+                .addGap(12, 12, 12)
+                .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conten_editLayout.createSequentialGroup()
+                        .addComponent(TXT_kodeKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(label_namaKategoriEdit)
+                        .addGap(12, 12, 12)
+                        .addComponent(TXT_namaKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(label_updateAtkategoriEdit)
+                        .addGap(11, 11, 11)
+                        .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TXT_updateAtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_hapusKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(conten_editLayout.createSequentialGroup()
+                        .addComponent(btn_simpanKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(brn_cancelEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_clearEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
+
+        contenPanel.add(conten_edit, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,32 +294,79 @@ public class DataTambahKategori extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(35, 35, 35)
+                    .addComponent(contenPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(15, 15, 15)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(418, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(87, Short.MAX_VALUE)
+                    .addComponent(contenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(33, 33, 33)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
+    public void Action(String opsi){
+        if(opsi.equals("edit")){
+            contenPanel.removeAll();
+            contenPanel.add(conten_edit);
+            contenPanel.repaint();
+            contenPanel.revalidate();
+            labelNavigasi.setText("Kategori > Edit Kategori");
+            this.setVisible(true);
+        }else if(opsi.equals("add")){
+            contenPanel.removeAll();
+            contenPanel.add(conten_Add);
+            contenPanel.repaint();
+            contenPanel.revalidate();
+            labelNavigasi.setText("Kategori > Tambah Kategori");
+            this.setVisible(true);
+        }
+    }
+    private void btn_clearKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearKategoriActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_clearKategoriActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btn_cancelKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelKategoriMouseClicked
          // TODO add your handling code here:
          this.dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btn_cancelKategoriMouseClicked
+
+    private void brn_cancelEditKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_brn_cancelEditKategoriMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        TXT_kategori.setText("");
+        TXT_namaKategori.setText("");
+        TXT_createAt.setText("");
+    }//GEN-LAST:event_brn_cancelEditKategoriMouseClicked
+
+    private void btn_clearEditKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearEditKategoriActionPerformed
+        // TODO add your handling code here:
+        TXT_kategori.setText("");
+        TXT_namaKategori.setText("");
+        TXT_createAt.setText("");
+    }//GEN-LAST:event_btn_clearEditKategoriActionPerformed
+
+    private void btn_hapusKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusKategoriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_hapusKategoriActionPerformed
+
+    private void btn_clearEditKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clearEditKategoriMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_clearEditKategoriMouseClicked
 
     /**
      * @param args the command line arguments
@@ -283,18 +451,29 @@ public class DataTambahKategori extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField TXT_createAt;
+    private javax.swing.JTextField TXT_kategori;
+    private javax.swing.JTextField TXT_kodeKategoriEdit;
+    private javax.swing.JTextField TXT_namaKategori;
+    private javax.swing.JTextField TXT_namaKategoriEdit;
+    private javax.swing.JTextField TXT_updateAtKategori;
+    private javax.swing.JButton brn_cancelEditKategori;
+    private javax.swing.JButton btn_cancelKategori;
+    private javax.swing.JButton btn_clearEditKategori;
+    private javax.swing.JButton btn_clearKategori;
+    private javax.swing.JButton btn_hapusKategori;
+    private javax.swing.JButton btn_simpanKategoriEdit;
+    private javax.swing.JButton btn_simpanTambahKategori;
+    private javax.swing.JPanel contenPanel;
+    private javax.swing.JPanel conten_Add;
+    private javax.swing.JPanel conten_edit;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel labelNavigasi;
+    private javax.swing.JLabel label_createAtKategori;
+    private javax.swing.JLabel label_kodeKategori;
+    private javax.swing.JLabel label_kodeKategoriEdit;
+    private javax.swing.JLabel label_namaKategori;
+    private javax.swing.JLabel label_namaKategoriEdit;
+    private javax.swing.JLabel label_updateAtkategoriEdit;
     // End of variables declaration//GEN-END:variables
 }
