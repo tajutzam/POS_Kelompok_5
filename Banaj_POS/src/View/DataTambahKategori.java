@@ -326,6 +326,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
             contenPanel.repaint();
             contenPanel.revalidate();
             labelNavigasi.setText("Kategori > Edit Kategori");
+            this.setTitle("Edit Kategori");
             this.setVisible(true);
         }else if(opsi.equals("add")){
             contenPanel.removeAll();
@@ -333,6 +334,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
             contenPanel.repaint();
             contenPanel.revalidate();
             labelNavigasi.setText("Kategori > Tambah Kategori");
+            this.setTitle("Tambah Kategori");
             this.setVisible(true);
         }
     }

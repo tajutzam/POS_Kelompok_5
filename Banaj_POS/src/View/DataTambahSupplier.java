@@ -121,7 +121,10 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         conten_tambahPanel.setLayout(conten_tambahPanelLayout);
         conten_tambahPanelLayout.setHorizontalGroup(
             conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_tambahPanelLayout.createSequentialGroup()
+                .addContainerGap(397, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
             .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(conten_tambahPanelLayout.createSequentialGroup()
                     .addGap(62, 62, 62)
@@ -137,13 +140,15 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                             .addGap(84, 84, 84)
                             .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addContainerGap(82, Short.MAX_VALUE)))
         );
         conten_tambahPanelLayout.setVerticalGroup(
             conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_tambahPanelLayout.createSequentialGroup()
+                .addContainerGap(175, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169))
             .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(conten_tambahPanelLayout.createSequentialGroup()
                     .addGap(60, 60, 60)
@@ -162,9 +167,7 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(conten_tambahPanelLayout.createSequentialGroup()
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(50, 50, 50)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(50, 50, 50)
+                            .addGap(132, 132, 132)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(82, Short.MAX_VALUE)))
         );
@@ -340,6 +343,7 @@ public class DataTambahSupplier extends javax.swing.JFrame {
             contenPanel.repaint();
             contenPanel.revalidate();
             label_Navigasi.setText("Supplier > Tambah Supplier");
+            this.setTitle("Tambah Supplier");
             this.setVisible(true);
             
         }else if(aksi.equals("edit")){
@@ -348,6 +352,7 @@ public class DataTambahSupplier extends javax.swing.JFrame {
             contenPanel.repaint();
             contenPanel.revalidate();
             label_Navigasi.setText("Supplier > Edit Supplier");
+            this.setTitle("Edit Supplier");
             this.setVisible(true);
         }
         
@@ -358,12 +363,13 @@ public class DataTambahSupplier extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        this.disable();
+         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
