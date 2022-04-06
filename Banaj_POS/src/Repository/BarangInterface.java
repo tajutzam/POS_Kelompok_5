@@ -5,6 +5,9 @@
  */
 package Repository;
 
+import View.DataBarangTambah;
+import java.sql.Date;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -13,4 +16,7 @@ import javax.swing.JTable;
  */
 public interface BarangInterface {
    void showBarang(JTable table,String opsi);
+   void addComboboxItem(JComboBox box , String opsi);
+   void addBarang(String nama_produt ,String kode_product , String harga_beli
+            , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt);
 }

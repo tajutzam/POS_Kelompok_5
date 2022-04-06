@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,6 +38,8 @@ public class Database implements DatabaseInterface{
             
         }catch(SQLException e){
             
+            JOptionPane.showMessageDialog(null, "Gagal Koneksi KeServer ! , ERROR : " + e.getMessage() , "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
         return mySqlCon;
     }

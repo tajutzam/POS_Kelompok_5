@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/DataTambahKategori.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/TambahUser.java</file>
             <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/Dashbord.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/DataTambahSupplier.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/dataTambahReturn.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/TransaksiPenjualan.java</file>
+            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/service/barangService.java</file>
+            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Barang.java</file>
             <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/DataBarangTambah.java</file>
+            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/BarangInterface.java</file>
         </group>
     </open-files>
 </project-private>

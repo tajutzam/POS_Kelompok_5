@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2022 at 06:40 PM
+-- Generation Time: Apr 06, 2022 at 01:07 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -59,21 +59,6 @@ CREATE TABLE `detail_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `detail_transaksi`
---
-
-INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`) VALUES
-('tr0012', 'brg001', 0, 0),
-('tr0012', 'brg001', 2, 2),
-('tr0012', 'brg001', 2, 4),
-('tr0012', 'brg001', 0, 2),
-('tr0012', 'brg001', 0, 2),
-('tr0012', 'brg001', 0, 2),
-('tr0012', 'brg001', 2, 123),
-('tr0012', 'brg001', 2, 2),
-('tr0012', 'brg001', 0, 10);
-
---
 -- Triggers `detail_transaksi`
 --
 DELIMITER $$
@@ -100,7 +85,9 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
-('kt001', 'sampo', '2022-03-23 15:36:49', '2022-03-23 15:36:49');
+('kt001', 'sampo', '2022-03-23 15:36:49', '2022-03-23 15:36:49'),
+('kt002', 'sabun', '2022-04-03 09:55:29', '2022-04-03 09:55:29'),
+('kt003', 'sabun wajah', '2022-04-03 09:55:38', '2022-04-03 09:55:38');
 
 -- --------------------------------------------------------
 
@@ -137,16 +124,21 @@ CREATE TABLE `product` (
   `harga_jual` int(32) NOT NULL,
   `supplier` varchar(8) NOT NULL,
   `kategori` varchar(8) NOT NULL,
-  `create_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `rusak` int(32) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`) VALUES
-('brg001', 'sdsdsdsds', 865, 10000, 15000, 'sup001', 'kt001', '2022-03-23 15:37:21', '2022-03-23 15:37:21');
+INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`) VALUES
+('SBH0001', 'sampo', 12, 12, 12, 'sup001', 'kt001', '2022-04-06 10:00:09', '2022-04-06 10:00:09', 1),
+('SBN0001', 'sabun 1', 12, 12, 122, 'sup001', 'kt002', '2022-04-06 09:39:10', '2022-04-06 09:39:10', 0),
+('SBN0002', 'barang', 12, 12, 123, 'sup001', 'kt001', '2022-04-06 09:54:08', '2022-04-06 09:54:08', 1),
+('SMO0001', 'Shampo 01', 12, 123, 1234, 'sup001', 'kt002', '2022-04-06 11:07:31', '2022-04-06 11:07:31', 0),
+('SMO0004', 'sampo ke 4', 121, 12, 123, 'sup001', 'kt001', '2022-04-06 10:54:16', '2022-04-06 10:54:16', 0);
 
 -- --------------------------------------------------------
 
