@@ -19,4 +19,10 @@ public interface BarangInterface {
    void addComboboxItem(JComboBox box , String opsi);
    void addBarang(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt);
+   void deleteBarang();
+   String getIdBarang(boolean setNewKode, String kode,JComboBox box);
+   public void editBarang(String kode_brg, String nama_product , int stok , int harga_beli , int harga_jual,   int rusak ,  JComboBox kat , JComboBox sup, DataBarangTambah dta,String kode_baru);
+   public void deleteBarang(String kode, DataBarangTambah dta);
+   public String ambilStringKodeBarang(JComboBox box);
+   public void deleteReturn();
 }

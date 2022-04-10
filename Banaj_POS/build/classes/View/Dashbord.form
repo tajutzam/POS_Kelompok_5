@@ -655,16 +655,18 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="panel_cariBarang" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Component id="comboBox_show" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace pref="609" max="32767" attributes="0"/>
-                                      <Component id="jButton6" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace pref="502" max="32767" attributes="0"/>
+                                      <Component id="Barcode" min="-2" pref="102" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btn_TambahBarang" min="-2" pref="110" max="-2" attributes="0"/>
+                                      <Component id="jButton6" min="-2" pref="102" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="btn_TambahBarang" min="-2" pref="102" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="panel_tablebarang" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="panel_tablebarang" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panel_totalBarang" min="-2" max="-2" attributes="0"/>
@@ -678,15 +680,19 @@
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="panel_totalBarang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButton6" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="panel_cariBarang" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="comboBox_show" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Component id="btn_TambahBarang" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_TambahBarang" max="32767" attributes="0"/>
+                                  <Component id="Barcode" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="comboBox_show" min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jButton6" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panel_tablebarang" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -904,6 +910,20 @@
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton6MouseClicked"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="Barcode">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="2d" green="2d" red="33" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Trebuchet MS" size="14" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Barcode"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

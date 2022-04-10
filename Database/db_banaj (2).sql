@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2022 at 01:07 PM
+-- Generation Time: Apr 10, 2022 at 02:53 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -126,19 +126,35 @@ CREATE TABLE `product` (
   `kategori` varchar(8) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `update_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `rusak` int(32) DEFAULT 0
+  `rusak` int(32) DEFAULT 0,
+  `total_stok` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`) VALUES
-('SBH0001', 'sampo', 12, 12, 12, 'sup001', 'kt001', '2022-04-06 10:00:09', '2022-04-06 10:00:09', 1),
-('SBN0001', 'sabun 1', 12, 12, 122, 'sup001', 'kt002', '2022-04-06 09:39:10', '2022-04-06 09:39:10', 0),
-('SBN0002', 'barang', 12, 12, 123, 'sup001', 'kt001', '2022-04-06 09:54:08', '2022-04-06 09:54:08', 1),
-('SMO0001', 'Shampo 01', 12, 123, 1234, 'sup001', 'kt002', '2022-04-06 11:07:31', '2022-04-06 11:07:31', 0),
-('SMO0004', 'sampo ke 4', 121, 12, 123, 'sup001', 'kt001', '2022-04-06 10:54:16', '2022-04-06 10:54:16', 0);
+INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
+('SBN0001', 'sabun 1', 990, 10000, 20000, 'sup001', 'kt002', '2022-04-08 13:04:57', '2022-04-08 13:04:57', 10, 1000),
+('SMO0001', 'sampo 1', 100, 20000, 25000, 'sup001', 'kt001', '2022-04-08 13:02:26', '2022-04-08 13:02:26', 0, 100),
+('SMO0002', 'sampo 2', 100, 12000, 15000, 'sup001', 'kt001', '2022-04-08 13:02:49', '2022-04-08 13:02:49', 20, 120),
+('SMO0003', 'sampo 3', 100, 10000, 15000, 'sup001', 'kt001', '2022-04-08 13:04:28', '2022-04-08 13:04:28', 20, 120),
+('SMO0004', 'sampo 4', 12, 123, 1234, 'sup001', 'kt001', '2022-04-10 12:39:16', '2022-04-10 12:39:16', 0, 12),
+('SMO0005', 'sampo 5', 11, 123, 1234, 'sup001', 'kt001', '2022-04-10 12:43:41', '2022-04-10 12:43:41', 1, 12);
+
+--
+-- Triggers `product`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_retur` AFTER UPDATE ON `product` FOR EACH ROW DELETE from retur_supplier where jumlah_rusak =0
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `minus_barangRusakWhenEdit` AFTER UPDATE ON `product` FOR EACH ROW UPDATE retur_supplier
+set jumlah_rusak = new.rusak
+where kode_product =product.kode_product
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -160,8 +176,16 @@ CREATE TABLE `retur_customer` (
 CREATE TABLE `retur_supplier` (
   `kode_supplier` varchar(8) NOT NULL,
   `kode_product` varchar(8) NOT NULL,
-  `tanggal_rtr` datetime NOT NULL
+  `tanggal_rtr` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `jumlah_rusak` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `retur_supplier`
+--
+
+INSERT INTO `retur_supplier` (`kode_supplier`, `kode_product`, `tanggal_rtr`, `jumlah_rusak`) VALUES
+('sup001', 'SMO0005', '2022-04-10 12:43:41', 1);
 
 -- --------------------------------------------------------
 
@@ -275,8 +299,8 @@ ALTER TABLE `retur_customer`
 -- Indexes for table `retur_supplier`
 --
 ALTER TABLE `retur_supplier`
-  ADD KEY `kode_supplier` (`kode_supplier`),
-  ADD KEY `kode_product` (`kode_product`);
+  ADD KEY `rtr_sup` (`kode_supplier`),
+  ADD KEY `rtr_product` (`kode_product`);
 
 --
 -- Indexes for table `supplier`
@@ -338,8 +362,8 @@ ALTER TABLE `retur_customer`
 -- Constraints for table `retur_supplier`
 --
 ALTER TABLE `retur_supplier`
-  ADD CONSTRAINT `retur_supplier_ibfk_1` FOREIGN KEY (`kode_supplier`) REFERENCES `supplier` (`kode_supplier`),
-  ADD CONSTRAINT `retur_supplier_ibfk_2` FOREIGN KEY (`kode_product`) REFERENCES `product` (`kode_product`);
+  ADD CONSTRAINT `rtr_product` FOREIGN KEY (`kode_product`) REFERENCES `product` (`kode_product`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rtr_sup` FOREIGN KEY (`kode_supplier`) REFERENCES `supplier` (`kode_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaksi`

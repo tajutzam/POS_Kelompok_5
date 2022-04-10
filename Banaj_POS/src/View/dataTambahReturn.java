@@ -46,26 +46,26 @@ public class dataTambahReturn extends javax.swing.JFrame {
         MainConten = new RoundedPanel(8, new Color(255, 255, 255));
         returnEdit = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        kode_barangReturn = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        nama_barangReturn = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jumlah_barangRusak = new javax.swing.JTextField();
+        simpan_editReturn = new javax.swing.JButton();
+        btn_cancelEditReturn = new javax.swing.JButton();
+        btn_clearReturn = new javax.swing.JButton();
+        statusReturn = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         returnTambah = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        kode_addReturn = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        nama_barangReturnAdd = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jumlahReturnAdd = new javax.swing.JTextField();
+        btn_simpanAddReturn = new javax.swing.JButton();
+        btn_cancelAddreturn = new javax.swing.JButton();
+        btn_clearAddreturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,59 +97,59 @@ public class dataTambahReturn extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(90, 90, 90));
         jLabel8.setText("Kode Barang");
 
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        kode_barangReturn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(90, 90, 90));
         jLabel9.setText("Nama Barang");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nama_barangReturn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(90, 90, 90));
         jLabel10.setText("Jumlah Barang");
 
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jumlah_barangRusak.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jButton7.setBackground(new java.awt.Color(111, 59, 160));
-        jButton7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Simpan");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        simpan_editReturn.setBackground(new java.awt.Color(111, 59, 160));
+        simpan_editReturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        simpan_editReturn.setForeground(new java.awt.Color(255, 255, 255));
+        simpan_editReturn.setText("Simpan");
+        simpan_editReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                simpan_editReturnActionPerformed(evt);
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(51, 45, 45));
-        jButton8.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Cancel");
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_cancelEditReturn.setBackground(new java.awt.Color(51, 45, 45));
+        btn_cancelEditReturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_cancelEditReturn.setForeground(new java.awt.Color(255, 255, 255));
+        btn_cancelEditReturn.setText("Cancel");
+        btn_cancelEditReturn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
+                btn_cancelEditReturnMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton8MouseEntered(evt);
+                btn_cancelEditReturnMouseEntered(evt);
             }
         });
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelEditReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btn_cancelEditReturnActionPerformed(evt);
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(96, 96, 96));
-        jButton9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Clear");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btn_clearReturn.setBackground(new java.awt.Color(96, 96, 96));
+        btn_clearReturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_clearReturn.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clearReturn.setText("Clear");
+        btn_clearReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btn_clearReturnActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baik", "Masih Rusak" }));
+        statusReturn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baik", "Masih Rusak" }));
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(90, 90, 90));
@@ -167,19 +167,19 @@ public class dataTambahReturn extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel9)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField5)
-                            .addComponent(jComboBox3, 0, 250, Short.MAX_VALUE)
-                            .addComponent(jTextField6))
+                            .addComponent(kode_barangReturn)
+                            .addComponent(nama_barangReturn, 0, 250, Short.MAX_VALUE)
+                            .addComponent(jumlah_barangRusak))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(simpan_editReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_cancelEditReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_clearReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(77, 77, 77))
                     .addGroup(returnEditLayout.createSequentialGroup()
                         .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(statusReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         returnEditLayout.setVerticalGroup(
@@ -189,24 +189,24 @@ public class dataTambahReturn extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addGap(11, 11, 11)
                 .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kode_barangReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(simpan_editReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nama_barangReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancelEditReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jumlah_barangRusak, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_clearReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(statusReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
@@ -216,52 +216,52 @@ public class dataTambahReturn extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(90, 90, 90));
         jLabel2.setText("Kode Barang");
 
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        kode_addReturn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(90, 90, 90));
         jLabel3.setText("Nama Barang");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nama_barangReturnAdd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(90, 90, 90));
         jLabel4.setText("Jumlah Barang");
 
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jumlahReturnAdd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jButton1.setBackground(new java.awt.Color(111, 59, 160));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Simpan");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_simpanAddReturn.setBackground(new java.awt.Color(111, 59, 160));
+        btn_simpanAddReturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_simpanAddReturn.setForeground(new java.awt.Color(255, 255, 255));
+        btn_simpanAddReturn.setText("Simpan");
+        btn_simpanAddReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_simpanAddReturnActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 45, 45));
-        jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Cancel");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_cancelAddreturn.setBackground(new java.awt.Color(51, 45, 45));
+        btn_cancelAddreturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_cancelAddreturn.setForeground(new java.awt.Color(255, 255, 255));
+        btn_cancelAddreturn.setText("Cancel");
+        btn_cancelAddreturn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btn_cancelAddreturnMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelAddreturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_cancelAddreturnActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(96, 96, 96));
-        jButton3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_clearAddreturn.setBackground(new java.awt.Color(96, 96, 96));
+        btn_clearAddreturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_clearAddreturn.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clearAddreturn.setText("Clear");
+        btn_clearAddreturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_clearAddreturnActionPerformed(evt);
             }
         });
 
@@ -275,14 +275,14 @@ public class dataTambahReturn extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1)
-                    .addComponent(jComboBox1, 0, 250, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(kode_addReturn)
+                    .addComponent(nama_barangReturnAdd, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jumlahReturnAdd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(returnTambahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_simpanAddReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancelAddreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_clearAddreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77))
         );
         returnTambahLayout.setVerticalGroup(
@@ -292,20 +292,20 @@ public class dataTambahReturn extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(11, 11, 11)
                 .addGroup(returnTambahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kode_addReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_simpanAddReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(returnTambahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nama_barangReturnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancelAddreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(returnTambahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jumlahReturnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_clearAddreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -358,43 +358,43 @@ public class dataTambahReturn extends javax.swing.JFrame {
             this.setVisible(true);
         }
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_simpanAddReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanAddReturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_simpanAddReturnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_cancelAddreturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelAddreturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_cancelAddreturnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_clearAddreturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearAddreturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_clearAddreturnActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void simpan_editReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpan_editReturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_simpan_editReturnActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btn_cancelEditReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelEditReturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btn_cancelEditReturnActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btn_clearReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearReturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btn_clearReturnActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btn_cancelAddreturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelAddreturnMouseClicked
          // TODO add your handling code here:
          this.dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btn_cancelAddreturnMouseClicked
 
-    private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
+    private void btn_cancelEditReturnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelEditReturnMouseEntered
          // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8MouseEntered
+    }//GEN-LAST:event_btn_cancelEditReturnMouseEntered
 
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+    private void btn_cancelEditReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelEditReturnMouseClicked
          // TODO add your handling code here:4
          this.dispose();
-    }//GEN-LAST:event_jButton8MouseClicked
+    }//GEN-LAST:event_btn_cancelEditReturnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -502,15 +502,11 @@ public class dataTambahReturn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainConten;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton btn_cancelAddreturn;
+    private javax.swing.JButton btn_cancelEditReturn;
+    private javax.swing.JButton btn_clearAddreturn;
+    private javax.swing.JButton btn_clearReturn;
+    private javax.swing.JButton btn_simpanAddReturn;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -518,13 +514,17 @@ public class dataTambahReturn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jumlahReturnAdd;
+    private javax.swing.JTextField jumlah_barangRusak;
+    private javax.swing.JTextField kode_addReturn;
+    private javax.swing.JTextField kode_barangReturn;
     private javax.swing.JLabel label_navigasi;
+    private javax.swing.JComboBox<String> nama_barangReturn;
+    private javax.swing.JComboBox<String> nama_barangReturnAdd;
     private javax.swing.JPanel panelNavigasi;
     private javax.swing.JPanel returnEdit;
     private javax.swing.JPanel returnTambah;
+    private javax.swing.JButton simpan_editReturn;
+    private javax.swing.JComboBox<String> statusReturn;
     // End of variables declaration//GEN-END:variables
 }
