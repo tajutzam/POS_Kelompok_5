@@ -6,6 +6,7 @@
 package Util;
 
 import javax.swing.JComboBox;
+import java.util.Random;
 
 /**
  *
@@ -14,12 +15,33 @@ import javax.swing.JComboBox;
 public class IdBarang {
     String kode;
     
+    
     public String getKodeBarang(String kategori){
         
  
         
         
         return kode;
+    }
+    
+    public String idReturSupplier(){
+        String result="TR";
+        Random rand = new Random();
+        int randomNomer = rand.nextInt(100000000);
+        String kode_retur = result +randomNomer;
+        
+        
+        return kode_retur;
+    }
+    
+    public static void main(String[] args) {
+        IdBarang id = new IdBarang();
+        for(int i=0; i< 100; i++){
+                    System.out.println(id.idReturSupplier());
+
+        }
+        
+        
     }
 
     

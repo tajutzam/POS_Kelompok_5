@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import Util.IdBarang;
 import Util.tanggalSaatIni;
 import View.Dashbord;
 import View.DataBarangTambah;
@@ -35,7 +36,7 @@ public class Barang implements BarangInterface{
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
 
     public Barang(){
-        deleteReturn();
+       
     }
 
     @Override
@@ -52,6 +53,7 @@ public class Barang implements BarangInterface{
             String sql = "select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier order by product.kode_product asc ";
             String sqlKategori ="select kode_kategori, nama_kategori from kategori order by kode_kategori asc";
             String sqlSupplier ="select kode_supplier, nama_supplier from supplier order by kode_supplier asc";
+            String sqlReturnJoin="select product.kode_product , supplier.nama_supplier, retur_supplier.id_returSupplier, retur_supplier.tanggal_rtr,product.nama_product , detail_retur.jumlah_rusak from product join detail_retur on product.kode_product = detail_retur.product join retur_supplier on retur_supplier.id_returSupplier = detail_retur.id_returSupplier join supplier on supplier.kode_supplier = retur_supplier.kode_supplier";
             String sqlReturn ="select supplier.nama_supplier, product.kode_product , tanggal_rtr , jumlah_rusak from retur_supplier join supplier on retur_supplier.kode_supplier = supplier.kode_supplier join product on retur_supplier.kode_product =product.kode_product order by retur_supplier.tanggal_rtr asc";
         try( Connection con = dt.conectDatabase();
             Statement st =con.createStatement();
@@ -154,8 +156,9 @@ public class Barang implements BarangInterface{
    
                 }else if(opsi.equals("return")){
                     
-                 res=st.executeQuery(sqlReturn);
+                 res=st.executeQuery(sqlReturnJoin);
                  model.addColumn("No");
+                 model.addColumn("Id Return");
                  model.addColumn("Nama Supplier");
                  model.addColumn("Kode Barang");
                  model.addColumn("Tanggal Return");
@@ -165,10 +168,11 @@ public class Barang implements BarangInterface{
                      while(res.next()){
                        model.addRow(new Object[]{
                        no,
+                       res.getString("id_returSupplier"),
                        res.getString("supplier.nama_supplier"),
                        res.getString("product.kode_product"),
                        res.getString("tanggal_rtr"),
-                       res.getString("jumlah_rusak")
+                       res.getString("detail_retur.jumlah_rusak")
                        });
                        no++;
                      }
@@ -230,16 +234,18 @@ public class Barang implements BarangInterface{
     @Override
     public void addBarang(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier , DataBarangTambah dta) {
-       
+       IdBarang id = new IdBarang();
        boolean isNotMatch=false;
        //query
        String sqlInsert="Insert into product (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`,total_stok)"
                + " values (? , ? , ? , ? , ? , ? , ? , ? , ? , ?,?)";
-       String sqlReturn ="INSERT INTO `retur_supplier`(`kode_supplier`, `kode_product`, `tanggal_rtr`, `jumlah_rusak`) VALUES (?,?,?,?) ";
+       String sqlReturSupplier= "insert into retur_supplier (id_returSupplier , kode_supplier , tanggal_rtr )values (?, ? ,?)";
+       String sqlDetailReturnSupplier ="insert into detail_retur (id_returSupplier , product, jumlah_rusak) values (? ,? ,?)";
        
            try(Connection con = dt.conectDatabase();
                PreparedStatement pst =con.prepareStatement(sqlInsert);
-               PreparedStatement pstReturn =con.prepareStatement(sqlReturn)){
+               PreparedStatement pstReturn =con.prepareStatement(sqlReturSupplier);
+               PreparedStatement pstDet = con.prepareStatement(sqlDetailReturnSupplier)){
             int stok_retur=   Integer.parseInt(barang_rusak.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "")); 
             if(!nama_produt.equals("")&&!harga_beli.equals("")&&!harga_jual.equals("")&&!totalstok.equals("")&&!barang_rusak.equals(""))  {
                 if(barang_rusak.equals("")){
@@ -276,17 +282,29 @@ public class Barang implements BarangInterface{
                 dta.dispose();
                 
             }else{
-                   pstReturn.setString(1, supplier);
-                   pstReturn.setString(2, kode_product);
+                   String kode =id.idReturSupplier();
+                   pstReturn.setString(1, kode);
+                   pstReturn.setString(2, supplier);
                    pstReturn.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-                   pstReturn.setString(4, barang_rusak);
+                 
                    pst.setInt(3,stokNew-stok_retur);
                    
                    int resetData = JOptionPane.showOptionDialog(null, "Terdapat Barang rusak sebanyak "+barang_rusak+"", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                    if(resetData==0){
-                      
+                       
+                         pstReturn.setString(1, kode);
+                         pstReturn.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+                         pstReturn.setString(2, supplier);
+                         
+                         pstDet.setString(1, kode);
+                         pstDet.setString(2, kode_product);
+                         pstDet.setString(3, barang_rusak);
+                         
+                         
                          pst.execute();
                          pstReturn.execute();
+                         pstDet.execute();
+                         
                          JOptionPane.showMessageDialog(null, "berhasil Menambahkan Barang dengan nama "+nama_produt+"","Susces",JOptionPane.INFORMATION_MESSAGE);
                          dta.dispose();
                    }
@@ -479,7 +497,7 @@ public class Barang implements BarangInterface{
                 +"harga_beli = ? , harga_jual=?, supplier=?, "        
                 +"kategori =?, update_at =? , rusak =?, kode_product=?, total_stok=? where kode_product ='"+kode_brg+"'";
         //
-        String sqlRet ="update retur_supplier set jumlah_rusak =? where kode_product =?";
+        String sqlRet ="update detail_retur set jumlah_rusak =? where product =?";
         String sqlShow ="select kode_kategori from kategori where nama_kategori ='"+kat.getSelectedItem().toString()+"'";
         String sqlShowSup ="select kode_supplier from supplier where nama_supplier ='"+sup.getSelectedItem().toString()+"'";
         try (Connection con = dt.conectDatabase();
@@ -519,13 +537,15 @@ public class Barang implements BarangInterface{
             pstRet.setInt(1, rusak);
             pstRet.setString(2, kode_brg);
             
+           
+            //rusak sama dengan 0
+          
             pst.execute(); 
             pstRet.execute();
-            
             JOptionPane.showMessageDialog(null, "Data Product Berhasil Diperbarui, Silakan Refresh Kembali !", "Success !", JOptionPane.INFORMATION_MESSAGE, suscesicon);
             dta.dispose();
         }catch(SQLException e){
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
         
@@ -597,8 +617,8 @@ public class Barang implements BarangInterface{
     }
      public void deleteReturn(){
 
-         String sql="select kode_product from retur_supplier where jumlah_rusak =0";
-         String sqlDel="delete from retur_supplier where kode_product =?";
+         String sql="select product from detail_retur where jumlah_rusak =0";
+         String sqlDel="delete from detail_retur where kode_product =?";
          try(Connection con = dt.conectDatabase();
              Statement st = con.createStatement();
              ResultSet res = st.executeQuery(sql);
@@ -607,13 +627,13 @@ public class Barang implements BarangInterface{
              
              
              while(res.next()){
-                 pst.setString(1, res.getString("kode_product"));
+                 pst.setString(1, res.getString("product"));
              }
              pst.execute();
              System.out.println("Berhasil");
              
          }catch(SQLException e){
-             
+             JOptionPane.showMessageDialog(null, e.getMessage(), "eror", JOptionPane.ERROR_MESSAGE);
          }
          
      }

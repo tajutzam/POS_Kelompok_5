@@ -203,7 +203,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
         txt_nama_barang.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel5.setText("Stok");
+        jLabel5.setText("Total Stok");
 
         txt_stok.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 

@@ -6,6 +6,7 @@
 package View;
 
 import Repository.Database;
+import Repository.DatabaseInterface;
 import com.mysql.jdbc.MysqlIO;
 import javax.swing.JTextField;
 
@@ -227,8 +228,10 @@ public class Login extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         Dashbord dashbord = new Dashbord();
-        this.dispose();
+      
+        
         dashbord.setVisible(true);
+        this.dispose();
        
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -260,8 +263,7 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        Database data = new Database();
-        data.conectDatabase(); 
+       
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
