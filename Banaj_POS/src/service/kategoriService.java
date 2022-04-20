@@ -7,18 +7,37 @@ package service;
 
 import javax.swing.JTable;
 import Repository.*;
+import View.DataTambahKategori;
+import View.DataTambahSupplier;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author user
  */
 public class kategoriService {
+    KategoriInterface kategori = new Kategori();
     
     public void showKategori(JTable table){
         
-       BarangInterface br = new Barang();
-       br.showBarang(table, "kategori");
+      
+      kategori.showKategori(table);
         
+    }
+    
+      
+    public void addSupplier(String nama_supplier,String kode,String time, DataTambahKategori dts){
+        time =   Timestamp.valueOf(LocalDateTime.now()).toString();
+        kategori.addKategori(nama_supplier, kode, time);
+        dts.dispose();
+        
+    }
+    public String getPrimaryKey(){
+        
+        
+        String hasil = kategori.getPrimaryKey();
+        return hasil;
     }
     
 }

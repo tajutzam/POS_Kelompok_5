@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2022 at 03:12 AM
+-- Generation Time: Apr 20, 2022 at 07:48 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -62,7 +62,8 @@ CREATE TABLE `detail_retur` (
 --
 
 INSERT INTO `detail_retur` (`id_returSupplier`, `product`, `jumlah_rusak`) VALUES
-('TR90743025', 'SMO0005', 0);
+('TR96146366', 'SMO0003', 1),
+('TR62166744', 'SBN0001', 1);
 
 -- --------------------------------------------------------
 
@@ -104,9 +105,9 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
-('kt001', 'sampo', '2022-03-23 15:36:49', '2022-03-23 15:36:49'),
-('kt002', 'sabun', '2022-04-03 09:55:29', '2022-04-03 09:55:29'),
-('kt003', 'sabun wajah', '2022-04-03 09:55:38', '2022-04-03 09:55:38');
+('K001', 'sampo ', '2022-04-20 12:41:27', '2022-04-20 12:41:27'),
+('K002', 'sabun', '2022-04-20 12:41:38', '2022-04-20 12:41:38'),
+('K003', 'parfume', '2022-04-20 12:41:51', '2022-04-20 12:41:51');
 
 -- --------------------------------------------------------
 
@@ -119,15 +120,18 @@ CREATE TABLE `pegawai` (
   `nama_pegawai` varchar(64) NOT NULL,
   `username` varchar(32) NOT NULL,
   `create_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL
+  `update_at` datetime NOT NULL,
+  `role` int(2) NOT NULL,
+  `status` enum('Aktive','Tidak Aktive') NOT NULL,
+  `password` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pegawai`
 --
 
-INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`) VALUES
-('pgw001', 'ucup', 'ucup', '2022-03-23 15:37:52', '2022-03-23 15:37:52');
+INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`, `role`, `status`, `password`) VALUES
+('pgw001', 'ucup', 'ucup', '2022-03-23 15:37:52', '2022-03-23 15:37:52', 0, 'Aktive', '');
 
 -- --------------------------------------------------------
 
@@ -154,12 +158,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
-('SBN0001', 'sabun 1', 990, 10000, 20000, 'sup001', 'kt002', '2022-04-08 13:04:57', '2022-04-08 13:04:57', 10, 1000),
-('SMO0001', 'sampo 1', 100, 20000, 25000, 'sup001', 'kt001', '2022-04-08 13:02:26', '2022-04-08 13:02:26', 0, 100),
-('SMO0002', 'sampo 2', 100, 12000, 15000, 'sup001', 'kt001', '2022-04-08 13:02:49', '2022-04-08 13:02:49', 20, 120),
-('SMO0003', 'sampo 3', 100, 10000, 15000, 'sup001', 'kt001', '2022-04-08 13:04:28', '2022-04-08 13:04:28', 20, 120),
-('SMO0004', 'sampo 4', 12, 123, 1234, 'sup001', 'kt001', '2022-04-10 12:39:16', '2022-04-10 12:39:16', 0, 12),
-('SMO0005', 'sampo 5', 10, 123, 124, 'sup001', 'kt001', '2022-04-12 09:36:17', '2022-04-12 09:36:17', 0, 10);
+('SBN0001', 'sabun ke 1', 99, 1000, 1001, 'S001', 'K002', '2022-04-20 05:42:43', '2022-04-20 05:42:43', 1, 100);
 
 --
 -- Triggers `product`
@@ -197,7 +196,8 @@ CREATE TABLE `retur_supplier` (
 --
 
 INSERT INTO `retur_supplier` (`kode_supplier`, `tanggal_rtr`, `id_returSupplier`) VALUES
-('sup001', '2022-04-12 02:37:57', 'TR90743025');
+('S001', '2022-04-20 05:42:44', 'TR62166744'),
+('S001', '2022-04-20 05:11:12', 'TR96146366');
 
 -- --------------------------------------------------------
 
@@ -217,7 +217,11 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`kode_supplier`, `nama_supplier`, `create_at`, `update_at`) VALUES
-('sup001', 'banaj', '2022-03-23 15:36:18', '2022-03-23 15:36:18');
+('S001', 'banaj supplier 1', '2022-04-19 20:00:44', '2022-04-19 20:00:44'),
+('S002', 'banaj suplier 2', '2022-04-19 20:00:53', '2022-04-19 20:00:53'),
+('S003', 'banaj supplier 3', '2022-04-19 20:01:02', '2022-04-19 20:01:02'),
+('S004', 'supplier 4', '2022-04-19 20:02:34', '2022-04-19 20:02:34'),
+('S005', 'supplier 5', '2022-04-19 20:02:47', '2022-04-19 20:02:47');
 
 -- --------------------------------------------------------
 

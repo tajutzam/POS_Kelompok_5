@@ -11,7 +11,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.swing.JPanel;
+import service.kategoriService;
 
 /**
  *
@@ -22,10 +25,19 @@ public class DataTambahKategori extends javax.swing.JFrame {
     /**
      * Creates new form DataTambahKategori
      */
+    kategoriService kategori = new kategoriService();
+      String time = Timestamp.valueOf(LocalDateTime.now()).toString();
     public DataTambahKategori() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
+     
+        TXT_kategori.setText(kategori.getPrimaryKey());
+        TXT_createAt.setText(time);
+        TXT_kategori.setEnabled(false);
+        TXT_createAt.setEnabled(false);
+        
     }
 
     /**
@@ -105,6 +117,11 @@ public class DataTambahKategori extends javax.swing.JFrame {
         btn_simpanTambahKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_simpanTambahKategori.setForeground(new java.awt.Color(255, 255, 255));
         btn_simpanTambahKategori.setText("Simpan");
+        btn_simpanTambahKategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_simpanTambahKategoriMouseClicked(evt);
+            }
+        });
 
         btn_cancelKategori.setBackground(new java.awt.Color(51, 45, 45));
         btn_cancelKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -369,6 +386,15 @@ public class DataTambahKategori extends javax.swing.JFrame {
     private void btn_clearEditKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clearEditKategoriMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_clearEditKategoriMouseClicked
+
+    private void btn_simpanTambahKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanTambahKategoriMouseClicked
+         // TODO add your handling code here:
+         String kode =  TXT_kategori.getText().toString();
+         String name = TXT_namaKategori.getText().toString();
+         
+         kategoriService kategori = new kategoriService();
+         kategori.addSupplier(name, kode, time, this);
+    }//GEN-LAST:event_btn_simpanTambahKategoriMouseClicked
 
     /**
      * @param args the command line arguments

@@ -1294,7 +1294,7 @@
                           <Group type="102" attributes="0">
                               <Component id="panel_cariSupplier" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButton8" min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="btn_tambahSupplier" min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panel_totalSupplier" min="-2" max="-2" attributes="0"/>
@@ -1310,7 +1310,7 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="panel_cariSupplier" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton8" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_tambahSupplier" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
                               <Component id="jScrollPane5" pref="398" max="32767" attributes="0"/>
@@ -1472,7 +1472,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="jButton8">
+                    <Component class="javax.swing.JButton" name="btn_tambahSupplier">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="a0" green="3b" red="6f" type="rgb"/>
@@ -1485,6 +1485,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Tambah"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_tambahSupplierMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

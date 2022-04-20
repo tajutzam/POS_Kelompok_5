@@ -109,29 +109,6 @@ public class Barang implements BarangInterface{
 
                     }
                 //akan menampilkan data kategori  
-                }else if(opsi.equals("kategori")){
-                    res=st.executeQuery(sqlKategori);
-                    
-                    model.addColumn("No");
-                    model.addColumn("Kode Kategori");
-                    model.addColumn("Nama Kategori");
-          
-                    if(resK.next()){
-                        while(res.next()){
-                          model.addRow(new Object[]{
-                          no,
-                          res.getString("kode_kategori"),
-                          res.getString("nama_kategori"),
-                          });
-
-                          no++; 
-                        }
-                    }else{
-                     JOptionPane.showMessageDialog(null, "Kategori Kosong Silahkan Tambah Kategori", "Information", JOptionPane.OK_OPTION);
-
-                    }
-             
-                res.close();
                 }else if(opsi.equals("supplier")){
                     res=st.executeQuery(sqlSupplier);
                     model.addColumn("No");

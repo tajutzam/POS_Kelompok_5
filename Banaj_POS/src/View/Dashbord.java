@@ -172,7 +172,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         table_supplier = new javax.swing.JTable();
-        jButton8 = new javax.swing.JButton();
+        btn_tambahSupplier = new javax.swing.JButton();
         panel_contenKasir = new javax.swing.JPanel();
         panel_cariKasir = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel22 = new javax.swing.JLabel();
@@ -1077,10 +1077,15 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         });
         jScrollPane5.setViewportView(table_supplier);
 
-        jButton8.setBackground(new java.awt.Color(111, 59, 160));
-        jButton8.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Tambah");
+        btn_tambahSupplier.setBackground(new java.awt.Color(111, 59, 160));
+        btn_tambahSupplier.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_tambahSupplier.setForeground(new java.awt.Color(255, 255, 255));
+        btn_tambahSupplier.setText("Tambah");
+        btn_tambahSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tambahSupplierMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenSupplierLayout = new javax.swing.GroupLayout(contenSupplier);
         contenSupplier.setLayout(contenSupplierLayout);
@@ -1090,7 +1095,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             .addGroup(contenSupplierLayout.createSequentialGroup()
                 .addComponent(panel_cariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_tambahSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(contenSupplierLayout.createSequentialGroup()
                 .addComponent(panel_totalSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -1103,7 +1108,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addGap(18, 18, 18)
                 .addGroup(contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel_cariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btn_tambahSupplier, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
         );
@@ -2450,6 +2455,13 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_exportPenjualanActionPerformed
 
+    private void btn_tambahSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahSupplierMouseClicked
+        // TODO add your handling code here:
+        
+       DataTambahSupplier supplier = new DataTambahSupplier();
+       supplier.Action("add");
+    }//GEN-LAST:event_btn_tambahSupplierMouseClicked
+
     public void showBarangWhenClick(){
         
         barangService br = new barangService();
@@ -2612,6 +2624,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JButton btn_exportPembelian;
     private javax.swing.JButton btn_exportPenjualan;
     private javax.swing.JButton btn_tambahReturn;
+    private javax.swing.JButton btn_tambahSupplier;
     private javax.swing.JComboBox<String> comboBox_show;
     private javax.swing.JComboBox<String> combo_boxPembelian;
     private javax.swing.JComboBox<String> combo_boxPenjualan;
@@ -2642,7 +2655,6 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

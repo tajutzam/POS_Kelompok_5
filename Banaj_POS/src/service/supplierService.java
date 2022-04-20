@@ -7,6 +7,11 @@ package service;
 
 import Repository.Barang;
 import Repository.BarangInterface;
+import Repository.Supplier;
+import Repository.SupplierInterface;
+import View.DataTambahSupplier;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 
@@ -16,10 +21,11 @@ import javax.swing.JTable;
  * @author user
  */
 public class supplierService {
+    SupplierInterface sup = new Supplier();
     
     public void showSupplier(JTable table){
-        BarangInterface br = new Barang();
-        br.showBarang(table, "supplier");
+        
+        sup.showSuplier(table);
     }
     public void addItemSupplier(JComboBox box){
         
@@ -27,5 +33,14 @@ public class supplierService {
         br.addComboboxItem(box, "supplier");
         
     }
-    
+    public void addSupplier(String nama_supplier,String kode,String time, DataTambahSupplier dts){
+        time =   Timestamp.valueOf(LocalDateTime.now()).toString();
+        sup.addSupplier(nama_supplier,kode,time);
+        dts.dispose();
+        
+    }
+    public String getKode(){
+        String kode =sup.getPrimaryKey();
+        return kode;
+    }
 }

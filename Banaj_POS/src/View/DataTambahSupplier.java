@@ -5,19 +5,27 @@
  */
 package View;
 
+import Repository.Supplier;
+import Repository.SupplierInterface;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.swing.JPanel;
+import service.supplierService;
 
 /**
  *
  * @author user
  */
 public class DataTambahSupplier extends javax.swing.JFrame {
+    
+    supplierService sup = new supplierService();
+      String time ;
 
     /**
      * Creates new form DataTambahKategori
@@ -37,6 +45,11 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        txt_idSupplier.setText(sup.getKode());
+        txt_idSupplier.setEnabled(false);
+        time = Timestamp.valueOf(LocalDateTime.now()).toString();
+        txt_createAtt.setText(time);
+        txt_createAtt.setEnabled(false);
     }
 
     /**
@@ -51,11 +64,11 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         contenPanel = new RoundedPanel(8, new Color(255, 255, 255));
         conten_tambahPanel = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_idSupplier = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_nama_supplierAdd = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_createAtt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -80,22 +93,27 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel2.setText("Id Supplier");
 
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_idSupplier.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel3.setText("Nama Supplier");
 
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_nama_supplierAdd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel4.setText("Create at");
 
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_createAtt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jButton1.setBackground(new java.awt.Color(111, 59, 160));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Simpan");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(51, 45, 45));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -121,10 +139,17 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         conten_tambahPanel.setLayout(conten_tambahPanelLayout);
         conten_tambahPanelLayout.setHorizontalGroup(
             conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_tambahPanelLayout.createSequentialGroup()
-                .addContainerGap(397, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+            .addGroup(conten_tambahPanelLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conten_tambahPanelLayout.createSequentialGroup()
+                        .addComponent(txt_createAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(conten_tambahPanelLayout.createSequentialGroup()
+                        .addComponent(txt_nama_supplierAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81))))
             .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(conten_tambahPanelLayout.createSequentialGroup()
                     .addGap(62, 62, 62)
@@ -132,9 +157,7 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGroup(conten_tambahPanelLayout.createSequentialGroup()
                             .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_idSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel3))
                             .addGap(84, 84, 84)
@@ -147,8 +170,12 @@ public class DataTambahSupplier extends javax.swing.JFrame {
             conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_tambahPanelLayout.createSequentialGroup()
                 .addContainerGap(175, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
+                .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nama_supplierAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(txt_createAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
             .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(conten_tambahPanelLayout.createSequentialGroup()
                     .addGap(60, 60, 60)
@@ -156,20 +183,16 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                     .addGap(12, 12, 12)
                     .addGroup(conten_tambahPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(conten_tambahPanelLayout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_idSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLabel3)
-                            .addGap(12, 12, 12)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel4)
-                            .addGap(12, 12, 12)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(63, 63, 63)
+                            .addComponent(jLabel4))
                         .addGroup(conten_tambahPanelLayout.createSequentialGroup()
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(132, 132, 132)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(82, Short.MAX_VALUE)))
+                    .addContainerGap(87, Short.MAX_VALUE)))
         );
 
         contenPanel.add(conten_tambahPanel, "card2");
@@ -337,14 +360,18 @@ public class DataTambahSupplier extends javax.swing.JFrame {
     
     public void Action(String aksi){
         
+        
         if(aksi.equals("add")){
             contenPanel.removeAll();
             contenPanel.add(conten_tambahPanel);
             contenPanel.repaint();
             contenPanel.revalidate();
+           
             label_Navigasi.setText("Supplier > Tambah Supplier");
             this.setTitle("Tambah Supplier");
             this.setVisible(true);
+            
+            
             
         }else if(aksi.equals("edit")){
             contenPanel.removeAll();
@@ -383,6 +410,16 @@ public class DataTambahSupplier extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+         // TODO add your handling code here:
+         String nama_supplier= txt_nama_supplierAdd.getText().toString();
+         String kode =txt_idSupplier.getText().toString();
+         supplierService supplier = new supplierService();
+         supplier.addSupplier(nama_supplier,kode,time ,this );
+         
+         
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -484,13 +521,13 @@ public class DataTambahSupplier extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel label_Navigasi;
     private javax.swing.JPanel navigasi_panel;
+    private javax.swing.JTextField txt_createAtt;
+    private javax.swing.JTextField txt_idSupplier;
+    private javax.swing.JTextField txt_nama_supplierAdd;
     // End of variables declaration//GEN-END:variables
 }
