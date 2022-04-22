@@ -11,22 +11,27 @@ import View.DataTambahKategori;
 import View.DataTambahSupplier;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author user
  */
+
 public class kategoriService {
     KategoriInterface kategori = new Kategori();
-    
+        ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+        ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     public void showKategori(JTable table){
         
       
       kategori.showKategori(table);
         
     }
-    
-      
+  
     public void addSupplier(String nama_supplier,String kode,String time, DataTambahKategori dts){
         time =   Timestamp.valueOf(LocalDateTime.now()).toString();
         kategori.addKategori(nama_supplier, kode, time);
@@ -34,10 +39,46 @@ public class kategoriService {
         
     }
     public String getPrimaryKey(){
-        
-        
+
         String hasil = kategori.getPrimaryKey();
         return hasil;
     }
+
+     public String setKodeLamaKategoriEdit(String kode , JTable table){
+        
+        DefaultTableModel model = (DefaultTableModel)table.getModel();
+     
+        int selectedRow =table.getSelectedRow();
+        kode = model .getValueAt(selectedRow, 1).toString();
+
+        return kode;
+
+    }
+     public void sendDataKategori(String kode , String nama , String time){
+         
+         
+         kategori.sendToEdit(kode, nama, time);
+        
+     }
+     public void editKategori(String kode_kategori , String nama_kategori , String nama_kategoriLama , DataTambahKategori dts){
+         try{
+           if(!nama_kategori.equals(nama_kategoriLama)){
+               if(nama_kategori.length()<4){
+                   throw new InputMismatchException(" Kategori tidak boleh kurang dari 4 ");
+               }else{
+                   kategori.editKategori(kode_kategori, nama_kategori);
+                   dts.dispose();
+               }
+               
+         }else{
+               throw new InputMismatchException("Gagal Memperbarui, tidak ada perubahan !");
+         }  
+         }catch(InputMismatchException e){
+                          JOptionPane.showMessageDialog(null, "Gagal Memperbarui ,Tidak ada perubahan pada kategori" , "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE,eroricon );
+
+         }
+         
+       
+     }
     
 }

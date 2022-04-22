@@ -5,14 +5,24 @@
  */
 package View;
 
+import Repository.Database;
+import Repository.DatabaseInterface;
+import Repository.Kategori;
+import Repository.KategoriInterface;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import service.kategoriService;
 
@@ -25,9 +35,16 @@ public class DataTambahKategori extends javax.swing.JFrame {
     /**
      * Creates new form DataTambahKategori
      */
-    kategoriService kategori = new kategoriService();
-      String time = Timestamp.valueOf(LocalDateTime.now()).toString();
-    public DataTambahKategori() {
+    
+    //variable
+    String kode_kategori;
+    ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+    ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+    String time = Timestamp.valueOf(LocalDateTime.now()).toString();
+
+      kategoriService kategori = new kategoriService();
+      
+      public DataTambahKategori() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -37,7 +54,17 @@ public class DataTambahKategori extends javax.swing.JFrame {
         TXT_createAt.setText(time);
         TXT_kategori.setEnabled(false);
         TXT_createAt.setEnabled(false);
+        TXT_kodeKategoriEdit.setEnabled(false);
+        TXT_updateAtKategori.setEnabled(false);
+        label_editNamaKategori.setVisible(false);
         
+    }
+    public void setKodeKategoriLama(String kode){
+        this.kode_kategori =kode;
+        
+    }
+    public String getKodeKategoriLama(){
+        return this.kode_kategori;
     }
 
     /**
@@ -73,6 +100,9 @@ public class DataTambahKategori extends javax.swing.JFrame {
         brn_cancelEditKategori = new javax.swing.JButton();
         btn_clearEditKategori = new javax.swing.JButton();
         btn_hapusKategori = new javax.swing.JButton();
+        kode_lama = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        label_editNamaKategori = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -212,6 +242,11 @@ public class DataTambahKategori extends javax.swing.JFrame {
         btn_simpanKategoriEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_simpanKategoriEdit.setForeground(new java.awt.Color(255, 255, 255));
         btn_simpanKategoriEdit.setText("Simpan");
+        btn_simpanKategoriEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_simpanKategoriEditMouseClicked(evt);
+            }
+        });
 
         brn_cancelEditKategori.setBackground(new java.awt.Color(51, 45, 45));
         brn_cancelEditKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -255,11 +290,21 @@ public class DataTambahKategori extends javax.swing.JFrame {
             .addGroup(conten_editLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_kodeKategoriEdit)
+                    .addGroup(conten_editLayout.createSequentialGroup()
+                        .addComponent(label_kodeKategoriEdit)
+                        .addGap(75, 75, 75)
+                        .addComponent(kode_lama))
                     .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, conten_editLayout.createSequentialGroup()
                             .addComponent(label_namaKategoriEdit)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(conten_editLayout.createSequentialGroup()
+                                    .addGap(77, 77, 77)
+                                    .addComponent(jLabel1))
+                                .addGroup(conten_editLayout.createSequentialGroup()
+                                    .addGap(69, 69, 69)
+                                    .addComponent(label_editNamaKategori)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                             .addComponent(brn_cancelEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(conten_editLayout.createSequentialGroup()
                             .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,13 +324,18 @@ public class DataTambahKategori extends javax.swing.JFrame {
             conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(conten_editLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(label_kodeKategoriEdit)
+                .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_kodeKategoriEdit)
+                    .addComponent(kode_lama))
                 .addGap(12, 12, 12)
                 .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(conten_editLayout.createSequentialGroup()
                         .addComponent(TXT_kodeKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(label_namaKategoriEdit)
+                        .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label_namaKategoriEdit)
+                            .addComponent(jLabel1)
+                            .addComponent(label_editNamaKategori))
                         .addGap(12, 12, 12)
                         .addComponent(TXT_namaKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -344,7 +394,9 @@ public class DataTambahKategori extends javax.swing.JFrame {
             contenPanel.revalidate();
             labelNavigasi.setText("Kategori > Edit Kategori");
             this.setTitle("Edit Kategori");
+       
             this.setVisible(true);
+
         }else if(opsi.equals("add")){
             contenPanel.removeAll();
             contenPanel.add(conten_Add);
@@ -396,6 +448,15 @@ public class DataTambahKategori extends javax.swing.JFrame {
          kategori.addSupplier(name, kode, time, this);
     }//GEN-LAST:event_btn_simpanTambahKategoriMouseClicked
 
+    private void btn_simpanKategoriEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanKategoriEditMouseClicked
+         // TODO add your handling code here:
+         String nama_baru = TXT_namaKategoriEdit.getText().toString();
+         String nama_lama = label_editNamaKategori.getText();
+         System.out.println(nama_baru);
+         System.out.println(nama_lama);
+         kategori.editKategori(kode_kategori, nama_baru, nama_lama , this);
+    }//GEN-LAST:event_btn_simpanKategoriEditMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -431,6 +492,52 @@ public class DataTambahKategori extends javax.swing.JFrame {
         });
     }
     
+    
+    public void senEdit(String kode, String nama , String update){
+        System.out.println("Kode "+getKodeKategoriLama());
+
+        kategori.sendDataKategori(kode, nama, update);
+        System.out.println("Nama "+ nama);
+        System.out.println("Update "+ update);
+        TXT_kodeKategoriEdit.setText(kode);
+        TXT_namaKategoriEdit.setText(nama);
+        TXT_updateAtKategori.setText(update);
+    }
+    
+    public void editKategori(String opsi , String kode_kat){
+        DatabaseInterface dt = new Database();
+        String kode="";
+        String nama_kategori="";
+        if(opsi.equals("edit")){
+            
+      
+            String sql ="select kode_kategori , nama_kategori , update_at from kategori where kode_kategori = '"+kode_kat+"'";
+            try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                kode =res.getString("kode_kategori");
+                nama_kategori =res.getString("nama_kategori");
+               
+                
+                TXT_kodeKategoriEdit.setText(getKodeKategoriLama());
+                TXT_namaKategoriEdit.setText(nama_kategori);
+                TXT_updateAtKategori.setText(time);
+                label_editNamaKategori.setText(nama_kategori);
+            }
+   
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal Update Kategori"+e.getMessage(), "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
+        } 
+            
+            
+            
+            
+            
+        }
+        
+    }
     class RoundedPanel extends JPanel
     {
         private Color backgroundColor;
@@ -476,6 +583,8 @@ public class DataTambahKategori extends javax.swing.JFrame {
         
         
     }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -495,9 +604,12 @@ public class DataTambahKategori extends javax.swing.JFrame {
     private javax.swing.JPanel contenPanel;
     private javax.swing.JPanel conten_Add;
     private javax.swing.JPanel conten_edit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel kode_lama;
     private javax.swing.JLabel labelNavigasi;
     private javax.swing.JLabel label_createAtKategori;
+    private javax.swing.JLabel label_editNamaKategori;
     private javax.swing.JLabel label_kodeKategori;
     private javax.swing.JLabel label_kodeKategoriEdit;
     private javax.swing.JLabel label_namaKategori;

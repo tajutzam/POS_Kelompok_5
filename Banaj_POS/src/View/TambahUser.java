@@ -299,7 +299,7 @@ public class TambahUser extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel13.setText("Username");
+        jLabel13.setText("Create At");
 
         jTextField10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 

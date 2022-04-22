@@ -49,6 +49,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
     /**
      * Creates new form DataBarangTambah
      */
+    
     public DataBarangTambah() {
         initComponents();
         this.setSize(1080,600);
@@ -78,6 +79,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
         update_atEdit.setEnabled(false);
         total_stok.setEnabled(false);
         label_stokEdit.setVisible(false);
+        
         
         
 
@@ -490,7 +492,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                                 .addGap(22, 22, 22))
                             .addGroup(contenEditBarangLayout.createSequentialGroup()
                                 .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(kode_barangLama)
                                 .addGap(17, 17, 17))
                             .addComponent(nama_barangEdit)

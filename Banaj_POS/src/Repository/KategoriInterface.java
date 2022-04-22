@@ -22,7 +22,9 @@ public interface KategoriInterface {
     public void showKategori(JTable table);
     public void addKategori(String nama , String kode , String time);
     public String getPrimaryKey();
-        
+    public void sendToEdit(String kode , String nama_kategori , String time);
+    public String getKodeKategori(JTable table);   
+    public void editKategori(String kode , String nama_kategori);
        
         
         

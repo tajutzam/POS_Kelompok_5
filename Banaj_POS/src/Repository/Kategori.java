@@ -26,6 +26,7 @@ public class Kategori implements KategoriInterface{
         ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
         ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
 
+        @Override
     public String getCodeKategori(JComboBox box) {
     
         
@@ -43,7 +44,6 @@ public class Kategori implements KategoriInterface{
             }
             
         }catch(SQLException e){
-            
         }
         return kode;
     }
@@ -206,5 +206,56 @@ public class Kategori implements KategoriInterface{
         
 
     }
+
+    @Override
+    public void sendToEdit(String kode , String nama_kategori , String time ) {
+       
+        String sql ="select kode_kategori , nama_kategori , update_at from kategori where kode_kategori = '"+kode+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                kode =res.getString("kode_kategori");
+                nama_kategori =res.getString("nama_kategori");
+                time =res.getString("update_at");
+                
+            }
+            
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal Update Kategori"+e.getMessage(), "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
+        }
+      
+        
+        
+        
+    }
+
+    @Override
+    public String getKodeKategori(JTable table) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+        @Override
+    public void editKategori(String kode , String nama_kategori){
+        String sqlUpdate="update kategori set nama_kategori = ?  where kode_kategori =?";
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sqlUpdate)){
+            
+            pst.setString(1, nama_kategori);
+            pst.setString(2, kode);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil Memperbarui Kategori , ","Succes", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+        }catch(SQLException e){
+          JOptionPane.showMessageDialog(null, "Gagal Memperbarui Kategori"+e.getMessage(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE, eroricon);
+
+        }
+        
+    }
+  
+    
+    
+      
+   
 
 }
