@@ -27,6 +27,7 @@ public class Supplier implements SupplierInterface{
     DatabaseInterface dt = new Database();
     DefaultTableModel model = new DefaultTableModel();
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+    ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
 
     
     
@@ -165,5 +166,47 @@ public class Supplier implements SupplierInterface{
             
         }
     }
-   
+
+    @Override
+    public void editSupplier(String kode, String nama , String time) {
+        
+        String sql ="update supplier set nama_supplier = ? , update_at=?  where kode_supplier =?";
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sql)){
+            
+            pst.setString(1, nama);
+            pst.setString(2, time);
+            pst.setString(3, kode);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Berhasil Memperbarui supplier !","Success !", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal Mengedit Supplier"+e.getMessage(), "Informasi", JOptionPane.INFORMATION_MESSAGE ,eroricon );
+        }
+    }
+
+    @Override
+    public void tampilkanDataKeEdit() {
+        
+        
+    }
+    @Override
+   public void deleteSupplier(String kode){
+       
+       String sql ="delete from supplier where kode_supplier =?";
+      
+           try(Connection con = dt.conectDatabase();
+           PreparedStatement pst =con.prepareStatement(sql)){
+           
+           pst.setString(1, kode);
+           pst.execute();
+           JOptionPane.showMessageDialog(null, "Berhasil Menghapus supplier !","Success !", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+
+           
+       }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "Gagal Menghapus supplier !","Eror !", JOptionPane.INFORMATION_MESSAGE, eroricon);
+
+       }
+       
+      
+   }
 }

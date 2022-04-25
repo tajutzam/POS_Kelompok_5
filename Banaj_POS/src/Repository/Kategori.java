@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.DataTambahKategori;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -252,10 +253,34 @@ public class Kategori implements KategoriInterface{
         }
         
     }
+
+    @Override
+    public void deleteKategori(String kode , DataTambahKategori dta) {
+      
+        int resetData = JOptionPane.showOptionDialog(null, "Apakah Anda Yakin Ingin Menghapus product ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        if(resetData==0){
+            String sql ="delete from kategori where kode_kategori = ?";
+            try(Connection con = dt.conectDatabase();
+            PreparedStatement pst =con.prepareStatement(sql);)
+            {
+               pst.setString(1, kode);
+               pst.executeUpdate();
+           
+               JOptionPane.showMessageDialog(null, "Product Berhasil Dihapus Silahkan Refresh !", "Sukses !", JOptionPane.INFORMATION_MESSAGE,suscesicon);
+               dta.dispose();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, "Product gagal di hapus !","Eror !",JOptionPane.WARNING_MESSAGE);
+            }
+            
+        }
+    }
+     
+        
+    }
   
     
     
       
    
 
-}
+

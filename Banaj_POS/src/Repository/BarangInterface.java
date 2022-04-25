@@ -25,4 +25,5 @@ public interface BarangInterface {
    public void deleteBarang(String kode, DataBarangTambah dta);
    public String ambilStringKodeBarang(JComboBox box);
    public void deleteReturn();
+   public void addReturn(String kode , String supplier , String rusak);
 }

@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.DataTambahKategori;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ public interface KategoriInterface {
     public String getKodeKategori(JTable table);   
     public void editKategori(String kode , String nama_kategori);
        
-        
+    public void deleteKategori(String kode , DataTambahKategori dta);
         
     
     

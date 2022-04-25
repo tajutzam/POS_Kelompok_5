@@ -14,6 +14,7 @@ import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -48,6 +49,7 @@ public class Dashbord extends javax.swing.JFrame {
     String kode_kategori;
     String nama_kategori;
     String time_update;
+    String kode_supplier;
     
 Dimension dimAx = Toolkit.getDefaultToolkit().getScreenSize();
 Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
@@ -177,6 +179,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         jScrollPane5 = new javax.swing.JScrollPane();
         table_supplier = new javax.swing.JTable();
         btn_tambahSupplier = new javax.swing.JButton();
+        panel_info = new RoundedPanel(8, new Color(255, 255, 255));
+        jLabel12 = new javax.swing.JLabel();
         panel_contenKasir = new javax.swing.JPanel();
         panel_cariKasir = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel22 = new javax.swing.JLabel();
@@ -599,7 +603,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addGroup(panel_totalBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_totalBarangLayout.createSequentialGroup()
                         .addComponent(label_totalBarang)
-                        .addContainerGap(59, Short.MAX_VALUE))
+                        .addContainerGap(62, Short.MAX_VALUE))
                     .addGroup(panel_totalBarangLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -707,7 +711,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBox_show, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
                 .addComponent(Barcode, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -722,7 +726,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         contenBarangLayout.setVerticalGroup(
             contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenBarangLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(panel_totalBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -734,7 +738,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                         .addComponent(comboBox_show, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                     .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenBarang, "card9");
@@ -850,7 +854,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             contenKategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenKategoriLayout.createSequentialGroup()
                 .addComponent(panel_totalKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1085, Short.MAX_VALUE))
+                .addContainerGap(1077, Short.MAX_VALUE))
             .addGroup(contenKategoriLayout.createSequentialGroup()
                 .addComponent(panel_cariKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -860,14 +864,14 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         contenKategoriLayout.setVerticalGroup(
             contenKategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenKategoriLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(panel_totalKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(contenKategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panel_cariKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_TambahBarang1))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenKategori, "card3");
@@ -983,7 +987,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addComponent(panel_totalReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1010, 1010, 1010))
             .addGroup(contenReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
                 .addGroup(contenReturnLayout.createSequentialGroup()
                     .addComponent(panel_cariReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -992,14 +996,14 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         contenReturnLayout.setVerticalGroup(
             contenReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenReturnLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(panel_totalReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(contenReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panel_cariReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tambahReturn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -1107,7 +1111,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         contenSupplier.setLayout(contenSupplierLayout);
         contenSupplierLayout.setHorizontalGroup(
             contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
             .addGroup(contenSupplierLayout.createSequentialGroup()
                 .addComponent(panel_cariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1119,17 +1123,38 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         contenSupplierLayout.setVerticalGroup(
             contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenSupplierLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(panel_totalSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel_cariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tambahSupplier, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         conten_manajemen.add(contenSupplier, "card4");
+
+        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel12.setText("Klik Pada Tabel Untuk Mengedit ");
+
+        javax.swing.GroupLayout panel_infoLayout = new javax.swing.GroupLayout(panel_info);
+        panel_info.setLayout(panel_infoLayout);
+        panel_infoLayout.setHorizontalGroup(
+            panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_infoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel_infoLayout.setVerticalGroup(
+            panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_infoLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
+        );
 
         javax.swing.GroupLayout panel_contenBarangLayout = new javax.swing.GroupLayout(panel_contenBarang);
         panel_contenBarang.setLayout(panel_contenBarangLayout);
@@ -1138,10 +1163,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             .addGroup(panel_contenBarangLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(conten_manajemen, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
                     .addGroup(panel_contenBarangLayout.createSequentialGroup()
                         .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 956, Short.MAX_VALUE))
-                    .addComponent(conten_manajemen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panel_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panel_contenBarangLayout.setVerticalGroup(
@@ -1150,13 +1176,20 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addContainerGap()
                 .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addComponent(conten_manajemen, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                .addGap(43, 43, 43))
+                .addComponent(conten_manajemen, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         ConntainerPanel.add(panel_contenBarang, "card8");
 
         panel_contenKasir.setBackground(new java.awt.Color(239, 240, 245));
+        panel_contenKasir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                panel_contenKasirKeyPressed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(90, 90, 90));
@@ -1175,7 +1208,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addGroup(panel_cariKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_cariKasirLayout.createSequentialGroup()
                         .addComponent(jLabel22)
-                        .addContainerGap(382, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel_cariKasirLayout.createSequentialGroup()
                         .addComponent(jTextField11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1257,25 +1290,27 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             .addGroup(panel_infoHargaLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel25))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panel_infoHargaLayout.createSequentialGroup()
+                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)))
+                .addGap(864, 864, 864)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
         panel_infoHargaLayout.setVerticalGroup(
             panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_infoHargaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_infoHargaLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel25)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel26))
-                    .addGroup(panel_infoHargaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(9, 9, 9))
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -1315,10 +1350,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                             .addComponent(jScrollPane7)
                             .addComponent(panel_infoHarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel_contenKasirLayout.createSequentialGroup()
-                                .addComponent(panel_cariKasir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(panel_cariKasir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(42, 42, 42)
                                 .addComponent(panel_hasilCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(32, 32, 32))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         panel_contenKasirLayout.setVerticalGroup(
             panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1332,10 +1367,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panel_infoHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addComponent(panel_infoHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 74, Short.MAX_VALUE)
+                .addGap(50, 50, 50))
         );
 
         ConntainerPanel.add(panel_contenKasir, "card9");
@@ -1389,7 +1424,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             panel_contenSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_contenSettingLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1167, Short.MAX_VALUE))
+                .addGap(0, 1159, Short.MAX_VALUE))
         );
         panel_contenSettingLayout.setVerticalGroup(
             panel_contenSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1499,7 +1534,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             .addGroup(panel_contenManageUserLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(panel_contenManageUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1245, Short.MAX_VALUE)
                     .addGroup(panel_contenManageUserLayout.createSequentialGroup()
                         .addComponent(panel_totalUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -1621,7 +1656,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         container_laporanPenjualan.setLayout(container_laporanPenjualanLayout);
         container_laporanPenjualanLayout.setHorizontalGroup(
             container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1245, Short.MAX_VALUE)
             .addGroup(container_laporanPenjualanLayout.createSequentialGroup()
                 .addComponent(show_laporanPenjualan)
                 .addGap(18, 18, 18)
@@ -1684,7 +1719,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         container_laporanPembelian.setLayout(container_laporanPembelianLayout);
         container_laporanPembelianLayout.setHorizontalGroup(
             container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1245, Short.MAX_VALUE)
             .addGroup(container_laporanPembelianLayout.createSequentialGroup()
                 .addComponent(show_laporanPembelian)
                 .addGap(18, 18, 18)
@@ -1899,7 +1934,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                         .addGap(59, 59, 59)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
+                    .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -1985,7 +2020,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                     .addComponent(frame_logo_toko, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ConntainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(header_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1289, Short.MAX_VALUE)))
+                    .addComponent(header_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1281, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2412,6 +2447,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
          DataTambahSupplier suplier = new DataTambahSupplier();
          suplier.Action("edit");
          
+         supplierService supService = new supplierService();
+         String kode_sup= supService.setKodeSupplierEdit(kode_supplier, table_supplier);
+         suplier.tampilkanDataKeForm("edit", kode_sup);
+         
+         
          
         
      
@@ -2547,6 +2587,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
          // TODO add your handling code here:
          
     }//GEN-LAST:event_jScrollPane4MouseClicked
+
+    private void panel_contenKasirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panel_contenKasirKeyPressed
+        
+        
+    }//GEN-LAST:event_panel_contenKasirKeyPressed
 
     public void showBarangWhenClick(){
         
@@ -2751,6 +2796,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
@@ -2817,6 +2863,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JPanel panel_contenSetting;
     private javax.swing.JPanel panel_dashbord;
     private javax.swing.JPanel panel_hasilCari;
+    private javax.swing.JPanel panel_info;
     private javax.swing.JPanel panel_infoHarga;
     private javax.swing.JPanel panel_kasir;
     private javax.swing.JPanel panel_laporan;
@@ -2832,12 +2879,12 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JPanel panel_totalUser;
     private javax.swing.JLabel show_laporanPembelian;
     private javax.swing.JLabel show_laporanPenjualan;
-    private javax.swing.JTable tabel_kategori;
-    private javax.swing.JTable table_barang;
+    public static javax.swing.JTable tabel_kategori;
+    public static javax.swing.JTable table_barang;
     private javax.swing.JTable table_laporanPembelian;
     private javax.swing.JTable table_laporanPenjualan;
     private javax.swing.JTable table_return;
-    private javax.swing.JTable table_supplier;
+    public static javax.swing.JTable table_supplier;
     private javax.swing.JLabel total_PenjSebulan;
     private javax.swing.JTextField txt_cariBrng;
     private javax.swing.JTextField txt_cariKategori;

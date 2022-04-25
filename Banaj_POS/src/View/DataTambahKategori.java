@@ -277,6 +277,11 @@ public class DataTambahKategori extends javax.swing.JFrame {
         btn_hapusKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_hapusKategori.setForeground(new java.awt.Color(255, 255, 255));
         btn_hapusKategori.setText("Hapus");
+        btn_hapusKategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_hapusKategoriMouseClicked(evt);
+            }
+        });
         btn_hapusKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_hapusKategoriActionPerformed(evt);
@@ -446,6 +451,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
          
          kategoriService kategori = new kategoriService();
          kategori.addSupplier(name, kode, time, this);
+         kategori.showKategori(Dashbord.tabel_kategori);
     }//GEN-LAST:event_btn_simpanTambahKategoriMouseClicked
 
     private void btn_simpanKategoriEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanKategoriEditMouseClicked
@@ -454,8 +460,21 @@ public class DataTambahKategori extends javax.swing.JFrame {
          String nama_lama = label_editNamaKategori.getText();
          System.out.println(nama_baru);
          System.out.println(nama_lama);
+         kategoriService katSer = new kategoriService();
+        
+      
          kategori.editKategori(kode_kategori, nama_baru, nama_lama , this);
+          katSer.showKategori(Dashbord.tabel_kategori);
+         
     }//GEN-LAST:event_btn_simpanKategoriEditMouseClicked
+
+    private void btn_hapusKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusKategoriMouseClicked
+         // TODO add your handling code here:
+         String kode =TXT_kodeKategoriEdit.getText();
+         kategoriService kategori = new kategoriService();
+         System.out.println(kode);
+         kategori.deleteKategori(kode , this);
+    }//GEN-LAST:event_btn_hapusKategoriMouseClicked
 
     /**
      * @param args the command line arguments
@@ -497,8 +516,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
         System.out.println("Kode "+getKodeKategoriLama());
 
         kategori.sendDataKategori(kode, nama, update);
-        System.out.println("Nama "+ nama);
-        System.out.println("Update "+ update);
+      
         TXT_kodeKategoriEdit.setText(kode);
         TXT_namaKategoriEdit.setText(nama);
         TXT_updateAtKategori.setText(update);
@@ -519,12 +537,12 @@ public class DataTambahKategori extends javax.swing.JFrame {
             if(res.next()){
                 kode =res.getString("kode_kategori");
                 nama_kategori =res.getString("nama_kategori");
-               
-                
+            
                 TXT_kodeKategoriEdit.setText(getKodeKategoriLama());
                 TXT_namaKategoriEdit.setText(nama_kategori);
                 TXT_updateAtKategori.setText(time);
                 label_editNamaKategori.setText(nama_kategori);
+                
             }
    
         }catch(SQLException e){

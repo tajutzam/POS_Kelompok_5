@@ -5,6 +5,8 @@
  */
 package View;
 
+import Repository.Database;
+import Repository.DatabaseInterface;
 import Repository.Supplier;
 import Repository.SupplierInterface;
 import java.awt.Color;
@@ -13,8 +15,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import service.supplierService;
 
@@ -26,6 +34,9 @@ public class DataTambahSupplier extends javax.swing.JFrame {
     
     supplierService sup = new supplierService();
       String time ;
+      String kode_supplier;
+              ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+
 
     /**
      * Creates new form DataTambahKategori
@@ -50,6 +61,8 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         time = Timestamp.valueOf(LocalDateTime.now()).toString();
         txt_createAtt.setText(time);
         txt_createAtt.setEnabled(false);
+        id_supEdit.setEnabled(false);
+        update_atEdit.setEnabled(false);
     }
 
     /**
@@ -74,15 +87,16 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         conten_editPanel = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        id_supEdit = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        namaSup_edit = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        update_atEdit = new javax.swing.JTextField();
+        btn_simpanEdit = new javax.swing.JButton();
+        btn_cancelEdit = new javax.swing.JButton();
+        btn_hapusEdit = new javax.swing.JButton();
+        btn_clearEdit = new javax.swing.JButton();
+        nama_supLama = new javax.swing.JLabel();
         navigasi_panel = new RoundedPanel(8, new Color(255, 255, 255));
         label_Navigasi = new javax.swing.JLabel();
 
@@ -200,55 +214,65 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel5.setText("Id Supplier");
 
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        id_supEdit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel6.setText("Nama Supplier");
 
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        namaSup_edit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel7.setText("Update At");
 
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        update_atEdit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jButton4.setBackground(new java.awt.Color(111, 59, 160));
-        jButton4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Simpan");
-
-        jButton5.setBackground(new java.awt.Color(51, 45, 45));
-        jButton5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Cancel");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_simpanEdit.setBackground(new java.awt.Color(111, 59, 160));
+        btn_simpanEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_simpanEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btn_simpanEdit.setText("Simpan");
+        btn_simpanEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-        });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_simpanEditMouseClicked(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(204, 0, 0));
-        jButton6.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Hapus");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelEdit.setBackground(new java.awt.Color(51, 45, 45));
+        btn_cancelEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_cancelEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btn_cancelEdit.setText("Cancel");
+        btn_cancelEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cancelEditMouseClicked(evt);
+            }
+        });
+        btn_cancelEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_cancelEditActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(96, 96, 96));
-        jButton7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Clear");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btn_hapusEdit.setBackground(new java.awt.Color(204, 0, 0));
+        btn_hapusEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_hapusEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btn_hapusEdit.setText("Hapus");
+        btn_hapusEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_hapusEditMouseClicked(evt);
+            }
+        });
+        btn_hapusEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btn_hapusEditActionPerformed(evt);
+            }
+        });
+
+        btn_clearEdit.setBackground(new java.awt.Color(96, 96, 96));
+        btn_clearEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_clearEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clearEdit.setText("Clear");
+        btn_clearEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearEditActionPerformed(evt);
             }
         });
 
@@ -257,13 +281,19 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         conten_editPanelLayout.setHorizontalGroup(
             conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_editPanelLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                 .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conten_editPanelLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_editPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nama_supLama)
+                        .addGap(157, 157, 157)))
+                .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_hapusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_clearEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancelEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(82, 82, 82))
             .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(conten_editPanelLayout.createSequentialGroup()
@@ -272,12 +302,12 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGroup(conten_editPanelLayout.createSequentialGroup()
                             .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(update_atEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(namaSup_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(id_supEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6))
                             .addGap(84, 84, 84)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_simpanEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(82, Short.MAX_VALUE)))
         );
         conten_editPanelLayout.setVerticalGroup(
@@ -287,11 +317,13 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                 .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_editPanelLayout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_cancelEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nama_supLama))
                         .addGap(27, 27, 27)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_clearEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_hapusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
             .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(conten_editPanelLayout.createSequentialGroup()
@@ -300,14 +332,14 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                     .addGap(12, 12, 12)
                     .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(conten_editPanelLayout.createSequentialGroup()
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(id_supEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLabel6)
                             .addGap(12, 12, 12)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namaSup_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(51, 51, 51)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(update_atEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_simpanEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(82, Short.MAX_VALUE)))
         );
 
@@ -357,7 +389,12 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    public void setKodeSupplier(String kode){
+        this.kode_supplier= kode;
+    }
+    public String getKodeSupplier(){
+        return this.kode_supplier;
+    }
     public void Action(String aksi){
         
         
@@ -394,22 +431,22 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void btn_cancelEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelEditMouseClicked
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_btn_cancelEditMouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_cancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_cancelEditActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btn_hapusEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btn_hapusEditActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btn_clearEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btn_clearEditActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
          // TODO add your handling code here:
@@ -417,9 +454,39 @@ public class DataTambahSupplier extends javax.swing.JFrame {
          String kode =txt_idSupplier.getText().toString();
          supplierService supplier = new supplierService();
          supplier.addSupplier(nama_supplier,kode,time ,this );
+         supplier.showSupplier(Dashbord.table_supplier);
          
          
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btn_simpanEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanEditMouseClicked
+        // TODO add your handling code here:
+        
+        String kode = id_supEdit.getText().toString();
+        String nama = namaSup_edit.getText().toString();
+        
+        supplierService suplier = new supplierService();
+        if(!namaSup_edit.getText().toString().equals(nama_supLama.getText())){
+            suplier.editSupplier(kode,nama , time, this);
+            suplier.showSupplier(Dashbord.table_supplier);
+        }else{
+             JOptionPane.showMessageDialog(null, "Gagal Memperbarui ,Tidak ada perubahan pada Supplier" , "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE,eroricon );
+
+        }
+        
+    }//GEN-LAST:event_btn_simpanEditMouseClicked
+
+    private void btn_hapusEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusEditMouseClicked
+        // TODO add your handling code here:
+        
+        supplierService suplier = new supplierService();
+        String kode = id_supEdit.getText().toString();
+        int resetData = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Ingin Menghapus product ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        if(resetData==0){
+            suplier.deleteSupplier(kode, this);
+        }
+        
+    }//GEN-LAST:event_btn_hapusEditMouseClicked
 
     /**
      * @param args the command line arguments
@@ -457,6 +524,40 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         });
     }
     
+     public void tampilkanDataKeForm(String opsi , String kode_kat){
+        DatabaseInterface dt = new Database();
+        String kode="";
+        String nama_kategori="";
+        if(opsi.equals("edit")){
+            
+      
+            String sql ="select kode_supplier , nama_supplier , update_at from supplier where kode_supplier = '"+kode_kat+"'";
+            try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                kode =res.getString("kode_supplier");
+                nama_kategori =res.getString("nama_supplier");
+            
+                id_supEdit.setText(kode_kat);
+                namaSup_edit.setText(nama_kategori);
+                update_atEdit.setText(time);
+                nama_supLama.setText(nama_kategori);
+                
+            }
+   
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal Update Kategori"+e.getMessage(), "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
+        } 
+            
+            
+            
+            
+            
+        }
+        
+    }
     class RoundedPanel extends JPanel
     {
         private Color backgroundColor;
@@ -505,29 +606,30 @@ public class DataTambahSupplier extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancelEdit;
+    private javax.swing.JButton btn_clearEdit;
+    private javax.swing.JButton btn_hapusEdit;
+    private javax.swing.JButton btn_simpanEdit;
     public static javax.swing.JPanel contenPanel;
     private javax.swing.JPanel conten_editPanel;
     private javax.swing.JPanel conten_tambahPanel;
+    private javax.swing.JTextField id_supEdit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel label_Navigasi;
+    private javax.swing.JTextField namaSup_edit;
+    private javax.swing.JLabel nama_supLama;
     private javax.swing.JPanel navigasi_panel;
     private javax.swing.JTextField txt_createAtt;
     private javax.swing.JTextField txt_idSupplier;
     private javax.swing.JTextField txt_nama_supplierAdd;
+    private javax.swing.JTextField update_atEdit;
     // End of variables declaration//GEN-END:variables
 }

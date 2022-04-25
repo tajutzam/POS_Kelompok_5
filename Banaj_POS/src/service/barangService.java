@@ -78,6 +78,9 @@ public class barangService {
     public void editBarang(String kode_brg, String nama_product , int stok , int harga_beli , int harga_jual,   int rusak ,  JComboBox kat , JComboBox sup, DataBarangTambah dta,String kode_baru){
        
         BarangInterface barang = new Barang();
+      
+        
+       
         barang.editBarang(kode_brg, nama_product, stok, harga_beli, harga_jual, rusak, kat, sup, dta, kode_baru);
     }
     public void deleteBarang(String kode, DataBarangTambah dta){

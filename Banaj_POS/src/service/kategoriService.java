@@ -80,5 +80,10 @@ public class kategoriService {
          
        
      }
+     public void deleteKategori(String kode , DataTambahKategori dts){
+        KategoriInterface ka = new Kategori();
+        ka.deleteKategori(kode , dts);
+         dts.dispose();
+     }
     
 }

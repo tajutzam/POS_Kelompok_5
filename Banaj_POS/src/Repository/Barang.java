@@ -34,7 +34,7 @@ public class Barang implements BarangInterface{
     Database dt = new Database();
     tanggalSaatIni tg = new tanggalSaatIni();
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
-
+    IdBarang id = new IdBarang();
     public Barang(){
        
     }
@@ -208,10 +208,37 @@ public class Barang implements BarangInterface{
         
     }
 
+    
+    public void addReturn(String supplier , String kode_product , String barang_rusak ){
+       String sqlReturSupplier= "insert into retur_supplier (id_returSupplier , kode_supplier , tanggal_rtr )values (?, ? ,?)";
+       String sqlDetailReturnSupplier ="insert into detail_retur (id_returSupplier , product, jumlah_rusak) values (? ,? ,?)";
+       try(Connection con = dt.conectDatabase();
+               
+               PreparedStatement pstReturn =con.prepareStatement(sqlReturSupplier);
+               PreparedStatement pstDet = con.prepareStatement(sqlDetailReturnSupplier)){
+           
+                   String kode =id.idReturSupplier();
+                
+                   pstReturn.setString(1, kode);
+                   pstReturn.setString(2, supplier);
+                   pstReturn.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+                   
+                   pstDet.setString(1, kode);
+                   pstDet.setString(2, kode_product);
+                   pstDet.setString(3, barang_rusak);
+                        
+                   pstReturn.execute();
+                   pstDet.execute();
+           
+       }catch(SQLException e){
+           
+       }
+
+    }
     @Override
     public void addBarang(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier , DataBarangTambah dta) {
-       IdBarang id = new IdBarang();
+       
        boolean isNotMatch=false;
        //query
        String sqlInsert="Insert into product (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`,total_stok)"
@@ -259,35 +286,21 @@ public class Barang implements BarangInterface{
                 dta.dispose();
                 
             }else{
-                   String kode =id.idReturSupplier();
-                   pstReturn.setString(1, kode);
-                   pstReturn.setString(2, supplier);
-                   pstReturn.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-                 
                    pst.setInt(3,stokNew-stok_retur);
                    
                    int resetData = JOptionPane.showOptionDialog(null, "Terdapat Barang rusak sebanyak "+barang_rusak+"", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-                   if(resetData==0){
-                       
-                         pstReturn.setString(1, kode);
-                         pstReturn.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-                         pstReturn.setString(2, supplier);
+                   if(resetData==0){       
                          
-                         pstDet.setString(1, kode);
-                         pstDet.setString(2, kode_product);
-                         pstDet.setString(3, barang_rusak);
-                         
-                         
+                         addReturn(supplier, kode_product, barang_rusak);
                          pst.execute();
-                         pstReturn.execute();
-                         pstDet.execute();
-                         
+
                          JOptionPane.showMessageDialog(null, "berhasil Menambahkan Barang dengan nama "+nama_produt+"","Susces",JOptionPane.INFORMATION_MESSAGE);
                          dta.dispose();
                    }
             }
 
-            }  else{
+            }  
+            else{
                 throw new SQLException("Data tidak boleh kosong ");
             }
 
@@ -454,8 +467,8 @@ public class Barang implements BarangInterface{
             }
            
           
-            
-            return hsl.toUpperCase();
+            //remove space in primary key
+            return hsl.toUpperCase().replaceAll(" ", "");
             
         }catch(SQLException err){
             return err.getMessage();
@@ -508,6 +521,8 @@ public class Barang implements BarangInterface{
             pst.setString(5, kode_supplier);
             pst.setString(6, kode_kategori);
             pst.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+            String rusak_new = String.valueOf(rusak);
+            
             pst.setInt(8, rusak);
             pst.setString(9, kode_baru);
             pst.setInt(10, stok+rusak);

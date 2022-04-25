@@ -21,6 +21,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setTitle("Banaj Fragrance -> Login Page");
   
     }
 
@@ -58,14 +59,14 @@ public class Login extends javax.swing.JFrame {
         Panel_Right_Login.setBackground(new java.awt.Color(255, 164, 164));
         Panel_Right_Login.setPreferredSize(new java.awt.Dimension(683, 768));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/login_picture (2).jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/rsz_logo_florens_jadi_banaj.jpg"))); // NOI18N
 
         javax.swing.GroupLayout Panel_Right_LoginLayout = new javax.swing.GroupLayout(Panel_Right_Login);
         Panel_Right_Login.setLayout(Panel_Right_LoginLayout);
         Panel_Right_LoginLayout.setHorizontalGroup(
             Panel_Right_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Right_LoginLayout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         Panel_Right_LoginLayout.setVerticalGroup(

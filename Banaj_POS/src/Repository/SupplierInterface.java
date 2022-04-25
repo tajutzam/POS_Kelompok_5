@@ -18,5 +18,8 @@ public interface SupplierInterface {
     public void showSuplier(JTable table);
     public void addSupplier(String nama_supplier,String kode,String time);
     public String getPrimaryKey();
+    public void editSupplier(String kode , String nama , String time);
     
+    public void tampilkanDataKeEdit();
+    public void deleteSupplier(String kode);
 }
