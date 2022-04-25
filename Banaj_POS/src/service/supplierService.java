@@ -10,10 +10,12 @@ import Repository.BarangInterface;
 import Repository.KategoriInterface;
 import Repository.Supplier;
 import Repository.SupplierInterface;
+import View.Dashbord;
 import View.DataTambahSupplier;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +30,8 @@ public class supplierService {
     public void showSupplier(JTable table){
         
         sup.showSuplier(table);
+        String total = sup.hitungTotalSupplier();
+        Dashbord.txt_totalSupplier.setText(total);
     }
     public void addItemSupplier(JComboBox box){
         
@@ -35,10 +39,18 @@ public class supplierService {
         br.addComboboxItem(box, "supplier");
         
     }
-    public void addSupplier(String nama_supplier,String kode,String time, DataTambahSupplier dts){
+    public boolean addSupplier(String nama_supplier,String kode,String time){
         time =   Timestamp.valueOf(LocalDateTime.now()).toString();
-        sup.addSupplier(nama_supplier,kode,time);
-        dts.dispose();
+        boolean isAdd=false;
+        if(nama_supplier.equals("")){
+           JOptionPane.showMessageDialog(null, "Harap Isi From dengan benar", "Information", JOptionPane.INFORMATION_MESSAGE);
+           isAdd=false;
+        }else{
+                  sup.addSupplier(nama_supplier,kode,time);
+                  isAdd=true;
+  
+        }
+        return isAdd;
         
     }
     public String getKode(){

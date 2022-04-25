@@ -450,8 +450,12 @@ public class DataTambahKategori extends javax.swing.JFrame {
          String name = TXT_namaKategori.getText().toString();
          
          kategoriService kategori = new kategoriService();
-         kategori.addSupplier(name, kode, time, this);
+         if(kategori.addSupplier(name, kode, time)==true){
+             this.dispose();
+         }
+       
          kategori.showKategori(Dashbord.tabel_kategori);
+         
     }//GEN-LAST:event_btn_simpanTambahKategoriMouseClicked
 
     private void btn_simpanKategoriEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanKategoriEditMouseClicked

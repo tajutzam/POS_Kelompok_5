@@ -629,6 +629,21 @@ public class Barang implements BarangInterface{
          }
          
      }
+     public String hitungTotalBarang(){
+         String sql ="select COUNT(*) as jml from product";
+         String total="";
+         try(Connection con = dt.conectDatabase();
+             Statement st = con.createStatement();
+             ResultSet res = st.executeQuery(sql)){
+             if(res.next()){
+                 total=res.getString("jml");
+             }
+         }catch(SQLException e){
+             JOptionPane.showMessageDialog(null, e.getMessage(), "eror", JOptionPane.ERROR_MESSAGE);
+
+         }
+         return total;
+     }
       
 }
 

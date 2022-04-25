@@ -174,7 +174,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         icon_cariSupplier = new javax.swing.JLabel();
         panel_totalSupplier = new RoundedPanel(8, new Color(255, 255, 255));
         label_totalBarang4 = new javax.swing.JLabel();
-        txt_totalBrg4 = new javax.swing.JLabel();
+        txt_totalSupplier = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         table_supplier = new javax.swing.JTable();
@@ -603,7 +603,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addGroup(panel_totalBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_totalBarangLayout.createSequentialGroup()
                         .addComponent(label_totalBarang)
-                        .addContainerGap(62, Short.MAX_VALUE))
+                        .addContainerGap(58, Short.MAX_VALUE))
                     .addGroup(panel_totalBarangLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -647,6 +647,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         );
 
         txt_cariBrng.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
+        jScrollPane3.setBackground(new java.awt.Color(239, 240, 245));
 
         table_barang.setBackground(new java.awt.Color(239, 240, 245));
         table_barang.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -718,10 +720,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_TambahBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2))
+            .addComponent(jScrollPane3)
             .addGroup(contenBarangLayout.createSequentialGroup()
                 .addComponent(panel_totalBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         contenBarangLayout.setVerticalGroup(
             contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -738,7 +740,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                         .addComponent(comboBox_show, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                     .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenBarang, "card9");
@@ -829,7 +831,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addGroup(panel_totalKategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_totalKategoriLayout.createSequentialGroup()
                         .addComponent(label_totalKategori)
-                        .addContainerGap(48, Short.MAX_VALUE))
+                        .addContainerGap(47, Short.MAX_VALUE))
                     .addGroup(panel_totalKategoriLayout.createSequentialGroup()
                         .addComponent(icon_kategori)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -853,13 +855,13 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         contenKategoriLayout.setHorizontalGroup(
             contenKategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenKategoriLayout.createSequentialGroup()
-                .addComponent(panel_totalKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1077, Short.MAX_VALUE))
-            .addGroup(contenKategoriLayout.createSequentialGroup()
                 .addComponent(panel_cariKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_TambahBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addGroup(contenKategoriLayout.createSequentialGroup()
+                .addComponent(panel_totalKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         contenKategoriLayout.setVerticalGroup(
             contenKategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -871,7 +873,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                     .addComponent(panel_cariKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_TambahBarang1))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenKategori, "card3");
@@ -893,6 +895,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             }
         });
 
+        jScrollPane6.setBackground(new java.awt.Color(239, 240, 245));
         jScrollPane6.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
         table_return.setBackground(new java.awt.Color(239, 240, 245));
@@ -1003,7 +1006,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                     .addComponent(panel_cariReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tambahReturn))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -1041,9 +1044,9 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         label_totalBarang4.setForeground(new java.awt.Color(90, 90, 90));
         label_totalBarang4.setText("Total Supplier");
 
-        txt_totalBrg4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        txt_totalBrg4.setForeground(new java.awt.Color(90, 90, 90));
-        txt_totalBrg4.setText("1020");
+        txt_totalSupplier.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        txt_totalSupplier.setForeground(new java.awt.Color(90, 90, 90));
+        txt_totalSupplier.setText("1020");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/agreement.png"))); // NOI18N
 
@@ -1060,7 +1063,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                     .addGroup(panel_totalSupplierLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_totalBrg4)
+                        .addComponent(txt_totalSupplier)
                         .addGap(24, 24, 24))))
         );
         panel_totalSupplierLayout.setVerticalGroup(
@@ -1070,7 +1073,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addComponent(label_totalBarang4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(panel_totalSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_totalBrg4)
+                    .addComponent(txt_totalSupplier)
                     .addComponent(jLabel7))
                 .addContainerGap())
         );
@@ -1130,7 +1133,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                     .addComponent(panel_cariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tambahSupplier, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenSupplier, "card4");
@@ -1176,10 +1179,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addContainerGap()
                 .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addComponent(conten_manajemen, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(conten_manajemen, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         ConntainerPanel.add(panel_contenBarang, "card8");
@@ -1369,7 +1372,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panel_infoHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 74, Short.MAX_VALUE)
+                .addComponent(panel_infoHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                 .addGap(50, 50, 50))
         );
 
@@ -2093,8 +2096,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
        
         br.showBarang(table_barang);
         br.deleteBarangWhenStokHabis();
-     
-      
+       
 //        
 //      
         
@@ -2315,6 +2317,12 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
           conten_manajemen.add(contenBarang);
           conten_manajemen.repaint();
           conten_manajemen.revalidate();
+          
+          barangService barang = new barangService();
+          barang.showBarang(table_barang);
+          
+          String total = barang.hitungTotal();
+          txt_totalBrg.setText(total);
          
          
     }//GEN-LAST:event_label_navigasi_barangMouseClicked
@@ -2890,9 +2898,9 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JTextField txt_cariKategori;
     private javax.swing.JTextField txt_cariSupplier;
     private javax.swing.JTextField txt_cariSupplier1;
-    private javax.swing.JLabel txt_totalBrg;
-    private javax.swing.JLabel txt_totalBrg4;
-    private javax.swing.JLabel txt_totalKategori;
+    public static javax.swing.JLabel txt_totalBrg;
+    public static javax.swing.JLabel txt_totalKategori;
     private javax.swing.JLabel txt_totalReturn;
+    public static javax.swing.JLabel txt_totalSupplier;
     // End of variables declaration//GEN-END:variables
 } 

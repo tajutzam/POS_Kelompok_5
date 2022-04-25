@@ -26,4 +26,5 @@ public interface BarangInterface {
    public String ambilStringKodeBarang(JComboBox box);
    public void deleteReturn();
    public void addReturn(String kode , String supplier , String rusak);
+   public String hitungTotalBarang();
 }

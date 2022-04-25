@@ -22,4 +22,5 @@ public interface SupplierInterface {
     
     public void tampilkanDataKeEdit();
     public void deleteSupplier(String kode);
+    public String hitungTotalSupplier();
 }

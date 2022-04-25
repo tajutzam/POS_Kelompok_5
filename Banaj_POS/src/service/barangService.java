@@ -10,6 +10,7 @@ import Repository.BarangInterface;
 import Repository.Database;
 import Repository.DatabaseInterface;
 import Util.tanggalSaatIni;
+import View.Dashbord;
 import View.DataBarangTambah;
 import java.sql.Connection;
 import java.sql.Date;
@@ -38,6 +39,8 @@ public class barangService {
     public  void showBarang(JTable table){
        
         br.showBarang(table, "barang");
+        Dashbord.txt_totalBrg.setText(br.hitungTotalBarang());
+        
     }
     public void showReturSupplier(JTable table){
         br.showBarang(table, "return");
@@ -109,5 +112,10 @@ public class barangService {
     public void deleteReturn(){
         BarangInterface barang = new Barang();
         barang.deleteReturn();
+    }
+    public String hitungTotal(){
+       BarangInterface barang  = new Barang();
+       String total=barang.hitungTotalBarang();
+       return total;
     }
 }

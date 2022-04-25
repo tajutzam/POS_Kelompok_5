@@ -209,4 +209,30 @@ public class Supplier implements SupplierInterface{
        
       
    }
+    @Override
+   public String hitungTotalSupplier(){
+       
+       String total="";
+       String sql="select count(*) as jml from supplier";
+       try(Connection con = dt.conectDatabase();
+           Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            if(res.next()){
+                total = res.getString("jml");
+            }
+           
+           
+           
+           
+           
+       }catch(SQLException e){
+          JOptionPane.showMessageDialog(null, "Gagal Menampilkan jumla supplier !","Eror !", JOptionPane.INFORMATION_MESSAGE, eroricon);
+
+       }
+       
+       
+       return total;
+       
+       
+   }
 }

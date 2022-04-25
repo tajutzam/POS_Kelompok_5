@@ -7,6 +7,7 @@ package service;
 
 import javax.swing.JTable;
 import Repository.*;
+import View.Dashbord;
 import View.DataTambahKategori;
 import View.DataTambahSupplier;
 import java.sql.Timestamp;
@@ -29,13 +30,23 @@ public class kategoriService {
         
       
       kategori.showKategori(table);
+      String totalKategori=hitungTotalKategori();
+      Dashbord.txt_totalKategori.setText(totalKategori);
         
     }
   
-    public void addSupplier(String nama_supplier,String kode,String time, DataTambahKategori dts){
+    public boolean addSupplier(String nama_supplier,String kode,String time){
+        boolean isAdd=false;
         time =   Timestamp.valueOf(LocalDateTime.now()).toString();
-        kategori.addKategori(nama_supplier, kode, time);
-        dts.dispose();
+        
+        if(nama_supplier.equals("")){
+            JOptionPane.showMessageDialog(null, "Harap Isi From dengan benar", "Information", JOptionPane.INFORMATION_MESSAGE);
+            isAdd=false;
+        }else{
+            kategori.addKategori(nama_supplier, kode, time);
+            isAdd=true;
+        }
+       return isAdd;
         
     }
     public String getPrimaryKey(){
@@ -84,6 +95,10 @@ public class kategoriService {
         KategoriInterface ka = new Kategori();
         ka.deleteKategori(kode , dts);
          dts.dispose();
+     }
+     public String hitungTotalKategori(){
+         String total =kategori.hitungTotalKategori();
+         return total;
      }
     
 }

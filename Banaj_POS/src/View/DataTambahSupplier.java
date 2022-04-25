@@ -453,8 +453,12 @@ public class DataTambahSupplier extends javax.swing.JFrame {
          String nama_supplier= txt_nama_supplierAdd.getText().toString();
          String kode =txt_idSupplier.getText().toString();
          supplierService supplier = new supplierService();
-         supplier.addSupplier(nama_supplier,kode,time ,this );
-         supplier.showSupplier(Dashbord.table_supplier);
+         if(supplier.addSupplier(nama_supplier, kode, time)==true){
+             supplier.showSupplier(Dashbord.table_supplier);
+             this.dispose();
+         }
+        
+         
          
          
     }//GEN-LAST:event_jButton1MouseClicked

@@ -28,7 +28,7 @@ public interface KategoriInterface {
     public void editKategori(String kode , String nama_kategori);
        
     public void deleteKategori(String kode , DataTambahKategori dta);
-        
+    public String hitungTotalKategori();
     
     
 }

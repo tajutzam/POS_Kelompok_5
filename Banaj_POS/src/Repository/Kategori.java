@@ -274,6 +274,26 @@ public class Kategori implements KategoriInterface{
             
         }
     }
+
+    @Override
+    public String hitungTotalKategori() {
+        
+        String sql ="select COUNT(*) as jml from kategori";
+         String total="";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            if(res.next()){
+                 total = res.getString("jml");
+             
+            }
+         
+        }catch(SQLException e){
+              JOptionPane.showMessageDialog(null, "Product gagal di hapus !"+e.getMessage(),"Eror !",JOptionPane.WARNING_MESSAGE);
+
+        }
+        return total;
+    }
      
         
     }
