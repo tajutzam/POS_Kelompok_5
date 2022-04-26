@@ -30,6 +30,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.BarRenderer3D;
 import org.jfree.data.category.DefaultCategoryDataset;
+import service.UserService;
 
 import service.barangService;
 import service.kategoriService;
@@ -211,7 +212,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         TXT_cariUser = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_user = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         panel_contenLaporan = new javax.swing.JPanel();
@@ -1372,7 +1373,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panel_infoHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addComponent(panel_infoHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 74, Short.MAX_VALUE)
                 .addGap(50, 50, 50))
         );
 
@@ -1500,7 +1501,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
         TXT_cariUser.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_user.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1511,12 +1512,12 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        table_user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                table_userMouseClicked(evt);
             }
         });
-        jScrollPane8.setViewportView(jTable1);
+        jScrollPane8.setViewportView(table_user);
 
         jButton1.setBackground(new java.awt.Color(111, 59, 160));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -2104,7 +2105,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
     private void icon_managerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_managerMouseClicked
          // TODO add your handling code here:
-          ConntainerPanel.removeAll();
+        ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenManageUser);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
@@ -2119,8 +2120,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
           
         //set Text labelPage
         label_page.setText("User Management");
-        
-        
+        UserService user = new UserService();
+        user.showUser();
     }//GEN-LAST:event_icon_managerMouseClicked
 
     private void icon_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_laporanMouseClicked
@@ -2499,13 +2500,16 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
          // TODO add your handling code here:
          TambahUser dt = new TambahUser();
          dt.Action("add");
+         
+         UserService user = new UserService();
+         TambahUser.TXT_Add_IdUser.setText(user.getId());
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void table_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_userMouseClicked
          // TODO add your handling code here:
          TambahUser dt = new TambahUser();
          dt.Action("edit");
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_table_userMouseClicked
 
     private void table_laporanPenjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_laporanPenjualanMouseClicked
          // TODO add your handling code here:
@@ -2843,7 +2847,6 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
@@ -2902,6 +2905,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JTable table_laporanPenjualan;
     private javax.swing.JTable table_return;
     public static javax.swing.JTable table_supplier;
+    public static javax.swing.JTable table_user;
     private javax.swing.JLabel total_PenjSebulan;
     private javax.swing.JTextField txt_cariBrng;
     private javax.swing.JTextField txt_cariKategori;

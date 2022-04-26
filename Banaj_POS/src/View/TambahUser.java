@@ -11,21 +11,28 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import service.UserService;
 
 /**
  *
  * @author user
  */
 public class TambahUser extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TambahUser
-     */
+    UserService user = new UserService();
+    String time =Timestamp.valueOf(LocalDateTime.now()).toString();;
+    
+    
     public TambahUser() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        TXT_Add_IdUser.setEnabled(false);
+        TXT_Add_CreatedAt.setText(time);
+        TXT_Add_CreatedAt.setEnabled(false);
     }
 
     public void Action(String opsi){
@@ -61,22 +68,22 @@ public class TambahUser extends javax.swing.JFrame {
         MainConten = new javax.swing.JPanel();
         contenAddUser = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        TXT_Add_IdUser = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        TXT_Add_NamaDepan = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        TXT_Add_NamaBelakang = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        TXT_Add_CreatedAt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        TXT_Add_Username = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        TXT_Add_Password = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combo_Add_Role = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        combo_Add_Status = new javax.swing.JComboBox<>();
+        btn_Add_Simpan = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         contenEditUser = new RoundedPanel(8, new Color(255, 255, 255));
@@ -130,54 +137,59 @@ public class TambahUser extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(90, 90, 90));
         jLabel2.setText("Id User");
 
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        TXT_Add_IdUser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel3.setText("Username");
+        jLabel3.setText("Nama Depan");
 
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        TXT_Add_NamaDepan.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel4.setText("Nama Depan");
+        jLabel4.setText("Nama Belakang");
 
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        TXT_Add_NamaBelakang.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel5.setText("Nama Belakang");
+        jLabel5.setText("Created At");
 
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        TXT_Add_CreatedAt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(90, 90, 90));
         jLabel6.setText("Username");
 
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        TXT_Add_Username.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(90, 90, 90));
         jLabel7.setText("Password");
 
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        TXT_Add_Password.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(90, 90, 90));
         jLabel8.setText("Role");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User"}));
+        combo_Add_Role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User"}));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(90, 90, 90));
         jLabel9.setText("Status");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktif" , "Tidak Aktif" }));
+        combo_Add_Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktive" , "Tidak Aktive" }));
 
-        jButton1.setBackground(new java.awt.Color(111, 59, 160));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Simpan");
+        btn_Add_Simpan.setBackground(new java.awt.Color(111, 59, 160));
+        btn_Add_Simpan.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_Add_Simpan.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Add_Simpan.setText("Simpan");
+        btn_Add_Simpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_Add_SimpanMouseClicked(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(51, 45, 45));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -202,26 +214,26 @@ public class TambahUser extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXT_Add_IdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXT_Add_NamaDepan, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXT_Add_NamaBelakang, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TXT_Add_CreatedAt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel6)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                        .addComponent(TXT_Add_Username, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                         .addComponent(jLabel7)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                        .addComponent(TXT_Add_Password, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                         .addComponent(jLabel8)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(combo_Add_Role, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_Add_Status, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(contenAddUserLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Add_Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -236,42 +248,42 @@ public class TambahUser extends javax.swing.JFrame {
                     .addGroup(contenAddUserLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TXT_Add_IdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contenAddUserLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TXT_Add_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenAddUserLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TXT_Add_NamaDepan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contenAddUserLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TXT_Add_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TXT_Add_NamaBelakang, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_Add_Role, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(contenAddUserLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TXT_Add_CreatedAt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contenAddUserLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(combo_Add_Status, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(contenAddUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Add_Simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -478,6 +490,21 @@ public class TambahUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void btn_Add_SimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Add_SimpanMouseClicked
+
+        
+        String id = TXT_Add_IdUser.getText();
+        String nama = (TXT_Add_NamaDepan.getText() + " " + TXT_Add_NamaBelakang.getText()).toUpperCase();
+        String username = TXT_Add_Username.getText();
+        String password = TXT_Add_Password.getText();
+        UserService user = new UserService();
+        boolean isAdd=true;
+        if(user.addUser(id, nama, username, password, combo_Add_Role, combo_Add_Status, time)== true ){
+            user.showUser();
+            this.dispose();
+        }       
+    }//GEN-LAST:event_btn_Add_SimpanMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -562,17 +589,23 @@ public class TambahUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainConten;
+    private javax.swing.JTextField TXT_Add_CreatedAt;
+    public static javax.swing.JTextField TXT_Add_IdUser;
+    private javax.swing.JTextField TXT_Add_NamaBelakang;
+    private javax.swing.JTextField TXT_Add_NamaDepan;
+    private javax.swing.JTextField TXT_Add_Password;
+    private javax.swing.JTextField TXT_Add_Username;
+    private javax.swing.JButton btn_Add_Simpan;
+    private javax.swing.JComboBox<String> combo_Add_Role;
+    private javax.swing.JComboBox<String> combo_Add_Status;
     private javax.swing.JPanel contenAddUser;
     private javax.swing.JPanel contenEditUser;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel10;
@@ -591,15 +624,9 @@ public class TambahUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
