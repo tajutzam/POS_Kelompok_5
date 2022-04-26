@@ -2598,7 +2598,16 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
     private void panel_contenKasirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panel_contenKasirKeyPressed
         
-        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+        }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            KonfirmasiBayar konirmasi = new KonfirmasiBayar();
+            konirmasi.setVisible(true);
+            System.out.println("key");
+        }else if(evt.getKeyCode()==KeyEvent.VK_F5){
+            barangService barang = new barangService();
+            barang.resetKeranjang();
+        }
     }//GEN-LAST:event_panel_contenKasirKeyPressed
 
     public void showBarangWhenClick(){
