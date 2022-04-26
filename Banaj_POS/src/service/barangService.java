@@ -118,4 +118,7 @@ public class barangService {
        String total=barang.hitungTotalBarang();
        return total;
     }
+    public void resetKeranjang(){
+        
+    }
 }
