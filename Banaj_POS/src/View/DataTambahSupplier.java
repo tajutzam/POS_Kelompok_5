@@ -35,7 +35,7 @@ public class DataTambahSupplier extends javax.swing.JFrame {
     supplierService sup = new supplierService();
       String time ;
       String kode_supplier;
-              ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+      ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
 
 
     /**
