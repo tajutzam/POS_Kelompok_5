@@ -485,10 +485,11 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         
         supplierService suplier = new supplierService();
         String kode = id_supEdit.getText().toString();
-        int resetData = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Ingin Menghapus product ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        int resetData = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Ingin Menghapus Supplier ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
         if(resetData==0){
             suplier.deleteSupplier(kode, this);
         }
+        suplier.showSupplier(Dashbord.table_supplier);
         
     }//GEN-LAST:event_btn_hapusEditMouseClicked
 

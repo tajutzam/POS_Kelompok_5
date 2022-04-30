@@ -7,7 +7,7 @@ package View;
 
 import Repository.Database;
 import Repository.DatabaseInterface;
-import com.mysql.jdbc.MysqlIO;
+
 import javax.swing.JTextField;
 
 /**
@@ -19,6 +19,11 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    static{
+        DatabaseInterface database = new Database();
+        database.conectDatabase();
+    }
     public Login() {
         initComponents();
         this.setTitle("Banaj Fragrance -> Login Page");

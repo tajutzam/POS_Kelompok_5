@@ -476,6 +476,143 @@ public class Barang implements BarangInterface{
     
       }  
      
+     public String getIdEdit(boolean setNewKode, String kode,JComboBox box){
+         String hsl = "";
+         String kodeKategori="";
+          
+         String namaKategoriTmp ;
+         String namaKategoriResult;
+         String hurufKategori="";
+         String sqlGetKodeKat ="select kode_kategori from kategori where nama_kategori = '"+box.getSelectedItem().toString()+"'";
+         try(Connection con = dt.conectDatabase();
+             Statement st = con.createStatement() ;
+             ResultSet res =st.executeQuery(sqlGetKodeKat)    ){
+             
+             if(res.next()){
+                 kodeKategori=res.getString("kode_kategori");
+                 
+             }
+             
+             
+         }catch(SQLException e){
+             System.out.println(e.getMessage());
+         }
+         
+         
+         
+         String sqlNamaKategori="select nama_kategori from kategori where kode_kategori = '"+kodeKategori+"'";
+         
+         try(Connection con = dt.conectDatabase();
+                 Statement st = con.createStatement();
+                 ResultSet resi = st.executeQuery(sqlNamaKategori))
+         {
+             while(resi.next()){
+                 namaKategoriTmp = resi.getString("nama_kategori"); 
+                 char a =namaKategoriTmp.charAt(0);
+                 char b = namaKategoriTmp.charAt(2);
+                 char c = namaKategoriTmp.charAt(namaKategoriTmp.length()-1);
+                 String finalA =Character.toString(a);
+                 String finalB =Character.toString(b);
+                 String finalC =Character.toString(c);
+                 hurufKategori = finalA+finalB+finalC;
+             }
+         }catch(SQLException e){
+             System.out.println(e.getMessage());
+         }   
+             
+        String sql_getKodeBarang = "SELECT kode_product FROM product where kategori='"+kodeKategori+"' ORDER BY kode_product DESC LIMIT 1";
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sql_getKodeBarang);
+            ResultSet res = pst.executeQuery(sql_getKodeBarang);){
+          
+            if(setNewKode==false){
+                
+             
+            if(res.next()){
+                String a = res.getString(1).replaceAll("[a-zA-Z]", "");
+                String b = "";
+                String c[] = a.split("(?!^)");
+                String u = "";
+
+                if("0".equals(c[0])){
+                    if("0".equals(c[1])){
+                        if("0".equals(c[2])){
+                            b = c[3];
+                        }else{
+                            b = c[2]+c[3];
+                        }
+                    }else{
+                        b = c[1]+c[2]+c[3];
+                    }
+                }else{
+                    b = a;
+                }
+
+                int d = Integer.parseInt(b)+1;
+
+                if(d <= 9){
+                    u = "000";
+                }else if(d <= 99 ){
+                    u = "00";
+                }else if(d <= 999){
+                    u = "0";
+                }else{
+                    u = "";
+                }
+                hsl = u+""+d;
+            }else{
+                hsl = "0001";
+            }
+                
+            }else if(setNewKode==true){
+           
+            if(res.next()){
+                String a = res.getString(1).replaceAll("[a-zA-Z]", "");
+                String b = "";
+                String c[] = a.split("(?!^)");
+                String u = "";
+
+                if("0".equals(c[0])){
+                    if("0".equals(c[1])){
+                        if("0".equals(c[2])){
+                            b = c[3];
+                        }else{
+                            b = c[2]+c[3];
+                        }
+                    }else{
+                        b = c[1]+c[2]+c[3];
+                    }
+                }else{
+                    b = a;
+                }
+
+                int d = Integer.parseInt(b)+1;
+
+                if(d <= 9){
+                    u = hurufKategori+"000";
+                }else if(d <= 99 ){
+                    u = hurufKategori+"00";
+                }else if(d <= 999){
+                    u = hurufKategori+"0";
+                }else{
+                    u = hurufKategori;
+                }
+                hsl = u+""+d;
+            }else{
+                hsl = hurufKategori+"0001";
+            }
+            }
+           
+          
+            //remove space in primary key
+            return hsl.toUpperCase().replaceAll(" ", "");
+            
+        }catch(SQLException err){
+            return err.getMessage();
+        }
+    
+      }  
+     
      public void editBarang(String kode_brg, String nama_product , int stok , int harga_beli , int harga_jual,   int rusak ,  JComboBox kat , JComboBox sup, DataBarangTambah dta,String kode_baru){
         String kode_kategori=""; 
         String kode_supplier ="";
@@ -485,7 +622,7 @@ public class Barang implements BarangInterface{
         // sql untuk update product
         String sql ="update product set nama_product =? ,stok =? , " 
                 +"harga_beli = ? , harga_jual=?, supplier=?, "        
-                +"kategori =?, update_at =? , rusak =?, kode_product=?, total_stok=? where kode_product ='"+kode_brg+"'";
+                +"kategori =?, update_at =? , rusak =?, kode_product=?, total_stok=?, kode_product=? where kode_product ='"+kode_brg+"'";
         //
         String sqlRet ="update detail_retur set jumlah_rusak =? where product =?";
         String sqlShow ="select kode_kategori from kategori where nama_kategori ='"+kat.getSelectedItem().toString()+"'";
@@ -512,7 +649,7 @@ public class Barang implements BarangInterface{
                 }
            
             }
-           
+            String kode_final=getIdEdit(true, "", DataBarangTambah.kategori_edit);
             pst.setString(1, nama_product);
             pst.setInt(2, stok);
             pst.setInt(3, harga_beli);
@@ -522,6 +659,7 @@ public class Barang implements BarangInterface{
             pst.setString(6, kode_kategori);
             pst.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
             String rusak_new = String.valueOf(rusak);
+            pst.setString(11,kode_final);
             
             pst.setInt(8, rusak);
             pst.setString(9, kode_baru);

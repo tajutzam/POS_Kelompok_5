@@ -143,7 +143,7 @@ public class Kategori implements KategoriInterface{
             PreparedStatement pst = con.prepareStatement(sql);
             ){
             pst.setString(1, kode);
-            pst.setString(2, name);
+            pst.setString(2, name.toUpperCase());
             pst.setString(3, time);
             pst.setString(4, time);
             

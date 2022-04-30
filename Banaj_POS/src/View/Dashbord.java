@@ -5,6 +5,8 @@
  */
 package View;
 
+import Repository.Order;
+import static Repository.Order.tbOrder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,6 +32,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.BarRenderer3D;
 import org.jfree.data.category.DefaultCategoryDataset;
+import service.OrderService;
 import service.UserService;
 
 import service.barangService;
@@ -52,11 +55,12 @@ public class Dashbord extends javax.swing.JFrame {
     String time_update;
     String kode_supplier;
     
-Dimension dimAx = Toolkit.getDefaultToolkit().getScreenSize();
-Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
-  ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+    Dimension dimAx = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
+    ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
         ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
 
+ 
     public Dashbord() {
         
         initComponents();
@@ -90,9 +94,28 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         ConntainerPanel.revalidate();
         showChart();
         barangService br = new barangService();
-        br.addItemInCombobox(comboBox_show);
+        br.addItemInCombobox(comboBox_showBarang);
+        
+        tabel_kategori.setRowHeight(30);
+        table_barang.setRowHeight(30);
+        table_supplier.setRowHeight(30);
+        table_return.setRowHeight(30);
+        table_user.setRowHeight(30);
+        
+        tabel_kategori.setForeground(new Color(90, 90, 90));
+        table_barang.setForeground(new Color(90, 90, 90));
+        table_supplier.setForeground(new Color(90, 90, 90));
+        table_return.setForeground(new Color(90, 90, 90));
+        table_user.setForeground(new Color(90, 90, 90));
+        
+        
+        
+        
+      
+       
         
         //set width in no table
+        
 
         
     }
@@ -100,6 +123,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     
    public String getKode(){
        return kode_lama;
+        
    }
 
     /**
@@ -138,7 +162,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         label_totalBarang = new javax.swing.JLabel();
         txt_totalBrg = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        comboBox_show = new javax.swing.JComboBox<>();
+        comboBox_showBarang = new javax.swing.JComboBox<>();
         panel_cariBarang = new RoundedPanel(8, new Color(255, 255, 255));
         txt_cariBrng = new javax.swing.JTextField();
         icon_cariBarang = new javax.swing.JLabel();
@@ -185,19 +209,19 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         panel_contenKasir = new javax.swing.JPanel();
         panel_cariKasir = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel22 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        txt_cariDataOrder = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         panel_hasilCari = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        table_cariBelanja = new javax.swing.JTable();
         panel_infoHarga = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        table_belanja = new javax.swing.JTable();
+        btn_resetKeranjang = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         panel_contenSetting = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -591,7 +615,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
         txt_totalBrg.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         txt_totalBrg.setForeground(new java.awt.Color(90, 90, 90));
-        txt_totalBrg.setText("1020");
+        txt_totalBrg.setText("0");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfumePurple.png"))); // NOI18N
 
@@ -623,9 +647,9 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addContainerGap())
         );
 
-        comboBox_show.addActionListener(new java.awt.event.ActionListener() {
+        comboBox_showBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBox_showActionPerformed(evt);
+                comboBox_showBarangActionPerformed(evt);
             }
         });
 
@@ -713,7 +737,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
             .addGroup(contenBarangLayout.createSequentialGroup()
                 .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboBox_show, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboBox_showBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
                 .addComponent(Barcode, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -738,7 +762,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn_TambahBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Barcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(comboBox_show, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                        .addComponent(comboBox_showBarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                     .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
@@ -819,7 +843,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
         txt_totalKategori.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         txt_totalKategori.setForeground(new java.awt.Color(90, 90, 90));
-        txt_totalKategori.setText("1020");
+        txt_totalKategori.setText("0");
 
         icon_kategori.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/categories.png"))); // NOI18N
 
@@ -1047,7 +1071,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
         txt_totalSupplier.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         txt_totalSupplier.setForeground(new java.awt.Color(90, 90, 90));
-        txt_totalSupplier.setText("1020");
+        txt_totalSupplier.setText("0");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/agreement.png"))); // NOI18N
 
@@ -1199,9 +1223,19 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         jLabel22.setForeground(new java.awt.Color(90, 90, 90));
         jLabel22.setText("Cari Barang");
 
-        jTextField11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_cariDataOrder.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_cariDataOrder.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_cariDataOrderKeyPressed(evt);
+            }
+        });
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/magnifying-glass.png"))); // NOI18N
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_cariKasirLayout = new javax.swing.GroupLayout(panel_cariKasir);
         panel_cariKasir.setLayout(panel_cariKasirLayout);
@@ -1214,7 +1248,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                         .addComponent(jLabel22)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel_cariKasirLayout.createSequentialGroup()
-                        .addComponent(jTextField11)
+                        .addComponent(txt_cariDataOrder)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel23)
                         .addGap(28, 28, 28))))
@@ -1227,7 +1261,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addGap(28, 28, 28)
                 .addGroup(panel_cariKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_cariDataOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
@@ -1237,7 +1271,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         jLabel24.setForeground(new java.awt.Color(90, 90, 90));
         jLabel24.setText("Hasil Pencarian");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane9.setBackground(new java.awt.Color(239, 240, 245));
+
+        table_cariBelanja.setBackground(new java.awt.Color(239, 240, 245));
+        table_cariBelanja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1248,7 +1285,12 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 "Kode Barang", "Nama Barang", "Stok", "Harga Jual"
             }
         ));
-        jScrollPane9.setViewportView(jTable3);
+        table_cariBelanja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_cariBelanjaMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(table_cariBelanja);
 
         javax.swing.GroupLayout panel_hasilCariLayout = new javax.swing.GroupLayout(panel_hasilCari);
         panel_hasilCari.setLayout(panel_hasilCariLayout);
@@ -1317,23 +1359,31 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                 .addContainerGap())
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane7.setViewportView(jTable2);
+        jScrollPane7.setBackground(new java.awt.Color(239, 240, 245));
 
-        jButton2.setBackground(new java.awt.Color(111, 59, 160));
-        jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Reset Keranjang");
+        table_belanja.setBackground(new java.awt.Color(239, 240, 245));
+        table_belanja.setModel(Order.tbOrder);
+        table_belanja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_belanjaMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(table_belanja);
+
+        btn_resetKeranjang.setBackground(new java.awt.Color(111, 59, 160));
+        btn_resetKeranjang.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btn_resetKeranjang.setForeground(new java.awt.Color(255, 255, 255));
+        btn_resetKeranjang.setText("Reset Keranjang");
+        btn_resetKeranjang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_resetKeranjangMouseClicked(evt);
+            }
+        });
+        btn_resetKeranjang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resetKeranjangActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Return Customer");
 
@@ -1347,7 +1397,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_contenKasirLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1368,7 +1418,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
                     .addComponent(panel_hasilCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1501,6 +1551,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
         TXT_cariUser.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
+        table_user.setBackground(new java.awt.Color(239, 240, 245));
         table_user.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1615,6 +1666,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         panel_containerLaporan.setBackground(new java.awt.Color(255, 102, 204));
         panel_containerLaporan.setLayout(new java.awt.CardLayout());
 
+        table_laporanPenjualan.setBackground(new java.awt.Color(239, 240, 245));
         table_laporanPenjualan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -1682,6 +1734,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
 
         panel_containerLaporan.add(container_laporanPenjualan, "card2");
 
+        table_laporanPembelian.setBackground(new java.awt.Color(239, 240, 245));
         table_laporanPembelian.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         table_laporanPembelian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2061,6 +2114,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         //set Label Page
         label_page.setText("Dashbord");
         showChart();
+        OrderService order = new OrderService();
+        order.resetKeranjang();
         
         
         
@@ -2094,9 +2149,18 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         //set Text labelPage
         label_page.setText("Manajemen Product");
         barangService br = new barangService();
+        kategoriService kate = new kategoriService();
+        supplierService sup = new supplierService();
+        kate.showKategori(tabel_kategori);
+        sup.showSupplier(table_supplier);
        
         br.showBarang(table_barang);
         br.deleteBarangWhenStokHabis();
+        OrderService order = new OrderService();
+        order.resetKeranjang();
+        
+        
+        
        
 //        
 //      
@@ -2122,6 +2186,9 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         label_page.setText("User Management");
         UserService user = new UserService();
         user.showUser();
+        OrderService order = new OrderService();
+        order.resetKeranjang();
+        
     }//GEN-LAST:event_icon_managerMouseClicked
 
     private void icon_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_laporanMouseClicked
@@ -2145,18 +2212,27 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         label_laporan_penjualan.setForeground(new Color(111, 59, 160));
         label_laporanPemebelian.setForeground(new Color(90, 90, 90));
         //
-          panel_containerLaporan.removeAll();
-          panel_containerLaporan.add(container_laporanPenjualan);
-          panel_containerLaporan.repaint();
-          panel_containerLaporan.revalidate();
+        panel_containerLaporan.removeAll();
+        panel_containerLaporan.add(container_laporanPenjualan);
+        panel_containerLaporan.repaint();
+        panel_containerLaporan.revalidate();
+        
+        OrderService order = new OrderService();
+        order.resetKeranjang();
+        
     }//GEN-LAST:event_icon_laporanMouseClicked
 
     private void icon_kasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_kasirMouseClicked
          // TODO add your handling code here:
+       
+        
         ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenKasir);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
+       
+        
+        
         
         //visibilitas icon
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cartPurple.png")));
@@ -2168,6 +2244,11 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         
         //set label Page
         label_page.setText("Kasir");
+        
+        
+        //
+       
+        
         
     }//GEN-LAST:event_icon_kasirMouseClicked
 
@@ -2198,6 +2279,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         
           label_setToko.setForeground(new Color(111, 59, 160));
          label_setProfile.setForeground(new Color(90, 90, 90));
+        
+         
+        OrderService order = new OrderService();
+        order.resetKeranjang();
         
 
     }//GEN-LAST:event_icon_settingMouseClicked
@@ -2379,16 +2464,24 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
           br.showReturSupplier(table_return);
     }//GEN-LAST:event_label_navigasi_returnMouseClicked
 
-    private void comboBox_showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showActionPerformed
+    private void comboBox_showBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showBarangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBox_showActionPerformed
+    }//GEN-LAST:event_comboBox_showBarangActionPerformed
 
     private void btn_TambahBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TambahBarangMouseClicked
         // TODO add your handling code here:
       DataBarangTambah dt = new DataBarangTambah();
-      dt.Action("add");
-      barangService br = new barangService();
-      String kode="";
+      if(txt_totalKategori.getText().toString().equals("0")||txt_totalSupplier.getText().toString().equals("0")){
+            JOptionPane.showMessageDialog(null, "Kategori atau Supplier 0 tidak bisa menambahkan Product", "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
+
+      }else{
+           dt.Action("add");
+
+
+      }
+     
+      
+      
       
    
     }//GEN-LAST:event_btn_TambahBarangMouseClicked
@@ -2614,6 +2707,62 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
         }
     }//GEN-LAST:event_panel_contenKasirKeyPressed
 
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        // TODO add your handling code here:
+        OrderService order = new OrderService();
+        order.getBarang(txt_cariDataOrder.getText().toString());
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void btn_resetKeranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetKeranjangMouseClicked
+        // TODO add your handling code here:
+        OrderService order = new OrderService();
+        order.resetKeranjang();
+        
+       
+      
+        txt_cariDataOrder.setText("");
+        
+    }//GEN-LAST:event_btn_resetKeranjangMouseClicked
+
+    private void btn_resetKeranjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetKeranjangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_resetKeranjangActionPerformed
+
+    private void txt_cariDataOrderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariDataOrderKeyPressed
+        // TODO add your handling code here:
+        OrderService order = new OrderService();
+        if(order.getBarang(txt_cariDataOrder.getText().toString())==true){
+            
+        }else{
+            txt_cariDataOrder.setText("");
+        }
+       
+    }//GEN-LAST:event_txt_cariDataOrderKeyPressed
+
+    private void table_cariBelanjaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_cariBelanjaMouseClicked
+        // TODO add your handling code here:
+        
+        KonfirmasiOrder konfirmasi = new KonfirmasiOrder();
+        OrderService order = new OrderService();
+        String kodeProduct =order.setKodeLamaBarangEdit("", table_cariBelanja);
+        konfirmasi.setKodeLama(kodeProduct);
+        konfirmasi.setVisible(true);
+        
+        String nama_product="";
+        System.out.println(nama_product);
+        KonfirmasiOrder.txt_namaProductOrder.setText(nama_product);
+        System.out.println(nama_product);
+        
+        konfirmasi.addQty("edit");
+        
+    }//GEN-LAST:event_table_cariBelanjaMouseClicked
+
+    private void table_belanjaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_belanjaMouseClicked
+         // TODO add your handling code here:
+         
+         
+    }//GEN-LAST:event_table_belanjaMouseClicked
+
     public void showBarangWhenClick(){
         
         barangService br = new barangService();
@@ -2777,9 +2926,10 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JButton btn_TambahBarang1;
     private javax.swing.JButton btn_exportPembelian;
     private javax.swing.JButton btn_exportPenjualan;
+    private javax.swing.JButton btn_resetKeranjang;
     private javax.swing.JButton btn_tambahReturn;
     private javax.swing.JButton btn_tambahSupplier;
-    private javax.swing.JComboBox<String> comboBox_show;
+    public static javax.swing.JComboBox<String> comboBox_showBarang;
     private javax.swing.JComboBox<String> combo_boxPembelian;
     private javax.swing.JComboBox<String> combo_boxPenjualan;
     private javax.swing.JPanel container_laporanPembelian;
@@ -2809,7 +2959,6 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JLabel icon_totalReturn;
     private javax.swing.JLabel icon_user;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -2847,10 +2996,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JLabel label_laporanPemebelian;
     private javax.swing.JLabel label_laporan_penjualan;
     private javax.swing.JLabel label_namatoko;
@@ -2901,6 +3047,8 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     private javax.swing.JLabel show_laporanPenjualan;
     public static javax.swing.JTable tabel_kategori;
     public static javax.swing.JTable table_barang;
+    public static javax.swing.JTable table_belanja;
+    public static javax.swing.JTable table_cariBelanja;
     private javax.swing.JTable table_laporanPembelian;
     private javax.swing.JTable table_laporanPenjualan;
     private javax.swing.JTable table_return;
@@ -2908,6 +3056,7 @@ Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     public static javax.swing.JTable table_user;
     private javax.swing.JLabel total_PenjSebulan;
     private javax.swing.JTextField txt_cariBrng;
+    private javax.swing.JTextField txt_cariDataOrder;
     private javax.swing.JTextField txt_cariKategori;
     private javax.swing.JTextField txt_cariSupplier;
     private javax.swing.JTextField txt_cariSupplier1;
