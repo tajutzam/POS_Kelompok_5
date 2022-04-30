@@ -41,6 +41,7 @@ public class barangService {
         br.showBarang(table, "barang");
         Dashbord.txt_totalBrg.setText(br.hitungTotalBarang());
         
+        
     }
     public void showReturSupplier(JTable table){
         br.showBarang(table, "return");

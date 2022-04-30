@@ -860,6 +860,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
          
          barangService br = new barangService();
          br.deleteBarang(kode, this);
+         br.showBarang(Dashbord.table_barang);
        
          
          
@@ -872,14 +873,14 @@ public class DataBarangTambah extends javax.swing.JFrame {
 
     private void kategori_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategori_editActionPerformed
          // TODO add your handling code here:
+    
+    
+         barangService barang = new barangService();
+         String result =barang.getIdBarang(true, "", kategori_edit);
          
+         kode_barang_Edit.setText(result);
          
-      
-         
-         
-         
-         
-         
+   
     }//GEN-LAST:event_kategori_editActionPerformed
 
     private void kategori_editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kategori_editMouseEntered
@@ -1111,10 +1112,10 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JComboBox<String> kategori_edit;
+    public static javax.swing.JComboBox<String> kategori_edit;
     private javax.swing.JLabel kategori_lama;
     private javax.swing.JLabel kode_barangLama;
-    private javax.swing.JTextField kode_barang_Edit;
+    public static javax.swing.JTextField kode_barang_Edit;
     private javax.swing.JLabel kode_brg_lama;
     private javax.swing.JLabel label_navigasi;
     private javax.swing.JLabel label_stokEdit;

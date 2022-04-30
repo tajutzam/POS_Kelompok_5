@@ -9,6 +9,7 @@ import Repository.Database;
 import Repository.DatabaseInterface;
 import Repository.Kategori;
 import Repository.KategoriInterface;
+import static View.Dashbord.table_barang;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import service.barangService;
 import service.kategoriService;
 
 /**
@@ -453,7 +455,8 @@ public class DataTambahKategori extends javax.swing.JFrame {
          if(kategori.addSupplier(name, kode, time)==true){
              this.dispose();
          }
-       
+         barangService br = new barangService();
+         br.showBarang(table_barang);
          kategori.showKategori(Dashbord.tabel_kategori);
          
     }//GEN-LAST:event_btn_simpanTambahKategoriMouseClicked
@@ -477,7 +480,10 @@ public class DataTambahKategori extends javax.swing.JFrame {
          String kode =TXT_kodeKategoriEdit.getText();
          kategoriService kategori = new kategoriService();
          System.out.println(kode);
-         kategori.deleteKategori(kode , this);
+         
+            kategori.deleteKategori(kode , this);  
+         
+            kategori.showKategori(Dashbord.tabel_kategori);
     }//GEN-LAST:event_btn_hapusKategoriMouseClicked
 
     /**
