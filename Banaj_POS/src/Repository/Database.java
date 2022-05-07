@@ -34,7 +34,7 @@ public class Database implements DatabaseInterface{
                 String jdbcUser="root";
                 String jdbcPassword="zam";
                 mySqlCon=DriverManager.getConnection(jdbcUrl,jdbcUser,jdbcPassword );
-                System.out.println("Berhasil Connect database");
+              
             
         }catch(SQLException e){
             

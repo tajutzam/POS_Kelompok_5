@@ -14,9 +14,12 @@ import javax.swing.JTable;
 
 
 public interface OrderInterface {
-    public void addIdTransaksi();
+    public void addIdTransaksi(String id,String a , String b , String c , String d);
     public boolean cariBarang(String keyword , JTable table  , String opsi);
     public String selectToOrder(String kode);
     public void addProductToKeranjang(String kode );
+    public void insertOrder();
+    public void insertDataOrder(String id , String kode , String subTotal ,String qty);
+    
     
 }

@@ -30,7 +30,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="navigasi_panel" max="32767" attributes="0"/>
                   <Component id="frame_logo_toko" pref="85" max="32767" attributes="0"/>
               </Group>
@@ -185,7 +185,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="icon_product" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconProduct" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -194,14 +194,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="icon_product" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconProduct" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="icon_product">
+            <Component class="javax.swing.JLabel" name="panel_iconProduct">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/parfume.png"/>
@@ -211,7 +211,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon_productMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panel_iconProductMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -283,7 +283,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="icon_manager" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconManager" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -292,14 +292,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="icon_manager" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconManager" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="icon_manager">
+            <Component class="javax.swing.JLabel" name="panel_iconManager">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/managerWhite.png"/>
@@ -309,8 +309,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon_managerMouseClicked"/>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon_managerMouseEntered"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panel_iconManagerMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panel_iconManagerMouseEntered"/>
               </Events>
             </Component>
           </SubComponents>
@@ -333,7 +333,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="icon_laporan" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconLaporan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -342,14 +342,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="icon_laporan" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconLaporan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="icon_laporan">
+            <Component class="javax.swing.JLabel" name="panel_iconLaporan">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/pulse (1).png"/>
@@ -359,7 +359,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon_laporanMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panel_iconLaporanMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -382,7 +382,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="icon_setting" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconSetting" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -391,14 +391,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="icon_setting" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_iconSetting" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="icon_setting">
+            <Component class="javax.swing.JLabel" name="panel_iconSetting">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/settingWhite.png"/>
@@ -408,7 +408,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon_settingMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panel_iconSettingMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -445,14 +445,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="conten_manajemen" pref="1253" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="panel_navigasiBarang" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Component id="panel_info" max="32767" attributes="0"/>
+                          <Component id="conten_manajemen" pref="1253" max="32767" attributes="0"/>
+                          <Component id="panel_navigasiBarang" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -617,11 +614,11 @@
                               <Component id="btn_TambahBarang" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane3" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panel_totalBarang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1599,14 +1596,14 @@
                                   <Component id="jScrollPane7" max="32767" attributes="0"/>
                                   <Component id="panel_infoHarga" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="panel_cariKasir" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="panel_cariKasir" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="panel_hasilCari" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1620,13 +1617,13 @@
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_resetKeranjang" pref="30" max="32767" attributes="0"/>
+                          <Component id="btn_resetKeranjang" max="32767" attributes="0"/>
                           <Component id="jButton3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane7" min="-2" pref="233" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="panel_infoHarga" pref="74" max="32767" attributes="0"/>
+                      <Component id="panel_infoHarga" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1646,7 +1643,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="362" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="txt_cariDataOrder" max="32767" attributes="0"/>
@@ -1726,7 +1723,7 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel24" max="32767" attributes="0"/>
+                                  <Component id="jLabel24" pref="136" max="32767" attributes="0"/>
                                   <EmptySpace min="518" pref="518" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane9" max="32767" attributes="0"/>
@@ -1805,13 +1802,10 @@
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel26" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel25" max="32767" attributes="0"/>
-                                  <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel25" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="864" max="-2" attributes="0"/>
-                          <Component id="jButton7" min="-2" pref="188" max="-2" attributes="0"/>
+                          <EmptySpace pref="806" max="32767" attributes="0"/>
+                          <Component id="btn_Bayar" min="-2" pref="188" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1828,7 +1822,7 @@
                                   <Component id="jLabel26" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jButton7" min="-2" pref="55" max="-2" attributes="0"/>
+                              <Component id="btn_Bayar" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1838,15 +1832,15 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel25">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="F10    = BAYAR"/>
+                    <Property name="text" type="java.lang.String" value="Klik Table lalu enter    = BAYAR"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel26">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="F5    =  HAPUS ITEM"/>
+                    <Property name="text" type="java.lang.String" value="Klik Item lalu F5          =  HAPUS ITEM"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton7">
+                <Component class="javax.swing.JButton" name="btn_Bayar">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="a0" green="3b" red="6f" type="rgb"/>
@@ -1860,7 +1854,7 @@
                     <Property name="text" type="java.lang.String" value="BAYAR"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton7MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_BayarMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1885,6 +1879,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_belanjaMouseClicked"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="table_belanjaKeyPressed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2031,7 +2026,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane8" alignment="0" pref="1245" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" alignment="0" pref="1253" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="panel_totalUser" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -2044,7 +2039,7 @@
                               <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2260,7 +2255,7 @@
                           <Component id="panel_containerLaporan" max="32767" attributes="0"/>
                           <Component id="panel_navigasiLaporan" min="-2" pref="273" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2360,7 +2355,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="1245" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="1253" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="show_laporanPenjualan" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -2466,7 +2461,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="1245" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="1253" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="show_laporanPembelian" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -2590,11 +2585,11 @@
                               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="panel_chart" alignment="0" pref="732" max="32767" attributes="0"/>
+                          <Component id="panel_chart" alignment="0" pref="806" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="jPanel6" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2607,8 +2602,8 @@
                           <Component id="jPanel7" max="32767" attributes="0"/>
                           <Component id="icon_penghasilanSebulan" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel6" max="32767" attributes="0"/>
                           <Component id="panel_chart" max="32767" attributes="0"/>
                       </Group>
@@ -2767,11 +2762,11 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane10" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane10" alignment="1" pref="360" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="309" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" pref="309" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2903,19 +2898,24 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="label_page" min="-2" max="-2" attributes="0"/>
-                      <Component id="label_namatoko" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="icon_user" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="label_page" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="667" max="-2" attributes="0"/>
+                          <Component id="label_idPegawai" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="label_role" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="icon_user" min="-2" pref="38" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="label_namaPegawai" min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="label_tanggal" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="label_namatoko" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="label_tanggal" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2930,13 +2930,17 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="icon_user" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="icon_user" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_namaPegawai" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="label_role" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="label_idPegawai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="label_tanggal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_tanggal" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2980,10 +2984,20 @@
             <Property name="text" type="java.lang.String" value="20-Agustus-2020"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel21">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tegar"/>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="label_namaPegawai">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="label_role">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="label_idPegawai">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
