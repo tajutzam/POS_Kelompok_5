@@ -5,24 +5,37 @@
  */
 package Util;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
+
 /**
  *
  * @author user
  */
-public class Id_barang {
+public class Id {
+    
+    
+    private String idTransaksi;
+    
+    public String getIdTransaksi(){
+        return this.idTransaksi;
+    }
+    public void setIdTransaksi(String idTransaksi){
+        this.idTransaksi=idTransaksi;
+    }
+    
+    
     
     public static void main(String[] args) {
-        for(int i=0; i < 10 ; i++ ){
-            hitungLastIndek(0, 0, 9);
-        }
+       
+            Id id = new Id();
+            id.IdTransaksi();
+        
       
     }
     
     public static void hitungLastIndek(int a , int b , int c){
-        
-        
-        
-       
         
         if(a==0 && b ==0 && c<=9){
    
@@ -75,6 +88,26 @@ public class Id_barang {
         
     }
     
+    public String IdTransaksi(){
+        
+       
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day =calendar.get(Calendar.DATE);    
+        String result ="";
+        if(month<10){
+         result ="0"+month;
+        }else{
+         result=""+month;
+        }
+        System.out.println(result);
+        Random rand = new Random();
+        int random = rand.nextInt(100000);
+        String finalResult ="TRJ"+result+day+random;
+        this.setIdTransaksi(finalResult);
+        return this.getIdTransaksi();
+    } 
 }
 
 

@@ -36,7 +36,9 @@ public class tanggalSaatIni {
     
     public static void main(String[] args) {
       
-        
+        tanggalSaatIni tg = new tanggalSaatIni();
+        tg.getCurrentTimeStamp();
+        tg.getTime();
     }
     
    

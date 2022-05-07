@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import Util.tanggalSaatIni;
 import View.Dashbord;
 import View.KonfirmasiOrder;
 import static View.KonfirmasiOrder.txt_qty;
@@ -14,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -28,6 +31,8 @@ public class Order implements OrderInterface {
     static public DefaultTableModel tbOrder = new DefaultTableModel();
     
     
+    
+    
     Object [] data = new Object[7];
       int no =0;
 
@@ -40,14 +45,34 @@ public class Order implements OrderInterface {
 
     @Override
     //this overide method in paretnt
-    public void addIdTransaksi() {
+    public void addIdTransaksi(String id , String grandTotal , String bayar , String idPegawai, String kembali) {
+       
+       tanggalSaatIni tg = new tanggalSaatIni();
+       String sql ="INSERT INTO `transaksi`"
+                   + "(`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`) "
+                   + "VALUES (?,?,?,?,?,?)";
+       
+       
+       try(Connection con = dt.conectDatabase();
+           PreparedStatement pst = con.prepareStatement(sql)){
+           
+           
+           pst.setString(1, id);
+           pst.setTimestamp(2,Timestamp.valueOf(LocalDateTime.now()) );
+           pst.setString(3,grandTotal );
+           pst.setString(4, bayar);
+           pst.setString(5, idPegawai);
+           pst.setString(6, kembali);
+           
+           pst.execute();
+           System.out.println("berhasil add");
+       }catch(SQLException e){
+           System.out.println(e.getMessage());
+       }
+        
 
     }
-    public void setTableModel(){
-       
-       
-    }
-    
+   
     static{
      
        tbOrder.addColumn("No");
@@ -59,13 +84,11 @@ public class Order implements OrderInterface {
        tbOrder.addColumn("Sub total");
        Dashbord.table_belanja.setRowHeight(30);
        Dashbord.table_belanja.setForeground(new Color(90, 90, 90));
+       
        Dashbord.table_belanja.setModel(tbOrder); 
     }
 
-    public Order() {
-       
-        
-    }
+   
   
     @Override
     //this overide in method parent
@@ -101,7 +124,7 @@ public class Order implements OrderInterface {
              
                     
                 
-                if(res.next()){
+                if(resStok.next()){
                     while(res.next()){
                          model.addRow(new Object[]{
                         no,
@@ -191,12 +214,7 @@ public class Order implements OrderInterface {
             int harga_jual = Integer.parseInt(data[5].toString());
             int qty = Integer.parseInt(data[4].toString());
             data[6]=harga_jual*qty;
-            
-            
-            
-            
-      
-       
+
        int i = model.getRowCount();
        System.out.println(i);
      
@@ -216,6 +234,38 @@ public class Order implements OrderInterface {
        tbOrder.setRowCount(0);
        model.setRowCount(0);
     }
-    
+
+    @Override
+    public void insertDataOrder(String id , String kode , String subTotal ,String qty) {
+        
+        
+        String sql="INSERT INTO `detail_transaksi`(`id_transaksi`, `kode_product`, `sub_total`, `qty`) VALUES (?,?,?,?)";
+        
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sql)){
+            
+            pst.setString(1, id);
+            pst.setString(2, kode);
+            pst.setString(3, subTotal);
+            pst.setString(4, qty);
+            
+            pst.execute();
+            System.out.println("oke");
+            
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void insertOrder() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+      
+      
+      
     
 }

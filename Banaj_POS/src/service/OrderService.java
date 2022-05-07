@@ -8,8 +8,12 @@ package service;
 import Repository.Order;
 import Repository.OrderInterface;
 import View.Dashbord;
+import View.KonfirmasiBayar;
+import static View.KonfirmasiBayar.txt_diskon;
+import static View.KonfirmasiBayar.txt_totalHarga;
 import View.KonfirmasiOrder;
 import View.TambahUser;
+import View.TransaksiBerhasil;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -23,12 +27,40 @@ public class OrderService extends barangService {
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     
+    private int totalHarga;
+   
+
+    public ImageIcon getSuscesicon() {
+        return suscesicon;
+    }
+
+    public void setSuscesicon(ImageIcon suscesicon) {
+        this.suscesicon = suscesicon;
+    }
+
+    public ImageIcon getEroricon() {
+        return eroricon;
+    }
+
+    public void setEroricon(ImageIcon eroricon) {
+        this.eroricon = eroricon;
+    }
+
+    public int getTotalHarga() {
+        return totalHarga;
+    }
+
+    public void setTotalHarga(int totalHarga) {
+        this.totalHarga = totalHarga;
+    }
+    
+    
     
     public boolean getBarang(String keyword ){
         
-        
+      OrderInterface order = new Order();  
       boolean isMatch =false;
-      OrderInterface order = new Order();
+    
       
           if(order.cariBarang(keyword, Dashbord.table_cariBelanja , "match")==true){
               isMatch=true;
@@ -49,8 +81,8 @@ public class OrderService extends barangService {
     
     public String selectBarang(String kode  ){
         
-        OrderInterface order = new Order();
       
+        OrderInterface order = new Order();
         String nama=order.selectToOrder(kode);
         return nama;
   
@@ -61,8 +93,8 @@ public class OrderService extends barangService {
       
       
     
-         
-      OrderInterface order = new Order();
+       OrderInterface order = new Order();  
+     
       int selectedRow=Dashbord.table_cariBelanja.getSelectedRow();
       if(Dashbord.table_cariBelanja.getValueAt(selectedRow, 3).toString().equals("0")){
          JOptionPane.showMessageDialog(null, "Tidak Bisa menambahkan Product, Stok Habis !", "Product Kosong", JOptionPane.INFORMATION_MESSAGE, eroricon);
@@ -76,6 +108,7 @@ public class OrderService extends barangService {
           if(qty > stok){
             JOptionPane.showMessageDialog(null, "Stok Tidak mencukupi", "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
           }else{
+              
                order.addProductToKeranjang(KonfirmasiOrder.txt_kodeProduct.getText().toString());  
           dataDoble=false;
           }
@@ -103,6 +136,12 @@ public class OrderService extends barangService {
       
          
   }  
+  
+
+  public void jop(String message){
+      JOptionPane.showMessageDialog(null, message, "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
+
+  }
   
   public static void pushDataOrderToMain(String[] data ,  JTable table_order){
       DefaultTableModel model = new DefaultTableModel();
@@ -144,4 +183,80 @@ public class OrderService extends barangService {
         
     
     }
+  public int hitungTotalHarga(){
+     
+       int res_diskon=0;
+       KonfirmasiBayarService bayar = new KonfirmasiBayarService();
+       String sub = bayar.setSubtotal();
+        int diskon = 0;
+        String nilai_input_diskon = KonfirmasiBayar.txt_diskon.getText().replaceAll("[^0-9]", "");
+        System.out.println("diskon ="+nilai_input_diskon);
+     
+        if(!nilai_input_diskon.equals("")){
+            diskon = Integer.parseInt(nilai_input_diskon);
+            if(diskon >100){
+                jop("Diskon tidak boleh lebih 100");
+                 KonfirmasiBayar.txt_diskon.setText("");
+                 
+                 KonfirmasiBayar.txt_totalHarga.setText(bayar.setSubtotal());
+                 
+            }
+            int totalBelanja=Integer.parseInt(KonfirmasiBayar.txt_SubTotal.getText());
+                 int diskon_new = totalBelanja*diskon/100;
+                 res_diskon = totalBelanja-diskon_new;
+          
+        }else if(nilai_input_diskon.equals("")){
+             
+             KonfirmasiBayar.txt_totalHarga.setText(sub);
+             System.out.println("sub"+sub);
+             System.out.println("ya");
+             res_diskon=Integer.parseInt(sub);
+        }
+
+        this.setTotalHarga(res_diskon);
+        return this.getTotalHarga();
+  }
+  
+  public int bayar(String bayar , KonfirmasiBayar byr){
+   
+      System.out.println("ba "+bayar);
+      int bayarInt = Integer.parseInt(bayar);
+      int kembalian=0;
+      int total=Integer.parseInt(KonfirmasiBayar.txt_totalHarga.getText());
+      if(bayar.equals("")){
+          jop("Harap Isi Field Bayar Terlebih Dahulu");
+      }else if(bayarInt < total){
+          jop("Total Bayar Customer Kurang !");
+      }else{
+         kembalian=bayarInt-total;  
+         TransaksiBerhasil transaksi = new TransaksiBerhasil();
+         
+         transaksi.action();
+         byr.dispose();
+         
+      }
+      return kembalian;
+     
+  }
+  public void addTransaksi(String id , String grandTotal , String bayar , String idPegawai, String kembali){
+      OrderInterface order = new Order();
+      order.addIdTransaksi(id, grandTotal, bayar, idPegawai, kembali);
+  }
+  public void insertDataOrder( JTable table){
+      OrderInterface order = new Order();
+      
+      int rowCount = table.getRowCount();
+      System.out.println("row"+ rowCount);
+      String id =KonfirmasiBayar.tx_idTransaksi.getText();
+      for(int i=0; i<rowCount; i++){
+          
+        
+          String kode =table.getValueAt(i, 1).toString();
+          String subTotal=table.getValueAt(i, 6).toString();
+          String qty =table.getValueAt(i, 4).toString();
+          System.out.println("kode"+kode);
+          order.insertDataOrder(id, kode, subTotal, qty);
+      }
+      
+  }
 }

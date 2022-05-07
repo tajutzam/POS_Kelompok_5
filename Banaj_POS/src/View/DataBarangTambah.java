@@ -861,9 +861,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
          barangService br = new barangService();
          br.deleteBarang(kode, this);
          br.showBarang(Dashbord.table_barang);
-       
-         
-         
+ 
     }//GEN-LAST:event_btn_hapusEditMouseClicked
 
     private void kategori_editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kategori_editMouseClicked
