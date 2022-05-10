@@ -14,6 +14,7 @@ import java.awt.RenderingHints;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
+import service.OrderService;
 
 /**
  *
@@ -116,6 +117,11 @@ public class TransaksiBerhasil extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cetak");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,6 +178,19 @@ public class TransaksiBerhasil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+         // TODO add your handling code here:
+         
+         
+         String kode =KonfirmasiBayar.tx_idTransaksi.getText();
+         String diskon =KonfirmasiBayar.txt_diskon.getText();
+         String kasir =Dashbord.label_namaPegawai.getText();
+         OrderService order = new OrderService();
+         order.cetakPenjualan(kode,diskon,kasir);
+         
+         this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

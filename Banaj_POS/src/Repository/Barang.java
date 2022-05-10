@@ -42,10 +42,9 @@ public class Barang implements BarangInterface{
     @Override
     public  void showBarang(JTable table,String opsi) {
         DefaultTableModel model = new DefaultTableModel();
-       
-       
         int no =1;
-        String sqlKat ="select * from kategori";
+        
+            String sqlKat ="select * from kategori";
             String sqlSup ="select * from supplier";
             String sqlsh ="select * from product";
             String sqlRet="select * from retur_supplier";
@@ -55,7 +54,8 @@ public class Barang implements BarangInterface{
             String sqlSupplier ="select kode_supplier, nama_supplier from supplier order by kode_supplier asc";
             String sqlReturnJoin="select product.kode_product , supplier.nama_supplier, retur_supplier.id_returSupplier, retur_supplier.tanggal_rtr,product.nama_product , detail_retur.jumlah_rusak from product join detail_retur on product.kode_product = detail_retur.product join retur_supplier on retur_supplier.id_returSupplier = detail_retur.id_returSupplier join supplier on supplier.kode_supplier = retur_supplier.kode_supplier";
             String sqlReturn ="select supplier.nama_supplier, product.kode_product , tanggal_rtr , jumlah_rusak from retur_supplier join supplier on retur_supplier.kode_supplier = supplier.kode_supplier join product on retur_supplier.kode_product =product.kode_product order by retur_supplier.tanggal_rtr asc";
-        try( Connection con = dt.conectDatabase();
+        //try with recource yang akan dipake sellama fungsi dijalankan saja    
+        try(Connection con = dt.conectDatabase();
             Statement st =con.createStatement();
             Statement sta = con.createStatement();
             Statement stkat = con.createStatement();
@@ -66,13 +66,11 @@ public class Barang implements BarangInterface{
             ResultSet res2 = sta.executeQuery(sqlsh);
             ResultSet resK = stkat.executeQuery(sqlKat);
             ResultSet resSup = stSup.executeQuery(sqlSup);){
-          //  sql = "SELECT barang.kode_barang, barang.nama_barang, kategori.nama_kategori, barang.harga, barang.stok, supplier.nama_supplier FROM barang JOIN kategori ON barang.kategori = kategori.id_kategori JOIN supplier ON barang.supplier = supplier.id_supplier ORDER BY barang.nama_barang ASC";
-  
-                ResultSet res = st.executeQuery(sql);
-                       
-                //akan menampilkan data barang
-                if(opsi.equals("barang")){ 
-                    
+          //sql = "SELECT barang.kode_barang, barang.nama_barang, kategori.nama_kategori, barang.harga, barang.stok, supplier.nama_supplier FROM barang JOIN kategori ON barang.kategori = kategori.id_kategori JOIN supplier ON barang.supplier = supplier.id_supplier ORDER BY barang.nama_barang ASC"
+                ResultSet res = st.executeQuery(sql);                   
+
+                //akan menampilkan data barang                
+                if(opsi.equals("barang")){     
                     res=st.executeQuery(sql);
                     model.addColumn("No");
                     model.addColumn("Kode Barang");
@@ -104,11 +102,12 @@ public class Barang implements BarangInterface{
                         }
                         
                     }else{
-                        
+                        //barang tidak ada di dalam database
                         JOptionPane.showMessageDialog(null, "Barang Kosong Silahkan Tambah Barang", "Information", JOptionPane.OK_OPTION);
 
                     }
-                //akan menampilkan data kategori  
+                    
+                //akan menampilkan data supplier  
                 }else if(opsi.equals("supplier")){
                     res=st.executeQuery(sqlSupplier);
                     model.addColumn("No");
@@ -125,8 +124,8 @@ public class Barang implements BarangInterface{
                        no++; 
                     }
                     }else{
+                    //jika tidak ada supplier
                     JOptionPane.showMessageDialog(null, "Supplier Kosong Silahkan Tambah Supplier", "Information", JOptionPane.OK_OPTION);
-
                     }
 
                 res.close();
@@ -162,13 +161,8 @@ public class Barang implements BarangInterface{
         }catch(SQLException exception){
             JOptionPane.showMessageDialog(null, exception.getMessage());
         }
-       
-        
-       
+
     }
-    
-    
-    
 
     @Override
     public void addComboboxItem(JComboBox box, String opsi) {  
@@ -177,18 +171,16 @@ public class Barang implements BarangInterface{
              Statement st =con.createStatement();
              ResultSet res;
         
-            if(opsi.equals("kategori")){
+             if(opsi.equals("kategori")){
             
              String sql ="select nama_kategori from kategori";
              res=st.executeQuery(sql);
              while(res.next()){
-                 box.addItem(res.getString("nama_kategori"));   
-                 
+                 box.addItem(res.getString("nama_kategori"));       
              }
              con.close();
              st.close();
-             res.close();
-    
+             res.close();    
         }
             else if(opsi.equals("supplier")){
                 String sql ="select nama_supplier from supplier";
@@ -210,6 +202,7 @@ public class Barang implements BarangInterface{
 
     
     public void addReturn(String supplier , String kode_product , String barang_rusak ){
+        
        String sqlReturSupplier= "insert into retur_supplier (id_returSupplier , kode_supplier , tanggal_rtr )values (?, ? ,?)";
        String sqlDetailReturnSupplier ="insert into detail_retur (id_returSupplier , product, jumlah_rusak) values (? ,? ,?)";
        try(Connection con = dt.conectDatabase();
@@ -233,12 +226,11 @@ public class Barang implements BarangInterface{
        }catch(SQLException e){
            
        }
-
     }
     @Override
+    
     public void addBarang(String nama_produt ,String kode_product , String harga_beli
-            , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier , DataBarangTambah dta) {
-       
+            , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier , DataBarangTambah dta) {   
        boolean isNotMatch=false;
        //query
        String sqlInsert="Insert into product (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`,total_stok)"
@@ -334,15 +326,12 @@ public class Barang implements BarangInterface{
             }
             pst.execute();
  
-        }catch(SQLException e){
-      
-        }
-        
+        }catch(SQLException e){      
+        }        
     }
      public String getIdBarang(boolean setNewKode, String kode,JComboBox box){
          String hsl = "";
-         String kodeKategori="";
-          
+         String kodeKategori="";          
          String namaKategoriTmp ;
          String namaKategoriResult;
          String hurufKategori="";

@@ -248,9 +248,9 @@ public class OrderService extends barangService {
       int rowCount = table.getRowCount();
       System.out.println("row"+ rowCount);
       String id =KonfirmasiBayar.tx_idTransaksi.getText();
+      
+      //melakukan insert detail transaksi sebanyak barang yang dipesan
       for(int i=0; i<rowCount; i++){
-          
-        
           String kode =table.getValueAt(i, 1).toString();
           String subTotal=table.getValueAt(i, 6).toString();
           String qty =table.getValueAt(i, 4).toString();
@@ -258,5 +258,9 @@ public class OrderService extends barangService {
           order.insertDataOrder(id, kode, subTotal, qty);
       }
       
+  }
+  public void cetakPenjualan(String kode , String diskon , String kasir){
+      OrderInterface order = new Order();
+      order.cetakStruct(kode,diskon,kasir);
   }
 }

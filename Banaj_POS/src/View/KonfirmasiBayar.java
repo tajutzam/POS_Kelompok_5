@@ -6,6 +6,7 @@
 
 package View;
 
+import static View.Dashbord.table_barang;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,6 +16,7 @@ import java.awt.RenderingHints;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import service.OrderService;
+import service.barangService;
 
 /**
  *
@@ -28,7 +30,6 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -266,11 +267,12 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
        OrderService order = new OrderService();
        long kembalian = order.bayar(txt_bayar.getText().replaceAll("[^0-9]","") , this);
        String kembaliy =String.valueOf(kembalian);
-       String kembaliString = String.format("%,10d\n", kembalian);
+       String kembaliString = String.format("%-,10d\n", kembalian);
        TransaksiBerhasil.txt_kembalian.setText(kembaliString);
        
        
        String idTransaksi= tx_idTransaksi.getText();
+        System.out.println("id +"+idTransaksi);
        String grandTotal = txt_totalHarga.getText();
        String bayar = txt_bayar.getText();
        String id_pegawai=Dashbord.label_idPegawai.getText();
@@ -278,6 +280,10 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
        
        order.addTransaksi(idTransaksi, grandTotal, bayar, id_pegawai,kembaliy);
        order.insertDataOrder(Dashbord.table_belanja);
+       this.dispose();
+       barangService br = new barangService();
+       br.showBarang(table_barang);
+       br.deleteBarangWhenStokHabis();
        
     }//GEN-LAST:event_jButton1MouseClicked
 
