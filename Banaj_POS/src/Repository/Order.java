@@ -10,6 +10,8 @@ import View.Dashbord;
 import View.KonfirmasiOrder;
 import static View.KonfirmasiOrder.txt_qty;
 import java.awt.Color;
+import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,17 +19,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
+
 
 /**
  *
  * @author user
  */
 public class Order implements OrderInterface {
-    DefaultTableModel model = new DefaultTableModel();
+    static public DefaultTableModel model = new DefaultTableModel();
     static public DefaultTableModel tbOrder = new DefaultTableModel();
     
     
@@ -73,8 +83,8 @@ public class Order implements OrderInterface {
 
     }
    
+    //saat clas pertama diload akan dijalankan dan membuat colum tborder
     static{
-     
        tbOrder.addColumn("No");
        tbOrder.addColumn("Kode Barang");
        tbOrder.addColumn("Nama Barang");
@@ -84,21 +94,21 @@ public class Order implements OrderInterface {
        tbOrder.addColumn("Sub total");
        Dashbord.table_belanja.setRowHeight(30);
        Dashbord.table_belanja.setForeground(new Color(90, 90, 90));
-       
        Dashbord.table_belanja.setModel(tbOrder); 
-    }
-
-   
-  
-    @Override
-    //this overide in method parent
-    public boolean cariBarang(String keyword , JTable table , String opsi ){
-        boolean isMatch =false;
+       
         model.addColumn("No");
         model.addColumn("Kode Barang");
         model.addColumn("Nama Barang");
         model.addColumn("Stok");
         model.addColumn("Harga Jual");
+        Dashbord.table_cariBelanja.setModel(model);
+    }
+
+    @Override
+    //this overide in method parent
+    public boolean cariBarang(String keyword , JTable table , String opsi ){
+        boolean isMatch =false;
+      
         
         table.setModel(model);
       
@@ -111,8 +121,6 @@ public class Order implements OrderInterface {
             
         
             try(Connection con = dt.conectDatabase();
-                
-                
                 Statement stat = con.createStatement();
                 ResultSet res = stat.executeQuery(sql);
                 Statement statement = con.createStatement();
@@ -148,10 +156,7 @@ public class Order implements OrderInterface {
                    throw new SQLException();
                    
                 }
-                
-                
-               
- 
+
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Gagal Menampilkan Data barang","Barang Tidak Tersedia", JOptionPane.INFORMATION_MESSAGE, eroricon);
         
@@ -159,9 +164,7 @@ public class Order implements OrderInterface {
             {
             model.addRow(new Object[]{   
             });
-        }
-       
-           
+        }   
     }else if(opsi.equals("resetBelanja")){
                 tbOrder.addRow(new Object[]{
                     
@@ -237,30 +240,62 @@ public class Order implements OrderInterface {
 
     @Override
     public void insertDataOrder(String id , String kode , String subTotal ,String qty) {
-        
-        
-        String sql="INSERT INTO `detail_transaksi`(`id_transaksi`, `kode_product`, `sub_total`, `qty`) VALUES (?,?,?,?)";
-        
+        String sql="INSERT INTO `detail_transaksi`(`id_transaksi`, `kode_product`, `sub_total`, `qty`) VALUES (?,?,?,?)";        
         try(Connection con = dt.conectDatabase();
             PreparedStatement pst = con.prepareStatement(sql)){
             
             pst.setString(1, id);
             pst.setString(2, kode);
             pst.setString(3, subTotal);
-            pst.setString(4, qty);
-            
-            pst.execute();
-            System.out.println("oke");
-            
-            
+            pst.setString(4, qty);            
+            pst.execute();            
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
-
     @Override
     public void insertOrder() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cetakStruct(String kode , String diskon , String kasir) {
+        
+       String sql ="select nama_toko , no_hp , alamat_toko from toko";
+       String nama_toko;
+       String no_hp;
+       String alamat;
+       try(Connection con = dt.conectDatabase();
+           Statement st = con.createStatement();
+           ResultSet res =st.executeQuery(sql)){
+           
+           
+           if(res.next()){
+              nama_toko=res.getString("nama_toko");
+              no_hp=res.getString("no_hp");
+              alamat=res.getString("alamat_toko");
+               System.out.println(nama_toko);
+               
+           }else{
+               throw new SQLException("gagal");
+           }
+           
+           File namaile = new File("src/View/ReporPenjualan.jasper");
+          // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
+           HashMap hash = new HashMap();
+           hash.put("kode", kode);
+           hash.put("nama_toko", nama_toko);
+           hash.put("no_hp", no_hp);
+           hash.put("alamat", alamat);
+           hash.put("diskon", diskon+"%");
+           hash.put("nama_kasir",kasir);
+           JasperPrint print =JasperFillManager.fillReport(namaile.getPath(), hash, con);
+           JasperViewer.viewReport(print,false);
+           
+           
+       }catch(Exception e){
+           System.out.println(e.getMessage());
+       }
     }
 
 

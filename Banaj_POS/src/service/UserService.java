@@ -13,10 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 public class UserService {
-    UserInterface user = new User();
+    UserInterface user = new User();  
     
     public void showUser(){
-        
         user.showUser(Dashbord.table_user);
     }
     public String getId(){

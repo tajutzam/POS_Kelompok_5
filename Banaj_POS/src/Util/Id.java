@@ -103,7 +103,7 @@ public class Id {
         }
         System.out.println(result);
         Random rand = new Random();
-        int random = rand.nextInt(100000);
+        int random = rand.nextInt(10000);
         String finalResult ="TRJ"+result+day+random;
         this.setIdTransaksi(finalResult);
         return this.getIdTransaksi();
