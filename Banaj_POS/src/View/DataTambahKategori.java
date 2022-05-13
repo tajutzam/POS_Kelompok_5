@@ -522,15 +522,15 @@ public class DataTambahKategori extends javax.swing.JFrame {
     }
     
     
-    public void senEdit(String kode, String nama , String update){
-        System.out.println("Kode "+getKodeKategoriLama());
-
-        kategori.sendDataKategori(kode, nama, update);
-      
-        TXT_kodeKategoriEdit.setText(kode);
-        TXT_namaKategoriEdit.setText(nama);
-        TXT_updateAtKategori.setText(update);
-    }
+//    public void senEdit(String kode, String nama , String update){
+//        System.out.println("Kode "+getKodeKategoriLama());
+//
+//        kategori.sendDataKategori(kode, nama, update);
+//      
+//        TXT_kodeKategoriEdit.setText(kode);
+//        TXT_namaKategoriEdit.setText(nama);
+//        TXT_updateAtKategori.setText(update);
+//    }
     
     public void editKategori(String opsi , String kode_kat){
         DatabaseInterface dt = new Database();

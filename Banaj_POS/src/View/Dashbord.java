@@ -57,6 +57,7 @@ public class Dashbord extends javax.swing.JFrame {
     String nama_kategori;
     String time_update;
     String kode_supplier;
+    String id_pegawai;
     
     Dimension dimAx = Toolkit.getDefaultToolkit().getScreenSize();
     Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
@@ -2635,6 +2636,13 @@ public class Dashbord extends javax.swing.JFrame {
     private void table_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_userMouseClicked
          // TODO add your handling code here:
          TambahUser dt = new TambahUser();
+         
+         table_user.getSelectedRow();
+         int row = table_user.getSelectedRow();
+         String id = table_user.getValueAt(row, 1).toString();
+         System.out.println(id);
+         TambahUser.label_idLama.setText(id);
+         dt.sendDataEdit("edit", TambahUser.label_idLama.getText());
          dt.Action("edit");
     }//GEN-LAST:event_table_userMouseClicked
 

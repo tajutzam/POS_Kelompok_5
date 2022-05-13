@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.TambahUser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -133,5 +134,29 @@ public class User implements UserInterface{
             
         }
     }
+    @Override
+    public void sendToEdit(String id , String nama_pegawai , String username, String Role, String Status,  String time ) {
+       
+        String sql ="select id_pegawai , nama_pegawai, username ,role , status, update_at from pegawai where id_pegawai = '"+id+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                id = res.getString("id_pegawai");
+                nama_pegawai =res.getString("nama_pegawai");
+                username = res.getString("username");
+                System.out.println(username);
+                Role = res.getString("role");
+                Status = res.getString("status");
+                time =res.getString("update_at");
+               
+                
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal Update User"+e.getMessage(), "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
+        }   
+    }
+    
 }
     
