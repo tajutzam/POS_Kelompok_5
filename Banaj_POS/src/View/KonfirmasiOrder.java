@@ -244,7 +244,7 @@ public class KonfirmasiOrder extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Harap Isikan Field dengan benar", "Input Mismatch", JOptionPane.INFORMATION_MESSAGE, eroricon);
          }
          else{
-             order.addProductToKeranjang();
+             order.addProductToKeranjang(Dashbord.table_belanja);
              this.dispose();
          }
        

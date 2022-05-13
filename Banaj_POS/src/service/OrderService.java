@@ -89,17 +89,15 @@ public class OrderService extends barangService {
     }
     
   
-  public void addProductToKeranjang(){
-      
-      
-    
-       OrderInterface order = new Order();  
+  public void addProductToKeranjang(JTable table){
+ 
+      OrderInterface order = new Order();  
      
       int selectedRow=Dashbord.table_cariBelanja.getSelectedRow();
       if(Dashbord.table_cariBelanja.getValueAt(selectedRow, 3).toString().equals("0")){
          JOptionPane.showMessageDialog(null, "Tidak Bisa menambahkan Product, Stok Habis !", "Product Kosong", JOptionPane.INFORMATION_MESSAGE, eroricon);
       }else{
-      int count = Dashbord.table_belanja.getRowCount();
+      int count = table.getRowCount();
       System.out.println("count "+count);
       boolean dataDoble = false;
       int stok = Integer.parseInt(Dashbord.table_cariBelanja.getValueAt(selectedRow, 3).toString());
@@ -108,14 +106,14 @@ public class OrderService extends barangService {
           if(qty > stok){
             JOptionPane.showMessageDialog(null, "Stok Tidak mencukupi", "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
           }else{
-              
-               order.addProductToKeranjang(KonfirmasiOrder.txt_kodeProduct.getText().toString());  
+            
+             order.addProductToKeranjang(KonfirmasiOrder.txt_kodeProduct.getText().toString());  
           dataDoble=false;
           }
    
       }else if(count>0){
           for(int i =0; i< count; i++){
-              String k_product = Dashbord.table_belanja.getValueAt(i, 1).toString();
+              String k_product = table.getValueAt(i, 1).toString();
               if(k_product.equals(Dashbord.table_cariBelanja.getValueAt(selectedRow, 1).toString())){
                  JOptionPane.showMessageDialog(null, "Product Sudah Ada Pada keranjang", "Product Duplikat", JOptionPane.INFORMATION_MESSAGE, eroricon);
                  dataDoble=true;
@@ -240,7 +238,10 @@ public class OrderService extends barangService {
   }
   public void addTransaksi(String id , String grandTotal , String bayar , String idPegawai, String kembali){
       OrderInterface order = new Order();
-      order.addIdTransaksi(id, grandTotal, bayar, idPegawai, kembali);
+    
+          order.addIdTransaksi(id, grandTotal, bayar, idPegawai, kembali);
+      
+ 
   }
   public void insertDataOrder( JTable table){
       OrderInterface order = new Order();
@@ -259,8 +260,8 @@ public class OrderService extends barangService {
       }
       
   }
-  public void cetakPenjualan(String kode , String diskon , String kasir){
+  public void cetakPenjualan(String kode , String diskon , String kasir , String harga){
       OrderInterface order = new Order();
-      order.cetakStruct(kode,diskon,kasir);
+      order.cetakStruct(kode,diskon,kasir , harga);
   }
 }

@@ -20,6 +20,6 @@ public interface OrderInterface {
     public void addProductToKeranjang(String kode );
     public void insertOrder();
     public void insertDataOrder(String id , String kode , String subTotal ,String qty);
-    public void cetakStruct(String kode ,String diskon , String kasir);
+    public void cetakStruct(String kode ,String diskon , String kasir , String harga);
     
 }

@@ -11,6 +11,7 @@ import Util.Id;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
@@ -122,7 +123,7 @@ public class Dashbord extends javax.swing.JFrame {
         //setVisibilitas idpegawai login
         label_idPegawai.setVisible(true);
         label_namaPegawai.setVisible(true);
-        
+       
         //visibilitas hak akses user login
         if(role.equals("2")){
           panel_product.setVisible(false);
@@ -131,9 +132,7 @@ public class Dashbord extends javax.swing.JFrame {
           panel_iconProduct.setVisible(false);
           
           panel_laporan.setVisible(false);
-          panel_manager.setVisible(false);
-          
-        
+          panel_manager.setVisible(false);    
     }
     }
   
@@ -241,13 +240,12 @@ public class Dashbord extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         table_cariBelanja = new javax.swing.JTable();
         panel_infoHarga = new RoundedPanel(8, new Color(255, 255, 255));
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         btn_Bayar = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         table_belanja = new javax.swing.JTable();
         btn_resetKeranjang = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        hapusOrder = new javax.swing.JButton();
         panel_contenSetting = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         label_setToko = new javax.swing.JLabel();
@@ -341,6 +339,9 @@ public class Dashbord extends javax.swing.JFrame {
         icon_dashbord.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 icon_dashbordMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                icon_dashbordMouseEntered(evt);
             }
         });
 
@@ -677,6 +678,12 @@ public class Dashbord extends javax.swing.JFrame {
         comboBox_showBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBox_showBarangActionPerformed(evt);
+            }
+        });
+
+        txt_cariBrng.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_cariBrngKeyPressed(evt);
             }
         });
 
@@ -1299,17 +1306,7 @@ public class Dashbord extends javax.swing.JFrame {
         jScrollPane9.setBackground(new java.awt.Color(239, 240, 245));
 
         table_cariBelanja.setBackground(new java.awt.Color(239, 240, 245));
-        table_cariBelanja.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Kode Barang", "Nama Barang", "Stok", "Harga Jual"
-            }
-        ));
+        table_cariBelanja.setModel(Order.model);
         table_cariBelanja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 table_cariBelanjaMouseClicked(evt);
@@ -1340,10 +1337,6 @@ public class Dashbord extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jLabel25.setText("Klik Table lalu enter    = BAYAR");
-
-        jLabel26.setText("Klik Item lalu F5          =  HAPUS ITEM");
-
         btn_Bayar.setBackground(new java.awt.Color(111, 59, 160));
         btn_Bayar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_Bayar.setForeground(new java.awt.Color(255, 255, 255));
@@ -1359,11 +1352,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_infoHargaLayout.setHorizontalGroup(
             panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_infoHargaLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 806, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -1371,15 +1360,8 @@ public class Dashbord extends javax.swing.JFrame {
             panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_infoHargaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_infoHargaLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(9, 9, 9))
-                    .addComponent(btn_Bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(btn_Bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane7.setBackground(new java.awt.Color(239, 240, 245));
@@ -1415,6 +1397,16 @@ public class Dashbord extends javax.swing.JFrame {
 
         jButton3.setText("Return Customer");
 
+        hapusOrder.setBackground(new java.awt.Color(51, 45, 45));
+        hapusOrder.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        hapusOrder.setForeground(new java.awt.Color(255, 255, 255));
+        hapusOrder.setText("Hapus Item");
+        hapusOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hapusOrderMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_contenKasirLayout = new javax.swing.GroupLayout(panel_contenKasir);
         panel_contenKasir.setLayout(panel_contenKasirLayout);
         panel_contenKasirLayout.setHorizontalGroup(
@@ -1423,6 +1415,8 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panel_contenKasirLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(hapusOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1433,7 +1427,7 @@ public class Dashbord extends javax.swing.JFrame {
                             .addComponent(panel_infoHarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel_contenKasirLayout.createSequentialGroup()
                                 .addComponent(panel_cariKasir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                                 .addComponent(panel_hasilCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
@@ -1447,7 +1441,8 @@ public class Dashbord extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hapusOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1853,7 +1848,7 @@ public class Dashbord extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel2.setText("Penghasilan Sebulan");
+        jLabel2.setText("Maret");
 
         icon_pengSebulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clipboard.png"))); // NOI18N
 
@@ -1865,13 +1860,13 @@ public class Dashbord extends javax.swing.JFrame {
             icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(icon_penghasilanSebulanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(icon_penghasilanSebulanLayout.createSequentialGroup()
                         .addComponent(icon_pengSebulan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
         icon_penghasilanSebulanLayout.setVerticalGroup(
             icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2014,9 +2009,9 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_contenDashbordLayout.createSequentialGroup()
                         .addComponent(icon_penghasilanSebulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(26, 26, 26)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
+                        .addGap(26, 26, 26)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE))
@@ -2714,15 +2709,18 @@ public class Dashbord extends javax.swing.JFrame {
          // TODO add your handling code here:
         DataBarangTambah dt = new DataBarangTambah();
         dt.Action("edit");
-        barangService br = new barangService();
-        String kode="";
-        String kode_lama= br.setKodeLamaBarangEdit(kode, table_barang);
+       
+        int row =table_barang.getSelectedRow();
+        
+        String kode_lama=table_barang.getValueAt(row, 1).toString();
         dt.setKodeLama(kode_lama);
+        System.out.println("kode "+ kode_lama);
         if(dt.getKodeLama().equals("")){
+            
             JOptionPane.showMessageDialog(null, "Terjadi Kesalahan, Tidak ada product dalam data", "Eror", JOptionPane.OK_OPTION);
             dt.dispose();
         }else{
-            dt.editBarang("edit");
+            dt.editBarang("edit",kode_lama);
         }
 
     }//GEN-LAST:event_table_barangMouseClicked
@@ -2764,7 +2762,16 @@ public class Dashbord extends javax.swing.JFrame {
     private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
         // TODO add your handling code here:
         OrderService order = new OrderService();
-        order.getBarang(txt_cariDataOrder.getText().toString());
+        
+        
+       
+        int row =table_cariBelanja.getRowCount();
+        System.out.println("row"+row);
+      
+         if(order.getBarang(txt_cariDataOrder.getText().toString())==true){
+        }else{
+            txt_cariDataOrder.setText("");
+        }
     }//GEN-LAST:event_jLabel23MouseClicked
 
     private void btn_resetKeranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetKeranjangMouseClicked
@@ -2783,13 +2790,21 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_resetKeranjangActionPerformed
 
     private void txt_cariDataOrderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariDataOrderKeyPressed
-        // TODO add your handling code here:
-        OrderService order = new OrderService();
-        if(order.getBarang(txt_cariDataOrder.getText().toString())==true){
-            
+         // TODO add your handling code here:
+        
+         if(evt.getKeyCode()==evt.VK_ENTER){
+             OrderService order = new OrderService();
+       
+        int row =table_cariBelanja.getRowCount();
+        System.out.println("row"+row);
+      
+         if(order.getBarang(txt_cariDataOrder.getText().toString())==true){
         }else{
             txt_cariDataOrder.setText("");
         }
+         }
+        
+       
        
     }//GEN-LAST:event_txt_cariDataOrderKeyPressed
 
@@ -2854,6 +2869,40 @@ public class Dashbord extends javax.swing.JFrame {
             }
          }
     }//GEN-LAST:event_table_belanjaKeyPressed
+
+    private void icon_dashbordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_dashbordMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_icon_dashbordMouseEntered
+
+    private void hapusOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusOrderMouseClicked
+          // TODO add your handling code here:
+              if(table_belanja.getSelectedRowCount()==1){
+                if(!table_belanja.getValueAt(0, 0).toString().equals("")){
+                    if(table_belanja.getRowCount() == 1){
+                        System.out.println("--");
+                      
+                        Order.tbOrder.addRow(new Object[]{
+                            "","","","","","",""
+                        });
+                        Order.tbOrder.setRowCount(0);
+                    }else{
+                        Order.tbOrder.removeRow(table_belanja.getSelectedRow());
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris !", "Terjadi Kesalahan !", JOptionPane.INFORMATION_MESSAGE);
+            }
+    }//GEN-LAST:event_hapusOrderMouseClicked
+
+    private void txt_cariBrngKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariBrngKeyPressed
+         // TODO add your handling code here:
+         barangService barang = new barangService();
+         
+         String keyword = txt_cariBrng.getText().toString();
+         if(evt.getKeyCode() ==evt.VK_ENTER){
+             barang.cariBarang(keyword);
+         }
+    }//GEN-LAST:event_txt_cariBrngKeyPressed
 
     public void showBarangWhenClick(){
         
@@ -2976,30 +3025,30 @@ public class Dashbord extends javax.swing.JFrame {
  public void showChart(){
     
     DefaultCategoryDataset data = new DefaultCategoryDataset();
-    data.setValue(1000, "Total Penghasilan ", "January");
-    data.setValue(2000, "Total Penghasilan ", "February");
-    data.setValue(3000, "Total Penghasilan ", "March");
-    data.setValue(4000, "Total Penghasilan ", "April");
-    data.setValue(3000, "Total Penghasilan ", "Mei");
-    data.setValue(2000, "Total Penghasilan ", "Juni");
+    data.setValue(1000000, "Total Penghasilan ", "Januari");
+    data.setValue(2000000, "Total Penghasilan ", "Februari");
+    data.setValue(3000000, "Total Penghasilan ", "Maret");
+    data.setValue(4000000, "Total Penghasilan ", "April");
+    data.setValue(3000000, "Total Penghasilan ", "Mei");
+    data.setValue(2000000, "Total Penghasilan ", "Juni");
     
     String title ="Perbandingan Penghasilan";
     
     
-    JFreeChart barChart = ChartFactory.createBarChart3D("", "Monthly", "Penghasilan", data, PlotOrientation.VERTICAL, false, true, false);
+    JFreeChart barChart = ChartFactory.createBarChart3D("Perbandingan Penghasilan", "Perbulan", "Penghasilan", data, PlotOrientation.VERTICAL, false, true, false);
+    barChart.getTitle().setFont(new Font("Tahoma", Font.PLAIN, 16));
     CategoryPlot plot = barChart.getCategoryPlot();
     BarRenderer3D ren = (BarRenderer3D) plot.getRenderer();
     Color color = new Color(111, 59, 160);
-     
-     
-     ren.setSeriesPaint(0, color);
-     ChartPanel barPanel = new ChartPanel(barChart);
-     barPanel.setBackground(new Color(239,240,245));
+
+    ren.setSeriesPaint(0, color);
+    ChartPanel barPanel = new ChartPanel(barChart);
+    barPanel.setBackground(new Color(239,240,245));
     
-     panel_chart.removeAll();
-     panel_chart.add(barPanel);
-     panel_chart.repaint();
-     panel_chart.revalidate();
+    panel_chart.removeAll();
+    panel_chart.add(barPanel);
+    panel_chart.repaint();
+    panel_chart.revalidate();
      
  }
     
@@ -3033,6 +3082,7 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JPanel contenSupplier;
     private javax.swing.JPanel conten_manajemen;
     private javax.swing.JPanel frame_logo_toko;
+    private javax.swing.JButton hapusOrder;
     private javax.swing.JPanel header_panel;
     private javax.swing.JLabel icon_cariBarang;
     private javax.swing.JLabel icon_cariKategori;
@@ -3060,8 +3110,6 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

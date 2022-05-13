@@ -328,7 +328,7 @@ public class Barang implements BarangInterface{
  
         }catch(SQLException e){      
         }        
-    }
+   }
      public String getIdBarang(boolean setNewKode, String kode,JComboBox box){
          String hsl = "";
          String kodeKategori="";          
@@ -611,7 +611,7 @@ public class Barang implements BarangInterface{
         // sql untuk update product
         String sql ="update product set nama_product =? ,stok =? , " 
                 +"harga_beli = ? , harga_jual=?, supplier=?, "        
-                +"kategori =?, update_at =? , rusak =?, kode_product=?, total_stok=?, kode_product=? where kode_product ='"+kode_brg+"'";
+                +"kategori =?, update_at =? , rusak =?, kode_product=?, total_stok=? where kode_product ='"+kode_brg+"'";
         //
         String sqlRet ="update detail_retur set jumlah_rusak =? where product =?";
         String sqlShow ="select kode_kategori from kategori where nama_kategori ='"+kat.getSelectedItem().toString()+"'";
@@ -638,7 +638,8 @@ public class Barang implements BarangInterface{
                 }
            
             }
-            String kode_final=getIdEdit(true, "", DataBarangTambah.kategori_edit);
+            
+            //String kode_final=getIdEdit(true, "", DataBarangTambah.kategori_edit);
             pst.setString(1, nama_product);
             pst.setInt(2, stok);
             pst.setInt(3, harga_beli);
@@ -648,7 +649,7 @@ public class Barang implements BarangInterface{
             pst.setString(6, kode_kategori);
             pst.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
             String rusak_new = String.valueOf(rusak);
-            pst.setString(11,kode_final);
+//            pst.setString(11,kode_final);
             
             pst.setInt(8, rusak);
             pst.setString(9, kode_baru);
@@ -771,6 +772,61 @@ public class Barang implements BarangInterface{
          }
          return total;
      }
+
+    @Override
+    public void cariBarang(String keyword ) {
+          
+          DefaultTableModel model = new DefaultTableModel();
+                  model.addColumn("No");
+                  model.addColumn("Kode Barang");
+                  model.addColumn("Nama Barang");
+                  model.addColumn("Stok Tersedia");
+                  model.addColumn("Total Stok");
+                  model.addColumn("Barang Rusak");
+                  model.addColumn("Harga Beli");
+                  model.addColumn("Harga Jual");
+                  model.addColumn("Supplier");
+                  model.addColumn("Kategori");
+        
+          String sql="select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier where nama_product like '%"+keyword+"%' or kode_product like '%"+keyword+"%' order by product.kode_product asc";
+       
+          try(Connection con = dt.conectDatabase();
+              Statement st = con.createStatement();
+              ResultSet res =st.executeQuery(sql);
+               )
+            {
+               
+                if(res.next()){
+                 int no=1;
+                 while(res.next()){
+                    model.addRow(new Object[]{
+                     
+                     no,
+                     res.getString("kode_product"),
+                        res.getString("nama_product"),
+                        res.getString("stok"),
+                        res.getString("total_stok"),
+                        res.getString("rusak"),
+                        res.getString("harga_beli"),
+                        res.getString("harga_jual"),
+                        res.getString("supplier.nama_supplier"),
+                        res.getString("kategori.nama_kategori"),
+                        
+                    });
+                    no++;
+                 }
+               
+       
+                Dashbord.table_barang.setModel(model);
+                
+                }else{
+                    throw new SQLException("Gagal Menemukan Data Barang");
+                }
+
+          }catch(SQLException e){
+              System.out.println("gagal mencari barang"+e.getMessage());
+          }
+          }
       
 }
 

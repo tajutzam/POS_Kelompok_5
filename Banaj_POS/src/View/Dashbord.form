@@ -163,6 +163,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon_dashbordMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon_dashbordMouseEntered"/>
               </Events>
             </Component>
           </SubComponents>
@@ -754,6 +755,9 @@
                       </Layout>
                       <SubComponents>
                         <Component class="javax.swing.JTextField" name="txt_cariBrng">
+                          <Events>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_cariBrngKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txt_cariBrng.setBorder(javax.swing.BorderFactory.createEmptyBorder());"/>
                           </AuxValues>
@@ -1586,6 +1590,8 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="hapusOrder" min="-2" pref="156" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="jButton3" min="-2" pref="159" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btn_resetKeranjang" min="-2" pref="135" max="-2" attributes="0"/>
@@ -1597,7 +1603,7 @@
                                   <Component id="panel_infoHarga" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="panel_cariKasir" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="70" max="32767" attributes="0"/>
                                       <Component id="panel_hasilCari" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1619,6 +1625,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btn_resetKeranjang" max="32767" attributes="0"/>
                           <Component id="jButton3" max="32767" attributes="0"/>
+                          <Component id="hapusOrder" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane7" min="-2" pref="233" max="-2" attributes="0"/>
@@ -1770,13 +1777,8 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f5" green="f0" red="ef" type="rgb"/>
                         </Property>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Kode Barang" type="java.lang.Object"/>
-                            <Column editable="true" title="Nama Barang" type="java.lang.Object"/>
-                            <Column editable="true" title="Stok" type="java.lang.Object"/>
-                            <Column editable="true" title="Harga Jual" type="java.lang.Object"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="Order.model" type="code"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1799,12 +1801,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel26" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel25" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="806" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btn_Bayar" min="-2" pref="188" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
@@ -1814,32 +1811,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                  <Component id="jLabel25" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel26" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="btn_Bayar" min="-2" pref="55" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_Bayar" min="-2" pref="55" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel25">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Klik Table lalu enter    = BAYAR"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel26">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Klik Item lalu F5          =  HAPUS ITEM"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="btn_Bayar">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1909,6 +1887,23 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Return Customer"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="hapusOrder">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2d" green="2d" red="33" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Hapus Item"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="hapusOrderMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -2579,13 +2574,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="icon_penghasilanSebulan" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="panel_chart" alignment="0" pref="806" max="32767" attributes="0"/>
+                          <Component id="panel_chart" pref="806" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="jPanel6" max="32767" attributes="0"/>
@@ -2622,16 +2617,16 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="icon_pengSebulan" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="83" max="32767" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="28" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2659,7 +2654,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="5a" green="5a" red="5a" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Penghasilan Sebulan"/>
+                    <Property name="text" type="java.lang.String" value="Maret"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="icon_pengSebulan">

@@ -131,6 +131,13 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
 
         txt_diskon.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         txt_diskon.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_diskon.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txt_diskonInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         txt_diskon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_diskonKeyPressed(evt);
@@ -248,7 +255,11 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
     private void txt_diskonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_diskonKeyTyped
         // TODO add your handling code here:
         
-          
+            OrderService order = new OrderService();
+
+            int hitungTotalHarga = order.hitungTotalHarga();
+            String total = String.valueOf(hitungTotalHarga);
+            txt_totalHarga.setText(total);     
         
         
     }//GEN-LAST:event_txt_diskonKeyTyped
@@ -265,18 +276,22 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
      
        OrderService order = new OrderService();
-       long kembalian = order.bayar(txt_bayar.getText().replaceAll("[^0-9]","") , this);
+       String bayar = txt_bayar.getText().replaceAll("[^0-9]","");
+       if(bayar.equals("")){
+           JOptionPane.showMessageDialog(null, "Harap Isi field Bayar Terlebih Dahulu !","Terjadi Kesalahan",JOptionPane.INFORMATION_MESSAGE);
+       }else{
+           long kembalian = order.bayar( bayar, this);
        String kembaliy =String.valueOf(kembalian);
        String kembaliString = String.format("%-,10d\n", kembalian);
        TransaksiBerhasil.txt_kembalian.setText(kembaliString);
-       
-       
+
        String idTransaksi= tx_idTransaksi.getText();
-        System.out.println("id +"+idTransaksi);
+       System.out.println("id +"+idTransaksi);
        String grandTotal = txt_totalHarga.getText();
-       String bayar = txt_bayar.getText();
+  
        String id_pegawai=Dashbord.label_idPegawai.getText();
        System.out.println(id_pegawai);
+       
        
        order.addTransaksi(idTransaksi, grandTotal, bayar, id_pegawai,kembaliy);
        order.insertDataOrder(Dashbord.table_belanja);
@@ -284,8 +299,16 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
        barangService br = new barangService();
        br.showBarang(table_barang);
        br.deleteBarangWhenStokHabis();
+       order.resetKeranjang();
+       }
+       
        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void txt_diskonInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txt_diskonInputMethodTextChanged
+         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_diskonInputMethodTextChanged
 
     /**
      * @param args the command line arguments

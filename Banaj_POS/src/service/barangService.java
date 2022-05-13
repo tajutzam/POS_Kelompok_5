@@ -34,16 +34,21 @@ import javax.swing.table.DefaultTableModel;
 public class barangService {
     DatabaseInterface dt = new Database();
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+    ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+
+    
     BarangInterface br = new Barang();
     
     public  void showBarang(JTable table){
-       
+        
+        deleteBarangWhenStokHabis();
+        br.showBarang(Dashbord.table_barang, "barang");
         br.showBarang(table, "barang");
         Dashbord.txt_totalBrg.setText(br.hitungTotalBarang());
-        
-        
+
     }
     public void showReturSupplier(JTable table){
+        
         br.showBarang(table, "return");
         
     }
@@ -53,11 +58,16 @@ public class barangService {
         br.addComboboxItem(box, "kategori");
         
     }
+    
     public void addBarang(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt){
              BarangInterface br = new Barang();
-        
-             br.addBarang(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier,dt);
+             
+             if(nama_produt.equals("")||harga_beli.equals("")||harga_jual.equals("")||stok.equals("")||stok.equals("0")){
+                 JOptionPane.showMessageDialog(null, "Harap Isi Semua Field dengan benar !","Terjadi kesalahan !",JOptionPane.INFORMATION_MESSAGE,eroricon);
+             }else{
+                 br.addBarang(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
+             }
 
     }
     
@@ -65,7 +75,7 @@ public class barangService {
         BarangInterface barang = new Barang();
         String result =barang.getIdBarang(setNewKode, kode, box);
         return result;
-      }  
+    }  
     
     public String setKodeLamaBarangEdit(String kode , JTable table){
         
@@ -74,22 +84,25 @@ public class barangService {
         int selectedRow =table.getSelectedRow();
         kode += model .getValueAt(selectedRow, 1).toString();
         return kode;
-        
-        
+
     }
     
     
-    public void editBarang(String kode_brg, String nama_product , int stok , int harga_beli , int harga_jual,   int rusak ,  JComboBox kat , JComboBox sup, DataBarangTambah dta,String kode_baru){
+    public void editBarang(String kode_brg, String nama_product , int stok , int harga_beli , int harga_jual,   int rusak ,  JComboBox kat , JComboBox sup, DataBarangTambah dta,String kode_baru , boolean opsi){
        
         BarangInterface barang = new Barang();
-      
-        
-       
+        if(opsi==false){
+            
+        }else{
+             DataBarangTambah.kode_barang_Edit.setText(kode_baru);
         barang.editBarang(kode_brg, nama_product, stok, harga_beli, harga_jual, rusak, kat, sup, dta, kode_baru);
+        }
+       
     }
     public void deleteBarang(String kode, DataBarangTambah dta){
 
         BarangInterface barang = new Barang();
+        
         barang.deleteBarang(kode, dta);
 
     }
@@ -106,7 +119,7 @@ public class barangService {
     
     public void deleteBarangWhenStokHabis(){
         
-        BarangInterface br = new Barang();
+      BarangInterface br = new Barang();
         br.deleteBarang();
         
     }
@@ -120,6 +133,19 @@ public class barangService {
        return total;
     }
     public void resetKeranjang(){
+        
+    }
+    public void cariBarang(String keyWord){
+        BarangInterface barang = new Barang();
+        
+        if(keyWord.equals("")){
+            barang.showBarang(Dashbord.table_barang, "barang");
+        }else if(keyWord.equals(" ")){
+            barang.showBarang(Dashbord.table_barang, "barang");
+
+        }else{
+            barang.cariBarang(keyWord);
+        }
         
     }
 }
