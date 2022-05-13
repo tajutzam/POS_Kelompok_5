@@ -10,6 +10,7 @@ import View.Dashbord;
 import View.KonfirmasiOrder;
 import static View.KonfirmasiOrder.txt_qty;
 import java.awt.Color;
+import java.awt.Component;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -29,6 +30,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import org.jfree.chart.block.CenterArrangement;
 
 
 
@@ -53,8 +55,11 @@ public class Order implements OrderInterface {
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     
 
-    @Override
+  
     //this overide method in paretnt
+    
+  
+    @Override
     public void addIdTransaksi(String id , String grandTotal , String bayar , String idPegawai, String kembali) {
        
        tanggalSaatIni tg = new tanggalSaatIni();
@@ -67,17 +72,24 @@ public class Order implements OrderInterface {
            PreparedStatement pst = con.prepareStatement(sql)){
            
            
-           pst.setString(1, id);
+          
+           if(bayar.equals("")){
+               throw new SQLException("Harap isi Field Terlebih dahulu");
+           }else{
+                 pst.setString(4, bayar);
+                  pst.setString(1, id);
            pst.setTimestamp(2,Timestamp.valueOf(LocalDateTime.now()) );
            pst.setString(3,grandTotal );
-           pst.setString(4, bayar);
-           pst.setString(5, idPegawai);
+              pst.setString(5, idPegawai);
            pst.setString(6, kembali);
+           }
+         
+        
            
            pst.execute();
            System.out.println("berhasil add");
        }catch(SQLException e){
-           System.out.println(e.getMessage());
+           JOptionPane.showMessageDialog(null, "Harap Isi field Bayar Terlebih dahulu","Terjadi kesalahan !",JOptionPane.INFORMATION_MESSAGE);
        }
         
 
@@ -85,6 +97,7 @@ public class Order implements OrderInterface {
    
     //saat clas pertama diload akan dijalankan dan membuat colum tborder
     static{
+       
        tbOrder.addColumn("No");
        tbOrder.addColumn("Kode Barang");
        tbOrder.addColumn("Nama Barang");
@@ -92,26 +105,28 @@ public class Order implements OrderInterface {
        tbOrder.addColumn("Qty");
        tbOrder.addColumn("Harga Jual");
        tbOrder.addColumn("Sub total");
+       
        Dashbord.table_belanja.setRowHeight(30);
        Dashbord.table_belanja.setForeground(new Color(90, 90, 90));
        Dashbord.table_belanja.setModel(tbOrder); 
        
+      
         model.addColumn("No");
         model.addColumn("Kode Barang");
         model.addColumn("Nama Barang");
         model.addColumn("Stok");
         model.addColumn("Harga Jual");
-        Dashbord.table_cariBelanja.setModel(model);
+       
+       Dashbord.table_cariBelanja.setModel(model);
     }
 
     @Override
     //this overide in method parent
     public boolean cariBarang(String keyword , JTable table , String opsi ){
         boolean isMatch =false;
-      
+       model.setRowCount(0);
         
-        table.setModel(model);
-      
+        
         //"SELECT * FROM kategori WHERE nama_kategori LIKE '%"+Keyword+"%' ORDER BY id_kategori ASC"
         String sql ="SELECT kode_product , nama_product , stok , harga_jual FROM product WHERE nama_product LIKE '%"+keyword+"%' or  kode_product like '%"+keyword+"%' AND stok !=0  Order by kode_product ASC ";
         String sqlStok = "select kode_product from product where stok !=0";
@@ -133,19 +148,27 @@ public class Order implements OrderInterface {
                     
                 
                 if(resStok.next()){
-                    while(res.next()){
+                    if(res.next()){
+                        while(res.next()){
+                     
+                        
                          model.addRow(new Object[]{
                         no,
                         res.getString("kode_product"),
                         res.getString("nama_product"),
                         res.getString("stok"),
                         res.getString("harga_jual")
+                                 
                     });
+                        no++;   
+                        }
                     no++;
+                    }else{
+                        throw new SQLException();
                     }
                 isMatch=true;
                 }else{
-                   isMatch=false;
+                  
                     model.addRow(new Object[]{
                         no,
                         res.getString("kode_product"),
@@ -153,12 +176,14 @@ public class Order implements OrderInterface {
                         res.getString("stok"),
                         res.getString("harga_jual")
                     });
-                   throw new SQLException();
+                   isMatch=false;
+                   throw new SQLException("");
+                    
                    
                 }
 
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Gagal Menampilkan Data barang","Barang Tidak Tersedia", JOptionPane.INFORMATION_MESSAGE, eroricon);
+            JOptionPane.showMessageDialog(null, "Gagal Menampilkan Data barang, barang "+e.getMessage(),"Barang Tidak Tersedia", JOptionPane.INFORMATION_MESSAGE, eroricon);
         
         }}else if(opsi.equals("reset")){
             {
@@ -190,13 +215,12 @@ public class Order implements OrderInterface {
             JOptionPane.showMessageDialog(null, "Gagal Menampilkan Product Order", "Terjai kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
         }
         return namaBarang;
-    }
-    
+    }    
     @Override
     
     
     public void addProductToKeranjang(String kode){  
-  
+       
         String sql ="select  nama_product , stok , harga_jual from product where kode_product ='"+kode+"'";
         try(Connection con = dt.conectDatabase();
             Statement sta = con.createStatement();
@@ -208,8 +232,6 @@ public class Order implements OrderInterface {
         data [1]=KonfirmasiOrder.txt_kodeProduct.getText().toString();
       
         if(res.next()){
-          
-          
             data [2]= res.getString("nama_product");
             data [3]=res.getInt("stok"); 
             data[4]=KonfirmasiOrder.txt_qty.getText().toString().replaceAll("[a-zA-Z]","");
@@ -218,20 +240,20 @@ public class Order implements OrderInterface {
             int qty = Integer.parseInt(data[4].toString());
             data[6]=harga_jual*qty;
 
-       int i = model.getRowCount();
-       System.out.println(i);
-     
-       tbOrder.addRow(data);
+        int i = model.getRowCount();
+        System.out.println(i);
           no++;
-        
+          tbOrder.addRow(data);
         }else{
             System.out.println("Gagal Menemukan Data"); 
         }
+        
+        
       
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Gagal Menampilkan Product Ke keranjang", "Terjai kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
         }
-   
+    System.out.println(tbOrder.getRowCount());
 }
       public void resetTableOrder(){
        tbOrder.setRowCount(0);
@@ -253,21 +275,28 @@ public class Order implements OrderInterface {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public void insertOrder() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void cetakStruct(String kode , String diskon , String kasir) {
+    public void cetakStruct(String kode , String diskon , String kasir ,String harga) {
         
        String sql ="select nama_toko , no_hp , alamat_toko from toko";
        String nama_toko;
        String no_hp;
        String alamat;
-       try(Connection con = dt.conectDatabase();
+       try{
+           Connection con = dt.conectDatabase();
            Statement st = con.createStatement();
-           ResultSet res =st.executeQuery(sql)){
+           ResultSet res =st.executeQuery(sql);
            
            
            if(res.next()){
@@ -280,17 +309,35 @@ public class Order implements OrderInterface {
                throw new SQLException("gagal");
            }
            
-           File namaile = new File("src/View/ReporPenjualan.jasper");
+           String fileName ="/Report/ReporPenjualan.jasper";
+           InputStream Report;
+           Report=getClass().getResourceAsStream(fileName);
           // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
            HashMap hash = new HashMap();
+           
+           
+           
+              
            hash.put("kode", kode);
            hash.put("nama_toko", nama_toko);
            hash.put("no_hp", no_hp);
            hash.put("alamat", alamat);
-           hash.put("diskon", diskon+"%");
+           hash.put("harga_total", harga);
+           if(diskon.equals("")){
+            hash.put("diskon", "0"+"%");
+           }else{
+            hash.put("diskon", diskon+"%");
+           
+            }
            hash.put("nama_kasir",kasir);
-           JasperPrint print =JasperFillManager.fillReport(namaile.getPath(), hash, con);
-           JasperViewer.viewReport(print,false);
+           
+           
+           JasperPrint print;
+           print = JasperFillManager.fillReport(Report, hash, con);
+           JasperViewer viewer=new JasperViewer(print,false);
+           viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
+           viewer.setVisible(true);
+           viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
            
            
        }catch(Exception e){

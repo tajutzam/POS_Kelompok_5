@@ -70,7 +70,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
         su.addItemSupplier(supplier_edit);
         kode_barangLama.setVisible(true);
         namaBarangLama.setVisible(false);
-        kategori_lama.setVisible(false);
+        kategori_lama.setVisible(true);
         supplierLama.setVisible(false);
         harga_beliLama.setVisible(false);
         harga_jualLama.setVisible(false);
@@ -802,6 +802,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
        
          //memasukan semua atribut kedalam fungsi2 yang sudah dibuat di class service
          
+         
          br.addBarang(nama_product, kode_product, hargaBeli, hargaJual,
          stok, barangRusak,kategori, supplier,this );
          
@@ -814,39 +815,60 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private void btn_simpanEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanEditMouseClicked
           // TODO add your handling code here:
           
-          
+        
       barangService br = new barangService();
       
-     
-         
-     
       String kode_brg=kode_barangLama.getText();
       System.out.println(kode_brg);
       String nama_product =nama_barangEdit.getText().toString();
      
       int harga_beli =Integer.parseInt(harga_beliEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
       int harga_jual=Integer.parseInt(harga_jualEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
-       
-      
-     
+          
+        barangService barang = new barangService();
+        String result =barang.getIdBarang(true, "", kategori_edit);
         
-        if(kode_barang_Edit.getText().toString().equals(this.getKodeLama())&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())){
-                      JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan Data, Data Sudah terbaru", "Information", JOptionPane.INFORMATION_MESSAGE);
+        System.out.println(kode_barang_Edit.getText() +" b "+ this.getKodeLama());
+        
+        if(kode_barang_Edit.getText().toString().equals(result)&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText())||kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
+                 kode_barang_Edit.setText(this.getKodeLama());
+                 JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan Data, Data Sudah terbaru", "Information", JOptionPane.INFORMATION_MESSAGE);
+                 int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+                 int rusak =Integer.parseInt(barang_RusakEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+                 
+                 System.out.println("kategori sama");
+                 System.out.println(kode_barang_Edit.getText().toString());
+                 br.editBarang(kode_brg, nama_product, stok, harga_beli, harga_jual, rusak,  kategori_edit, supplier_edit,this,kode_barang_Edit.getText().toString(),false);
 
         }else if(nama_barangEdit.getText().toString().equals("")||nama_barangEdit.getText().toString().equals("".replace("", " "))){
                       JOptionPane.showMessageDialog(null, "Field Nama barang harus di isi ! ", "Information", JOptionPane.INFORMATION_MESSAGE); 
+                      int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+               
         }else if(txt_stokEdit.getText().toString().equals("")){
                       JOptionPane.showMessageDialog(null, "Stok Tidak Memenuhi Syarat input ulang !", "Information", JOptionPane.INFORMATION_MESSAGE); 
                                   txt_stokEdit.setText(label_stokEdit.getText().toString());
+                                  int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+               
         }else if(barang_RusakEdit.getText().toString().equals("")||barang_RusakEdit.getText().toString().equals("".replace("", " "))){
                       JOptionPane.showMessageDialog(null, "Input Barang Rusak Tidak memenuhi syarat!", "Information", JOptionPane.INFORMATION_MESSAGE); 
-
+                      int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+                
         }
         else{
-                      int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
-      int rusak =Integer.parseInt(barang_RusakEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
-
-                      br.editBarang(kode_brg, nama_product, stok, harga_beli, harga_jual, rusak,  kategori_edit, supplier_edit,this,kode_barang_Edit.getText().toString());
+                       int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+                       int rusak =Integer.parseInt(barang_RusakEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+                       Barang brangId = new Barang();
+                       String kode_baru= brangId.getIdEdit(true, "", kategori_edit);
+                       
+                       if(kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())){
+                       br.editBarang(kode_brg, nama_product, stok, harga_beli, harga_jual, rusak,  kategori_edit, supplier_edit,this,kode_barangLama.getText().toString(),true);
+ 
+                       }else{
+                       br.editBarang(kode_brg, nama_product, stok, harga_beli, harga_jual, rusak,  kategori_edit, supplier_edit,this,kode_baru,true);
+                       br.showBarang(Dashbord.table_barang);
+                       }
+                  br.showBarang(Dashbord.table_barang);    
+                    
         }
       
      
@@ -866,6 +888,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
 
     private void kategori_editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kategori_editMouseClicked
          // TODO add your handling code here:
+         
      
     }//GEN-LAST:event_kategori_editMouseClicked
 
@@ -873,10 +896,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
          // TODO add your handling code here:
     
     
-         barangService barang = new barangService();
-         String result =barang.getIdBarang(true, "", kategori_edit);
-         
-         kode_barang_Edit.setText(result);
+    
          
    
     }//GEN-LAST:event_kategori_editActionPerformed
@@ -898,7 +918,6 @@ public class DataBarangTambah extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clearEditMouseClicked
 
     public void setKodeLama(String kode){
-        kode_barang_Edit.setText(kode.toUpperCase());
         
         kode_barangLama.setText(kode.toUpperCase());
         
@@ -910,7 +929,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
         return kode_barangLama.getText();
     }
     
-    public void editBarang(String opsi){
+    public void editBarang(String opsi,String kode ){
         
          DatabaseInterface dt = new Database();
          tanggalSaatIni tg = new tanggalSaatIni();
@@ -921,11 +940,12 @@ public class DataBarangTambah extends javax.swing.JFrame {
             String sql ="select * from product where kode_product='"+kode_barangLama.getText()+"'";
              
             try (Connection con = dt.conectDatabase();
-                 Statement st = con.createStatement();
-                 ResultSet res = st.executeQuery(sql)){
-               
+                Statement st = con.createStatement();
+                ResultSet res = st.executeQuery(sql)){
+                System.out.println("kode di dt "+ kode);
                 while(res.next()){
-                    kode_barang_Edit.setText(kode_barangLama.getText().toString());
+                    kode_barang_Edit.setText(kode);
+                    kode_barangLama.setText(kode);
                     nama_barangEdit.setText(res.getString("nama_product"));
                     namaBarangLama.setText(res.getString("nama_product"));
                     total_stok.setText(res.getString("total_stok"));
@@ -972,7 +992,6 @@ public class DataBarangTambah extends javax.swing.JFrame {
                          }   
                     }
                 }
-                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -1071,6 +1090,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
         
         
     }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
