@@ -156,6 +156,11 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -277,14 +282,10 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
      
        OrderService order = new OrderService();
        String bayar = txt_bayar.getText().replaceAll("[^0-9]","");
-       if(bayar.equals("")){
-           JOptionPane.showMessageDialog(null, "Harap Isi field Bayar Terlebih Dahulu !","Terjadi Kesalahan",JOptionPane.INFORMATION_MESSAGE);
-       }else{
-           long kembalian = order.bayar( bayar, this);
+        System.out.println(bayar);
+       long kembalian = order.bayar( bayar, this);
        String kembaliy =String.valueOf(kembalian);
-       String kembaliString = String.format("%-,10d\n", kembalian);
-       TransaksiBerhasil.txt_kembalian.setText(kembaliString);
-
+     
        String idTransaksi= tx_idTransaksi.getText();
        System.out.println("id +"+idTransaksi);
        String grandTotal = txt_totalHarga.getText();
@@ -295,12 +296,12 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
        
        order.addTransaksi(idTransaksi, grandTotal, bayar, id_pegawai,kembaliy);
        order.insertDataOrder(Dashbord.table_belanja);
-       this.dispose();
+       order.resetKeranjang();
        barangService br = new barangService();
        br.showBarang(table_barang);
        br.deleteBarangWhenStokHabis();
-       order.resetKeranjang();
-       }
+      
+       
        
        
     }//GEN-LAST:event_jButton1MouseClicked
@@ -309,6 +310,10 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
          // TODO add your handling code here:
         
     }//GEN-LAST:event_txt_diskonInputMethodTextChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

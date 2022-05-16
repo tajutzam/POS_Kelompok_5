@@ -108,6 +108,27 @@ public class Id {
         this.setIdTransaksi(finalResult);
         return this.getIdTransaksi();
     } 
+    
+    public String IdTransaksiBeli(){
+        
+       
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day =calendar.get(Calendar.DATE);    
+        String result ="";
+        if(month<10){
+         result ="0"+month;
+        }else{
+         result=""+month;
+        }
+        System.out.println(result);
+        Random rand = new Random();
+        int random = rand.nextInt(10000);
+        String finalResult ="TRB"+result+day+random;
+        this.setIdTransaksi(finalResult);
+        return this.getIdTransaksi();
+    } 
 }
 
 

@@ -216,23 +216,41 @@ public class OrderService extends barangService {
   }
   
   public int bayar(String bayar , KonfirmasiBayar byr){
-   
+       
+      boolean close =false;
       System.out.println("ba "+bayar);
       int bayarInt = Integer.parseInt(bayar);
       int kembalian=0;
       int total=Integer.parseInt(KonfirmasiBayar.txt_totalHarga.getText());
-      if(bayar.equals("")){
-          jop("Harap Isi Field Bayar Terlebih Dahulu");
-      }else if(bayarInt < total){
+      if(bayarInt < total){
           jop("Total Bayar Customer Kurang !");
+          
+          close=false;
+      }else if(bayar.equals("")){
+         // jop("Harap Isi Field Bayar Terle Dahulu");
+          close=false;
       }else{
          kembalian=bayarInt-total;  
          TransaksiBerhasil transaksi = new TransaksiBerhasil();
          
          transaksi.action();
-         byr.dispose();
+         
+         String kembaliString = String.format("%-,10d\n", kembalian);
+         TransaksiBerhasil.txt_kembalian.setText(kembaliString);
+         close=true;
+
          
       }
+      
+      if(close==false){
+          /* bayar="";*/
+      }else{
+          byr.dispose();
+      }
+      
+      
+    
+     
       return kembalian;
      
   }

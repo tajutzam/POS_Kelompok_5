@@ -235,4 +235,22 @@ public class Supplier implements SupplierInterface{
        
        
    }
+
+    @Override
+    public String tampilkanNamaSupplier(String kode) {
+        String nama_supplier ="";
+        String sql ="select nama_supplier from supplier where kode_supplier = '"+kode+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st =con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            
+            if(res.next()){
+                nama_supplier=res.getString("nama_supplier");
+            }
+        }catch(SQLException e){
+            System.out.println("gagal menampilkan nama supplier"+e.getMessage());
+        }
+        return nama_supplier;
+    }
+   
 }

@@ -48,6 +48,9 @@ public class idBeliProduct {
         return kode_retur;
     }
     public static void main(String[] args) {
+        idBeliProduct id = new idBeliProduct();
+        
+        System.out.println(id.getIdBeli());
        
     }
 }

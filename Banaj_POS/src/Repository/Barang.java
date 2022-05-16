@@ -34,11 +34,77 @@ public class Barang implements BarangInterface{
     Database dt = new Database();
     tanggalSaatIni tg = new tanggalSaatIni();
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+    ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+    static DefaultTableModel model = new DefaultTableModel();
+    Object[] data = new Object[9];
+    int noTable=0;
+
+
     IdBarang id = new IdBarang();
     public Barang(){
        
     }
 
+    @Override
+    public void insertTransaksiBeli(String id , String supplier , String tanggal , String kategori) {
+        
+        String sql ="INSERT INTO `beli_product`(`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`) VALUES (?,?,?,?)";
+        
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sql)){
+            
+            pst.setString(1, id);
+            pst.setString(2, supplier);
+            pst.setString(3, tanggal);
+            pst.setString(4, kategori);
+            
+            pst.execute();
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+    }
+    
+    
+    static{
+        model.addColumn("No");
+        model.addColumn("Kode Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Stok Tersedia");
+        model.addColumn("Total Stok");
+        model.addColumn("Barang Rusak");
+        model.addColumn("Harga Beli");
+        model.addColumn("Harga Jual");
+        model.addColumn("Kategori");
+       //` TambahBanyakBarang.tabel_addBanyak.setModel(model);
+    }
+    public void setModelTable(JTable table){
+        table.setModel(model);
+    }
+    public void setModelRow(){
+        model.setRowCount(0);
+    }
+
+    @Override
+    public String getKodeKategori(JComboBox box){
+        String sql="select kode_kategori from kategori where nama_kategori='"+box.getSelectedItem().toString()+"'";
+        String kode="";
+        try(Connection con = dt.conectDatabase();
+            Statement st =con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            
+            if(res.next()){
+                kode=res.getString("kode_kategori");
+            }
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return kode;
+    }
+    
     @Override
     public  void showBarang(JTable table,String opsi) {
         DefaultTableModel model = new DefaultTableModel();
@@ -301,6 +367,8 @@ public class Barang implements BarangInterface{
        }
  
     }
+    
+    
     
     
     @Override
@@ -827,6 +895,232 @@ public class Barang implements BarangInterface{
               System.out.println("gagal mencari barang"+e.getMessage());
           }
           }
+
+    @Override
+    public String getIdSupplier(String kode) {
+        
+        
+        String result="";
+        String sql ="select kode_supplier from supplier where nama_supplier='"+kode+"'";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                result=res.getString("kode_supplier");
+            }
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Id Supplier", "Terjadi Kesalahan!", JOptionPane.INFORMATION_MESSAGE, eroricon);  
+        }
+        return result;
+           
+        
+    }
+
+    @Override
+    public void TambahBarangBanyak(String kode , String nama , String stok , String harga_beli , String harga_jual , String rusak , String kategori) {
+       
+        String kode_kategori = "";
+        
+        String sql ="select kode_kategori from kategori where nama_kategori='"+kategori+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            if(res.next()){
+                            kode_kategori=res.getString("kode_kategori");
+
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        int totalStok =Integer.parseInt(stok);
+        int rusakInt =Integer.parseInt(rusak);
+        
+        
+        int stokTersedia=totalStok-rusakInt;
+        int no =model.getRowCount()+1;
+        data[0]=no;
+        data[1]=kode;
+        data[2]=nama;
+        data[3]=stokTersedia;
+        data[4]=stok;
+        data[5]=rusak;
+        data[6]=harga_beli;
+        data[7]=harga_jual;
+        data[8]=kategori;
+        
+        
+        model.addRow(data);
+        
+    }
+
+    @Override
+    public void insertDataTambahBanyakProduct(String id , String jumlah , String product) {
+        
+        
+        String sql ="INSERT INTO `detail_beli_product`(`id_beliProduct`, `jumlahBeli`, `product`) VALUES (?,?,?)";
+        
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst =con.prepareStatement(sql)){
+            
+            pst.setString(1, id);
+            pst.setString(2, jumlah);
+            pst.setString(3, product);
+            pst.execute();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+        
+        
+    }
+    
+    
+    
+
+    @Override
+    public String getIdBarangTambahBanyak(boolean setNewKode , JComboBox box ,JTable table) {
+        
+        String hsl = "";
+         String kodeKategori="";
+          
+         String namaKategoriTmp ;
+         String namaKategoriResult;
+         String hurufKategori="";
+         
+                 namaKategoriTmp = box.getSelectedItem().toString(); 
+                 char ab =namaKategoriTmp.charAt(0);
+                 char bc = namaKategoriTmp.charAt(2);
+                 char cc = namaKategoriTmp.charAt(namaKategoriTmp.length()-1);
+                 String finalA =Character.toString(ab);
+                 String finalB =Character.toString(bc);
+                 String finalC =Character.toString(cc);
+                 hurufKategori = finalA+finalB+finalC;
+           
+             
+      //  String sql_getKodeBarang = "SELECT kode_product FROM product where kategori='"+kodeKategori+"' ORDER BY kode_product DESC LIMIT 1";
+            
+           
+            
+            if(setNewKode==false){
+            int row=table.getRowCount()-1;
+                String kode =table.getValueAt(row, 1).toString();
+            
+            
+                String a = kode.replaceAll("[a-zA-Z]", "");
+                String b = "";
+                String c[] = a.split("(?!^)");
+                String u = "";
+
+                if("0".equals(c[0])){
+                    if("0".equals(c[1])){
+                        if("0".equals(c[2])){
+                            b = c[3];
+                        }else{
+                            b = c[2]+c[3];
+                        }
+                    }else{
+                        b = c[1]+c[2]+c[3];
+                    }
+                }else{
+                    b = a;
+                }
+
+                int d = Integer.parseInt(b)+1;
+
+                if(d <= 9){
+                    u = hurufKategori+"000";
+                }else if(d <= 99 ){
+                    u = hurufKategori+"00";
+                }else if(d <= 999){
+                    u = hurufKategori+"0";
+                }else{
+                    u = hurufKategori;
+                }
+                hsl = u+""+d;
+            }
+                
+          
+            //remove space in primary key
+            return hsl.toUpperCase().replaceAll(" ", "");
+            
+
+    }
+
+    @Override
+    public boolean addBarangBanyak(String nama_produt ,String kode_product , String harga_beli
+            , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier , DataBarangTambah dta) {
+        boolean isSucses=false;
+         String sqlInsert="Insert into product (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`,total_stok)"
+               + " values (? , ? , ? , ? , ? , ? , ? , ? , ? , ?,?)";
+       String sqlReturSupplier= "insert into retur_supplier (id_returSupplier , kode_supplier , tanggal_rtr )values (?, ? ,?)";
+       String sqlDetailReturnSupplier ="insert into detail_retur (id_returSupplier , product, jumlah_rusak) values (? ,? ,?)";
+       
+           try(Connection con = dt.conectDatabase();
+               PreparedStatement pst =con.prepareStatement(sqlInsert);
+               PreparedStatement pstReturn =con.prepareStatement(sqlReturSupplier);
+               PreparedStatement pstDet = con.prepareStatement(sqlDetailReturnSupplier)){
+            int stok_retur=   Integer.parseInt(barang_rusak.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "")); 
+            if(!nama_produt.equals("")&&!harga_beli.equals("")&&!harga_jual.equals("")&&!totalstok.equals("")&&!barang_rusak.equals(""))  {
+                if(barang_rusak.equals("")){
+                    throw  new SQLException("Data tidak Boleh kosong ");
+                }
+    
+            pst.setString(1, kode_product.toUpperCase());
+            pst.setString(2, nama_produt);
+            int stokNew=Integer.parseInt(totalstok.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+          
+            
+            harga_beli.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "");
+            harga_jual.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "");
+            int harga_b =Integer.parseInt(harga_beli);
+            int harga_j =Integer.parseInt(harga_jual);
+            
+            if(harga_b >= harga_j){
+                throw new SQLException("Harga Jual tidak memungkingkan Input ulang !!");
+            }
+            pst.setString(4, harga_beli);
+            pst.setString(5, harga_jual);
+            
+            pst.setString(6, supplier);
+            pst.setString(7, kategori);
+            pst.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
+            pst.setTimestamp(9,Timestamp.valueOf(LocalDateTime.now()));
+            pst.setString(10, barang_rusak.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+           
+            pst.setString(11, totalstok);
+            if(stok_retur==0){
+                pst.setInt(3,stokNew-stok_retur);
+                pst.execute();
+                dta.dispose();
+     
+            }else{
+                   pst.setInt(3,stokNew-stok_retur);
+                   
+//                   int resetData = JOptionPane.showOptionDialog(null, "Terdapat Barang rusak sebanyak "+barang_rusak+"", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+//                   if(resetData==0){       
+                         
+                         addReturn(supplier, kode_product, barang_rusak);
+                         pst.execute();
+                         isSucses=true;
+                         dta.dispose();
+//                   }
+            }
+
+            }  
+            else{
+                throw new SQLException("Data tidak boleh kosong ");
+            }
+            
+
+       }catch(SQLException e){
+              JOptionPane.showMessageDialog(null, e.getMessage(), "Terjadi Kesalahan !", JOptionPane.INFORMATION_MESSAGE);
+       }
+   
+    
+    return isSucses;
       
+}
 }
 
