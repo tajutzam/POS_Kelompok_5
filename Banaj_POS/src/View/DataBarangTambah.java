@@ -162,6 +162,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
         label_stokEdit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(239, 240, 245));
 
         label_navigasi.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         label_navigasi.setText("Barang > Tambah Barang");

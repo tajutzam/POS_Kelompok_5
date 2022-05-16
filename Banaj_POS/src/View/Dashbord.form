@@ -607,11 +607,13 @@
                               <Component id="panel_cariBarang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="comboBox_showBarang" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace pref="472" max="32767" attributes="0"/>
-                              <Component id="Barcode" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace pref="348" max="32767" attributes="0"/>
+                              <Component id="Tambah_banyakBtn" min="-2" pref="102" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="Barcode1" min="-2" pref="102" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Component id="jButton6" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="btn_TambahBarang" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
@@ -629,15 +631,14 @@
                               <Component id="panel_totalBarang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="jButton6" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="btn_TambahBarang" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="Barcode" alignment="3" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="comboBox_showBarang" alignment="0" pref="31" max="32767" attributes="0"/>
-                                  </Group>
                                   <Component id="panel_cariBarang" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                      <Component id="Tambah_banyakBtn" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="jButton6" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="btn_TambahBarang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Barcode1" alignment="3" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="comboBox_showBarang" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jScrollPane3" pref="343" max="32767" attributes="0"/>
@@ -845,7 +846,24 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="Barcode">
+                    <Component class="javax.swing.JButton" name="Tambah_banyakBtn">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="60" green="60" red="60" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Trebuchet MS" size="14" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="+ Banyak"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Tambah_banyakBtnMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="Barcode1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="2d" green="2d" red="33" type="rgb"/>

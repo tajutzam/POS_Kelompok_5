@@ -194,7 +194,8 @@ public class Dashbord extends javax.swing.JFrame {
         table_barang = new javax.swing.JTable();
         btn_TambahBarang = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        Barcode = new javax.swing.JButton();
+        Tambah_banyakBtn = new javax.swing.JButton();
+        Barcode1 = new javax.swing.JButton();
         contenKategori = new javax.swing.JPanel();
         panel_cariKategori = new RoundedPanel(8, new Color(255, 255, 255));
         txt_cariKategori = new javax.swing.JTextField();
@@ -759,10 +760,20 @@ public class Dashbord extends javax.swing.JFrame {
             }
         });
 
-        Barcode.setBackground(new java.awt.Color(51, 45, 45));
-        Barcode.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        Barcode.setForeground(new java.awt.Color(255, 255, 255));
-        Barcode.setText("Barcode");
+        Tambah_banyakBtn.setBackground(new java.awt.Color(96, 96, 96));
+        Tambah_banyakBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        Tambah_banyakBtn.setForeground(new java.awt.Color(255, 255, 255));
+        Tambah_banyakBtn.setText("+ Banyak");
+        Tambah_banyakBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tambah_banyakBtnMouseClicked(evt);
+            }
+        });
+
+        Barcode1.setBackground(new java.awt.Color(51, 45, 45));
+        Barcode1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        Barcode1.setForeground(new java.awt.Color(255, 255, 255));
+        Barcode1.setText("Barcode");
 
         javax.swing.GroupLayout contenBarangLayout = new javax.swing.GroupLayout(contenBarang);
         contenBarang.setLayout(contenBarangLayout);
@@ -772,11 +783,13 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBox_showBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
-                .addComponent(Barcode, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
+                .addComponent(Tambah_banyakBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Barcode1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(btn_TambahBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2))
             .addGroup(contenBarangLayout.createSequentialGroup()
@@ -791,13 +804,13 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(panel_totalBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_TambahBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Barcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(comboBox_showBarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                    .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panel_cariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Tambah_banyakBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_TambahBarang)
+                        .addComponent(Barcode1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboBox_showBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
         );
@@ -2904,6 +2917,22 @@ public class Dashbord extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_txt_cariBrngKeyPressed
 
+    private void Tambah_banyakBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tambah_banyakBtnMouseClicked
+         // TODO add your handling code here:
+         
+         TambahBanyakBarang tambahBanyak = new TambahBanyakBarang();
+         Id id = new Id();
+         supplierService sup = new supplierService();
+         KonfirmasiSupplier konfirmasiSupplier = new KonfirmasiSupplier();
+         konfirmasiSupplier.Action();
+         sup.addItemSupplier(KonfirmasiSupplier.combo_addSupplier);
+         barangService barang = new barangService();
+         barang.addItemInCombobox(KonfirmasiSupplier.combo_addKategori);
+         
+         
+         
+    }//GEN-LAST:event_Tambah_banyakBtnMouseClicked
+
     public void showBarangWhenClick(){
         
         barangService br = new barangService();
@@ -3060,9 +3089,10 @@ public class Dashbord extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Barcode;
+    private javax.swing.JButton Barcode1;
     private javax.swing.JPanel ConntainerPanel;
     private javax.swing.JTextField TXT_cariUser;
+    private javax.swing.JButton Tambah_banyakBtn;
     private javax.swing.JButton btn_Bayar;
     private javax.swing.JButton btn_TambahBarang;
     private javax.swing.JButton btn_TambahBarang1;

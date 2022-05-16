@@ -74,7 +74,7 @@ public class Order implements OrderInterface {
            
           
            if(bayar.equals("")){
-               throw new SQLException("Harap isi Field Terlebih dahulu");
+               //throw new SQLException("Harap isi Field Terlebih dahulu");
            }else{
                  pst.setString(4, bayar);
                   pst.setString(1, id);
@@ -89,7 +89,7 @@ public class Order implements OrderInterface {
            pst.execute();
            System.out.println("berhasil add");
        }catch(SQLException e){
-           JOptionPane.showMessageDialog(null, "Harap Isi field Bayar Terlebih dahulu","Terjadi kesalahan !",JOptionPane.INFORMATION_MESSAGE);
+          // JOptionPane.showMessageDialog(null, "Harap Isi field Bayar Terlebih dahulu","Terjadi kesalahan !",JOptionPane.INFORMATION_MESSAGE);
        }
         
 

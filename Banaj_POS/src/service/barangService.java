@@ -12,6 +12,7 @@ import Repository.DatabaseInterface;
 import Util.tanggalSaatIni;
 import View.Dashbord;
 import View.DataBarangTambah;
+import View.TambahBanyakBarang;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -35,7 +36,7 @@ public class barangService {
     DatabaseInterface dt = new Database();
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
-
+    BarangInterface barang = new Barang();
     
     BarangInterface br = new Barang();
     
@@ -45,8 +46,10 @@ public class barangService {
         br.showBarang(Dashbord.table_barang, "barang");
         br.showBarang(table, "barang");
         Dashbord.txt_totalBrg.setText(br.hitungTotalBarang());
+        Object data[]=new Object[7];
 
     }
+    
     public void showReturSupplier(JTable table){
         
         br.showBarang(table, "return");
@@ -148,4 +151,110 @@ public class barangService {
         }
         
     }
+    
+    public String getIdSupplier(JComboBox box){
+        String nama =box.getSelectedItem().toString();
+        BarangInterface barang = new Barang();
+        String result =barang.getIdSupplier(nama);
+        return result;
+    }
+    
+    public void insertIdTransaksiBeli(String id , String suplier , String tanggal , String kategori){
+        BarangInterface barang = new Barang();
+        barang.insertTransaksiBeli(id, suplier, tanggal , kategori);
+    }
+    public String getKodeKategori(JComboBox box){
+       BarangInterface barang = new Barang();
+       return barang.getKodeKategori(box);
+    }
+    public boolean tambahDataKetabel(String kode , String nama , String stok , String harga_beli , String harga_jual , String rusak , String box){
+     
+     boolean isAdd =false;
+     String stokString = stok.replaceAll("[0-9]", "");
+     String hargabeli =harga_beli.replaceAll("[0-9]", "");
+     String hargaJual =harga_jual.replaceAll("[0-9]", "");
+     String rusakString = rusak.replaceAll("[0-9]", "");
+     BarangInterface barang = new Barang();
+     String  kata="";
+    
+
+     
+     int rusakInt =Integer.parseInt(rusak);
+     if(stok.equals(stokString)){
+         isAdd=false;
+         kata="Harap Isi Stok dengan angka";
+     }else if(harga_beli.equals(hargabeli)){
+         isAdd=false;
+         kata="Harap isi harga beli dengan angka";
+     }else if(harga_jual.equals(hargaJual)){
+         isAdd=false;
+         kata="Harap isi harga jual dengan angka";
+     }else if(!nama.equals("")&&!stok.equals("")&&!harga_beli.equals("")&&!harga_jual.equals("")&&!rusak.equals("")){       
+         isAdd=true;
+     }
+     else{
+         isAdd=false;
+         kata="Harap Isi semua field";
+     }
+     if(isAdd==true){
+         int stokIntbaru =Integer.parseInt(stok);
+         int rusakIntbaru =Integer.parseInt(rusak);
+         int hargaJualInt=Integer.parseInt(harga_jual);
+         int hargaBeliint =Integer.parseInt(harga_beli);
+         if(stokIntbaru<=rusakIntbaru){
+              System.out.println("baru");
+              isAdd=false;
+              kata="Stok Tidak boleh lebih sedikit dari pada barang rusak";
+              JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon);     
+
+         }else if(hargaBeliint>=hargaJualInt){
+              isAdd=false;
+              kata="Harga Jual Harus lebih besar ";
+              JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon);      
+         }else if(stok.equals("0")){
+             isAdd=false;
+             kata="Stok tidak boleh 0 ";
+             JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon); 
+         }else if(harga_jual.equals("0")){
+              isAdd=false;
+              kata="Harga Jual tidak boleh 0 ";
+              JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon); 
+         }else if(harga_beli.equals("0")){
+             isAdd=false;
+              kata="Harga beli tidak boleh 0 ";
+              JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon); 
+         }
+         else{
+              barang.TambahBarangBanyak(kode, nama, stok.replaceAll("[^0-9]", ""), harga_beli.replaceAll("[^0-9]", ""), harga_jual.replaceAll("[^0-9]", ""), rusak.replaceAll("[^0-9]", ""), box);
+         }
+     }
+     else{
+         JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon);     
+     }
+     return isAdd;  
+    }
+    public void setModelTable(JTable table){
+        Barang barang = new Barang();
+        barang.setModelTable(table);
+    }
+    public String getIdTableAfterAdd(boolean setNewKode , JComboBox box , JTable table){
+       
+        String result=barang.getIdBarangTambahBanyak(setNewKode, box, table);
+       
+                return result;
+    }
+    public void insertDataTambahBanyakProduct(String id , String jumlah , String product){
+       
+        barang.insertDataTambahBanyakProduct(id, jumlah, product);
+    }
+    public boolean addBarangBanyak(String nama_produt ,String kode_product , String harga_beli
+            , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt){
+      
+        return barang.addBarangBanyak(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
+    }
+    public void setModelRow(){
+        barang.setModelRow();
+    }
+    
+    
 }
