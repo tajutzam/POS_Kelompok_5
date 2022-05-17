@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
  import javax.swing.JPanel;
@@ -49,7 +50,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
     /**
      * Creates new form DataBarangTambah
      */
-    
+    ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+    ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     public DataBarangTambah() {
         initComponents();
         this.setSize(1080,600);
@@ -102,6 +104,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
 
         navigasiPanel = new RoundedPanel(8, new Color(255, 255, 255));
         label_navigasi = new javax.swing.JLabel();
+        id_transaksi = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         MainConten = new RoundedPanel(8, new Color(255, 255, 255));
         contenAddBarang = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel2 = new javax.swing.JLabel();
@@ -174,6 +178,14 @@ public class DataBarangTambah extends javax.swing.JFrame {
             }
         });
 
+        id_transaksi.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        id_transaksi.setForeground(new java.awt.Color(90, 90, 90));
+        id_transaksi.setText("ID TRANSAKSI : ");
+
+        jLabel21.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel21.setText("ID TRANSAKSI : ");
+
         javax.swing.GroupLayout navigasiPanelLayout = new javax.swing.GroupLayout(navigasiPanel);
         navigasiPanel.setLayout(navigasiPanelLayout);
         navigasiPanelLayout.setHorizontalGroup(
@@ -181,13 +193,20 @@ public class DataBarangTambah extends javax.swing.JFrame {
             .addGroup(navigasiPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(label_navigasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(743, 743, 743))
+                .addGap(557, 557, 557)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(id_transaksi)
+                .addGap(47, 47, 47))
         );
         navigasiPanelLayout.setVerticalGroup(
             navigasiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigasiPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigasiPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(label_navigasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(navigasiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_navigasi, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jLabel21)
+                    .addComponent(id_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -311,7 +330,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                             .addComponent(txt_hargaBeli, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(txt_hargaJual)
                             .addComponent(txt_barangRusak))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         contenAddBarangLayout.setVerticalGroup(
             contenAddBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,7 +564,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                             .addComponent(harga_beliEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(harga_jualEdit)
                             .addComponent(barang_RusakEdit))
-                        .addContainerGap(45, Short.MAX_VALUE))
+                        .addContainerGap(110, Short.MAX_VALUE))
                     .addGroup(contenEditBarangLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_simpanEdit)
@@ -739,14 +758,14 @@ public class DataBarangTambah extends javax.swing.JFrame {
 
     private void btn_simpanAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanAddMouseClicked
            // TODO add your handling code here:
-         
+         //nama_produt.equals("")||harga_beli.equals("")||harga_jual.equals("")||stok.equals("")||stok.equals("0")
          //instansiate object
          DatabaseInterface dt = new Database();
          barangService br = new barangService();
 
          String kode="";
-         
-         
+         boolean addBarang=false;
+         String kata ="";
          //set value pada masing masing atribut dibawah
        
          String nama_product =txt_nama_barang.getText();
@@ -803,17 +822,45 @@ public class DataBarangTambah extends javax.swing.JFrame {
          }
        
          //memasukan semua atribut kedalam fungsi2 yang sudah dibuat di class service
+         int harga_jual =Integer.parseInt(hargaJual);
+         int harga_beli =Integer.parseInt(hargaBeli);
+         if(nama_product.equals("")||hargaBeli.equals("")||hargaJual.equals("")||stok.equals("")||stok.equals("0")){
+             kata="Harap Isi semua field dengan benar ";
+             addBarang=false;
+         }else if(harga_jual<=harga_beli){
+             kata="Harga jual tidak boleh lebih sedikit !";
+             addBarang=false;
+         }else{
+             addBarang=true;
+         }
+         
+        
          
          
-         br.addBarang(nama_product, kode_product, hargaBeli, hargaJual,
-         stok, barangRusak,kategori, supplier,this );
+         if(addBarang==true){
+            br.insertIdTransaksiBeli(id_transaksi.getText(), supplier, txt_addAt.getText(), kategori);
          
-         barangService braSer = new barangService();
-         braSer.showBarang(Dashbord.table_barang);
+         
+         
+            br.addBarang(nama_product, kode_product, hargaBeli, hargaJual,
+            stok, barangRusak,kategori, supplier,this );
+            br.insertDataTambahBanyakProduct(id_transaksi.getText(), txt_stok.getText(), kode_product);
+            JOptionPane.showMessageDialog(null, "Berhasil menambahkan Barang Id Transaksi "+id_transaksi.getText()+"", "Succes !", JOptionPane.ERROR_MESSAGE, suscesicon); 
+            this.dispose();
+
+         }else{
+            JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon);     
+
+         }
+      
+        
         
    
     }//GEN-LAST:event_btn_simpanAddMouseClicked
 
+    public void setTransaksi(String kode){
+        this.id_transaksi.setText(kode);
+    }
     private void btn_simpanEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanEditMouseClicked
           // TODO add your handling code here:
           
@@ -831,8 +878,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
         String result =barang.getIdBarang(true, "", kategori_edit);
         
         System.out.println(kode_barang_Edit.getText() +" b "+ this.getKodeLama());
-        
-        if(kode_barang_Edit.getText().toString().equals(result)&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText())||kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
+        System.out.println("rusak "+ rusak_lama.getText());
+        if(kode_barang_Edit.getText().toString().equals(result)&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText().toString())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
                  kode_barang_Edit.setText(this.getKodeLama());
                  JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan Data, Data Sudah terbaru", "Information", JOptionPane.INFORMATION_MESSAGE);
                  int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
@@ -1112,6 +1159,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JLabel harga_beliLama;
     private javax.swing.JTextField harga_jualEdit;
     private javax.swing.JLabel harga_jualLama;
+    private javax.swing.JLabel id_transaksi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
@@ -1126,6 +1174,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

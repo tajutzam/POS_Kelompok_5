@@ -404,7 +404,7 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
                 String kategori=label_Kode_kategori.getText();
                 String supplier=label_idSupplier.getText();
                 isSuces=barang.addBarangBanyak(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
-              //  barang.addBarang(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
+               // barang.addBarang(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
                 barang.insertDataTambahBanyakProduct(id_transaksiBeli.getText(), stok, kode_product);
               
  

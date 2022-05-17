@@ -62,16 +62,17 @@ public class barangService {
         
     }
     
-    public void addBarang(String nama_produt ,String kode_product , String harga_beli
+    public boolean addBarang(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt){
              BarangInterface br = new Barang();
+             boolean isAdd=false;
+             int hargaJual =Integer.parseInt(harga_jual);
+             int hargaBeli = Integer.parseInt(harga_beli);
+            
+             isAdd=br.addBarang(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
              
-             if(nama_produt.equals("")||harga_beli.equals("")||harga_jual.equals("")||stok.equals("")||stok.equals("0")){
-                 JOptionPane.showMessageDialog(null, "Harap Isi Semua Field dengan benar !","Terjadi kesalahan !",JOptionPane.INFORMATION_MESSAGE,eroricon);
-             }else{
-                 br.addBarang(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
-             }
-
+             
+        return isAdd;
     }
     
     public String getIdBarang(boolean setNewKode, String kode,JComboBox box){

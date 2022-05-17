@@ -295,9 +295,9 @@ public class Barang implements BarangInterface{
     }
     @Override
     
-    public void addBarang(String nama_produt ,String kode_product , String harga_beli
+    public boolean addBarang(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier , DataBarangTambah dta) {   
-       boolean isNotMatch=false;
+       boolean isSuces=false;
        //query
        String sqlInsert="Insert into product (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`,total_stok)"
                + " values (? , ? , ? , ? , ? , ? , ? , ? , ? , ?,?)";
@@ -324,9 +324,9 @@ public class Barang implements BarangInterface{
             int harga_b =Integer.parseInt(harga_beli);
             int harga_j =Integer.parseInt(harga_jual);
             
-            if(harga_b >= harga_j){
-                throw new SQLException("Harga Jual tidak memungkingkan Input ulang !!");
-            }
+//            if(harga_b >= harga_j){
+//                throw new SQLException("Harga Jual tidak memungkingkan Input ulang !!");
+//            }
             pst.setString(4, harga_beli);
             pst.setString(5, harga_jual);
             
@@ -339,9 +339,10 @@ public class Barang implements BarangInterface{
             pst.setString(11, totalstok);
             if(stok_retur==0){
                 pst.setInt(3,stokNew-stok_retur);
+                isSuces=true;
                 pst.execute();
-                JOptionPane.showMessageDialog(null, "berhasil Menambahkan Barang dengan nama "+nama_produt+"","Susces",JOptionPane.INFORMATION_MESSAGE);
-                dta.dispose();
+               // JOptionPane.showMessageDialog(null, "berhasil Menambahkan Barang dengan nama "+nama_produt+"","Susces",JOptionPane.INFORMATION_MESSAGE);
+                //dta.dispose();
                 
             }else{
                    pst.setInt(3,stokNew-stok_retur);
@@ -350,10 +351,11 @@ public class Barang implements BarangInterface{
                    if(resetData==0){       
                          
                          addReturn(supplier, kode_product, barang_rusak);
+                         isSuces=true;
                          pst.execute();
 
-                         JOptionPane.showMessageDialog(null, "berhasil Menambahkan Barang dengan nama "+nama_produt+"","Susces",JOptionPane.INFORMATION_MESSAGE);
-                         dta.dispose();
+                        // JOptionPane.showMessageDialog(null, "berhasil Menambahkan Barang dengan nama "+nama_produt+"","Susces",JOptionPane.INFORMATION_MESSAGE);
+//                         dta.dispose();
                    }
             }
 
@@ -366,6 +368,8 @@ public class Barang implements BarangInterface{
               JOptionPane.showMessageDialog(null, e.getMessage(), "Terjadi Kesalahan !", JOptionPane.INFORMATION_MESSAGE);
        }
  
+           return isSuces;
+           
     }
     
     
