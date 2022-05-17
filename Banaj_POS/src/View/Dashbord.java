@@ -134,6 +134,7 @@ public class Dashbord extends javax.swing.JFrame {
           panel_laporan.setVisible(false);
           panel_manager.setVisible(false);    
     }
+    label_idPegawai.setVisible(false);
     }
   
     
@@ -2513,10 +2514,13 @@ public class Dashbord extends javax.swing.JFrame {
     private void btn_TambahBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TambahBarangMouseClicked
         // TODO add your handling code here:
       DataBarangTambah dt = new DataBarangTambah();
+      Id id = new Id();
+      String kode=id.IdTransaksiBeli();
       if(txt_totalKategori.getText().toString().equals("0")||txt_totalSupplier.getText().toString().equals("0")){
             JOptionPane.showMessageDialog(null, "Kategori atau Supplier 0 tidak bisa menambahkan Product", "Terjadi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
 
       }else{
+           dt.setTransaksi(kode);
            dt.Action("add");
 
 

@@ -18,7 +18,7 @@ public interface BarangInterface {
    void showBarang(JTable table,String opsi);
    void addComboboxItem(JComboBox box , String opsi);
    void insertTransaksiBeli(String a , String b , String c , String d);
-   void addBarang(String nama_produt ,String kode_product , String harga_beli
+   boolean addBarang(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt);
   //a void deleteBarang();
    String getIdBarang(boolean setNewKode, String kode,JComboBox box);
