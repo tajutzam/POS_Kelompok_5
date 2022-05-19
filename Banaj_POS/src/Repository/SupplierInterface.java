@@ -24,4 +24,5 @@ public interface SupplierInterface {
     public void deleteSupplier(String kode);
     public String hitungTotalSupplier();
     public String tampilkanNamaSupplier(String nama);
+    public boolean cariSupplier(String keyword);
 }

@@ -7,8 +7,10 @@ package Repository;
 
 import Util.tanggalSaatIni;
 import View.Dashbord;
+import View.KonfirmasiBayar;
 import View.KonfirmasiOrder;
 import static View.KonfirmasiOrder.txt_qty;
+import com.barcodelib.barcode.Linear;
 import java.awt.Color;
 import java.awt.Component;
 import java.io.File;
@@ -24,11 +26,14 @@ import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRExporterContext;
 import net.sf.jasperreports.view.JasperViewer;
 import org.jfree.chart.block.CenterArrangement;
 
@@ -315,8 +320,12 @@ public class Order implements OrderInterface {
           // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
            HashMap hash = new HashMap();
            
-           
-           
+           Linear barcode = new Linear();
+           barcode.setType(Linear.CODE128A);
+           barcode.setData(KonfirmasiBayar.tx_idTransaksi.getText());
+           barcode.setI(11.0f);
+           String fname =KonfirmasiBayar.tx_idTransaksi.getText();
+           barcode.renderBarcode("src/Report/"+fname+".png");
               
            hash.put("kode", kode);
            hash.put("nama_toko", nama_toko);
@@ -329,16 +338,34 @@ public class Order implements OrderInterface {
             hash.put("diskon", diskon+"%");
            
             }
+           
            hash.put("nama_kasir",kasir);
+           hash.put("barcode_path","src/Report/"+fname+".png");
            
            
+          
            JasperPrint print;
            print = JasperFillManager.fillReport(Report, hash, con);
-           JasperViewer viewer=new JasperViewer(print,false);
+          
+           JasperPrintManager.printReport(print, false);
+           File fileDelete= new File("src/Report/"+fname+".png");
+           if(fileDelete.delete()){
+               System.out.println("berhasil dihapus");
+           }else{
+               System.out.println("gagal dihapus");    
+           }
+           
+         
+        
+           
+          
+          JasperViewer viewer=new JasperViewer(print,false);
+         
            viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
+////          
            viewer.setVisible(true);
            viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
-           
+//           
            
        }catch(Exception e){
            System.out.println(e.getMessage());

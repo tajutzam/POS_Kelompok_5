@@ -29,6 +29,7 @@ public interface KategoriInterface {
        
     public void deleteKategori(String kode , DataTambahKategori dta);
     public String hitungTotalKategori();
+    public boolean cariKategori(String keyword);
     
     
 }

@@ -28,7 +28,7 @@ public interface BarangInterface {
    public void deleteReturn();
    public void addReturn(String kode , String supplier , String rusak);
    public String hitungTotalBarang();
-   public void cariBarang(String keyword);
+   public boolean cariBarang(String keyword);
    public void deleteBarang();
    public String getIdSupplier(String kode);
    public void TambahBarangBanyak(String kode , String nama , String stok , String harga_beli , String harga_jual , String rusak ,  String kategori);
@@ -38,4 +38,8 @@ public interface BarangInterface {
    public boolean addBarangBanyak(String nama_produt ,String kode_product , String harga_beli
             , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt);
    public void setModelRow();
+   public void showBarangCombo(JComboBox box);
+   public String getIdProductBarcode(String nama);
+   public void cetakBarcode(String name);
+   public void cariBarangBerdasarkanKategori(String keyword);
 }

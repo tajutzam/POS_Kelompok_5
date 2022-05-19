@@ -7,8 +7,15 @@ package Repository;
 
 import Util.IdBarang;
 import Util.tanggalSaatIni;
+import View.BarcodeBarang;
 import View.Dashbord;
 import View.DataBarangTambah;
+import View.KonfirmasiBayar;
+import com.barcodelib.barcode.Linear;
+import java.awt.Component;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -24,6 +32,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -846,8 +857,20 @@ public class Barang implements BarangInterface{
      }
 
     @Override
-    public void cariBarang(String keyword ) {
-          
+    public boolean cariBarang(String keyword ) {
+//          String sqlKategori="select kode_kategori from kategori where nama_kategori='"+keyword+"'";
+//          String kodeKategori ="";
+          boolean isSuces=false;
+//          try(Connection con = dt.conectDatabase();
+//              Statement st = con.createStatement();
+//               ResultSet res = st.executeQuery(sqlKategori)){
+//              
+//              if(res.next()){
+//                 kodeKategori=res.getString("kode_kategori");
+//              }
+//          }catch(SQLException e){
+//              System.out.println(e);
+//          }
           DefaultTableModel model = new DefaultTableModel();
                   model.addColumn("No");
                   model.addColumn("Kode Barang");
@@ -859,8 +882,8 @@ public class Barang implements BarangInterface{
                   model.addColumn("Harga Jual");
                   model.addColumn("Supplier");
                   model.addColumn("Kategori");
-        
-          String sql="select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier where nama_product like '%"+keyword+"%' or kode_product like '%"+keyword+"%' order by product.kode_product asc";
+         
+          String sql="select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier where   nama_product like '%"+keyword+"%' or kode_product like '%"+keyword+"%'   order by product.kode_product asc";
        
           try(Connection con = dt.conectDatabase();
               Statement st = con.createStatement();
@@ -871,6 +894,8 @@ public class Barang implements BarangInterface{
                 if(res.next()){
                  int no=1;
                  while(res.next()){
+                     System.out.println("temu");
+                    isSuces=true;
                     model.addRow(new Object[]{
                      
                      no,
@@ -891,13 +916,13 @@ public class Barang implements BarangInterface{
        
                 Dashbord.table_barang.setModel(model);
                 
-                }else{
-                    throw new SQLException("Gagal Menemukan Data Barang");
                 }
+                
 
           }catch(SQLException e){
-              System.out.println("gagal mencari barang"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Gagal Menemukan Data Barang " , "Terjadi Kesalahan !" , JOptionPane.INFORMATION_MESSAGE , eroricon);
           }
+          return isSuces;
           }
 
     @Override
@@ -1096,6 +1121,7 @@ public class Barang implements BarangInterface{
             pst.setString(11, totalstok);
             if(stok_retur==0){
                 pst.setInt(3,stokNew-stok_retur);
+                isSucses=true;
                 pst.execute();
                 dta.dispose();
      
@@ -1126,5 +1152,208 @@ public class Barang implements BarangInterface{
     return isSucses;
       
 }
+
+    @Override
+    public void showBarangCombo(JComboBox box) {
+        
+        
+        String sql="select nama_product from product";
+        try(Connection con = dt.conectDatabase();
+            Statement st =con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            
+          while(res.next()){
+              System.out.println("aaaaa");
+              box.addItem(res.getString("nama_product"));
+          }
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal Menampilkan Nama Product", "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE, eroricon);
+        }
+       
+    }
+
+    @Override
+    public String getIdProductBarcode(String nama) {
+        String kode="";
+        String sql="select kode_product from product where nama_product ='"+nama+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            
+            if(res.next()){
+                kode=res.getString("kode_product");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Kode Barcode ","Terjadi Keslahan " , JOptionPane.ERROR_MESSAGE , eroricon);
+        }
+        return kode;
+    }
+
+    @Override
+    public void cetakBarcode(String name) {
+        
+       String sql ="select kode_product  from product where nama_product='"+name+"'";
+       String kode="";
+       try{
+           Connection con = dt.conectDatabase();
+           Statement st = con.createStatement();
+           ResultSet res =st.executeQuery(sql);
+           
+           
+           if(res.next()){
+             kode=res.getString("kode_product");  
+           }else{
+               throw new SQLException("gagal");
+           }
+           
+           String fileName ="/Report/Barcode.jasper";
+           InputStream Report;
+           Report=getClass().getResourceAsStream(fileName);
+          // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
+           HashMap hash = new HashMap();
+           
+           Linear barcode = new Linear();
+           barcode.setType(Linear.CODE128B);
+           barcode.setData(kode);
+           barcode.setI(11.0f);
+           String fname =kode;
+           barcode.renderBarcode("src/Report/"+fname+".png");
+              
+           hash.put("Barcode", name);
+          
+           
+         
+           hash.put("barcode_path","src/Report/"+fname+".png");
+           
+           
+       
+           JasperPrint print;
+           print = JasperFillManager.fillReport(Report, hash, con);
+          
+           
+           File fileDelete= new File("src/Report/"+fname+".png");
+           if(fileDelete.delete()){
+               System.out.println("berhasil dihapus");
+          }else{
+               System.out.println("gagal dihapus");    
+           }
+           
+         
+          
+           JasperViewer viewer=new JasperViewer(print,false);
+         
+           viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
+          
+           viewer.setVisible(true);
+           viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
+           
+           
+       }catch(Exception e){
+           System.out.println(e.getMessage());
+       }
+        
+    }
+
+
+//  try (Connection con = dt.conectDatabase()){
+//      String kode=getIdProductBarcode(name);
+//      String fileName="/Report/Barcode.jasper";
+//      InputStream report;
+//      report = getClass().getResourceAsStream(fileName);
+//      HashMap hash = new HashMap();
+//      
+//    Linear barcode = new Linear();
+//  barcode.setType(Linear.CODE128A);
+//  barcode.setData(KonfirmasiBayar.tx_idTransaksi.getText());
+//  barcode.setI(11.0f);
+//  String fname =KonfirmasiBayar.tx_idTransaksi.getText();
+//  barcode.renderBarcode("src/Report/"+kode+".png");
+//  hash.put("Barcode", name);
+//    
+//  JasperPrint print =JasperFillManager.fillReport(report, hash , con);
+//  JasperViewer viewer=new JasperViewer(print,false);
+//  viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
+//          
+//  viewer.setVisible(true);
+//  viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
+//  
+//  }catch(Exception e){
+//      JOptionPane.showMessageDialog(null, e.getMessage());
+//  }
+//  
+    
+//
+
+    @Override
+    public void cariBarangBerdasarkanKategori(String keyword) {
+        
+         String sqlKategori="select kode_kategori from kategori where nama_kategori='"+keyword+"'";
+          String kodeKategori ="";
+          try(Connection con = dt.conectDatabase();
+              Statement st = con.createStatement();
+               ResultSet res = st.executeQuery(sqlKategori)){
+              
+              if(res.next()){
+                 kodeKategori=res.getString("kode_kategori");
+              }
+          }catch(SQLException e){
+              System.out.println(e);
+          }
+          DefaultTableModel model = new DefaultTableModel();
+                  model.addColumn("No");
+                  model.addColumn("Kode Barang");
+                  model.addColumn("Nama Barang");
+                  model.addColumn("Stok Tersedia");
+                  model.addColumn("Total Stok");
+                  model.addColumn("Barang Rusak");
+                  model.addColumn("Harga Beli");
+                  model.addColumn("Harga Jual");
+                  model.addColumn("Supplier");
+                  model.addColumn("Kategori");
+         
+          String sql="select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier where  kode_kategori like '%"+kodeKategori+"%' order by product.kode_product asc";
+       
+          try(Connection con = dt.conectDatabase();
+              Statement st = con.createStatement();
+              ResultSet res =st.executeQuery(sql);
+               )
+            {
+               
+                if(res.next()){
+                 int no=1;
+                 while(res.next()){
+                    model.addRow(new Object[]{
+                     
+                     no,
+                     res.getString("kode_product"),
+                        res.getString("nama_product"),
+                        res.getString("stok"),
+                        res.getString("total_stok"),
+                        res.getString("rusak"),
+                        res.getString("harga_beli"),
+                        res.getString("harga_jual"),
+                        res.getString("supplier.nama_supplier"),
+                        res.getString("kategori.nama_kategori"),
+                        
+                    });
+                    no++;
+                 }
+               
+       
+                Dashbord.table_barang.setModel(model);
+                
+                }else{
+                    throw new SQLException("Gagal Menemukan Data Barang");
+                }
+
+          }catch(SQLException e){
+              System.out.println("gagal mencari barang"+e.getMessage());
+          }
+        
+    }
+    
+    
+  
 }
 

@@ -19,6 +19,8 @@ import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -135,6 +137,7 @@ public class Dashbord extends javax.swing.JFrame {
           panel_manager.setVisible(false);    
     }
     label_idPegawai.setVisible(false);
+  
     }
   
     
@@ -775,6 +778,11 @@ public class Dashbord extends javax.swing.JFrame {
         Barcode1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         Barcode1.setForeground(new java.awt.Color(255, 255, 255));
         Barcode1.setText("Barcode");
+        Barcode1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Barcode1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenBarangLayout = new javax.swing.GroupLayout(contenBarang);
         contenBarang.setLayout(contenBarangLayout);
@@ -819,6 +827,17 @@ public class Dashbord extends javax.swing.JFrame {
         conten_manajemen.add(contenBarang, "card9");
 
         contenKategori.setBackground(new java.awt.Color(239, 240, 245));
+
+        txt_cariKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cariKategoriActionPerformed(evt);
+            }
+        });
+        txt_cariKategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_cariKategoriKeyPressed(evt);
+            }
+        });
 
         icon_cariKategori.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/magnifying-glass.png"))); // NOI18N
 
@@ -1088,6 +1107,11 @@ public class Dashbord extends javax.swing.JFrame {
         contenSupplier.setBackground(new java.awt.Color(239, 240, 245));
 
         txt_cariSupplier.setBorder(null);
+        txt_cariSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_cariSupplierKeyPressed(evt);
+            }
+        });
 
         icon_cariSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/magnifying-glass.png"))); // NOI18N
 
@@ -2268,14 +2292,19 @@ public class Dashbord extends javax.swing.JFrame {
     private void icon_kasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_kasirMouseClicked
          // TODO add your handling code here:
        
-        
+       
+       
         ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenKasir);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
        
         
-        
+           addWindowListener(new WindowAdapter() { 
+          public void windowOpened(WindowEvent e){
+              txt_cariBrng.requestFocusInWindow();
+          }  
+        });
         
         //visibilitas icon
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cartPurple.png")));
@@ -2436,7 +2465,10 @@ public class Dashbord extends javax.swing.JFrame {
 
     private void label_navigasi_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_barangMouseClicked
           // TODO add your handling code here:
-          
+         // txt_cariBrng.setText("");
+            txt_cariKategori.setText("");
+          txt_cariBrng.setText("");
+         txt_cariSupplier.setText("");
           label_navigasi_barang.setForeground(new Color(111, 59, 160));
           label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
           label_navigasi_supplier.setForeground(new Color(90, 90, 90));
@@ -2457,8 +2489,11 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_label_navigasi_barangMouseClicked
 
     private void label_navigasi_KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_KategoriMouseClicked
-          // TODO add your handling code here:
+           // TODO add your handling code here:
          //visibiliras label navigasi
+         txt_cariKategori.setText("");
+         txt_cariBrng.setText("");
+         txt_cariSupplier.setText("");
           label_navigasi_barang.setForeground(new Color(90, 90, 90));
           label_navigasi_Kategori.setForeground(new Color(111, 59, 160));
           label_navigasi_supplier.setForeground(new Color(90, 90, 90));
@@ -2475,7 +2510,9 @@ public class Dashbord extends javax.swing.JFrame {
 
     private void label_navigasi_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_supplierMouseClicked
          // TODO add your handling code here:
-         
+           txt_cariKategori.setText("");
+         txt_cariBrng.setText("");
+         txt_cariSupplier.setText("");
           label_navigasi_barang.setForeground(new Color(90, 90, 90));
           label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
           label_navigasi_supplier.setForeground(new Color(111, 59, 160));
@@ -2508,7 +2545,12 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_label_navigasi_returnMouseClicked
 
     private void comboBox_showBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showBarangActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
+        
+       barangService barang = new barangService();
+        String nama_kategori = comboBox_showBarang.getSelectedItem().toString();
+        barang.cariBarangBerdasarkanKategori(nama_kategori);
+        
     }//GEN-LAST:event_comboBox_showBarangActionPerformed
 
     private void btn_TambahBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TambahBarangMouseClicked
@@ -2725,6 +2767,8 @@ public class Dashbord extends javax.swing.JFrame {
     private void table_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_barangMouseClicked
          // TODO add your handling code here:
         DataBarangTambah dt = new DataBarangTambah();
+        DataBarangTambah.id_transaksi.setVisible(false);
+        DataBarangTambah.labelTransaksi.setVisible(false);
         dt.Action("edit");
        
         int row =table_barang.getSelectedRow();
@@ -2918,6 +2962,7 @@ public class Dashbord extends javax.swing.JFrame {
          String keyword = txt_cariBrng.getText().toString();
          if(evt.getKeyCode() ==evt.VK_ENTER){
              barang.cariBarang(keyword);
+            //a txt_cariBrng.setText("");
          }
     }//GEN-LAST:event_txt_cariBrngKeyPressed
 
@@ -2936,6 +2981,81 @@ public class Dashbord extends javax.swing.JFrame {
          
          
     }//GEN-LAST:event_Tambah_banyakBtnMouseClicked
+
+    private void Barcode1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barcode1MouseClicked
+         // TODO add your handling code here:
+         
+         
+         BarcodeBarang barcode = new BarcodeBarang();
+       
+         barangService barang = new barangService();
+         barang.showBarangCombo(BarcodeBarang.nama_barangCombo);
+         
+         barcode.action();
+        
+    }//GEN-LAST:event_Barcode1MouseClicked
+
+    private void txt_cariKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cariKategoriActionPerformed
+         // TODO add your handling code here:
+         
+        
+    }//GEN-LAST:event_txt_cariKategoriActionPerformed
+
+    private void txt_cariKategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariKategoriKeyPressed
+         // TODO add your handling code here:
+         kategoriService kategori = new kategoriService();
+         String kategoriSearch=txt_cariKategori.getText().toString();
+          if(evt.getKeyCode()==evt.VK_ENTER){
+         if(txt_cariKategori.getText().equals("")){
+             kategori.showKategori(tabel_kategori);
+             JOptionPane.showMessageDialog(null, "Harap isi field Terlebih dahulu", "Terjadi kesalahan", JOptionPane.ERROR_MESSAGE, eroricon);
+
+         }else{
+            
+             if(kategori.cariKategori(kategoriSearch)==true){
+                 
+             }else{
+                 kategori.showKategori(tabel_kategori);
+                 JOptionPane.showMessageDialog(null, "Gagal Menemukan Kategori", "Terjadi kesalahan", JOptionPane.ERROR_MESSAGE, eroricon);
+                 txt_cariKategori.setText("");
+             }
+         
+         }
+        }
+         
+    }//GEN-LAST:event_txt_cariKategoriKeyPressed
+
+    private void txt_cariSupplierKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariSupplierKeyPressed
+         // TODO add your handling code here:
+         String nama=txt_cariSupplier.getText().toString();
+         supplierService suplier = new supplierService();
+        
+         if(evt.getKeyCode()==evt.VK_ENTER){
+             
+         
+             
+         
+         if(txt_cariSupplier.getText().equals("")){
+             suplier.showSupplier(table_supplier);
+             JOptionPane.showMessageDialog(null, "Harap Isi field Terlebih Dahulu !" , "Terjadi Kesalahan" , JOptionPane.ERROR_MESSAGE ,eroricon);
+         }else if(txt_cariSupplier.getText().equals(" ")){
+             suplier.showSupplier(table_supplier);
+             JOptionPane.showMessageDialog(null, "Harap Isi field !" , "Terjadi Kesalahan" , JOptionPane.ERROR_MESSAGE ,eroricon);
+
+         }else{
+             if(suplier.cariSupplier(nama)==true){
+             
+         }else{
+             suplier.showSupplier(table_supplier);
+             txt_cariSupplier.setText("");
+             JOptionPane.showMessageDialog(null, "Gagal Menemukan Supplier !" , "Terjadi Kesalahan" , JOptionPane.ERROR_MESSAGE ,eroricon);
+ 
+         } 
+         }
+         }
+        
+         
+    }//GEN-LAST:event_txt_cariSupplierKeyPressed
 
     public void showBarangWhenClick(){
         
