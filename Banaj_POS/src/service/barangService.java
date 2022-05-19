@@ -148,7 +148,12 @@ public class barangService {
             barang.showBarang(Dashbord.table_barang, "barang");
 
         }else{
-            barang.cariBarang(keyWord);
+            if(barang.cariBarang(keyWord)==true){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Gagal Menemukan Data Barang " , "Terjadi Kesalahan !" , JOptionPane.INFORMATION_MESSAGE , eroricon);
+
+            }
         }
         
     }
@@ -256,6 +261,17 @@ public class barangService {
     public void setModelRow(){
         barang.setModelRow();
     }
-    
-    
+    public void showBarangCombo(JComboBox box){
+        
+        BarangInterface barang = new Barang();
+        barang.showBarangCombo(box);
+    }
+    public void cetakBarcode(String name){
+        BarangInterface barang = new Barang();
+        barang.cetakBarcode(name);
+    }
+    public void cariBarangBerdasarkanKategori(String keyword){
+        BarangInterface barang = new Barang();
+        barang.cariBarangBerdasarkanKategori(keyword);
+    }
 }

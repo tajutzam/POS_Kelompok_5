@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.Dashbord;
 import View.DataTambahKategori;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -294,6 +295,41 @@ public class Kategori implements KategoriInterface{
         }
         return total;
     }
+
+    @Override
+    public boolean cariKategori(String keyword ) {
+          int no=0;
+        
+        boolean isSucses =false;
+        model.addColumn("No");
+        model.addColumn("Kode Kategori");
+        model.addColumn("Nama Kategori");
+        
+        String sql="select kode_kategori, nama_kategori from kategori where nama_kategori like '%"+keyword+"%' order by kode_kategori asc";
+        try(Connection con =dt.conectDatabase();
+            Statement st =con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            
+            
+            while(res.next()){
+              isSucses=true;
+              no++;
+              model.addRow(new Object[]{
+                          no,
+                          res.getString("kode_kategori"),
+                          res.getString("nama_kategori"),
+                          });
+
+                          }
+            
+            Dashbord.tabel_kategori.setModel(model);
+
+        }catch(SQLException e){
+            
+        }
+        return  isSucses;
+    }
+    
      
         
     }

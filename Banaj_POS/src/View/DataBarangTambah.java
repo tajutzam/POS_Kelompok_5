@@ -105,7 +105,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
         navigasiPanel = new RoundedPanel(8, new Color(255, 255, 255));
         label_navigasi = new javax.swing.JLabel();
         id_transaksi = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        labelTransaksi = new javax.swing.JLabel();
         MainConten = new RoundedPanel(8, new Color(255, 255, 255));
         contenAddBarang = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel2 = new javax.swing.JLabel();
@@ -182,9 +182,9 @@ public class DataBarangTambah extends javax.swing.JFrame {
         id_transaksi.setForeground(new java.awt.Color(90, 90, 90));
         id_transaksi.setText("ID TRANSAKSI : ");
 
-        jLabel21.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel21.setText("ID TRANSAKSI : ");
+        labelTransaksi.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        labelTransaksi.setForeground(new java.awt.Color(90, 90, 90));
+        labelTransaksi.setText("ID TRANSAKSI : ");
 
         javax.swing.GroupLayout navigasiPanelLayout = new javax.swing.GroupLayout(navigasiPanel);
         navigasiPanel.setLayout(navigasiPanelLayout);
@@ -194,7 +194,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(label_navigasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(557, 557, 557)
-                .addComponent(jLabel21)
+                .addComponent(labelTransaksi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(id_transaksi)
                 .addGap(47, 47, 47))
@@ -205,7 +205,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(navigasiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_navigasi, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel21)
+                    .addComponent(labelTransaksi)
                     .addComponent(id_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
@@ -879,8 +879,9 @@ public class DataBarangTambah extends javax.swing.JFrame {
         
         System.out.println(kode_barang_Edit.getText() +" b "+ this.getKodeLama());
         System.out.println("rusak "+ rusak_lama.getText());
-        if(kode_barang_Edit.getText().toString().equals(result)&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText().toString())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
-                 kode_barang_Edit.setText(this.getKodeLama());
+        if(kode_barang_Edit.getText().toString().equals(kode_barangLama.getText().toString())&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText().toString())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
+//                 kode_barang_Edit.setText(this.getKodeLama());
+                 System.out.println("sudah terbaru");
                  JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan Data, Data Sudah terbaru", "Information", JOptionPane.INFORMATION_MESSAGE);
                  int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
                  int rusak =Integer.parseInt(barang_RusakEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
@@ -903,7 +904,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                       int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
                 
         }
-        else{
+                       else{
                        int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
                        int rusak =Integer.parseInt(barang_RusakEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
                        Barang brangId = new Barang();
@@ -1159,7 +1160,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JLabel harga_beliLama;
     private javax.swing.JTextField harga_jualEdit;
     private javax.swing.JLabel harga_jualLama;
-    private javax.swing.JLabel id_transaksi;
+    public static javax.swing.JLabel id_transaksi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
@@ -1174,7 +1175,6 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1187,6 +1187,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JLabel kode_barangLama;
     public static javax.swing.JTextField kode_barang_Edit;
     private javax.swing.JLabel kode_brg_lama;
+    public static javax.swing.JLabel labelTransaksi;
     private javax.swing.JLabel label_navigasi;
     private javax.swing.JLabel label_stokEdit;
     private javax.swing.JLabel namaBarangLama;

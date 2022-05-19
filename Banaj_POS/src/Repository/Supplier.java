@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.Dashbord;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -252,5 +253,43 @@ public class Supplier implements SupplierInterface{
         }
         return nama_supplier;
     }
+
+    @Override
+    public boolean cariSupplier(String keyword) {
+        
+  
+          int no=0;
+        
+        boolean isSucses =false;
+        model.addColumn("No");
+        model.addColumn("Kode Supplier");
+        model.addColumn("Nama Supplier");
+        
+        String sql="select kode_supplier, nama_supplier from supplier where nama_supplier like '%"+keyword+"%' order by kode_supplier asc";
+        try(Connection con =dt.conectDatabase();
+            Statement st =con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            
+            
+            while(res.next()){
+              isSucses=true;
+              no++;
+              model.addRow(new Object[]{
+                          no,
+                          res.getString("kode_supplier"),
+                          res.getString("nama_supplier"),
+                          });
+
+                          }
+            
+            Dashbord.table_supplier.setModel(model);
+
+        }catch(SQLException e){
+            
+        }
+        return  isSucses;
+    
+    }
+    
    
 }

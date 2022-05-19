@@ -876,6 +876,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Barcode"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Barcode1MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -952,6 +955,10 @@
                       </Layout>
                       <SubComponents>
                         <Component class="javax.swing.JTextField" name="txt_cariKategori">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_cariKategoriActionPerformed"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_cariKategoriKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txt_cariKategori.setBorder(javax.swing.BorderFactory.createEmptyBorder());"/>
                           </AuxValues>
@@ -1401,6 +1408,9 @@
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_cariSupplierKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txt_cariSupplier.setBorder(javax.swing.BorderFactory.createEmptyBorder());"/>
                           </AuxValues>

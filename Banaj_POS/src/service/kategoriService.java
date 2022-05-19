@@ -100,5 +100,21 @@ public class kategoriService {
          String total =kategori.hitungTotalKategori();
          return total;
      }
+     public boolean cariKategori(String keyword){
+         KategoriInterface kategori = new Kategori();
+        boolean isSuces=false;
+         if(keyword.equals("")){
+             kategori.showKategori(Dashbord.tabel_kategori);
+             isSuces=false;  
+         }else if(keyword.equals(" ")){
+             kategori.showKategori(Dashbord.tabel_kategori);
+             isSuces=false;
+         }else{
+              isSuces=true;
+              isSuces =kategori.cariKategori(keyword);
+         }
+         
+         return isSuces;
+     }
     
 }

@@ -93,4 +93,11 @@ public class supplierService {
           String nama=sup.tampilkanNamaSupplier(kode);
           return nama;
       }
+      public boolean cariSupplier(String keyword){
+          boolean isSucses =false;
+          
+          SupplierInterface suplier = new Supplier();
+          isSucses=suplier.cariSupplier(keyword);
+          return isSucses;
+      }
 }
