@@ -267,7 +267,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
         btn_simpanAdd.setBackground(new java.awt.Color(111, 59, 160));
         btn_simpanAdd.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_simpanAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btn_simpanAdd.setText("Simpan");
+        btn_simpanAdd.setText("Bayar");
+        btn_simpanAdd.setPreferredSize(new java.awt.Dimension(73, 27));
         btn_simpanAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_simpanAddMouseClicked(evt);
@@ -297,7 +298,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(contenAddBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(contenAddBarangLayout.createSequentialGroup()
-                        .addComponent(btn_simpanAdd)
+                        .addComponent(btn_simpanAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -851,8 +852,9 @@ public class DataBarangTambah extends javax.swing.JFrame {
              }
              //masuk ke kondisi kedua
              else{
-                 int hargaJualInt = Integer.parseInt(hargaJual);
-                 int hargaBeliInt = Integer.parseInt(hargaBeli);
+                 
+                 int hargaJualInt = Integer.parseInt(hargaJual.replaceAll("[^0-9]", ""));
+                 int hargaBeliInt = Integer.parseInt(hargaBeli.replaceAll("[^0-9]", ""));
                  //jika harga jual lebih kecil
                  if(hargaJualInt<=hargaBeliInt){
                      kata="Harga Jual tidak memungkinkan input ulang !";
@@ -877,8 +879,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
             bayar.setLabel_namaProduct(nama_product);
             bayar.setLabel_rusak(barangRusak);
             bayar.setLabel_stok(stok);
-            int hargaB =Integer.parseInt(hargaBeli);
-            int stokB = Integer.parseInt(stok);
+            int hargaB =Integer.parseInt(hargaBeli.replaceAll("[^0-9]", ""));
+            int stokB = Integer.parseInt(stok.replaceAll("[^0-9]", ""));
             
             int finalTotalInt = hargaB*stokB;
             String resultTotal = String.valueOf(finalTotalInt);

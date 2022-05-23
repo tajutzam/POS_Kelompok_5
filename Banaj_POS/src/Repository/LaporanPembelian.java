@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.TransaksiPembelian1;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -42,13 +43,9 @@ public class LaporanPembelian implements  ReportInterfce{
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
              
-            if(res.next()){
-                isSuces=true;
-            }else{
-                isSuces=false;
-            }
+            
             while(res.next()){
-              
+                 isSuces=true;
                  no++;
                  model.addRow(new Object[]{
                  no,
@@ -68,6 +65,56 @@ public class LaporanPembelian implements  ReportInterfce{
             System.out.println(e);  
         }
         return isSuces;
+    }
+
+    @Override
+    public void showDetailLaporan(JTable table , String id) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah");
+       
+        String sql="select supplier.nama_supplier , beli_product.tanggal_beliProduct, beli_product.id_beliProduct,supplier.nama_supplier , beli_product.grand_total , pegawai.nama_pegawai , beli_product.bayar , beli_product.kembalian , detail_beli_product.jumlahBeli ,product.nama_product from beli_product join detail_beli_product on beli_product.id_beliProduct=detail_beli_product.id_beliProduct join pegawai on pegawai.id_pegawai = beli_product.pegawai join product on product.kode_product = detail_beli_product.product join supplier on supplier.kode_supplier =beli_product.supplier where beli_product.id_beliProduct='"+id+ "' ";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            String nama ="";
+            String total="";
+            String tanggal="";
+            String bayar="";
+            String kembali="";
+            String nama_supplier ="";
+            
+         
+            while(res.next()){
+                
+                total=res.getString("beli_product.grand_total");
+                tanggal=res.getString("beli_product.tanggal_beliProduct");
+                bayar=res.getString("beli_product.bayar");
+                kembali=res.getString("beli_product.kembalian");
+                nama_supplier=res.getString("supplier.nama_supplier");
+                
+                model.addRow(new Object[]{
+                    res.getString("product.nama_product"),
+                    res.getString("detail_beli_product.jumlahBeli"),
+                    
+                });               
+            }
+            TransaksiPembelian1.grand_totalVlue.setText(total);
+            TransaksiPembelian1.nama_kasir_value.setText(nama_supplier);
+            TransaksiPembelian1.bayar_value.setText(bayar);
+            TransaksiPembelian1.kembalian_value.setText(kembali);
+            TransaksiPembelian1.tanggal_kasir.setText(tanggal);
+            
+            
+          
+            table.setModel(model);
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        
     }
     
     

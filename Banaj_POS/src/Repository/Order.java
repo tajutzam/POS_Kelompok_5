@@ -294,7 +294,7 @@ public class Order implements OrderInterface {
     }
 
     @Override
-    public void cetakStruct(String kode , String diskon , String kasir ,String harga) {
+    public void cetakStruct(String kode , String diskon  ,String harga) {
         
        
        String sql ="select nama_toko , no_hp , alamat_toko from toko";
@@ -325,9 +325,9 @@ public class Order implements OrderInterface {
            
            Linear barcode = new Linear();
            barcode.setType(Linear.CODE128A);
-           barcode.setData(KonfirmasiBayar.tx_idTransaksi.getText());
+           barcode.setData(kode);
            barcode.setI(11.0f);
-           String fname =KonfirmasiBayar.tx_idTransaksi.getText();
+           String fname =kode;
            barcode.renderBarcode("src/Report/"+fname+".png");
               
            hash.put("kode", kode);
@@ -342,7 +342,7 @@ public class Order implements OrderInterface {
            
             }
            
-           hash.put("nama_kasir",kasir);
+          
            hash.put("barcode_path","src/Report/"+fname+".png");
            
            
@@ -350,8 +350,9 @@ public class Order implements OrderInterface {
            JasperPrint print;
            print = JasperFillManager.fillReport(Report, hash, con);
           
-           
-           JasperPrintManager.printReport(print, false);
+           JasperViewer view = new JasperViewer(print , false);
+           view.setVisible(true);
+          // JasperPrintManager.printReport(print, false);
         
         
            File fileDelete= new File("src/Report/"+fname+".png");
@@ -361,9 +362,9 @@ public class Order implements OrderInterface {
                System.out.println("gagal dihapus");    
            }
        
-//          
+         
 
-//           
+           
            
        }catch(Exception e){
            System.out.println(e.getMessage());

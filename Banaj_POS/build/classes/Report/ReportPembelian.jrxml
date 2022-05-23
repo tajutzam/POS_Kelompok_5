@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="210" pageHeight="842" columnWidth="170" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="cc2b6a0b-bbeb-4e8e-ab41-09d831d8bc72">
 	<property name="ireport.zoom" value="2.3579476910000023"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="236"/>
+	<property name="ireport.y" value="196"/>
 	<parameter name="nama_toko" class="java.lang.String"/>
 	<parameter name="nohp" class="java.lang.String"/>
 	<parameter name="alamat" class="java.lang.String"/>
@@ -171,7 +171,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="108" y="2" width="62" height="1" uuid="161fca46-def3-47df-b3cb-108dbe951a09"/>
+				<reportElement x="59" y="2" width="111" height="1" uuid="161fca46-def3-47df-b3cb-108dbe951a09"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
