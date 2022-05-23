@@ -29,6 +29,7 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        txt_bayar.requestFocus();
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -262,7 +263,7 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
         
             OrderService order = new OrderService();
 
-            int hitungTotalHarga = order.hitungTotalHarga();
+            int hitungTotalHarga = order.hitungTotalHarga("jual");
             String total = String.valueOf(hitungTotalHarga);
             txt_totalHarga.setText(total);     
         
@@ -273,7 +274,7 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
         // TODO add your handling code here:
           OrderService order = new OrderService();
 
-            int hitungTotalHarga = order.hitungTotalHarga();
+            int hitungTotalHarga = order.hitungTotalHarga("jual");
             String total = String.valueOf(hitungTotalHarga);
             txt_totalHarga.setText(total);
     }//GEN-LAST:event_txt_diskonKeyPressed
@@ -281,7 +282,7 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
      
        OrderService order = new OrderService();
-       String bayar = txt_bayar.getText().replaceAll("[^0-9]","");
+       String bayar = txt_bayar.getText();
         System.out.println(bayar);
        long kembalian = order.bayar( bayar, this);
        String kembaliy =String.valueOf(kembalian);

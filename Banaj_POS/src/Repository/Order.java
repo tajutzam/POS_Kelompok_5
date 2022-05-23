@@ -23,11 +23,15 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.print.Printer;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -153,7 +157,7 @@ public class Order implements OrderInterface {
                     
                 
                 if(resStok.next()){
-                    if(res.next()){
+                  
                         while(res.next()){
                      
                         
@@ -162,15 +166,13 @@ public class Order implements OrderInterface {
                         res.getString("kode_product"),
                         res.getString("nama_product"),
                         res.getString("stok"),
-                        res.getString("harga_jual")
+                        ("Rp."+res.getString("harga_jual"))
                                  
                     });
                         no++;   
                         }
-                    no++;
-                    }else{
-                        throw new SQLException();
-                    }
+                   
+                 
                 isMatch=true;
                 }else{
                   
@@ -179,7 +181,7 @@ public class Order implements OrderInterface {
                         res.getString("kode_product"),
                         res.getString("nama_product"),
                         res.getString("stok"),
-                        res.getString("harga_jual")
+                        ("Rp."+res.getString("harga_jual"))
                     });
                    isMatch=false;
                    throw new SQLException("");
@@ -294,6 +296,7 @@ public class Order implements OrderInterface {
     @Override
     public void cetakStruct(String kode , String diskon , String kasir ,String harga) {
         
+       
        String sql ="select nama_toko , no_hp , alamat_toko from toko";
        String nama_toko;
        String no_hp;
@@ -347,24 +350,19 @@ public class Order implements OrderInterface {
            JasperPrint print;
            print = JasperFillManager.fillReport(Report, hash, con);
           
+           
            JasperPrintManager.printReport(print, false);
+        
+        
            File fileDelete= new File("src/Report/"+fname+".png");
            if(fileDelete.delete()){
                System.out.println("berhasil dihapus");
            }else{
                System.out.println("gagal dihapus");    
            }
-           
-         
-        
-           
-          
-          JasperViewer viewer=new JasperViewer(print,false);
-         
-           viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
-////          
-           viewer.setVisible(true);
-           viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
+       
+//          
+
 //           
            
        }catch(Exception e){
@@ -372,9 +370,58 @@ public class Order implements OrderInterface {
        }
     }
 
+    @Override
+    public void cetakStructPembelian(String transaksi) {
+        
+           
+       String sql ="select nama_toko , no_hp , alamat_toko from toko";
+       String nama_toko;
+       String no_hp;
+       String alamat;
+       try{
+           Connection con = dt.conectDatabase();
+           Statement st = con.createStatement();
+           ResultSet res =st.executeQuery(sql);
+           
+           
+           if(res.next()){
+               nama_toko=res.getString("nama_toko");
+               no_hp=res.getString("no_hp");
+               alamat=res.getString("alamat_toko");
+               System.out.println(nama_toko);
+               
+           }else{
+               throw new SQLException("gagal");
+           }
+           String fileName ="/Report/ReportPembelian.jasper";
+           InputStream Report;
+           Report=getClass().getResourceAsStream(fileName);
+          // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
+           HashMap hash = new HashMap();
+           hash.put("nama_toko", nama_toko);
+           hash.put("nohp", no_hp);
+           hash.put("alamat", alamat);
+           hash.put("transaksi",transaksi);
+           
+           JasperPrint print;
+           print = JasperFillManager.fillReport(Report, hash , con);
+           JasperViewer viewer = new JasperViewer(print,false);
+           viewer.setVisible(true);
+           
+           
+           
+        
+    }catch(SQLException e){
+        
+    }   
+    catch (JRException ex) {
+            Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
-      
-      
-      
+
     
+      
+ 
+      
+    }  
 }

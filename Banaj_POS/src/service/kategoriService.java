@@ -8,6 +8,7 @@ package service;
 import javax.swing.JTable;
 import Repository.*;
 import View.Dashbord;
+import View.DataBarangTambah;
 import View.DataTambahKategori;
 import View.DataTambahSupplier;
 import java.sql.Timestamp;
@@ -115,6 +116,10 @@ public class kategoriService {
          }
          
          return isSuces;
+     }
+     public String getKodeKategori(){
+         KategoriInterface kategori = new Kategori();
+         return kategori.getCodeKategori(DataBarangTambah.combo_kategori);
      }
     
 }

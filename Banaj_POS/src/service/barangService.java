@@ -44,7 +44,7 @@ public class barangService {
         
         deleteBarangWhenStokHabis();
         br.showBarang(Dashbord.table_barang, "barang");
-        br.showBarang(table, "barang");
+       // br.showBarang(table, "barang");
         Dashbord.txt_totalBrg.setText(br.hitungTotalBarang());
         Object data[]=new Object[7];
 
@@ -61,15 +61,37 @@ public class barangService {
         br.addComboboxItem(box, "kategori");
         
     }
-    
+    public void getJoption(String mess){
+        JOptionPane.showMessageDialog(null, mess, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon);
+    }
     public boolean addBarang(String nama_produt ,String kode_product , String harga_beli
-            , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt){
+            , String harga_jual , String stok , String barang_rusak , String kategori , String supplier){
              BarangInterface br = new Barang();
              boolean isAdd=false;
-             int hargaJual =Integer.parseInt(harga_jual);
-             int hargaBeli = Integer.parseInt(harga_beli);
+             
+               //String stokString = stok.replaceAll("[0-9]", "");
+             String stokString =stok.replaceAll("[0-9]", "");
+             String hargaBeli =harga_beli.replaceAll("[0-9]", "");
+             String hargaJual =harga_jual.replaceAll("[0-9]", "");
+             String barangRusak =barang_rusak.replaceAll("[0-9]", "");
+             if(harga_beli.equals(hargaBeli)){
+                      isAdd=false;
+                 getJoption("Harap isi harga beli dengan angka ");
             
-             isAdd=br.addBarang(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
+             }else if(harga_jual.equals(hargaJual)){
+                      isAdd=false;
+                 getJoption("Harap isi harga Jua dengan angka ");
+             } else if(stok.equals(stokString)){
+                      isAdd=false;
+                 getJoption("Harap isi Stok dengan angka ");
+             } else if(barang_rusak.equals(barangRusak)){
+                      isAdd=false;
+                 getJoption("Harap isi barang rusak dengan angka ");
+             } else{
+                 
+                  isAdd=br.addBarang(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier);
+
+             }
              
              
         return isAdd;
@@ -139,22 +161,23 @@ public class barangService {
     public void resetKeranjang(){
         
     }
-    public void cariBarang(String keyWord){
+    public boolean cariBarang(String keyWord){
         BarangInterface barang = new Barang();
-        
+        boolean isSucses=false;
         if(keyWord.equals("")){
             barang.showBarang(Dashbord.table_barang, "barang");
         }else if(keyWord.equals(" ")){
             barang.showBarang(Dashbord.table_barang, "barang");
 
         }else{
-            if(barang.cariBarang(keyWord)==true){
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "Gagal Menemukan Data Barang " , "Terjadi Kesalahan !" , JOptionPane.INFORMATION_MESSAGE , eroricon);
-
-            }
+          if(barang.cariBarang(keyWord)==true){
+              isSucses=true;
+          }else{
+              JOptionPane.showMessageDialog(null, "Gagal Menemukan Data Barang !" , "Terjadi Kesalahan ", JOptionPane.ERROR_MESSAGE,eroricon);
+              barang.showBarang(Dashbord.table_barang, "barang");
+          }
         }
+        return isSucses;
         
     }
     
@@ -165,9 +188,10 @@ public class barangService {
         return result;
     }
     
-    public void insertIdTransaksiBeli(String id , String suplier , String tanggal , String kategori){
+    public void insertIdTransaksiBeli(String id , String suplier , String tanggal , String kategori , String total,String bayar ,String kembali){
         BarangInterface barang = new Barang();
-        barang.insertTransaksiBeli(id, suplier, tanggal , kategori);
+        int totalInt = Integer.parseInt(total);
+        barang.insertTransaksiBeli(id, suplier, tanggal , kategori,totalInt,bayar,kembali);
     }
     public String getKodeKategori(JComboBox box){
        BarangInterface barang = new Barang();
@@ -203,10 +227,10 @@ public class barangService {
          kata="Harap Isi semua field";
      }
      if(isAdd==true){
-         int stokIntbaru =Integer.parseInt(stok);
-         int rusakIntbaru =Integer.parseInt(rusak);
-         int hargaJualInt=Integer.parseInt(harga_jual);
-         int hargaBeliint =Integer.parseInt(harga_beli);
+         int stokIntbaru =Integer.parseInt(stok.replaceAll("[a-zA-Z]", ""));
+         int rusakIntbaru =Integer.parseInt(rusak.replaceAll("[a-zA-Z]", ""));
+         int hargaJualInt=Integer.parseInt(harga_jual.replaceAll("[a-zA-Z]", ""));
+         int hargaBeliint =Integer.parseInt(harga_beli.replaceAll("[a-zA-Z]", ""));
          if(stokIntbaru<=rusakIntbaru){
               System.out.println("baru");
               isAdd=false;

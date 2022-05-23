@@ -37,6 +37,8 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.BarRenderer3D;
 import org.jfree.data.category.DefaultCategoryDataset;
 import service.KonfirmasiBayarService;
+import service.LaporanPembelianServicce;
+import service.LaporanService;
 import service.OrderService;
 import service.UserService;
 import service.ValidasiService;
@@ -77,7 +79,7 @@ public class Dashbord extends javax.swing.JFrame {
         this.setMaximumSize(dimAx);
         this.setMinimumSize(dimIn);
         this.setBackground(new Color(255,255,255));
-        
+            txt_cariDataOrder.requestFocus();
         //set tinggi tabel
         table_barang.setRowHeight(30);
         tabel_kategori.setRowHeight(30);
@@ -1294,6 +1296,11 @@ public class Dashbord extends javax.swing.JFrame {
         jLabel22.setText("Cari Barang");
 
         txt_cariDataOrder.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_cariDataOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cariDataOrderActionPerformed(evt);
+            }
+        });
         txt_cariDataOrder.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_cariDataOrderKeyPressed(evt);
@@ -1730,23 +1737,12 @@ public class Dashbord extends javax.swing.JFrame {
         table_laporanPenjualan.setBackground(new java.awt.Color(239, 240, 245));
         table_laporanPenjualan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "No", "Id Transaksi", "Nama Kasir", "Tanggal Transaksi", "Grand Total"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         table_laporanPenjualan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 table_laporanPenjualanMouseClicked(evt);
@@ -2090,6 +2086,9 @@ public class Dashbord extends javax.swing.JFrame {
         label_tanggal.setForeground(new java.awt.Color(255, 255, 255));
         label_tanggal.setText("20-Agustus-2020");
 
+        label_namaPegawai.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        label_namaPegawai.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout header_panelLayout = new javax.swing.GroupLayout(header_panel);
         header_panel.setLayout(header_panelLayout);
         header_panelLayout.setHorizontalGroup(
@@ -2189,7 +2188,7 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_icon_dashbordMouseClicked
 
     private void panel_iconProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconProductMouseClicked
-          // TODO add your handling code here:
+           // TODO add your handling code here:
         ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenBarang);
         ConntainerPanel.repaint();
@@ -2286,6 +2285,8 @@ public class Dashbord extends javax.swing.JFrame {
         
         OrderService order = new OrderService();
         order.resetKeranjang();
+        LaporanService laporan = new LaporanService();
+        laporan.showLaporanToTable(table_laporanPenjualan);
         
     }//GEN-LAST:event_panel_iconLaporanMouseClicked
 
@@ -2298,13 +2299,9 @@ public class Dashbord extends javax.swing.JFrame {
         ConntainerPanel.add(panel_contenKasir);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
-       
+   
         
-           addWindowListener(new WindowAdapter() { 
-          public void windowOpened(WindowEvent e){
-              txt_cariBrng.requestFocusInWindow();
-          }  
-        });
+        
         
         //visibilitas icon
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cartPurple.png")));
@@ -2366,15 +2363,21 @@ public class Dashbord extends javax.swing.JFrame {
         ConntainerPanel.add(panel_contenManageUser);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
-        
-        
-        
+        //visibilitas icon
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerPurple.png")));
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
+        
+          
+        //set Text labelPage
+        label_page.setText("User Management");
+        UserService user = new UserService();
+        user.showUser();
+        OrderService order = new OrderService();
+        order.resetKeranjang();
         
     }//GEN-LAST:event_panel_managerMouseClicked
 
@@ -2396,11 +2399,16 @@ public class Dashbord extends javax.swing.JFrame {
 
     private void panel_kasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kasirMouseClicked
         // TODO add your handling code here:
+       
         ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenKasir);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
+   
         
+        
+        
+        //visibilitas icon
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cartPurple.png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
@@ -2408,21 +2416,49 @@ public class Dashbord extends javax.swing.JFrame {
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         
+        //set label Page
+        label_page.setText("Kasir");
+        
     }//GEN-LAST:event_panel_kasirMouseClicked
 
     private void panel_productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_productMouseClicked
-        // TODO add your handling code here:
-        ConntainerPanel.removeAll();
+       ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenBarang);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
-         //visibilitas icon
+        conten_manajemen.removeAll();
+        conten_manajemen.add(contenBarang);
+        conten_manajemen.repaint();
+        conten_manajemen.revalidate();
+        
+        
+        //visibilitas icon
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfumePurple.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
+        //visibilitas label navigasi
+        label_navigasi_barang.setForeground(new Color(111, 59, 160));
+        label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
+        label_navigasi_supplier.setForeground(new Color(90, 90, 90));
+        label_navigasi_return.setForeground(new Color(90, 90, 90));
+        
+        //set Text labelPage
+        label_page.setText("Manajemen Product");
+        barangService br = new barangService();
+        kategoriService kate = new kategoriService();
+        supplierService sup = new supplierService();
+        kate.showKategori(tabel_kategori);
+        sup.showSupplier(table_supplier);
+       
+        br.showBarang(table_barang);
+        br.deleteBarangWhenStokHabis();
+        OrderService order = new OrderService();
+        order.resetKeranjang();
+        
+        
     }//GEN-LAST:event_panel_productMouseClicked
 
     private void panel_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_laporanMouseClicked
@@ -2432,13 +2468,29 @@ public class Dashbord extends javax.swing.JFrame {
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
         
-          icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
+        //visibilitas icon
+        icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulsePurple.png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         
+          
+        //set Text labelPage
+        label_page.setText("Laporan Transaksi");
+        label_laporan_penjualan.setForeground(new Color(111, 59, 160));
+        label_laporanPemebelian.setForeground(new Color(90, 90, 90));
+        //
+        panel_containerLaporan.removeAll();
+        panel_containerLaporan.add(container_laporanPenjualan);
+        panel_containerLaporan.repaint();
+        panel_containerLaporan.revalidate();
+        
+        OrderService order = new OrderService();
+        order.resetKeranjang();
+        LaporanService laporan = new LaporanService();
+        laporan.showLaporanToTable(table_laporanPenjualan);
         
         
     }//GEN-LAST:event_panel_laporanMouseClicked
@@ -2595,6 +2647,8 @@ public class Dashbord extends javax.swing.JFrame {
           panel_containerLaporan.repaint();
           panel_containerLaporan.revalidate();
           
+          LaporanService laporan = new LaporanService();
+          laporan.showLaporanToTable(table_laporanPenjualan);
           
 
     }//GEN-LAST:event_label_laporan_penjualanMouseClicked
@@ -2613,6 +2667,8 @@ public class Dashbord extends javax.swing.JFrame {
           panel_containerLaporan.repaint();
           panel_containerLaporan.revalidate();
          
+          LaporanPembelianServicce laporan = new LaporanPembelianServicce();
+          laporan.showLaporanToTable(table_laporanPembelian);
 
     }//GEN-LAST:event_label_laporanPemebelianMouseClicked
 
@@ -2853,6 +2909,7 @@ public class Dashbord extends javax.swing.JFrame {
     private void txt_cariDataOrderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariDataOrderKeyPressed
          // TODO add your handling code here:
         
+        
          if(evt.getKeyCode()==evt.VK_ENTER){
              OrderService order = new OrderService();
        
@@ -2860,10 +2917,13 @@ public class Dashbord extends javax.swing.JFrame {
         System.out.println("row"+row);
       
          if(order.getBarang(txt_cariDataOrder.getText().toString())==true){
-        }else{
+              txt_cariDataOrder.setText("");
+         }else{
+            JOptionPane.showMessageDialog(null, "Gagal Menemukan Data Barang !" , "Terjadi Kesalahan " , JOptionPane.ERROR_MESSAGE , eroricon);
             txt_cariDataOrder.setText("");
-        }
          }
+         }
+         
         
        
        
@@ -3056,6 +3116,10 @@ public class Dashbord extends javax.swing.JFrame {
         
          
     }//GEN-LAST:event_txt_cariSupplierKeyPressed
+
+    private void txt_cariDataOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cariDataOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cariDataOrderActionPerformed
 
     public void showBarangWhenClick(){
         

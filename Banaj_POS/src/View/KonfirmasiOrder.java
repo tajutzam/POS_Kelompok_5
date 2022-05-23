@@ -33,6 +33,7 @@ public class KonfirmasiOrder extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         txt_kodeProduct.setEnabled(false);
         txt_namaProductOrder.setEditable(false);
+        txt_qty.requestFocus();
         
         
     }
