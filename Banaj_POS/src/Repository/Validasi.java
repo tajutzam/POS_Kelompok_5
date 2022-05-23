@@ -100,7 +100,7 @@ public class Validasi implements ValidasiUser{
               
                 
                     if(status.equals("Aktive")){
-                    JOptionPane.showMessageDialog(login, "Berhasil Logina ", "Sukses", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+                    JOptionPane.showMessageDialog(login, "Berhasil Login ", "Sukses", JOptionPane.INFORMATION_MESSAGE, suscesicon);
                     
                     isLogin =true;
                 }else{

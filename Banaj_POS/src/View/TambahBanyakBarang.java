@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import service.OrderService;
 
 /**
  *
@@ -31,6 +32,8 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
      */
     String time = Timestamp.valueOf(LocalDateTime.now()).toString();
         int row=0;
+            ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+
            ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     public TambahBanyakBarang() {
         initComponents();
@@ -98,9 +101,17 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
         btn_addBanyak = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel_addBanyak = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        diskon_label = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        total_harga = new javax.swing.JLabel();
+        txt_diskon = new javax.swing.JTextField();
+        bayar_tunai = new javax.swing.JLabel();
+        txt_bayar = new javax.swing.JTextField();
         jPanel2 = new RoundedPanel(8,  new Color(255, 255, 255));
         btn_simpanAddBanyak = new javax.swing.JButton();
         btn_cancelAddBanyak = new javax.swing.JButton();
+        label_subTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(239, 240, 245));
@@ -241,6 +252,35 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabel_addBanyak);
 
+        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel11.setText("Total");
+
+        diskon_label.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        diskon_label.setForeground(new java.awt.Color(90, 90, 90));
+        diskon_label.setText("Diskon (%)");
+
+        jLabel13.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel13.setText("Rp.");
+
+        total_harga.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        total_harga.setForeground(new java.awt.Color(90, 90, 90));
+        total_harga.setText("0");
+
+        txt_diskon.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_diskon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_diskonKeyPressed(evt);
+            }
+        });
+
+        bayar_tunai.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        bayar_tunai.setForeground(new java.awt.Color(90, 90, 90));
+        bayar_tunai.setText("Bayar Tunai");
+
+        txt_bayar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -248,6 +288,21 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(567, 567, 567)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(diskon_label)
+                            .addComponent(txt_diskon, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bayar_tunai)
+                            .addComponent(txt_bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1068, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -278,7 +333,7 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
                         .addComponent(btn_addBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_clearAddBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,8 +359,25 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
                     .addComponent(btn_clearAddBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_addBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(diskon_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_diskon, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(total_harga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txt_bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(bayar_tunai)
+                            .addGap(39, 39, 39))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         btn_simpanAddBanyak.setBackground(new java.awt.Color(111, 59, 160));
@@ -328,12 +400,16 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
             }
         });
 
+        label_subTotal.setText("jLabel12");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_subTotal)
+                .addGap(396, 396, 396)
                 .addComponent(btn_simpanAddBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_cancelAddBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -347,6 +423,10 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
                     .addComponent(btn_simpanAddBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cancelAddBanyak, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_subTotal)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -370,7 +450,7 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -392,30 +472,110 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Harap Isi Product Terlebih dahulu", "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon); 
          }else{
              barangService barang = new barangService();
-             barang.insertIdTransaksiBeli(this.id_transaksiBeli.getText().toString(), this.label_idSupplier.getText().toString(), time ,label_Kode_kategori.getText() );
-             for(int i=0; i<tabel_addBanyak.getRowCount();i++){
-                  
-                String nama=tabel_addBanyak.getValueAt(i, 2).toString();
-                String kode_product=tabel_addBanyak.getValueAt(i, 1).toString();
-                String harga_beli=tabel_addBanyak.getValueAt(i, 6).toString();
-                String harga_jual=tabel_addBanyak.getValueAt(i, 7).toString();
-                String stok=tabel_addBanyak.getValueAt(i, 4).toString();
-                String barang_rusak=tabel_addBanyak.getValueAt(i,5 ).toString();
-                String kategori=label_Kode_kategori.getText();
-                String supplier=label_idSupplier.getText();
-                isSuces=barang.addBarangBanyak(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
-               // barang.addBarang(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
-                barang.insertDataTambahBanyakProduct(id_transaksiBeli.getText(), stok, kode_product);
-              
- 
+             int totalInt =0;
+              for(int i=0; i<tabel_addBanyak.getRowCount();i++){
+                 String harga_beli=tabel_addBanyak.getValueAt(i, 6).toString();
+                 String stok_beli =tabel_addBanyak.getValueAt(i, 4).toString();
+                 int hargaInt = Integer.parseInt(harga_beli);
+                 int stokInt =Integer.parseInt(stok_beli);
+                 int totalString =hargaInt*stokInt;
+                 totalInt+=totalString;
              }
-             if(isSuces==true){
+             System.out.println(totalInt);
+             String finalTotal=String.valueOf(totalInt);
+             String bayar = this.txt_bayar.getText();
+             int kembalian=0;
+            
+                    
+
+            int total=0; 
+            for(int i=0; i< tabel_addBanyak.getRowCount();i++){
                 
-                JOptionPane.showMessageDialog(null, "berhasil Menambahkan Barang dengan id transaksi "+id_transaksiBeli.getText().toString(),"Susces",JOptionPane.INFORMATION_MESSAGE);
-                barang.showBarang(Dashbord.table_barang);
-                this.dispose();
+                String harga_beli=tabel_addBanyak.getValueAt(i, 6).toString();
+                String stok=tabel_addBanyak.getValueAt(i, 4).toString();
+                int stokTmp =Integer.parseInt(stok);
+                int totalTmp=Integer.parseInt(harga_beli);
+                 int name = totalTmp*stokTmp;
+                total+=name;
 
              }
+            
+         
+             if(bayar.equals("")){
+                
+                 JOptionPane.showMessageDialog(null, "Harap isi field bayar  !","Terjadi Kesalahan ", JOptionPane.INFORMATION_MESSAGE,eroricon);
+                 isSuces=false;
+             }else{
+                 isSuces=false;
+                
+                 String bayarReplace = bayar.replaceAll("[0-9]", "");
+                 if( bayar.equals(bayarReplace)){
+                                         JOptionPane.showMessageDialog(null, "Harap Isi Field Bayar dengan angka !","Terjadi Kesalahan !" , JOptionPane.ERROR_MESSAGE,eroricon);
+
+                          
+                 isSuces=false;
+                 }else{
+                      int bayarInt =Integer.parseInt(txt_bayar.getText().replaceAll("[^0-9]", ""));
+                 int totalInttmp =Integer.parseInt(total_harga.getText());
+                     if  (bayarInt<totalInttmp){
+                                      JOptionPane.showMessageDialog(null, "Total Bayar kamu Kurang !","Terjadi Kesalahan ", JOptionPane.INFORMATION_MESSAGE,eroricon);
+                         isSuces=false;
+                   
+                } else{
+                 System.out.println("kokok");
+                 isSuces=true;
+                 OrderService order = new OrderService();
+                 kembalian =order.bayar(bayar);
+                 barang.insertIdTransaksiBeli(this.id_transaksiBeli.getText().toString(), this.label_idSupplier.getText().toString(), time ,label_Kode_kategori.getText(),finalTotal , bayar,String.valueOf(kembalian) );
+
+             
+                 
+             
+                    for(int i=0; i<tabel_addBanyak.getRowCount();i++){
+
+                    String nama=tabel_addBanyak.getValueAt(i, 2).toString();
+                    String kode_product=tabel_addBanyak.getValueAt(i, 1).toString();
+                    String harga_beli=tabel_addBanyak.getValueAt(i, 6).toString();
+                    String harga_jual=tabel_addBanyak.getValueAt(i, 7).toString();
+                    String stok=tabel_addBanyak.getValueAt(i, 4).toString();
+                    String barang_rusak=tabel_addBanyak.getValueAt(i,5 ).toString();
+                    String kategori=label_Kode_kategori.getText();
+                    String supplier=label_idSupplier.getText();
+
+                
+              //   barang.addBarang(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier);
+                
+                     isSuces=barang.addBarangBanyak(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
+                     barang.insertDataTambahBanyakProduct(id_transaksiBeli.getText(), stok, kode_product);  
+                    }
+                }
+                     if(isSuces==true){
+                          OrderService order = new OrderService();
+                 int opsi=JOptionPane.showConfirmDialog(null, "Apakah kamu ingin mencetak Struct ? ", "Information", JOptionPane.OK_CANCEL_OPTION);
+                 if(opsi==0){
+                   this.dispose();
+                   order.cetakPembelian(id_transaksiBeli.getText()); 
+                   
+                 }else{
+                   JOptionPane.showMessageDialog(null, "Berhasil menambahkan Barang ", "Succes", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+                   this.dispose();
+                 }
+                     }
+                
+                 }
+                  
+             
+                 
+                }
+             System.out.println(isSuces);
+             if(isSuces=false){
+               
+                 
+             }
+                
+            
+            
+            
              
              
          }
@@ -430,7 +590,7 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
         this.label_Kode_kategori.setText(kode);
     }
     private void btn_addBanyakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addBanyakMouseClicked
-         // TODO add your handling code here:
+          // TODO add your handling code here:
          
          barangService barang = new barangService();
          
@@ -440,16 +600,32 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
          String harga_beli =this.harga_beli_addBanyak.getText();
          String harga_jual =this.harga_jual_addBanyak.getText();
          String rusak =this.rusak.getText();
-         System.out.println(kode);
-         System.out.println(tabel_addBanyak.getRowCount());
-         System.out.println(this.row);
-         System.out.println(this.getKode_kategori());
+       
+         
+         
+         
+         
+         
+         
          if(tabel_addBanyak.getRowCount()==this.row){
              System.out.println("nol");
-           
+               
+            
+             int total=Integer.parseInt(this.total_harga.getText());
+               
                if(barang.tambahDataKetabel(kode, nama_barang, stok, harga_beli, harga_jual, rusak, this.getKode_kategori())==true) {
                     String kodeBaru =barang.getIdTableAfterAdd(false, KonfirmasiSupplier.combo_addKategori, tabel_addBanyak);
-                 System.out.println(kodeBaru);
+                  int hargaInt =Integer.parseInt(harga_beli.replaceAll("[^0-9]", ""));
+             int stokInt =Integer.parseInt(stok.replaceAll("[^0-9]", ""));
+             int rusakInt=Integer.parseInt(rusak.replaceAll("[^0-9]", ""));
+             
+                if(tabel_addBanyak.getRowCount()==0){
+                    total=hargaInt*(stokInt-rusakInt);
+                }else{
+                    int totalke2= hargaInt*(stokInt-rusakInt);
+                    total+=totalke2;
+                }
+                System.out.println(kodeBaru);
                 this.kode_barang_addBnyak.setText(kodeBaru); 
                 this.row++;
                 this.nama_barang_addBanyak.setText("");
@@ -457,8 +633,10 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
                 this.harga_beli_addBanyak.setText("");
                 this.harga_jual_addBanyak.setText("");
                 this.setBarangRusak();
-               }
                
+               }
+               this.total_harga.setText(String.valueOf(total));
+               this.label_subTotal.setText(String.valueOf(total));
 
          }
          System.out.println("aksi");
@@ -467,6 +645,17 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
          
         
     }//GEN-LAST:event_btn_addBanyakMouseClicked
+
+    private void txt_diskonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_diskonKeyPressed
+         // TODO add your handling code here:
+         
+          if(evt.getKeyCode()==evt.VK_ENTER){
+            OrderService order = new OrderService();
+            int total =order.hitungTotalHarga("beli_banyak");
+              System.out.println(total);
+            this.total_harga.setText(String.valueOf(total));
+        }
+    }//GEN-LAST:event_txt_diskonKeyPressed
 
     public void setNamaSupplier(String nama){
         this.nama_supplier.setText(nama);
@@ -570,15 +759,19 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bayar_tunai;
     private javax.swing.JButton btn_addBanyak;
     private javax.swing.JButton btn_cancelAddBanyak;
     private javax.swing.JButton btn_clearAddBanyak;
     private javax.swing.JButton btn_simpanAddBanyak;
+    private javax.swing.JLabel diskon_label;
     private javax.swing.JTextField harga_beli_addBanyak;
     private javax.swing.JTextField harga_jual_addBanyak;
     private javax.swing.JLabel id_transaksiBeli;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -594,11 +787,15 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
     private javax.swing.JLabel label_Kode_kategori;
     public static javax.swing.JLabel label_idSupplier;
     private javax.swing.JPanel label_navigasi;
+    public static javax.swing.JLabel label_subTotal;
     private javax.swing.JTextField nama_barang_addBanyak;
     private javax.swing.JLabel nama_kategori;
     private javax.swing.JLabel nama_supplier;
     private javax.swing.JTextField rusak;
     private javax.swing.JTextField stok_addBanyak;
     public static javax.swing.JTable tabel_addBanyak;
+    public static javax.swing.JLabel total_harga;
+    public static javax.swing.JTextField txt_bayar;
+    public static javax.swing.JTextField txt_diskon;
     // End of variables declaration//GEN-END:variables
 }

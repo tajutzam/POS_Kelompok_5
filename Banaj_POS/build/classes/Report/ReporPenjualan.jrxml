@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="210" pageHeight="842" columnWidth="75" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="2796c06a-fde4-4369-ac22-accf1311783c">
 	<property name="ireport.zoom" value="3.138428376721005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="250"/>
+	<property name="ireport.y" value="781"/>
 	<parameter name="kode" class="java.lang.String"/>
 	<parameter name="nama_toko" class="java.lang.String"/>
 	<parameter name="no_hp" class="java.lang.String"/>
@@ -150,7 +150,7 @@
 		</band>
 	</detail>
 	<summary>
-		<band height="147" splitType="Prevent">
+		<band height="175" splitType="Prevent">
 			<line>
 				<reportElement x="65" y="0" width="125" height="1" uuid="fdcebe81-3427-4b46-aa4a-5f390dccee38"/>
 				<graphicElement>
@@ -247,7 +247,7 @@
 				</graphicElement>
 			</line>
 			<image scaleImage="RealSize">
-				<reportElement x="55" y="127" width="86" height="20" uuid="836fa8f0-787b-4516-ae83-143ee70000d6"/>
+				<reportElement x="36" y="127" width="126" height="45" uuid="836fa8f0-787b-4516-ae83-143ee70000d6"/>
 				<imageExpression><![CDATA[$P{barcode_path}]]></imageExpression>
 			</image>
 		</band>

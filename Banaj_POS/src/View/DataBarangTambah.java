@@ -770,9 +770,9 @@ public class DataBarangTambah extends javax.swing.JFrame {
        
          String nama_product =txt_nama_barang.getText();
          String kode_product =txt_kodeBarang.getText();
-         String hargaBeli =txt_hargaBeli.getText().replaceAll("[a-zA-Z]","");
-         String hargaJual =txt_hargaJual.getText().replaceAll("[a-zA-Z]","");
-         String stok =txt_stok.getText().replaceAll("[a-zA-Z]","");
+         String hargaBeli =txt_hargaBeli.getText();
+         String hargaJual =txt_hargaJual.getText();
+         String stok =txt_stok.getText();
          String barangRusak =txt_barangRusak.getText();
           
         
@@ -784,6 +784,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
          String supplier = sup.getKodeSupplier(combo_supplier) ;
          String kategori = kt.getCodeKategori(combo_kategori);
 
+         
          // sql untuk mendapatkan kode kategori dan supplier
          String sqlSupplier = "select kode_supplier from supplier where nama_supplier = ?";
          String sqlKategori ="select kode_kategori from kategori where nama_kategori = ? ";
@@ -821,32 +822,80 @@ public class DataBarangTambah extends javax.swing.JFrame {
              System.out.println(e.getMessage());
          }
        
-         //memasukan semua atribut kedalam fungsi2 yang sudah dibuat di class service
-         int harga_jual =Integer.parseInt(hargaJual);
-         int harga_beli =Integer.parseInt(hargaBeli);
-         if(nama_product.equals("")||hargaBeli.equals("")||hargaJual.equals("")||stok.equals("")||stok.equals("0")){
-             kata="Harap Isi semua field dengan benar ";
+  
+         
+         //jika semua kosong error
+         if(nama_product.equals("")&&stok.equals("")&&hargaBeli.equals("")&&hargaJual.equals("")&&barangRusak.equals("0")){
+             kata="Harap isi field dengan benar";
              addBarang=false;
-         }else if(harga_jual<=harga_beli){
-             kata="Harga jual tidak boleh lebih sedikit !";
-             addBarang=false;
-         }else{
-             addBarang=true;
          }
-         
-        
-         
-         
+         //data tidak kosong semua
+         else{
+             String stokString =stok.replaceAll("[0-9]", "");
+             String harga_jualS =hargaJual.replaceAll("[0-9]", "");
+             String harga_beliS =hargaBeli.replaceAll("[0-9]", "");
+             //stok tidak di isi dengan angka
+             if(stok.equals(stokString)){
+               kata="Harap isi stok dengan angka !";  
+               addBarang=false;
+             }
+             //harga jual tidak diisi dengan angka
+             else if(hargaJual.equals(harga_jualS)){
+               kata="Harap isi harga Jual dengan angka !";
+               addBarang=false;
+             }
+             //harga beli tidak diisi dengan angka
+             else if(hargaBeli.equals(harga_beliS)){
+                 kata="Harap isi harga Beli dengan angka !";
+                 addBarang=false;    
+             }
+             //masuk ke kondisi kedua
+             else{
+                 int hargaJualInt = Integer.parseInt(hargaJual);
+                 int hargaBeliInt = Integer.parseInt(hargaBeli);
+                 //jika harga jual lebih kecil
+                 if(hargaJualInt<=hargaBeliInt){
+                     kata="Harga Jual tidak memungkinkan input ulang !";
+                     addBarang=false;
+                 }else{
+                 //jika semua validasi lolos maka true
+                     addBarang=true;
+                 }
+             }
+         }
+
+         //alur jika true
          if(addBarang==true){
-            br.insertIdTransaksiBeli(id_transaksi.getText(), supplier, txt_addAt.getText(), kategori);
+            this.setVisible(false);
+            KonfirmasiBayarSupplier bayar = new KonfirmasiBayarSupplier();
+          
+            bayar.setSupp(supplier);
+            bayar.setKat(kategori);
+            bayar.setLabel_hargaBeli(hargaBeli);
+            bayar.setLabel_hargaJual(hargaJual);
+            bayar.setLabel_kodeProduct(kode_product);
+            bayar.setLabel_namaProduct(nama_product);
+            bayar.setLabel_rusak(barangRusak);
+            bayar.setLabel_stok(stok);
+            int hargaB =Integer.parseInt(hargaBeli);
+            int stokB = Integer.parseInt(stok);
+            
+            int finalTotalInt = hargaB*stokB;
+            String resultTotal = String.valueOf(finalTotalInt);
+            
+            
+//            br.insertIdTransaksiBeli(id_transaksi.getText(), supplier, txt_addAt.getText(), kategori ,resultTotal);
+//         
+//         
+//         
+             
+            bayar.setIdTransaksi(this.id_transaksi.getText().toString());
+            bayar.setSubTotal(resultTotal);
+            
+            // bayar.setTotal();
+           // this.dispose();
+            bayar.action();
          
-         
-         
-            br.addBarang(nama_product, kode_product, hargaBeli, hargaJual,
-            stok, barangRusak,kategori, supplier,this );
-            br.insertDataTambahBanyakProduct(id_transaksi.getText(), txt_stok.getText(), kode_product);
-            JOptionPane.showMessageDialog(null, "Berhasil menambahkan Barang Id Transaksi "+id_transaksi.getText()+"", "Succes !", JOptionPane.ERROR_MESSAGE, suscesicon); 
-            this.dispose();
 
          }else{
             JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon);     
@@ -858,6 +907,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
    
     }//GEN-LAST:event_btn_simpanAddMouseClicked
 
+    
     public void setTransaksi(String kode){
         this.id_transaksi.setText(kode);
     }
@@ -1152,8 +1202,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JButton btn_hapusEdit;
     private javax.swing.JButton btn_simpanAdd;
     private javax.swing.JButton btn_simpanEdit;
-    public javax.swing.JComboBox<String> combo_kategori;
-    private javax.swing.JComboBox<String> combo_supplier;
+    public static javax.swing.JComboBox<String> combo_kategori;
+    public static javax.swing.JComboBox<String> combo_supplier;
     private javax.swing.JPanel contenAddBarang;
     private javax.swing.JPanel contenEditBarang;
     private javax.swing.JTextField harga_beliEdit;
@@ -1199,12 +1249,12 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> supplier_edit;
     private javax.swing.JTextField total_stok;
     private javax.swing.JTextField txt_addAt;
-    private javax.swing.JTextField txt_barangRusak;
-    private javax.swing.JTextField txt_hargaBeli;
-    private javax.swing.JTextField txt_hargaJual;
-    private javax.swing.JTextField txt_kodeBarang;
-    private javax.swing.JTextField txt_nama_barang;
-    private javax.swing.JTextField txt_stok;
+    public static javax.swing.JTextField txt_barangRusak;
+    public static javax.swing.JTextField txt_hargaBeli;
+    public static javax.swing.JTextField txt_hargaJual;
+    public static javax.swing.JTextField txt_kodeBarang;
+    public static javax.swing.JTextField txt_nama_barang;
+    public static javax.swing.JTextField txt_stok;
     private javax.swing.JTextField txt_stokEdit;
     private javax.swing.JTextField update_atEdit;
     // End of variables declaration//GEN-END:variables

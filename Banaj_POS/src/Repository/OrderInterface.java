@@ -21,5 +21,5 @@ public interface OrderInterface {
     public void insertOrder();
     public void insertDataOrder(String id , String kode , String subTotal ,String qty);
     public void cetakStruct(String kode ,String diskon , String kasir , String harga);
-    
+    public void cetakStructPembelian(String transaksi);
 }

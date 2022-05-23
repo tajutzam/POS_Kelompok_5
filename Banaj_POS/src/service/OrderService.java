@@ -11,12 +11,16 @@ import View.Dashbord;
 import View.KonfirmasiBayar;
 import static View.KonfirmasiBayar.txt_diskon;
 import static View.KonfirmasiBayar.txt_totalHarga;
+import View.KonfirmasiBayarSupplier;
 import View.KonfirmasiOrder;
+import View.TambahBanyakBarang;
 import View.TambahUser;
 import View.TransaksiBerhasil;
+import View.TransaksiBerhasilSupplier;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -181,14 +185,15 @@ public class OrderService extends barangService {
         
     
     }
-  public int hitungTotalHarga(){
+  public int hitungTotalHarga(String opsi){
      
        int res_diskon=0;
        KonfirmasiBayarService bayar = new KonfirmasiBayarService();
-       String sub = bayar.setSubtotal();
+       if(opsi.equals("jual")){
+          String sub = bayar.setSubtotal();
+       String subTotal=KonfirmasiBayar.txt_SubTotal.getText();
         int diskon = 0;
         String nilai_input_diskon = KonfirmasiBayar.txt_diskon.getText().replaceAll("[^0-9]", "");
-        System.out.println("diskon ="+nilai_input_diskon);
      
         if(!nilai_input_diskon.equals("")){
             diskon = Integer.parseInt(nilai_input_diskon);
@@ -197,31 +202,147 @@ public class OrderService extends barangService {
                  KonfirmasiBayar.txt_diskon.setText("");
                  
                  KonfirmasiBayar.txt_totalHarga.setText(bayar.setSubtotal());
+                 this.setTotalHarga(Integer.parseInt(KonfirmasiBayar.txt_SubTotal.getText()));
                  
-            }
-            int totalBelanja=Integer.parseInt(KonfirmasiBayar.txt_SubTotal.getText());
+            }else{
+                 int totalBelanja=Integer.parseInt(KonfirmasiBayar.txt_SubTotal.getText());
                  int diskon_new = totalBelanja*diskon/100;
                  res_diskon = totalBelanja-diskon_new;
           
+            }
+           
         }else if(nilai_input_diskon.equals("")){
              
-             KonfirmasiBayar.txt_totalHarga.setText(sub);
-             System.out.println("sub"+sub);
-             System.out.println("ya");
-             res_diskon=Integer.parseInt(sub);
+            res_diskon=Integer.parseInt(subTotal);
+           
+        }else{
+            
+              
+         res_diskon=Integer.parseInt(subTotal);
+       
+        } 
+       }else if(opsi.equals("beli")){
+           String sub = bayar.setSubtotal();
+       String subTotal=KonfirmasiBayarSupplier.txt_SubTotal.getText();
+        int diskon = 0;
+        String nilai_input_diskon = KonfirmasiBayarSupplier.txt_diskon.getText().replaceAll("[^0-9]", "");
+     
+        if(!nilai_input_diskon.equals("")){
+            diskon = Integer.parseInt(nilai_input_diskon);
+            if(diskon >100){
+                jop("Diskon tidak boleh lebih 100");
+                 KonfirmasiBayarSupplier.txt_diskon.setText("");
+                 
+                 KonfirmasiBayarSupplier.txt_totalHarga.setText(bayar.setSubtotal());
+                 this.setTotalHarga(Integer.parseInt(KonfirmasiBayarSupplier.txt_SubTotal.getText()));
+                 
+            }else{
+                 int totalBelanja=Integer.parseInt(KonfirmasiBayarSupplier.txt_SubTotal.getText());
+                 int diskon_new = totalBelanja*diskon/100;
+                 res_diskon = totalBelanja-diskon_new;
+          
+            }
+           
+        }else if(nilai_input_diskon.equals("")){
+             
+            res_diskon=Integer.parseInt(subTotal);
+           
+        }else{
+            
+              
+         res_diskon=Integer.parseInt(subTotal);
+       
         }
+       }else if(opsi.equals("beli_banyak")){
+             String sub = bayar.setSubtotal();
+       String subTotal=TambahBanyakBarang.label_subTotal.getText();
+        int diskon = 0;
+        String nilai_input_diskon = TambahBanyakBarang.txt_diskon.getText().replaceAll("[^0-9]", "");
+     
+        if(!nilai_input_diskon.equals("")){
+            diskon = Integer.parseInt(nilai_input_diskon);
+            if(diskon >100){
+                jop("Diskon tidak boleh lebih 100");
+                 TambahBanyakBarang.txt_diskon.setText("");
+                 System.out.println("sub"+subTotal);
+                 res_diskon=Integer.parseInt(subTotal);
+                 
+                 this.setTotalHarga(Integer.parseInt(subTotal));
+                 
+            }else{
+                 int totalBelanja=Integer.parseInt(TambahBanyakBarang.total_harga.getText());
+                 int diskon_new = totalBelanja*diskon/100;
+                 res_diskon = totalBelanja-diskon_new;
+          
+            }
+           
+        }else if(nilai_input_diskon.equals("")){
+          
+            res_diskon=Integer.parseInt(subTotal);
+           
+        }else{
+            
+              
+         res_diskon=Integer.parseInt(subTotal);
+       
+        } 
+       }
+       
 
-        this.setTotalHarga(res_diskon);
-        return this.getTotalHarga();
+     return res_diskon;      
   }
+  
   
   public int bayar(String bayar , KonfirmasiBayar byr){
        
       boolean close =false;
       System.out.println("ba "+bayar);
-      int bayarInt = Integer.parseInt(bayar);
       int kembalian=0;
       int total=Integer.parseInt(KonfirmasiBayar.txt_totalHarga.getText());
+      if(bayar.equals("")){
+                    jop("Harap isi field bayar terlebih dahulu !");
+      }else{
+          String bayarRepl = bayar.replaceAll("[0-9]", "");
+          if(bayar.equals(bayarRepl)){
+              jop("isi field bayar dengan angka !");
+          }else{
+          int bayarInt = Integer.parseInt(bayar);
+                if(bayarInt < total){
+                jop("Total Bayar Customer Kurang !");
+          
+                close=false;
+                } else{
+                    kembalian=bayarInt-total;  
+                    TransaksiBerhasil transaksi = new TransaksiBerhasil();
+         
+                    transaksi.action();
+         
+                    String kembaliString = String.format("%-,10d\n", kembalian);
+                    TransaksiBerhasil.txt_kembalian.setText(kembaliString);
+                    close=true;
+
+         
+                    }
+                }
+      }
+   
+      
+      if(close==false){
+          /* bayar="";*/
+      }else{
+          byr.dispose();
+      }
+      return kembalian;
+     
+  }
+  
+  public int bayar(String bayar ){
+       
+      boolean close =false;
+      System.out.println("ba "+bayar);
+      int bayarInt = Integer.parseInt(bayar);
+      int kembalian=0;
+      int total=Integer.parseInt(TambahBanyakBarang.total_harga.getText());
       if(bayarInt < total){
           jop("Total Bayar Customer Kurang !");
           
@@ -231,13 +352,59 @@ public class OrderService extends barangService {
           close=false;
       }else{
          kembalian=bayarInt-total;  
-         TransaksiBerhasil transaksi = new TransaksiBerhasil();
+         TransaksiBerhasilSupplier transaksi = new TransaksiBerhasilSupplier();
          
-         transaksi.action();
+        // transaksi.action();
          
          String kembaliString = String.format("%-,10d\n", kembalian);
-         TransaksiBerhasil.txt_kembalian.setText(kembaliString);
+         TransaksiBerhasilSupplier.txt_kembalian.setText(kembaliString);
          close=true;
+
+         
+      }
+      
+      
+      return kembalian;
+     
+  }
+  
+ 
+   public boolean bayar(String bayar , KonfirmasiBayarSupplier byr , String id){
+       
+      boolean close =false;
+    
+     
+      
+      int kembalian=0;
+      int total=Integer.parseInt(KonfirmasiBayarSupplier.txt_totalHarga.getText());
+      if(bayar.equals("")){
+          System.out.println("okea");
+      }
+      if(bayar.equals("")){
+          jop("Harap isi Field dengan angka !");
+          close=false;
+      }else
+      {
+         int bayarInt = Integer.parseInt(bayar);
+          if(bayarInt < total){
+          jop("Total Bayar Customer Kurang !");
+          
+          close=false;
+          }
+          else{
+              
+               
+          kembalian=bayarInt-total;  
+          TransaksiBerhasilSupplier transaksi = new TransaksiBerhasilSupplier();
+          transaksi.setIdTransaksi(id);
+          transaksi.action();
+         
+          String kembaliString = String.format("%-,10d\n", kembalian);
+          TransaksiBerhasilSupplier.txt_kembalian.setText(kembaliString);
+          close=true;
+          }
+        // JOptionPane.showMessageDialog(null, "Berhasil Menambah Barang", "Succes", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+        
 
          
       }
@@ -247,13 +414,10 @@ public class OrderService extends barangService {
       }else{
           byr.dispose();
       }
-      
-      
-    
-     
-      return kembalian;
+      return close;
      
   }
+  
   public void addTransaksi(String id , String grandTotal , String bayar , String idPegawai, String kembali){
       OrderInterface order = new Order();
     
@@ -281,5 +445,9 @@ public class OrderService extends barangService {
   public void cetakPenjualan(String kode , String diskon , String kasir , String harga){
       OrderInterface order = new Order();
       order.cetakStruct(kode,diskon,kasir , harga);
+  }
+  public void cetakPembelian(String transaksi){
+     OrderInterface order = new Order();
+     order.cetakStructPembelian(transaksi);
   }
 }

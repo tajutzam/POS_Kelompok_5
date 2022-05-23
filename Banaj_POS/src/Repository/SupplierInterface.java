@@ -14,7 +14,7 @@ import javax.swing.JTable;
  */
 public interface SupplierInterface {
     
-    String getKodeSupplier(JComboBox box);
+    public String getKodeSupplier(JComboBox box);
     public void showSuplier(JTable table);
     public void addSupplier(String nama_supplier,String kode,String time);
     public String getPrimaryKey();

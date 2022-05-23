@@ -11,6 +11,7 @@ import Repository.KategoriInterface;
 import Repository.Supplier;
 import Repository.SupplierInterface;
 import View.Dashbord;
+import View.DataBarangTambah;
 import View.DataTambahSupplier;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -99,5 +100,9 @@ public class supplierService {
           SupplierInterface suplier = new Supplier();
           isSucses=suplier.cariSupplier(keyword);
           return isSucses;
+      }
+      public String getKodeSupplier(){
+          SupplierInterface sup = new Supplier();
+         return sup.getKodeSupplier(DataBarangTambah.combo_supplier);
       }
 }

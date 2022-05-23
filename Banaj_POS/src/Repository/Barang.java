@@ -34,6 +34,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -57,9 +58,9 @@ public class Barang implements BarangInterface{
     }
 
     @Override
-    public void insertTransaksiBeli(String id , String supplier , String tanggal , String kategori) {
+    public void insertTransaksiBeli(String id , String supplier , String tanggal , String kategori , int total , String bayar , String kembalian) {
         
-        String sql ="INSERT INTO `beli_product`(`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`) VALUES (?,?,?,?)";
+        String sql ="INSERT INTO `beli_product`(`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori` , `grand_total` , pegawai , bayar , kembalian) VALUES (?,?,?,?,?,?,?,?)";
         
         try(Connection con = dt.conectDatabase();
             PreparedStatement pst = con.prepareStatement(sql)){
@@ -68,7 +69,11 @@ public class Barang implements BarangInterface{
             pst.setString(2, supplier);
             pst.setString(3, tanggal);
             pst.setString(4, kategori);
-            
+            pst.setInt(5, total);
+           
+            pst.setString(6, Dashbord.label_idPegawai.getText());
+            pst.setString(7, bayar);
+            pst.setString(8, kembalian);
             pst.execute();
             
         }catch(SQLException e){
@@ -170,8 +175,8 @@ public class Barang implements BarangInterface{
                         res.getString("stok"),
                         res.getString("total_stok"),
                         res.getString("rusak"),
-                        res.getString("harga_beli"),
-                        res.getString("harga_jual"),
+                        ("Rp."+res.getString("harga_beli")),
+                        ("Rp."+ res.getString("harga_jual")),
                         res.getString("supplier.nama_supplier"),
                         res.getString("kategori.nama_kategori"),
                         });
@@ -307,7 +312,7 @@ public class Barang implements BarangInterface{
     @Override
     
     public boolean addBarang(String nama_produt ,String kode_product , String harga_beli
-            , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier , DataBarangTambah dta) {   
+            , String harga_jual , String totalstok , String barang_rusak  , String kategori , String supplier) {   
        boolean isSuces=false;
        //query
        String sqlInsert="Insert into product (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`,total_stok)"
@@ -319,11 +324,12 @@ public class Barang implements BarangInterface{
                PreparedStatement pst =con.prepareStatement(sqlInsert);
                PreparedStatement pstReturn =con.prepareStatement(sqlReturSupplier);
                PreparedStatement pstDet = con.prepareStatement(sqlDetailReturnSupplier)){
-            int stok_retur=   Integer.parseInt(barang_rusak.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "")); 
             if(!nama_produt.equals("")&&!harga_beli.equals("")&&!harga_jual.equals("")&&!totalstok.equals("")&&!barang_rusak.equals(""))  {
                 if(barang_rusak.equals("")){
                     throw  new SQLException("Data tidak Boleh kosong ");
                 }
+                    
+                
     
             pst.setString(1, kode_product.toUpperCase());
             pst.setString(2, nama_produt);
@@ -332,9 +338,7 @@ public class Barang implements BarangInterface{
             
             harga_beli.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "");
             harga_jual.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "");
-            int harga_b =Integer.parseInt(harga_beli);
-            int harga_j =Integer.parseInt(harga_jual);
-            
+           
 //            if(harga_b >= harga_j){
 //                throw new SQLException("Harga Jual tidak memungkingkan Input ulang !!");
 //            }
@@ -348,6 +352,8 @@ public class Barang implements BarangInterface{
             pst.setString(10, barang_rusak.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
            
             pst.setString(11, totalstok);
+                        int stok_retur=   Integer.parseInt(barang_rusak.replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "")); 
+
             if(stok_retur==0){
                 pst.setInt(3,stokNew-stok_retur);
                 isSuces=true;
@@ -370,7 +376,8 @@ public class Barang implements BarangInterface{
                    }
             }
 
-            }  
+            }
+            
             else{
                 throw new SQLException("Data tidak boleh kosong ");
             }
@@ -883,19 +890,21 @@ public class Barang implements BarangInterface{
                   model.addColumn("Supplier");
                   model.addColumn("Kategori");
          
-          String sql="select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier where   nama_product like '%"+keyword+"%' or kode_product like '%"+keyword+"%'   order by product.kode_product asc";
+          String sql="select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier where   product.kode_product like '%"+keyword+"%' or product.nama_product like '%"+keyword+"%'  order by product.kode_product asc ";
        
           try(Connection con = dt.conectDatabase();
-              Statement st = con.createStatement();
-              ResultSet res =st.executeQuery(sql);
+              PreparedStatement pst = con.prepareStatement(sql);
+              ResultSet res =pst.executeQuery(sql);
                )
             {
                
-                if(res.next()){
+               
+                
                  int no=1;
                  while(res.next()){
+                      isSuces=true;
                      System.out.println("temu");
-                    isSuces=true;
+           
                     model.addRow(new Object[]{
                      
                      no,
@@ -908,21 +917,23 @@ public class Barang implements BarangInterface{
                         res.getString("harga_jual"),
                         res.getString("supplier.nama_supplier"),
                         res.getString("kategori.nama_kategori"),
-                        
-                    });
-                    no++;
-                 }
+                    }
+                    );
+                   
+                 
                
        
-                Dashbord.table_barang.setModel(model);
-                
+               
+                                         no++;
+
                 }
+                  Dashbord.table_barang.setModel(model);
                 
 
           }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Gagal Menemukan Data Barang " , "Terjadi Kesalahan !" , JOptionPane.INFORMATION_MESSAGE , eroricon);
           }
-          return isSuces;
+        return isSuces;
           }
 
     @Override
@@ -1193,8 +1204,10 @@ public class Barang implements BarangInterface{
     @Override
     public void cetakBarcode(String name) {
         
-       String sql ="select kode_product  from product where nama_product='"+name+"'";
+       String sql ="select kode_product , nama_pproduct , harga_jual from product where nama_product='"+name+"'";
        String kode="";
+       String nama_pro="";
+       String harga="";
        try{
            Connection con = dt.conectDatabase();
            Statement st = con.createStatement();
@@ -1202,7 +1215,9 @@ public class Barang implements BarangInterface{
            
            
            if(res.next()){
-             kode=res.getString("kode_product");  
+             kode=res.getString("kode_product"); 
+             nama_pro=res.getString("nama_product");
+             harga=res.getString("harga_jual");
            }else{
                throw new SQLException("gagal");
            }
@@ -1239,14 +1254,14 @@ public class Barang implements BarangInterface{
                System.out.println("gagal dihapus");    
            }
            
-         
-          
-           JasperViewer viewer=new JasperViewer(print,false);
-         
-           viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
-          
-           viewer.setVisible(true);
-           viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
+          JasperPrintManager.printReport(print, false);
+//          
+//           JasperViewer viewer=new JasperViewer(print,false);
+//         
+//           viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
+//          
+//           viewer.setVisible(true);
+//           viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
            
            
        }catch(Exception e){
@@ -1320,7 +1335,7 @@ public class Barang implements BarangInterface{
                )
             {
                
-                if(res.next()){
+              
                  int no=1;
                  while(res.next()){
                     model.addRow(new Object[]{
@@ -1343,15 +1358,21 @@ public class Barang implements BarangInterface{
        
                 Dashbord.table_barang.setModel(model);
                 
-                }else{
-                    throw new SQLException("Gagal Menemukan Data Barang");
-                }
+               
 
           }catch(SQLException e){
               System.out.println("gagal mencari barang"+e.getMessage());
           }
         
     }
+
+    @Override
+    public void cetakBeliBarang(String id) {
+        
+        
+        
+    }
+    
     
     
   

@@ -17,9 +17,9 @@ import javax.swing.JTable;
 public interface BarangInterface {
    void showBarang(JTable table,String opsi);
    void addComboboxItem(JComboBox box , String opsi);
-   void insertTransaksiBeli(String a , String b , String c , String d);
+   void insertTransaksiBeli(String a , String b , String c , String d , int e , String bayar , String kembalian);
    boolean addBarang(String nama_produt ,String kode_product , String harga_beli
-            , String harga_jual , String stok , String barang_rusak , String kategori , String supplier,DataBarangTambah dt);
+            , String harga_jual , String stok , String barang_rusak , String kategori , String supplier);
   //a void deleteBarang();
    String getIdBarang(boolean setNewKode, String kode,JComboBox box);
    public void editBarang(String kode_brg, String nama_product , int stok , int harga_beli , int harga_jual,   int rusak ,  JComboBox kat , JComboBox sup, DataBarangTambah dta,String kode_baru);
@@ -42,4 +42,5 @@ public interface BarangInterface {
    public String getIdProductBarcode(String nama);
    public void cetakBarcode(String name);
    public void cariBarangBerdasarkanKategori(String keyword);
+   public void cetakBeliBarang(String id);
 }
