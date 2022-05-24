@@ -383,7 +383,7 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
         btn_simpanAddBanyak.setBackground(new java.awt.Color(111, 59, 160));
         btn_simpanAddBanyak.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_simpanAddBanyak.setForeground(new java.awt.Color(255, 255, 255));
-        btn_simpanAddBanyak.setText("Simpan");
+        btn_simpanAddBanyak.setText("Bayar");
         btn_simpanAddBanyak.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_simpanAddBanyakMouseClicked(evt);

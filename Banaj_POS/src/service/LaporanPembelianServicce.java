@@ -19,15 +19,17 @@ public class LaporanPembelianServicce {
     ReportInterfce report = new LaporanPembelian();
     
     public void showLaporanToTable(JTable table) {
-        if(report.showLaporanToTable(table)==true){
-            
-        }else{
-                        JOptionPane.showMessageDialog(null, "Belum Ada Transaksi Pembelian Product Terjadi !" , "Information" , JOptionPane.INFORMATION_MESSAGE);
+        report.showLaporanToTable(table);
+        if(table.getRowCount()==0){
+                                    JOptionPane.showMessageDialog(null, "Belum Ada Transaksi Pembelian Product Terjadi !" , "Information" , JOptionPane.INFORMATION_MESSAGE);
 
         }
+       
         
         
     }
-    
+    public void showDetailPembelian(JTable table , String id){
+        report.showDetailLaporan(table, id);
+    }
     
 }

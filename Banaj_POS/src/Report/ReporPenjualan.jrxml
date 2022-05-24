@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="210" pageHeight="842" columnWidth="75" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="2796c06a-fde4-4369-ac22-accf1311783c">
 	<property name="ireport.zoom" value="3.138428376721005"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="781"/>
+	<property name="ireport.x" value="68"/>
+	<property name="ireport.y" value="242"/>
 	<parameter name="kode" class="java.lang.String"/>
 	<parameter name="nama_toko" class="java.lang.String"/>
 	<parameter name="no_hp" class="java.lang.String"/>
@@ -12,9 +12,12 @@
 	<parameter name="harga_total" class="java.lang.String"/>
 	<parameter name="barcode_path" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT transaksi.id_transaksi , detail_transaksi.sub_total,product.harga_jual, detail_transaksi.qty , transaksi.tanggal_transaksi , transaksi.grand_total , transaksi.bayar , transaksi.kembali  , product.nama_product from detail_transaksi join transaksi on detail_transaksi.id_transaksi = transaksi.id_transaksi JOIN product ON detail_transaksi.kode_product = product.kode_product  where transaksi.id_transaksi=$P{kode}]]>
+		<![CDATA[SELECT transaksi.id_transaksi , pegawai.nama_pegawai , detail_transaksi.sub_total,product.harga_jual, detail_transaksi.qty , transaksi.tanggal_transaksi , transaksi.grand_total , transaksi.bayar , transaksi.kembali  , product.nama_product from detail_transaksi join transaksi on detail_transaksi.id_transaksi = transaksi.id_transaksi JOIN product ON detail_transaksi.kode_product = product.kode_product join pegawai on transaksi.id_pegawai=pegawai.id_pegawai where transaksi.id_transaksi=$P{kode}]]>
 	</queryString>
 	<field name="id_transaksi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_pegawai" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="sub_total" class="java.lang.Integer">
@@ -102,19 +105,19 @@
 				<reportElement x="3" y="41" width="89" height="20" forecolor="#5A5A5A" uuid="51982ae4-44e0-4701-8e09-b82f13146f45"/>
 				<text><![CDATA[Kasir		:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="92" y="41" width="88" height="20" forecolor="#5A5A5A" uuid="20b1ba66-73e9-4045-9fd2-cea75e34928c"/>
-				<textElement>
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{nama_kasir}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="0" y="61" width="190" height="1" uuid="68b8dc41-0a7b-4b66-88af-4d9fd2dc68ff"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="92" y="42" width="88" height="20" forecolor="#5A5A5A" uuid="d2d7807c-0b7a-4b64-8c7f-f4e000ed3136"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_pegawai}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<detail>

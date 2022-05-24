@@ -442,9 +442,9 @@ public class OrderService extends barangService {
       }
       
   }
-  public void cetakPenjualan(String kode , String diskon , String kasir , String harga){
+  public void cetakPenjualan(String kode , String diskon  , String harga){
       OrderInterface order = new Order();
-      order.cetakStruct(kode,diskon,kasir , harga);
+      order.cetakStruct(kode,diskon, harga);
   }
   public void cetakPembelian(String transaksi){
      OrderInterface order = new Order();

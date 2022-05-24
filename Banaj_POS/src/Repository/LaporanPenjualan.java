@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.TransaksiPenjualan;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class LaporanPenjualan implements ReportInterfce{
     
     DatabaseInterface dt = new Database();
    
-
+    String data[] = new String[3];
     
 
     @Override
@@ -41,12 +42,7 @@ public class LaporanPenjualan implements ReportInterfce{
         try(Connection con = dt.conectDatabase();
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
-            
-            if(res.next()){
-                isSuces=true;
-            }else{
-                isSuces=false;
-            }
+           
             while(res.next()){
                 no++;
                 model.addRow(new Object[]{
@@ -68,6 +64,59 @@ public class LaporanPenjualan implements ReportInterfce{
         
         
     }
- 
+
+    @Override
+    public void showDetailLaporan(JTable table , String id) {
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nama Barang ");
+        model.addColumn("Qty");
+        model.addColumn("Sub Total");
+        
+        
+        
+        String sql ="select transaksi.bayar , transaksi.kembali , transaksi.tanggal_transaksi , transaksi.id_transaksi , pegawai.nama_pegawai , product.nama_product , detail_transaksi.qty ,detail_transaksi.sub_total,  transaksi.grand_total from detail_transaksi join transaksi on detail_transaksi.id_transaksi = transaksi.id_transaksi join pegawai on pegawai.id_pegawai = transaksi.id_pegawai join product on product.kode_product = detail_transaksi.kode_product where transaksi.id_transaksi ='"+id+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+        String tanggal="";   
+        String nama="";
+        String bayar="";
+        String kembalian="";
+        String total="";
+            
+        
+             
+        
+        while(res.next()){
+            
+             tanggal=res.getString("tanggal_transaksi");
+             nama=res.getString("pegawai.nama_pegawai");
+             bayar=res.getString("bayar");
+             kembalian=res.getString("kembali");
+             total=res.getString("grand_total");
+             
+            model.addRow(new Object[]{
+                res.getString("product.nama_product"),
+                res.getString("detail_transaksi.qty"),
+                res.getString("detail_transaksi.sub_total")
+               
+            });
+            
+        }
+        
+            TransaksiPenjualan.tanggal_kasir.setText(tanggal);
+            TransaksiPenjualan.nama_kasir_value.setText(nama);
+            TransaksiPenjualan.grand_totalVlue.setText(total);
+            TransaksiPenjualan.bayar_value.setText(bayar);
+            TransaksiPenjualan.kembalian_value.setText(kembalian);
+        
+        table.setModel(model);
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    
+    }
     
 }

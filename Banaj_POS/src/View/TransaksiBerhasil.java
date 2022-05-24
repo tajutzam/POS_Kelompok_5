@@ -187,7 +187,7 @@ public class TransaksiBerhasil extends javax.swing.JFrame {
          String diskon =KonfirmasiBayar.txt_diskon.getText();
          String kasir =Dashbord.label_namaPegawai.getText();
          OrderService order = new OrderService();
-         order.cetakPenjualan(kode,diskon,kasir,KonfirmasiBayar.txt_SubTotal.getText().toString());
+         order.cetakPenjualan(kode,diskon,KonfirmasiBayar.txt_SubTotal.getText().toString());
          
        
     }//GEN-LAST:event_jButton1MouseClicked

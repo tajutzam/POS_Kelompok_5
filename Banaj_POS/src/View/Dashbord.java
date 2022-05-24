@@ -7,6 +7,7 @@ package View;
 
 import Repository.Order;
 import static Repository.Order.tbOrder;
+import Util.Bulan;
 import Util.Id;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -105,7 +106,7 @@ public class Dashbord extends javax.swing.JFrame {
         showChart();
         barangService br = new barangService();
         br.addItemInCombobox(comboBox_showBarang);
-        
+         label_bula.setText(bulan.getBulan());
         //setting height in table
         tabel_kategori.setRowHeight(30);
         table_barang.setRowHeight(30);
@@ -288,7 +289,7 @@ public class Dashbord extends javax.swing.JFrame {
         btn_exportPembelian = new javax.swing.JButton();
         panel_contenDashbord = new javax.swing.JPanel();
         icon_penghasilanSebulan = new RoundedPanel(8, new Color(255, 255, 255));
-        jLabel2 = new javax.swing.JLabel();
+        label_bula = new javax.swing.JLabel();
         icon_pengSebulan = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new RoundedPanel(8, new Color(255, 255, 255));
@@ -1880,9 +1881,9 @@ public class Dashbord extends javax.swing.JFrame {
 
         panel_contenDashbord.setBackground(new java.awt.Color(239, 240, 245));
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel2.setText("Maret");
+        label_bula.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        label_bula.setForeground(new java.awt.Color(90, 90, 90));
+        label_bula.setText("Maret");
 
         icon_pengSebulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clipboard.png"))); // NOI18N
 
@@ -1895,7 +1896,7 @@ public class Dashbord extends javax.swing.JFrame {
             .addGroup(icon_penghasilanSebulanLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(label_bula)
                     .addGroup(icon_penghasilanSebulanLayout.createSequentialGroup()
                         .addComponent(icon_pengSebulan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
@@ -1906,7 +1907,7 @@ public class Dashbord extends javax.swing.JFrame {
             icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(icon_penghasilanSebulanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(label_bula)
                 .addGap(18, 18, 18)
                 .addGroup(icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(icon_pengSebulan)
@@ -2161,6 +2162,7 @@ public class Dashbord extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    Bulan bulan = new Bulan();
     private void icon_dashbordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_dashbordMouseClicked
         // TODO add your handling code here:
         
@@ -2182,7 +2184,7 @@ public class Dashbord extends javax.swing.JFrame {
         showChart();
         OrderService order = new OrderService();
         order.resetKeranjang();
-        
+       
         
         
     }//GEN-LAST:event_icon_dashbordMouseClicked
@@ -2669,6 +2671,7 @@ public class Dashbord extends javax.swing.JFrame {
          
           LaporanPembelianServicce laporan = new LaporanPembelianServicce();
           laporan.showLaporanToTable(table_laporanPembelian);
+          
 
     }//GEN-LAST:event_label_laporanPemebelianMouseClicked
 
@@ -2751,13 +2754,26 @@ public class Dashbord extends javax.swing.JFrame {
     private void table_laporanPenjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_laporanPenjualanMouseClicked
          // TODO add your handling code here:
          TransaksiPenjualan tr = new TransaksiPenjualan();
+         LaporanService laporan = new LaporanService();
+         int row = table_laporanPenjualan.getSelectedRow();
+         
+         String kode =table_laporanPenjualan.getValueAt(row, 1).toString();
+         tr.setId_transaksi(kode);
+         laporan.showLaporanPenjualan(TransaksiPenjualan.tb_penjualan, kode);
          tr.showJf();
          
     }//GEN-LAST:event_table_laporanPenjualanMouseClicked
 
     private void table_laporanPembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_laporanPembelianMouseClicked
          // TODO add your handling code here:
-         TransaksiPembelian tr = new TransaksiPembelian();
+         TransaksiPembelian1 tr = new TransaksiPembelian1();
+         LaporanPembelianServicce laporan = new LaporanPembelianServicce();
+         int row = table_laporanPembelian.getSelectedRow();
+         
+         String kode =table_laporanPembelian.getValueAt(row, 1).toString();
+         System.out.println(kode);
+         tr.setId_transaksi(kode);
+         laporan.showDetailPembelian(TransaksiPembelian1.tb_penjualan, kode);
          tr.showJf();
     }//GEN-LAST:event_table_laporanPembelianMouseClicked
 
@@ -3248,6 +3264,12 @@ public class Dashbord extends javax.swing.JFrame {
     data.setValue(4000000, "Total Penghasilan ", "April");
     data.setValue(3000000, "Total Penghasilan ", "Mei");
     data.setValue(2000000, "Total Penghasilan ", "Juni");
+    data.setValue(2000000, "Total Penghasilan ", "Juli");
+    data.setValue(2000000, "Total Penghasilan ", "Agustus");
+    data.setValue(2000000, "Total Penghasilan ", "September");
+    data.setValue(2000000, "Total Penghasilan ", "Oktober");
+    data.setValue(2000000, "Total Penghasilan ", "November");
+    data.setValue(2000000, "Total Penghasilan ", "Desember");
     
     String title ="Perbandingan Penghasilan";
     
@@ -3324,7 +3346,6 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -3350,6 +3371,7 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable4;
+    private javax.swing.JLabel label_bula;
     public static javax.swing.JLabel label_idPegawai;
     private javax.swing.JLabel label_laporanPemebelian;
     private javax.swing.JLabel label_laporan_penjualan;
@@ -3409,7 +3431,7 @@ public class Dashbord extends javax.swing.JFrame {
     public static javax.swing.JTable table_barang;
     public static javax.swing.JTable table_belanja;
     public static javax.swing.JTable table_cariBelanja;
-    private javax.swing.JTable table_laporanPembelian;
+    public static javax.swing.JTable table_laporanPembelian;
     private javax.swing.JTable table_laporanPenjualan;
     private javax.swing.JTable table_return;
     public static javax.swing.JTable table_supplier;

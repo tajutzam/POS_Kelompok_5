@@ -80,7 +80,7 @@ public class barangService {
             
              }else if(harga_jual.equals(hargaJual)){
                       isAdd=false;
-                 getJoption("Harap isi harga Jua dengan angka ");
+                      getJoption("Harap isi harga Jua dengan angka ");
              } else if(stok.equals(stokString)){
                       isAdd=false;
                  getJoption("Harap isi Stok dengan angka ");
@@ -88,8 +88,8 @@ public class barangService {
                       isAdd=false;
                  getJoption("Harap isi barang rusak dengan angka ");
              } else{
-                 
-                  isAdd=br.addBarang(nama_produt, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier);
+                  System.out.println(harga_beli.replaceAll("[a-zA-Z]",""));
+                  isAdd=br.addBarang(nama_produt, kode_product, harga_beli.replaceAll("[a-zA-Z]", ""), harga_jual.replaceAll("[a-zA-Z]",""), stok, barang_rusak, kategori, supplier);
 
              }
              

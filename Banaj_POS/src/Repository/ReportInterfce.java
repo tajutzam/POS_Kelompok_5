@@ -13,5 +13,6 @@ import javax.swing.JTable;
  */
 public interface ReportInterfce {
     public boolean showLaporanToTable(JTable table);
+    public void showDetailLaporan(JTable table , String id);
     
 }
