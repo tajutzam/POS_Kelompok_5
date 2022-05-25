@@ -70,8 +70,6 @@ public class Validasi implements ValidasiUser{
     @Override
     public boolean login(String username , String password) {
     
-        System.out.println(username);
-        System.out.println(password);
         
    
       Login login = new Login();
@@ -88,18 +86,14 @@ public class Validasi implements ValidasiUser{
                 
                 String status =res.getString("status");
                 String role = res.getString("role");
-                System.out.println("o"+ role);
+             
                 
                 String id = res.getString("id_pegawai");
                 String nama=res.getString("nama_pegawai");
-                String usernm = res.getString("username");
-                String pw = res.getString("password");
                 
-                System.out.println(id);
-                System.out.println(nama);
-              
+             
                 
-                    if(status.equals("Aktive")){
+                    if(status.equals("Aktif")){
                     JOptionPane.showMessageDialog(login, "Berhasil Login ", "Sukses", JOptionPane.INFORMATION_MESSAGE, suscesicon);
                     
                     isLogin =true;
@@ -145,7 +139,7 @@ public class Validasi implements ValidasiUser{
         {
           if(res.next()){
               id = res.getString("role");
-              System.out.println("id "+ id);
+            
           }else{
               throw new SQLException();
           }
@@ -173,7 +167,7 @@ public class Validasi implements ValidasiUser{
                 this.setNama(res.getString("nama_pegawai"));
             }
         }catch(SQLException e){
-            System.out.println("Gagal mengambil nama");
+            
         }
     return this.getNama();
     }
@@ -193,7 +187,7 @@ public class Validasi implements ValidasiUser{
                 this.setIdPegawaiBaru(res.getString("id_pegawai"));
             }
         }catch(SQLException e){
-            System.out.println("Gagal mengambil Id Pegawai");
+            
         }
     return this.getIdPegawaiBaru(); 
     }

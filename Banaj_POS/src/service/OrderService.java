@@ -69,6 +69,7 @@ public class OrderService extends barangService {
           if(order.cariBarang(keyword, Dashbord.table_cariBelanja , "match")==true){
               isMatch=true;
           }else{
+              jop("Gagal Menemukan Data Barang");
               isMatch=false;
           }
         return isMatch;
@@ -102,7 +103,7 @@ public class OrderService extends barangService {
          JOptionPane.showMessageDialog(null, "Tidak Bisa menambahkan Product, Stok Habis !", "Product Kosong", JOptionPane.INFORMATION_MESSAGE, eroricon);
       }else{
       int count = table.getRowCount();
-      System.out.println("count "+count);
+     
       boolean dataDoble = false;
       int stok = Integer.parseInt(Dashbord.table_cariBelanja.getValueAt(selectedRow, 3).toString());
       int qty = Integer.parseInt(KonfirmasiOrder.txt_qty.getText().toString().replaceAll("[a-zA-Z]",""));
@@ -264,7 +265,7 @@ public class OrderService extends barangService {
             if(diskon >100){
                 jop("Diskon tidak boleh lebih 100");
                  TambahBanyakBarang.txt_diskon.setText("");
-                 System.out.println("sub"+subTotal);
+                
                  res_diskon=Integer.parseInt(subTotal);
                  
                  this.setTotalHarga(Integer.parseInt(subTotal));
@@ -296,7 +297,7 @@ public class OrderService extends barangService {
   public int bayar(String bayar , KonfirmasiBayar byr){
        
       boolean close =false;
-      System.out.println("ba "+bayar);
+    
       int kembalian=0;
       int total=Integer.parseInt(KonfirmasiBayar.txt_totalHarga.getText());
       if(bayar.equals("")){
@@ -339,7 +340,7 @@ public class OrderService extends barangService {
   public int bayar(String bayar ){
        
       boolean close =false;
-      System.out.println("ba "+bayar);
+     
       int bayarInt = Integer.parseInt(bayar);
       int kembalian=0;
       int total=Integer.parseInt(TambahBanyakBarang.total_harga.getText());
@@ -377,9 +378,7 @@ public class OrderService extends barangService {
       
       int kembalian=0;
       int total=Integer.parseInt(KonfirmasiBayarSupplier.txt_totalHarga.getText());
-      if(bayar.equals("")){
-          System.out.println("okea");
-      }
+   
       if(bayar.equals("")){
           jop("Harap isi Field dengan angka !");
           close=false;
@@ -420,8 +419,16 @@ public class OrderService extends barangService {
   
   public void addTransaksi(String id , String grandTotal , String bayar , String idPegawai, String kembali){
       OrderInterface order = new Order();
-    
-          order.addIdTransaksi(id, grandTotal, bayar, idPegawai, kembali);
+          int subTotal=0;
+          for(int i=0; i<Dashbord.table_belanja.getRowCount();i++){
+              String harga_beli=Dashbord.table_belanja.getValueAt(i, 6).toString();
+              int harga=Integer.parseInt(harga_beli);
+              String qty =Dashbord.table_belanja.getValueAt(i, 4).toString();
+              int qtyInt =Integer.parseInt(qty);
+              int resultTmp=harga*qtyInt;
+              subTotal+=resultTmp;
+          }
+          order.addIdTransaksi(id, grandTotal, bayar, idPegawai, kembali,String.valueOf(subTotal));
       
  
   }
@@ -429,16 +436,21 @@ public class OrderService extends barangService {
       OrderInterface order = new Order();
       
       int rowCount = table.getRowCount();
-      System.out.println("row"+ rowCount);
+     
       String id =KonfirmasiBayar.tx_idTransaksi.getText();
       
       //melakukan insert detail transaksi sebanyak barang yang dipesan
       for(int i=0; i<rowCount; i++){
           String kode =table.getValueAt(i, 1).toString();
-          String subTotal=table.getValueAt(i, 6).toString();
+          String subTotal=table.getValueAt(i, 7).toString();
           String qty =table.getValueAt(i, 4).toString();
-          System.out.println("kode"+kode);
-          order.insertDataOrder(id, kode, subTotal, qty);
+          String sub_total =table.getValueAt(i, 6).toString();
+          int subTmp = Integer.parseInt(sub_total);
+          int qtyTpm = Integer.parseInt(qty);
+          int Result = subTmp*qtyTpm;
+          String resultFinal = String.valueOf(Result);
+     
+          order.insertDataOrder(id, kode, subTotal, qty ,resultFinal);
       }
       
   }
@@ -450,4 +462,24 @@ public class OrderService extends barangService {
      OrderInterface order = new Order();
      order.cetakStructPembelian(transaksi);
   }
+  public String showPenjualan(int indek){
+      OrderInterface order = new Order();
+      return order.showPenjualan(indek);
+  }
+  public String getUntung(){
+      OrderInterface order = new Order();
+      return order.getUntung();
+  }
+  public String getPengeluaran(){
+      Order order = new Order();
+      return order.getPengeluaran();
+  }
+   public int showPenjualanint(int indek){
+      OrderInterface order = new Order();
+      return order.showPenjualanint(indek);
+  }
+   public void barangPalingBanyakDiminati(JTable table){
+       OrderInterface order = new Order();
+       order.barangPalingBanyakDiminati(table);
+   }
 }

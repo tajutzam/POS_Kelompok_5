@@ -283,18 +283,16 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
      
        OrderService order = new OrderService();
        String bayar = txt_bayar.getText();
-        System.out.println(bayar);
+        
        long kembalian = order.bayar( bayar, this);
        String kembaliy =String.valueOf(kembalian);
      
        String idTransaksi= tx_idTransaksi.getText();
-       System.out.println("id +"+idTransaksi);
+      
        String grandTotal = txt_totalHarga.getText();
   
        String id_pegawai=Dashbord.label_idPegawai.getText();
-       System.out.println(id_pegawai);
-       
-       
+     
        order.addTransaksi(idTransaksi, grandTotal, bayar, id_pegawai,kembaliy);
        order.insertDataOrder(Dashbord.table_belanja);
        order.resetKeranjang();

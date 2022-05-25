@@ -14,12 +14,19 @@ import javax.swing.JTable;
 
 
 public interface OrderInterface {
-    public void addIdTransaksi(String id,String a , String b , String c , String d);
+    public void addIdTransaksi(String id,String a , String b , String c , String d,String e);
     public boolean cariBarang(String keyword , JTable table  , String opsi);
     public String selectToOrder(String kode);
     public void addProductToKeranjang(String kode );
     public void insertOrder();
-    public void insertDataOrder(String id , String kode , String subTotal ,String qty);
+    public void insertDataOrder(String id , String kode , String subTotal ,String qty , String subPembelian);
     public void cetakStruct(String kode ,String diskon  , String harga);
     public void cetakStructPembelian(String transaksi);
+    public String showPenjualan(int indek);
+  
+    public String getUntung();
+    public String getPengeluaran();
+    public int showPenjualanint(int indek);
+    public void barangPalingBanyakDiminati(JTable table);
+  
 }

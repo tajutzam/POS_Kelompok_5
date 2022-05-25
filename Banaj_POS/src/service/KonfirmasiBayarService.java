@@ -40,7 +40,7 @@ public class KonfirmasiBayarService {
         int sub =0;
         int indekRow = Dashbord.table_belanja.getRowCount();
         for(int i =0; i < indekRow ; i++){
-            String nilaiString =Dashbord.table_belanja.getValueAt(i, 6).toString();
+            String nilaiString =Dashbord.table_belanja.getValueAt(i, 7).toString();
             int nilaiSub=Integer.parseInt(nilaiString);
             sub+=nilaiSub;
         }
