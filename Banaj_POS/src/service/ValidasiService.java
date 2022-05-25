@@ -7,6 +7,7 @@ package service;
 
 import Repository.Validasi;
 import Repository.ValidasiUser;
+import Util.Bulan;
 import View.Dashbord;
 import View.Login;
 
@@ -35,6 +36,12 @@ public class ValidasiService {
              dh.setNamaUserLogin(nama);
              dh.setIdPegawai(id);
              dh.setVisible(true);
+             OrderService order = new OrderService();
+             dh.setUntung(order.getUntung());
+             dh.setPengeluaran(order.getPengeluaran());
+             Bulan bulan = new Bulan();
+             int indek = bulan.getindexBulan();
+             dh.setPenghasilanBulanIni(order.showPenjualan(indek));
              
              login =true;
         }else{

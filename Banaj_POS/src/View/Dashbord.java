@@ -7,6 +7,7 @@ package View;
 
 import Repository.Order;
 import static Repository.Order.tbOrder;
+import Repository.OrderInterface;
 import Util.Bulan;
 import Util.Id;
 import java.awt.BorderLayout;
@@ -70,7 +71,7 @@ public class Dashbord extends javax.swing.JFrame {
         ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
 
  
-   
+   Bulan bulan = new Bulan();
     
     public Dashbord(String role) {
         
@@ -106,7 +107,9 @@ public class Dashbord extends javax.swing.JFrame {
         showChart();
         barangService br = new barangService();
         br.addItemInCombobox(comboBox_showBarang);
-         label_bula.setText(bulan.getBulan());
+         label_bula.setText("Penghasilan Total "+bulan.getBulan());
+         untung_sebulan.setText("Keuntungan bulan "+bulan.getBulan());
+         pengeluaran_bulan.setText("Pengeluaran bulan "+bulan.getBulan());
         //setting height in table
         tabel_kategori.setRowHeight(30);
         table_barang.setRowHeight(30);
@@ -291,20 +294,20 @@ public class Dashbord extends javax.swing.JFrame {
         icon_penghasilanSebulan = new RoundedPanel(8, new Color(255, 255, 255));
         label_bula = new javax.swing.JLabel();
         icon_pengSebulan = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        penghasilan_bulanIni = new javax.swing.JLabel();
         jPanel4 = new RoundedPanel(8, new Color(255, 255, 255));
-        jLabel19 = new javax.swing.JLabel();
+        pengeluaran_bulan = new javax.swing.JLabel();
         icon_totalReturn = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        pengeluaranSebulan = new javax.swing.JLabel();
         panel_chart = new javax.swing.JPanel();
         jPanel6 = new RoundedPanel(8, new Color(255, 255, 255));
         jScrollPane10 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jPanel7 = new RoundedPanel(8, new Color(255, 255, 255));
-        total_PenjSebulan = new javax.swing.JLabel();
+        untung_sebulan = new javax.swing.JLabel();
         icon_penjualanSebulan = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        untungSebulanValue = new javax.swing.JLabel();
         header_panel = new RoundedPanel(0, new Color(111, 59, 160));
         label_page = new javax.swing.JLabel();
         label_namatoko = new javax.swing.JLabel();
@@ -1694,6 +1697,7 @@ public class Dashbord extends javax.swing.JFrame {
 
         label_laporan_penjualan.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         label_laporan_penjualan.setText("Laporan Penjualan");
+        label_laporan_penjualan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_laporan_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_laporan_penjualanMouseClicked(evt);
@@ -1702,6 +1706,7 @@ public class Dashbord extends javax.swing.JFrame {
 
         label_laporanPemebelian.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         label_laporanPemebelian.setText("Laporan Pembelian");
+        label_laporanPemebelian.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_laporanPemebelian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_laporanPemebelianMouseClicked(evt);
@@ -1887,7 +1892,9 @@ public class Dashbord extends javax.swing.JFrame {
 
         icon_pengSebulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clipboard.png"))); // NOI18N
 
-        jLabel4.setText("Rp . 1004");
+        penghasilan_bulanIni.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        penghasilan_bulanIni.setForeground(new java.awt.Color(90, 90, 90));
+        penghasilan_bulanIni.setText("Rp . 1004");
 
         javax.swing.GroupLayout icon_penghasilanSebulanLayout = new javax.swing.GroupLayout(icon_penghasilanSebulan);
         icon_penghasilanSebulan.setLayout(icon_penghasilanSebulanLayout);
@@ -1899,8 +1906,8 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(label_bula)
                     .addGroup(icon_penghasilanSebulanLayout.createSequentialGroup()
                         .addComponent(icon_pengSebulan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addComponent(jLabel4)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(penghasilan_bulanIni, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
         icon_penghasilanSebulanLayout.setVerticalGroup(
@@ -1911,17 +1918,19 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(icon_penghasilanSebulanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(icon_pengSebulan)
-                    .addComponent(jLabel4))
+                    .addComponent(penghasilan_bulanIni))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel19.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel19.setText("Total Barang Return");
+        pengeluaran_bulan.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        pengeluaran_bulan.setForeground(new java.awt.Color(90, 90, 90));
+        pengeluaran_bulan.setText("Total Barang Return");
 
         icon_totalReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/returns.png"))); // NOI18N
 
-        jLabel11.setText("10000");
+        pengeluaranSebulan.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        pengeluaranSebulan.setForeground(new java.awt.Color(90, 90, 90));
+        pengeluaranSebulan.setText("10000");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1931,23 +1940,23 @@ public class Dashbord extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
+                        .addComponent(pengeluaran_bulan)
                         .addContainerGap(31, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(icon_totalReturn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
+                        .addComponent(pengeluaranSebulan)
                         .addGap(43, 43, 43))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel19)
+                .addComponent(pengeluaran_bulan)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(icon_totalReturn)
-                    .addComponent(jLabel11))
+                    .addComponent(pengeluaranSebulan))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -1999,13 +2008,15 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
         );
 
-        total_PenjSebulan.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        total_PenjSebulan.setForeground(new java.awt.Color(90, 90, 90));
-        total_PenjSebulan.setText("Penjualan Sebulan");
+        untung_sebulan.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        untung_sebulan.setForeground(new java.awt.Color(90, 90, 90));
+        untung_sebulan.setText("Penjualan Sebulan");
 
         icon_penjualanSebulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clipboard pb.png"))); // NOI18N
 
-        jLabel5.setText("10000");
+        untungSebulanValue.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        untungSebulanValue.setForeground(new java.awt.Color(90, 90, 90));
+        untungSebulanValue.setText("10000");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -2015,23 +2026,23 @@ public class Dashbord extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(total_PenjSebulan)
+                        .addComponent(untung_sebulan)
                         .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(icon_penjualanSebulan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
+                        .addComponent(untungSebulanValue)
                         .addGap(52, 52, 52))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(total_PenjSebulan)
+                .addComponent(untung_sebulan)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(icon_penjualanSebulan)
-                    .addComponent(jLabel5))
+                    .addComponent(untungSebulanValue))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2047,10 +2058,9 @@ public class Dashbord extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panel_chart, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -2162,7 +2172,7 @@ public class Dashbord extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    Bulan bulan = new Bulan();
+    
     private void icon_dashbordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_dashbordMouseClicked
         // TODO add your handling code here:
         
@@ -2184,11 +2194,22 @@ public class Dashbord extends javax.swing.JFrame {
         showChart();
         OrderService order = new OrderService();
         order.resetKeranjang();
+        
+        this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+        this.setPengeluaran(order.getPengeluaran());
+        this.setUntung(order.getUntung());
        
         
         
     }//GEN-LAST:event_icon_dashbordMouseClicked
 
+    public void setPengeluaran(String kode){
+        this.pengeluaranSebulan.setText("Rp."+kode);
+    }
+    public void setUntung(String kode){
+        this.untungSebulanValue.setText("Rp."+kode);
+    }
+    
     private void panel_iconProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconProductMouseClicked
            // TODO add your handling code here:
         ConntainerPanel.removeAll();
@@ -2259,6 +2280,9 @@ public class Dashbord extends javax.swing.JFrame {
         
     }//GEN-LAST:event_panel_iconManagerMouseClicked
 
+    public void setPenghasilanBulanIni(String penghasilan){
+        this.penghasilan_bulanIni.setText("Rp."+penghasilan);
+    }
     private void panel_iconLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconLaporanMouseClicked
          // TODO add your handling code here:
         ConntainerPanel.removeAll();
@@ -2397,6 +2421,10 @@ public class Dashbord extends javax.swing.JFrame {
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
+        OrderService order = new OrderService();
+        order.resetKeranjang();
+        
+        this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
     }//GEN-LAST:event_panel_dashbordMouseClicked
 
     private void panel_kasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kasirMouseClicked
@@ -2930,12 +2958,11 @@ public class Dashbord extends javax.swing.JFrame {
              OrderService order = new OrderService();
        
         int row =table_cariBelanja.getRowCount();
-        System.out.println("row"+row);
+       
       
          if(order.getBarang(txt_cariDataOrder.getText().toString())==true){
               txt_cariDataOrder.setText("");
          }else{
-            JOptionPane.showMessageDialog(null, "Gagal Menemukan Data Barang !" , "Terjadi Kesalahan " , JOptionPane.ERROR_MESSAGE , eroricon);
             txt_cariDataOrder.setText("");
          }
          }
@@ -2955,10 +2982,9 @@ public class Dashbord extends javax.swing.JFrame {
         konfirmasi.setVisible(true);
         
         String nama_product="";
-        System.out.println(nama_product);
+      
         KonfirmasiOrder.txt_namaProductOrder.setText(nama_product);
-        System.out.println(nama_product);
-        
+      
         konfirmasi.addQty("edit");
         
     }//GEN-LAST:event_table_cariBelanjaMouseClicked
@@ -2970,7 +2996,7 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_table_belanjaMouseClicked
 
     private void table_belanjaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_belanjaKeyPressed
-         // TODO add your handling code here:
+         //TODO add your handling code here:
          
          
          if(evt.getKeyCode() ==evt.VK_ENTER){
@@ -3256,25 +3282,24 @@ public class Dashbord extends javax.swing.JFrame {
  }
     
  public void showChart(){
-    
+     
     DefaultCategoryDataset data = new DefaultCategoryDataset();
-    data.setValue(1000000, "Total Penghasilan ", "Januari");
-    data.setValue(2000000, "Total Penghasilan ", "Februari");
-    data.setValue(3000000, "Total Penghasilan ", "Maret");
-    data.setValue(4000000, "Total Penghasilan ", "April");
-    data.setValue(3000000, "Total Penghasilan ", "Mei");
-    data.setValue(2000000, "Total Penghasilan ", "Juni");
-    data.setValue(2000000, "Total Penghasilan ", "Juli");
-    data.setValue(2000000, "Total Penghasilan ", "Agustus");
-    data.setValue(2000000, "Total Penghasilan ", "September");
-    data.setValue(2000000, "Total Penghasilan ", "Oktober");
-    data.setValue(2000000, "Total Penghasilan ", "November");
-    data.setValue(2000000, "Total Penghasilan ", "Desember");
+     
     
-    String title ="Perbandingan Penghasilan";
+    OrderService order = new OrderService();
+    for(int i=1; i<= 12 ; i++){
+          System.out.println(order.showPenjualan(i));
+          System.out.println(bulan.getBulan(i));
+          data.setValue(order.showPenjualanint(i), "Total Penghasilan ", bulan.getBulan(i));
+    }
+     
+    
+ 
     
     
-    JFreeChart barChart = ChartFactory.createBarChart3D("Perbandingan Penghasilan", "Perbulan", "Penghasilan", data, PlotOrientation.VERTICAL, false, true, false);
+   
+      
+    JFreeChart barChart = ChartFactory.createBarChart3D("Perbandingan Keuntungan", "Perbulan", "Penghasilan", data, PlotOrientation.VERTICAL, false, true, false);
     barChart.getTitle().setFont(new Font("Tahoma", Font.PLAIN, 16));
     CategoryPlot plot = barChart.getCategoryPlot();
     BarRenderer3D ren = (BarRenderer3D) plot.getRenderer();
@@ -3343,15 +3368,11 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -3425,6 +3446,9 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JPanel panel_totalReturn;
     private javax.swing.JPanel panel_totalSupplier;
     private javax.swing.JPanel panel_totalUser;
+    private javax.swing.JLabel pengeluaranSebulan;
+    private javax.swing.JLabel pengeluaran_bulan;
+    private javax.swing.JLabel penghasilan_bulanIni;
     private javax.swing.JLabel show_laporanPembelian;
     private javax.swing.JLabel show_laporanPenjualan;
     public static javax.swing.JTable tabel_kategori;
@@ -3436,7 +3460,6 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JTable table_return;
     public static javax.swing.JTable table_supplier;
     public static javax.swing.JTable table_user;
-    private javax.swing.JLabel total_PenjSebulan;
     private javax.swing.JTextField txt_cariBrng;
     private javax.swing.JTextField txt_cariDataOrder;
     private javax.swing.JTextField txt_cariKategori;
@@ -3446,5 +3469,7 @@ public class Dashbord extends javax.swing.JFrame {
     public static javax.swing.JLabel txt_totalKategori;
     private javax.swing.JLabel txt_totalReturn;
     public static javax.swing.JLabel txt_totalSupplier;
+    private javax.swing.JLabel untungSebulanValue;
+    private javax.swing.JLabel untung_sebulan;
     // End of variables declaration//GEN-END:variables
 } 

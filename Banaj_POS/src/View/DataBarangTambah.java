@@ -169,6 +169,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(239, 240, 245));
 
+        navigasiPanel.setPreferredSize(new java.awt.Dimension(1026, 82));
+
         label_navigasi.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         label_navigasi.setText("Barang > Tambah Barang");
         label_navigasi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -193,11 +195,11 @@ public class DataBarangTambah extends javax.swing.JFrame {
             .addGroup(navigasiPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(label_navigasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(557, 557, 557)
+                .addGap(535, 535, 535)
                 .addComponent(labelTransaksi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(id_transaksi)
-                .addGap(47, 47, 47))
+                .addGap(22, 22, 22))
         );
         navigasiPanelLayout.setVerticalGroup(
             navigasiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +233,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
         txt_stok.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel6.setText("Add at");
+        jLabel6.setText("Di Tambahkan pada");
 
         txt_addAt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -331,7 +333,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                             .addComponent(txt_hargaBeli, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(txt_hargaJual)
                             .addComponent(txt_barangRusak))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         contenAddBarangLayout.setVerticalGroup(
             contenAddBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,7 +414,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
         total_stok.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel15.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel15.setText("Update at");
+        jLabel15.setText("Di Ubah pada");
 
         update_atEdit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -506,7 +508,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(contenEditBarangLayout.createSequentialGroup()
-                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contenEditBarangLayout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -523,49 +525,55 @@ public class DataBarangTambah extends javax.swing.JFrame {
                                 .addComponent(kode_barangLama)
                                 .addGap(17, 17, 17))
                             .addComponent(nama_barangEdit)
-                            .addComponent(supplier_edit, 0, 250, Short.MAX_VALUE)
+                            .addComponent(supplier_edit, 0, 254, Short.MAX_VALUE)
                             .addComponent(kode_barang_Edit))
-                        .addGap(72, 72, 72)
+                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(contenEditBarangLayout.createSequentialGroup()
+                                    .addGap(290, 290, 290)
+                                    .addComponent(stok_lama)
+                                    .addGap(105, 105, 105))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenEditBarangLayout.createSequentialGroup()
+                                    .addGap(72, 72, 72)
+                                    .addComponent(kategori_lama)
+                                    .addGap(131, 131, 131)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenEditBarangLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(kategori_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenEditBarangLayout.createSequentialGroup()
+                                            .addComponent(jLabel16)
+                                            .addGap(203, 203, 203))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenEditBarangLayout.createSequentialGroup()
+                                            .addComponent(update_atEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(32, 32, 32)))
+                                    .addComponent(jLabel15)
+                                    .addGroup(contenEditBarangLayout.createSequentialGroup()
+                                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(total_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel14))
+                                        .addGap(51, 51, 51)
+                                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel20)
+                                            .addComponent(txt_stokEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(kategori_lama)
-                                .addGap(131, 131, 131))
+                                .addGap(189, 189, 189)
+                                .addComponent(harga_beliLama))
                             .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(update_atEdit)
-                                        .addComponent(kategori_edit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                            .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(total_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel14))
-                                            .addGap(51, 51, 51)
-                                            .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                                    .addComponent(jLabel20)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(stok_lama)
-                                                    .addGap(33, 33, 33))
-                                                .addComponent(txt_stokEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(72, 72, 72)))
-                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(harga_beliLama)
-                                .addGap(61, 61, 61))
-                            .addComponent(jLabel18)
-                            .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(38, 38, 38)
+                                .addGap(142, 142, 142)
                                 .addComponent(rusak_lama))
-                            .addComponent(harga_beliEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(harga_jualEdit)
-                            .addComponent(barang_RusakEdit))
-                        .addContainerGap(110, Short.MAX_VALUE))
+                            .addGroup(contenEditBarangLayout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(barang_RusakEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(harga_jualEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(harga_beliEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17))))
+                        .addGap(54, 54, 54))
                     .addGroup(contenEditBarangLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_simpanEdit)
@@ -581,6 +589,9 @@ public class DataBarangTambah extends javax.swing.JFrame {
                 .addComponent(harga_jualLama)
                 .addGap(86, 86, 86))
         );
+
+        contenEditBarangLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {total_stok, txt_stokEdit});
+
         contenEditBarangLayout.setVerticalGroup(
             contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenEditBarangLayout.createSequentialGroup()
@@ -589,28 +600,32 @@ public class DataBarangTambah extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(contenEditBarangLayout.createSequentialGroup()
                                         .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel11)
                                             .addComponent(kode_barangLama, javax.swing.GroupLayout.Alignment.TRAILING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(kode_barang_Edit))
+                                        .addComponent(kode_barang_Edit)
+                                        .addGap(18, 18, 18))
                                     .addGroup(contenEditBarangLayout.createSequentialGroup()
-                                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel17)
-                                            .addComponent(harga_beliLama))
+                                        .addComponent(harga_beliLama)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(jLabel17)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(harga_beliEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
+                                        .addComponent(harga_beliEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(11, 11, 11)))
                                 .addComponent(harga_jualLama))
                             .addGroup(contenEditBarangLayout.createSequentialGroup()
                                 .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addGroup(contenEditBarangLayout.createSequentialGroup()
+                                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel20)
+                                            .addComponent(stok_lama))
+                                        .addGap(11, 11, 11))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenEditBarangLayout.createSequentialGroup()
                                         .addComponent(jLabel14)
-                                        .addComponent(jLabel20))
-                                    .addComponent(stok_lama))
-                                .addGap(11, 11, 11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_stokEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(total_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -632,24 +647,25 @@ public class DataBarangTambah extends javax.swing.JFrame {
                     .addGroup(contenEditBarangLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(update_atEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(contenEditBarangLayout.createSequentialGroup()
                         .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel16)
                             .addComponent(kategori_lama))
                         .addGap(18, 18, 18)
                         .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(supplier_edit, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                             .addComponent(kategori_edit)))
                     .addGroup(contenEditBarangLayout.createSequentialGroup()
-                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(supplierLama)
-                            .addComponent(rusak_lama))
+                        .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(contenEditBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(supplierLama)
+                                .addComponent(rusak_lama)
+                                .addComponent(jLabel16)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(barang_RusakEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
@@ -691,8 +707,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
                 .addGap(424, 424, 424))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(132, Short.MAX_VALUE)
-                    .addComponent(MainConten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(132, 132, 132)
+                    .addComponent(MainConten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(49, 49, 49)))
         );
 
@@ -920,7 +936,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
       barangService br = new barangService();
       
       String kode_brg=kode_barangLama.getText();
-      System.out.println(kode_brg);
+    
       String nama_product =nama_barangEdit.getText().toString();
      
       int harga_beli =Integer.parseInt(harga_beliEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
@@ -928,18 +944,16 @@ public class DataBarangTambah extends javax.swing.JFrame {
           
         barangService barang = new barangService();
         String result =barang.getIdBarang(true, "", kategori_edit);
-        
-        System.out.println(kode_barang_Edit.getText() +" b "+ this.getKodeLama());
-        System.out.println("rusak "+ rusak_lama.getText());
+     
         if(kode_barang_Edit.getText().toString().equals(kode_barangLama.getText().toString())&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText().toString())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
 //                 kode_barang_Edit.setText(this.getKodeLama());
-                 System.out.println("sudah terbaru");
+                
                  JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan Data, Data Sudah terbaru", "Information", JOptionPane.INFORMATION_MESSAGE);
                  int stok =Integer.parseInt(txt_stokEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
                  int rusak =Integer.parseInt(barang_RusakEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
                  
-                 System.out.println("kategori sama");
-                 System.out.println(kode_barang_Edit.getText().toString());
+             
+               
                  br.editBarang(kode_brg, nama_product, stok, harga_beli, harga_jual, rusak,  kategori_edit, supplier_edit,this,kode_barang_Edit.getText().toString(),false);
 
         }else if(nama_barangEdit.getText().toString().equals("")||nama_barangEdit.getText().toString().equals("".replace("", " "))){
@@ -1044,7 +1058,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
             try (Connection con = dt.conectDatabase();
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
-                System.out.println("kode di dt "+ kode);
+               
                 while(res.next()){
                     kode_barang_Edit.setText(kode);
                     kode_barangLama.setText(kode);

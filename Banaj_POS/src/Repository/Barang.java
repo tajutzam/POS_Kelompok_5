@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import Util.Bulan;
 import Util.IdBarang;
 import Util.tanggalSaatIni;
 import View.BarcodeBarang;
@@ -51,7 +52,7 @@ public class Barang implements BarangInterface{
     Object[] data = new Object[9];
     int noTable=0;
 
-
+    Bulan bulan = new Bulan();
     IdBarang id = new IdBarang();
     public Barang(){
        
@@ -60,8 +61,8 @@ public class Barang implements BarangInterface{
     @Override
     public void insertTransaksiBeli(String id , String supplier , String tanggal , String kategori , int total , String bayar , String kembalian) {
         
-        String sql ="INSERT INTO `beli_product`(`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori` , `grand_total` , pegawai , bayar , kembalian) VALUES (?,?,?,?,?,?,?,?)";
-        
+        String sql ="INSERT INTO `beli_product`(`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori` , `grand_total` , pegawai , bayar , kembalian , bulan) VALUES (?,?,?,?,?,?,?,?,?)";
+      
         try(Connection con = dt.conectDatabase();
             PreparedStatement pst = con.prepareStatement(sql)){
             
@@ -74,6 +75,7 @@ public class Barang implements BarangInterface{
             pst.setString(6, Dashbord.label_idPegawai.getText());
             pst.setString(7, bayar);
             pst.setString(8, kembalian);
+            pst.setInt(9,bulan.getindexBulan() );
             pst.execute();
             
         }catch(SQLException e){
@@ -786,7 +788,7 @@ public class Barang implements BarangInterface{
          String kodeKategori="";
           
          String namaKategoriTmp ;
-         String namaKategoriResult;
+ 
          String hurufKategori="";
          String sqlGetKodeKat ="select kode_kategori from kategori where nama_kategori = '"+box.getSelectedItem().toString()+"'";
          try(Connection con = dt.conectDatabase();
@@ -797,8 +799,6 @@ public class Barang implements BarangInterface{
                  kodeKategori=res.getString("kode_kategori");
                  
              }
-             
-             
          }catch(SQLException e){
              System.out.println(e.getMessage());
          }
@@ -865,19 +865,8 @@ public class Barang implements BarangInterface{
 
     @Override
     public boolean cariBarang(String keyword ) {
-//          String sqlKategori="select kode_kategori from kategori where nama_kategori='"+keyword+"'";
-//          String kodeKategori ="";
-          boolean isSuces=false;
-//          try(Connection con = dt.conectDatabase();
-//              Statement st = con.createStatement();
-//               ResultSet res = st.executeQuery(sqlKategori)){
-//              
-//              if(res.next()){
-//                 kodeKategori=res.getString("kode_kategori");
-//              }
-//          }catch(SQLException e){
-//              System.out.println(e);
-//          }
+
+        boolean isSuces=false;
           DefaultTableModel model = new DefaultTableModel();
                   model.addColumn("No");
                   model.addColumn("Kode Barang");
@@ -897,9 +886,7 @@ public class Barang implements BarangInterface{
               ResultSet res =pst.executeQuery(sql);
                )
             {
-               
-               
-                
+      
                  int no=1;
                  while(res.next()){
                       isSuces=true;
@@ -919,11 +906,6 @@ public class Barang implements BarangInterface{
                         res.getString("kategori.nama_kategori"),
                     }
                     );
-                   
-                 
-               
-       
-               
                                          no++;
 
                 }
@@ -961,7 +943,8 @@ public class Barang implements BarangInterface{
     @Override
     public void TambahBarangBanyak(String kode , String nama , String stok , String harga_beli , String harga_jual , String rusak , String kategori) {
        
-        String kode_kategori = "";
+        String kode_kategori="";
+       
         
         String sql ="select kode_kategori from kategori where nama_kategori='"+kategori+"'";
         try(Connection con = dt.conectDatabase();
@@ -1023,10 +1006,10 @@ public class Barang implements BarangInterface{
     public String getIdBarangTambahBanyak(boolean setNewKode , JComboBox box ,JTable table) {
         
         String hsl = "";
-         String kodeKategori="";
+      
           
          String namaKategoriTmp ;
-         String namaKategoriResult;
+        
          String hurufKategori="";
          
                  namaKategoriTmp = box.getSelectedItem().toString(); 
@@ -1361,7 +1344,7 @@ public class Barang implements BarangInterface{
                
 
           }catch(SQLException e){
-              System.out.println("gagal mencari barang"+e.getMessage());
+              
           }
         
     }
