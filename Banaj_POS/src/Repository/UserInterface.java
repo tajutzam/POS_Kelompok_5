@@ -14,5 +14,5 @@ public interface UserInterface {
     public void showUser(JTable table);
     public String getPrimaryKey();
     public void addUser(String id, String nama_pegawai, String username, String password, String role, String status,  String time);
-    public void sendToEdit(String id , String nama_pegawai , String username, String Role, String Status,  String time );
+    public void EditUser(String id, String nama_pegawai, String username, String password, String role, String status,  String time);
 }

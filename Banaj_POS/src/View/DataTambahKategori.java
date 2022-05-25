@@ -471,7 +471,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
         
       
          kategori.editKategori(kode_kategori, nama_baru, nama_lama , this);
-          katSer.showKategori(Dashbord.tabel_kategori);
+         katSer.showKategori(Dashbord.tabel_kategori);
          
     }//GEN-LAST:event_btn_simpanKategoriEditMouseClicked
 

@@ -6,9 +6,8 @@
 package View;
 
 import Repository.Order;
-import static Repository.Order.tbOrder;
+import Repository.User;
 import Util.Id;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -25,18 +24,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.BarRenderer3D;
 import org.jfree.data.category.DefaultCategoryDataset;
 import service.KonfirmasiBayarService;
 import service.OrderService;
 import service.UserService;
-import service.ValidasiService;
 
 import service.barangService;
 import service.kategoriService;
@@ -1581,17 +1577,6 @@ public class Dashbord extends javax.swing.JFrame {
         TXT_cariUser.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
         table_user.setBackground(new java.awt.Color(239, 240, 245));
-        table_user.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         table_user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 table_userMouseClicked(evt);
@@ -2220,7 +2205,7 @@ public class Dashbord extends javax.swing.JFrame {
         //set Text labelPage
         label_page.setText("User Management");
         UserService user = new UserService();
-        user.showUser();
+        user.showUser(table_user);
         OrderService order = new OrderService();
         order.resetKeranjang();
         

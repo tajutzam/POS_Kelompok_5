@@ -3,17 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/View/DataTambahKategori.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/service/UserService.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/Repository/Order.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/View/Dashbord.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/Repository/Database.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/Repository/KategoriInterface.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/Repository/Kategori.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/View/TambahUser.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/Repository/UserInterface.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/Repository/User.java</file>
-            <file>file:/E:/clone/POS_Kelompok_5/Banaj_POS/src/service/kategoriService.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/Repository/UserInterface.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/View/Dashbord.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/View/DataTambahKategori.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/service/UserService.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/service/supplierService.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/View/DataBarangTambah.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/Repository/Barang.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/Repository/DatabaseInterface.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/Repository/Database.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/Repository/SupplierInterface.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/Repository/User.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/View/TambahUser.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/service/kategoriService.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/Repository/Kategori.java</file>
+            <file>file:/E:/PROJECT%20SEMESTER%202%20(%20BANAJ%20)/POS_Kelompok_5/Banaj_POS/src/service/DashbordService.java</file>
         </group>
     </open-files>
 </project-private>

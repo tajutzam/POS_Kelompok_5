@@ -85,7 +85,7 @@ public class kategoriService {
                throw new InputMismatchException("Gagal Memperbarui, tidak ada perubahan !");
          }  
          }catch(InputMismatchException e){
-                          JOptionPane.showMessageDialog(null, "Gagal Memperbarui ,Tidak ada perubahan pada kategori" , "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE,eroricon );
+          JOptionPane.showMessageDialog(null, "Gagal Memperbarui ,Tidak ada perubahan pada kategori" , "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE,eroricon );
 
          }
          
