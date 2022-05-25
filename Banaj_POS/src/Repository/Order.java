@@ -471,7 +471,39 @@ public class Order implements OrderInterface {
     }
 
     @Override
-    public void barangPalingBanyakDiminati() {
+    public   void barangPalingBanyakDiminati(JTable table) {
+        int no=0;
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah Terjual");
+        
+        String sql="select product.nama_product ,count(detail_transaksi.kode_product) as populer from detail_transaksi join product on product.kode_product = detail_transaksi.kode_product GROUP by product.nama_product order by populer DESC limit 5";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            while(res.next()){
+                no++;
+                model.addRow(new Object[]{
+                    no,
+                    res.getString("product.nama_product"),
+                    res.getString("populer")
+                    
+                    
+                });
+                System.out.println(res.getString("product.nama_product"));
+            }
+            table.setModel(model);
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        
+        
+        
     }
-    
+  
 }

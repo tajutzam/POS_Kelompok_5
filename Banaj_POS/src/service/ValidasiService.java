@@ -41,12 +41,16 @@ public class ValidasiService {
              dh.setPengeluaran(order.getPengeluaran());
              Bulan bulan = new Bulan();
              int indek = bulan.getindexBulan();
+           
+             
              dh.setPenghasilanBulanIni(order.showPenjualan(indek));
+             order.barangPalingBanyakDiminati(Dashbord.table_banyakDiminati);
              
              login =true;
         }else{
              login=false;
         }
+        
        return login;        
     }
     //mengambil id yang sedang login

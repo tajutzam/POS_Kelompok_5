@@ -478,4 +478,8 @@ public class OrderService extends barangService {
       OrderInterface order = new Order();
       return order.showPenjualanint(indek);
   }
+   public void barangPalingBanyakDiminati(JTable table){
+       OrderInterface order = new Order();
+       order.barangPalingBanyakDiminati(table);
+   }
 }

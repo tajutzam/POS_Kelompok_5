@@ -69,6 +69,7 @@ public class Dashbord extends javax.swing.JFrame {
     Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
         ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+    OrderService order = new OrderService();
 
  
    Bulan bulan = new Bulan();
@@ -142,7 +143,9 @@ public class Dashbord extends javax.swing.JFrame {
           panel_laporan.setVisible(false);
           panel_manager.setVisible(false);    
     }
+        
     label_idPegawai.setVisible(false);
+    
   
     }
   
@@ -280,13 +283,23 @@ public class Dashbord extends javax.swing.JFrame {
         panel_containerLaporan = new javax.swing.JPanel();
         container_laporanPenjualan = new RoundedPanel(8, new Color(255, 255, 255));
         jScrollPane1 = new javax.swing.JScrollPane();
-        table_laporanPenjualan = new javax.swing.JTable();
+        table_laporanPenjualan = new javax.swing.JTable(){
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         show_laporanPenjualan = new javax.swing.JLabel();
         combo_boxPenjualan = new javax.swing.JComboBox<>();
         btn_exportPenjualan = new javax.swing.JButton();
         container_laporanPembelian = new RoundedPanel(8, new Color(255, 255, 255));
         jScrollPane2 = new javax.swing.JScrollPane();
-        table_laporanPembelian = new javax.swing.JTable();
+        table_laporanPembelian = new javax.swing.JTable(){
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         show_laporanPembelian = new javax.swing.JLabel();
         combo_boxPembelian = new javax.swing.JComboBox<>();
         btn_exportPembelian = new javax.swing.JButton();
@@ -302,8 +315,8 @@ public class Dashbord extends javax.swing.JFrame {
         panel_chart = new javax.swing.JPanel();
         jPanel6 = new RoundedPanel(8, new Color(255, 255, 255));
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        table_banyakDiminati = new javax.swing.JTable();
+        label_contenBarangppuler = new javax.swing.JLabel();
         jPanel7 = new RoundedPanel(8, new Color(255, 255, 255));
         untung_sebulan = new javax.swing.JLabel();
         icon_penjualanSebulan = new javax.swing.JLabel();
@@ -1964,7 +1977,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_chart.setBackground(new java.awt.Color(239, 240, 245));
         panel_chart.setLayout(new java.awt.CardLayout());
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        table_banyakDiminati.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -1983,11 +1996,11 @@ public class Dashbord extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane10.setViewportView(jTable4);
+        jScrollPane10.setViewportView(table_banyakDiminati);
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel3.setText("Barang Paling Banyak diminati");
+        label_contenBarangppuler.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        label_contenBarangppuler.setForeground(new java.awt.Color(90, 90, 90));
+        label_contenBarangppuler.setText("Barang Paling Banyak diminati");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1996,14 +2009,14 @@ public class Dashbord extends javax.swing.JFrame {
             .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(label_contenBarangppuler, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addGap(41, 41, 41))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel3)
+                .addComponent(label_contenBarangppuler)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
         );
@@ -3372,7 +3385,6 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -3391,8 +3403,8 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable4;
     private javax.swing.JLabel label_bula;
+    private javax.swing.JLabel label_contenBarangppuler;
     public static javax.swing.JLabel label_idPegawai;
     private javax.swing.JLabel label_laporanPemebelian;
     private javax.swing.JLabel label_laporan_penjualan;
@@ -3452,6 +3464,7 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel show_laporanPembelian;
     private javax.swing.JLabel show_laporanPenjualan;
     public static javax.swing.JTable tabel_kategori;
+    public static javax.swing.JTable table_banyakDiminati;
     public static javax.swing.JTable table_barang;
     public static javax.swing.JTable table_belanja;
     public static javax.swing.JTable table_cariBelanja;

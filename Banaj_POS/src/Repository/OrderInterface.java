@@ -27,6 +27,6 @@ public interface OrderInterface {
     public String getUntung();
     public String getPengeluaran();
     public int showPenjualanint(int indek);
-    public void barangPalingBanyakDiminati();
+    public void barangPalingBanyakDiminati(JTable table);
   
 }

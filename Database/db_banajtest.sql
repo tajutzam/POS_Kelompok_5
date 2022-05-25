@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2022 at 02:12 AM
+-- Generation Time: May 25, 2022 at 05:48 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -45,7 +45,10 @@ CREATE TABLE `beli_product` (
 
 INSERT INTO `beli_product` (`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`, `grand_total`, `pegawai`, `bayar`, `kembalian`, `bulan`) VALUES
 ('TRB05241492', 'S001', '2022-05-24 15:32:46', 'K003', '1674000', 'pgw231', 1600000, 93400, 5),
-('TRB05247410', 'S001', '2022-05-24 15:41:55', 'K001', '100000', 'pgw231', 100000, 0, 5);
+('TRB05247410', 'S001', '2022-05-24 15:41:55', 'K001', '100000', 'pgw231', 100000, 0, 5),
+('TRB0525336', 'S001', '2022-05-25 02:50:32', 'K003', '712500', 'pgw231', 750000, 37500, 5),
+('TRB05253742', 'S001', '2022-05-25 00:35:03', 'K001', '1200', 'pgw231', 1300, 100, 5),
+('TRB05256559', 'S002', '2022-05-25 02:54:40', 'K002', '25000', 'pgw231', 19000, 475, 5);
 
 -- --------------------------------------------------------
 
@@ -70,7 +73,9 @@ INSERT INTO `detail_beli_product` (`id_beliProduct`, `jumlahBeli`, `product`) VA
 ('TRB05241492', 12, 'PRM0004'),
 ('TRB05241492', 10, 'PRM0005'),
 ('TRB05241492', 10, 'PRM0006'),
-('TRB05247410', 10, 'SBN0001');
+('TRB05247410', 10, 'SBN0001'),
+('TRB05253742', 100, 'SBN0002'),
+('TRB05256559', 50, 'SMO0001');
 
 -- --------------------------------------------------------
 
@@ -107,7 +112,10 @@ INSERT INTO `detail_retur` (`id_returSupplier`, `product`, `jumlah_rusak`) VALUE
 ('TR11479720', 'SBN0018', 1),
 ('TR2471787', 'SBN0018', 1),
 ('TR6204850', 'SBN0020', 12),
-('TR64526849', 'SBN0027', 1);
+('TR64526849', 'SBN0027', 1),
+('TR96060778', 'SBN0002', 1),
+('TR63754922', 'PRM0007', 2),
+('TR76933264', 'SMO0001', 11);
 
 -- --------------------------------------------------------
 
@@ -138,7 +146,10 @@ INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qt
 ('TRJ05241016', 'PRM0006', 22000, 1, 20000),
 ('TRJ05241016', 'PRM0001', 17000, 1, 15000),
 ('TRJ05241016', 'PRM0002', 12000, 1, 10000),
-('TRJ05247249', 'PRM0003', 15000, 1, 12000);
+('TRJ05247249', 'PRM0003', 15000, 1, 12000),
+('TRJ05253219', 'SBN0001', 15000, 1, 10000),
+('TRJ05258977', 'PRM0003', 15000, 1, 12000),
+('TRJ05252404', 'PRM0006', 22000, 1, 20000);
 
 --
 -- Triggers `detail_transaksi`
@@ -169,8 +180,7 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
 ('K001', 'SABUN', '2022-04-30 19:17:41', '2022-04-30 19:17:41'),
 ('K002', 'SAMPO', '2022-04-30 19:18:31', '2022-04-30 19:18:31'),
-('K003', 'PARFUM', '2022-05-01 09:34:25', '2022-05-01 09:34:25'),
-('K004', 'KATEGORI BARU', '2022-05-16 14:31:24', '2022-05-16 14:31:24');
+('K003', 'PARFUM', '2022-05-01 09:34:25', '2022-05-01 09:34:25');
 
 -- --------------------------------------------------------
 
@@ -228,11 +238,13 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
 ('PRM0001', 'Flowerbomb Eau de Parfum Spray (Viktor & Rolf)', 8, 15000, 17000, 'S001', 'K003', '2022-05-24 15:44:35', '2022-05-24 09:42:55', 0, 8),
 ('PRM0002', 'Pleasures Eau de Parfum Spray (Estee Lauder)', 98, 10000, 12000, 'S001', 'K003', '2022-05-24 15:44:35', '2022-05-24 09:42:55', 0, 98),
-('PRM0003', 'Black Opium Eau de Parfum (Yves Saint Laurent)', 8, 12000, 15000, 'S001', 'K003', '2022-05-24 15:45:04', '2022-05-24 09:42:55', 0, 8),
+('PRM0003', 'Black Opium Eau de Parfum (Yves Saint Laurent)', 7, 12000, 15000, 'S001', 'K003', '2022-05-25 02:44:59', '2022-05-24 09:42:55', 0, 7),
 ('PRM0004', 'Coco Mademoiselle Eau De Parfum Spray (Chanel)', 10, 7000, 10000, 'S001', 'K003', '2022-05-24 12:24:41', '2022-05-24 09:42:55', 0, 10),
 ('PRM0005', 'Miss Dior Blooming Bouquet Eau de Toilette (Dior)', 9, 12000, 17000, 'S001', 'K003', '2022-05-24 15:44:35', '2022-05-24 09:42:55', 0, 9),
-('PRM0006', 'Baccarat Rouge 540 Eau de Parfum (Maison Francis Kurkdjian)', 9, 20000, 22000, 'S001', 'K003', '2022-05-24 15:44:35', '2022-05-24 09:42:55', 0, 9),
-('SBN0001', 'Lux White Impress Whitening Body Wash', 9, 10000, 15000, 'S001', 'K001', '2022-05-24 15:44:34', '2022-05-24 15:41:55', 0, 9);
+('PRM0006', 'Baccarat Rouge 540 Eau de Parfum (Maison Francis Kurkdjian)', 8, 20000, 22000, 'S001', 'K003', '2022-05-25 02:45:36', '2022-05-24 09:42:55', 0, 8),
+('SBN0001', 'Lux White Impress Whitening Body Wash', 8, 10000, 15000, 'S001', 'K001', '2022-05-25 00:48:53', '2022-05-24 15:41:55', 0, 8),
+('SBN0002', 'sasdas', 99, 12, 123, 'S001', 'K001', '2022-05-25 00:35:03', '2022-05-25 00:35:03', 1, 100),
+('SMO0001', 'sunslick', 39, 500, 1000, 'S002', 'K002', '2022-05-25 02:57:00', '2022-05-25 02:57:00', 11, 50);
 
 --
 -- Triggers `product`
@@ -289,14 +301,17 @@ INSERT INTO `retur_supplier` (`kode_supplier`, `tanggal_rtr`, `id_returSupplier`
 ('S001', '2022-05-16 10:11:35', 'TR6204850'),
 ('S001', '2022-04-20 05:42:44', 'TR62166744'),
 ('S001', '2022-04-24 05:12:52', 'TR63713657'),
+('S001', '2022-05-25 02:50:34', 'TR63754922'),
 ('S001', '2022-05-19 11:39:42', 'TR64526849'),
 ('S001', '2022-05-01 02:35:18', 'TR66484943'),
 ('S001', '2022-04-24 05:18:54', 'TR68143153'),
 ('S001', '2022-05-16 09:42:24', 'TR68891552'),
+('S002', '2022-05-25 02:57:00', 'TR76933264'),
 ('S001', '2022-04-24 05:09:41', 'TR77425670'),
 ('S001', '2022-04-25 13:06:19', 'TR7861542'),
 ('S001', '2022-04-24 05:18:30', 'TR94679531'),
 ('S001', '2022-04-24 05:04:09', 'TR95120590'),
+('S001', '2022-05-25 00:35:06', 'TR96060778'),
 ('S001', '2022-04-20 05:11:12', 'TR96146366');
 
 -- --------------------------------------------------------
@@ -367,7 +382,10 @@ INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `grand_total`, `ba
 ('TRJ05241016', '2022-05-24 15:44:34', 98000, 100000, 'pgw231', 2000, 5, 79000),
 ('TRJ05242736', '2022-05-24 12:24:13', 39000, 40000, 'pgw231', 1000, 5, 32000),
 ('TRJ05243355', '2022-05-24 12:24:41', 10000, 11000, 'pgw231', 1000, 5, 7000),
-('TRJ05247249', '2022-05-24 15:45:04', 15000, 17000, 'pgw231', 2000, 5, 12000);
+('TRJ05247249', '2022-05-24 15:45:04', 15000, 17000, 'pgw231', 2000, 5, 12000),
+('TRJ05252404', '2022-05-25 02:45:36', 19800, 20000, 'pgw231', 200, 5, 20000),
+('TRJ05253219', '2022-05-25 00:48:53', 15000, 17000, 'pgw231', 2000, 5, 10000),
+('TRJ05258977', '2022-05-25 02:46:45', 15000, 17000, 'pgw231', 2000, 6, 12000);
 
 --
 -- Indexes for dumped tables
@@ -460,6 +478,12 @@ ALTER TABLE `transaksi`
 --
 
 --
+-- Constraints for table `beli_product`
+--
+ALTER TABLE `beli_product`
+  ADD CONSTRAINT `beli_product_ibfk_1` FOREIGN KEY (`pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `detail_beli_product`
 --
 ALTER TABLE `detail_beli_product`
@@ -497,6 +521,12 @@ ALTER TABLE `retur_customer`
 --
 ALTER TABLE `retur_supplier`
   ADD CONSTRAINT `rtr_sup` FOREIGN KEY (`kode_supplier`) REFERENCES `supplier` (`kode_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
