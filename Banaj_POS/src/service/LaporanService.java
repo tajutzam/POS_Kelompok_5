@@ -35,6 +35,19 @@ public class LaporanService {
         
         reportPenjualan.showDetailLaporan(table, id);
     }
+    public void showLaporanPerbulan(JTable table){
+        ReportInterfce report = new LaporanPenjualan();
+        report.showLaporanPerBulanIni(table);
+        
+    }
+    public void showLaporanPerhari(JTable table){
+        ReportInterfce report = new LaporanPenjualan();
+        report.showLaporanPerhariIni(table);
+    }
+    public void showLaporanPerminggu(JTable table){
+        ReportInterfce report = new LaporanPenjualan();
+        report.showLaporanPerminggu(table);
+    }
     
     
 }

@@ -298,4 +298,16 @@ public class barangService {
         BarangInterface barang = new Barang();
         barang.cariBarangBerdasarkanKategori(keyword);
     }
+    public void showKategoriRealTime(JTable table){
+        
+        if(table.getRowCount()==0){
+            Dashbord.comboBox_showBarang.addItem("Tidak Ada Kategori");
+        }else{
+            for(int i=0; i< table.getRowCount(); i++){
+            Dashbord.comboBox_showBarang.addItem(table.getValueAt(i, 2).toString());
+            }
+        }
+        
+       
+    }
 }

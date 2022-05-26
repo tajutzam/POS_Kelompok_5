@@ -61,7 +61,7 @@ public class Barang implements BarangInterface{
     @Override
     public void insertTransaksiBeli(String id , String supplier , String tanggal , String kategori , int total , String bayar , String kembalian) {
         
-        String sql ="INSERT INTO `beli_product`(`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori` , `grand_total` , pegawai , bayar , kembalian , bulan) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql ="INSERT INTO `beli_product`(`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori` , `grand_total` , pegawai , bayar , kembalian , bulan , hari) VALUES (?,?,?,?,?,?,?,?,?,?)";
       
         try(Connection con = dt.conectDatabase();
             PreparedStatement pst = con.prepareStatement(sql)){
@@ -76,6 +76,7 @@ public class Barang implements BarangInterface{
             pst.setString(7, bayar);
             pst.setString(8, kembalian);
             pst.setInt(9,bulan.getindexBulan() );
+            pst.setInt(10, bulan.getindexHari());
             pst.execute();
             
         }catch(SQLException e){
@@ -1296,7 +1297,6 @@ public class Barang implements BarangInterface{
                  kodeKategori=res.getString("kode_kategori");
               }
           }catch(SQLException e){
-              System.out.println(e);
           }
           DefaultTableModel model = new DefaultTableModel();
                   model.addColumn("No");
@@ -1344,7 +1344,9 @@ public class Barang implements BarangInterface{
                
 
           }catch(SQLException e){
-              
+              System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Tidak ada Product dengan kategori ini", "Terjadi Kesalahan !", JOptionPane.ERROR, eroricon);
+
           }
         
     }

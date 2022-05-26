@@ -60,7 +60,13 @@ public class Bulan {
         int day =calendar.get(Calendar.DATE);  
         return month;
     }
-    
+     public int getindexHari(){
+         Calendar calendar = Calendar.getInstance();
+        java.util.Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day =calendar.get(Calendar.DATE);  
+        return day;
+    }
      public String getBulan(int month) {
         String result = "";
 

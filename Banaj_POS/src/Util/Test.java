@@ -12,11 +12,9 @@ package Util;
 public class Test {
     public static void main(String[] args) {
         
-        
-        
-        
-        String hello =" hello word";
-        System.out.println(hello.replaceAll(" ", ""));
+         String test="TR0922323";
+
+         System.out.println(         test.substring(2, 4));
     }
     
 }

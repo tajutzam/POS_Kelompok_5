@@ -31,5 +31,14 @@ public class LaporanPembelianServicce {
     public void showDetailPembelian(JTable table , String id){
         report.showDetailLaporan(table, id);
     }
+    public void showLaporanPerbulan(JTable table){
+        report.showLaporanPerBulanIni(table);
+    }
+    public void showLaporanPerhari(JTable table){
+        report.showLaporanPerhariIni(table);
+    }
+    public void showLaporanPerminggu(JTable table){
+        report.showLaporanPerminggu(table);
+    }
     
 }

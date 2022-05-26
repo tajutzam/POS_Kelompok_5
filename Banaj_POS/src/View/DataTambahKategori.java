@@ -9,6 +9,7 @@ import Repository.Database;
 import Repository.DatabaseInterface;
 import Repository.Kategori;
 import Repository.KategoriInterface;
+import static View.Dashbord.tabel_kategori;
 import static View.Dashbord.table_barang;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -453,11 +454,14 @@ public class DataTambahKategori extends javax.swing.JFrame {
          
          kategoriService kategori = new kategoriService();
          if(kategori.addSupplier(name, kode, time)==true){
+             JOptionPane.showMessageDialog(null, "Kamu harus Relogin untuk Merefresh Filter barang", "Succes", JOptionPane.INFORMATION_MESSAGE,suscesicon);
              this.dispose();
          }
          barangService br = new barangService();
          br.showBarang(table_barang);
          kategori.showKategori(Dashbord.tabel_kategori);
+         
+      
          
     }//GEN-LAST:event_btn_simpanTambahKategoriMouseClicked
 

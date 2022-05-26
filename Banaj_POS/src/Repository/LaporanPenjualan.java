@@ -5,12 +5,15 @@
  */
 package Repository;
 
+import Util.Bulan;
 import View.TransaksiPenjualan;
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -118,5 +121,159 @@ public class LaporanPenjualan implements ReportInterfce{
         }
     
     }
+
+    @Override
+    public void showLaporanPerBulanIni(JTable table) {
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("ID Transaksi");
+        model.addColumn("Nama Kasir");
+        model.addColumn("Tanggal Transaksi");
+        model.addColumn("Grand Total");
+        
+        Bulan bulan = new Bulan();
+        String indek = String.valueOf(bulan.getindexBulan());
+        if(indek.startsWith("0")){
+            indek.replaceAll("0","");
+        }
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.bulan="+indek+" ORDER by tanggal_transaksi DESC";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+                ResultSet res = st.executeQuery(sql)){
+         
+          
+              int no=0;
+                while(res.next()){
+                     no++;
+                     model.addRow(new Object[]{
+                     no,
+                     res.getString("id_transaksi"),
+                 res.getString("pegawai.nama_pegawai"),
+                 res.getString("tanggal_transaksi"),
+                 ("Rp."+res.getString("grand_total")),
+
+                });
+       
+            
+            
+        }
+            table.setModel(model);
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Tidak ada Transaksi pada bulan ini", "Terjadi kesalahan", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+      
+    }
+
+    @Override
+    public void showLaporanPerhariIni(JTable table) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("ID Transaksi");
+        model.addColumn("Nama Kasir");
+        model.addColumn("Tanggal Transaksi");
+        model.addColumn("Grand Total");
+        
+        Bulan bulan = new Bulan();
+        String indek = String.valueOf(bulan.getindexHari());
+        if(indek.startsWith("0")){
+            indek.replaceAll("0","");
+        }
+      
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.hari="+indek+" ORDER by tanggal_transaksi DESC";
+
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+                ResultSet res = st.executeQuery(sql)){
+         
+          
+              int no=0;
+                while(res.next()){
+                     no++;
+                     model.addRow(new Object[]{
+                     no,
+                     res.getString("id_transaksi"),
+                 res.getString("pegawai.nama_pegawai"),
+                 res.getString("tanggal_transaksi"),
+                 ("Rp."+res.getString("grand_total")),
+
+                });
+       
+            
+            
+        }
+            table.setModel(model);
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Tidak ada Transaksi pada Hari ini", "Terjadi kesalahan", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }
+
+    @Override
+    public void showLaporanPerminggu(JTable table) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("ID Transaksi");
+        model.addColumn("Nama Kasir");
+        model.addColumn("Tanggal Transaksi");
+        model.addColumn("Grand Total");
+        
+        Bulan bulan = new Bulan();
+        int indek = bulan.getindexHari();
+        int indekK=0;
+        if(indek==7){
+            indekK=30;
+        }else if(indek==6){
+            indekK=29;
+        }else if(indek==5){
+            indekK=28;
+        }else if(indek==4){
+            indekK=27;
+        }else if(indek==3){
+            indekK=26;
+        }else if(indek==2){
+            indekK=25;
+        }else if(indek==1){
+            indekK=24;
+        }else if(indek >7){
+            indekK=indek-7;
+        }
+        
+      
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.hari BETWEEN "+indekK+" and "+indek+" ORDER by tanggal_transaksi DESC;";
+
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+                ResultSet res = st.executeQuery(sql)){
+         
+          
+              int no=0;
+                while(res.next()){
+                     no++;
+                     model.addRow(new Object[]{
+                     no,
+                     res.getString("id_transaksi"),
+                 res.getString("pegawai.nama_pegawai"),
+                 res.getString("tanggal_transaksi"),
+                 ("Rp."+res.getString("grand_total")),
+
+                });
+       
+            
+            
+        }
+            table.setModel(model);
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Tidak ada Transaksi pada Hari ini", "Terjadi kesalahan", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    
+    
+    
     
 }
