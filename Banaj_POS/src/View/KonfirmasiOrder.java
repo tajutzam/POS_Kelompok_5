@@ -45,7 +45,7 @@ public class KonfirmasiOrder extends javax.swing.JFrame {
          
             String nama =order.selectBarang(kode);
             txt_namaProductOrder.setText(nama);
-            System.out.println(nama);
+           
         }
     }
     
@@ -237,7 +237,7 @@ public class KonfirmasiOrder extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
          // TODO add your handling code here:
          String u =txt_qty.getText().toString().replaceAll("[a-zA-Z]","");
-         System.out.println(u);
+     
          OrderService order = new OrderService();
          if(txt_qty.getText().toString().equals("")){
             JOptionPane.showMessageDialog(null, "Harap Isikan Field dengan benar", "Input Mismatch", JOptionPane.INFORMATION_MESSAGE, eroricon);

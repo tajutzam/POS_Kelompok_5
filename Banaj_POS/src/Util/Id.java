@@ -101,7 +101,7 @@ public class Id {
         }else{
          result=""+month;
         }
-        System.out.println(result);
+       
         Random rand = new Random();
         int random = rand.nextInt(10000);
         String finalResult ="TRJ"+result+day+random;
@@ -122,7 +122,7 @@ public class Id {
         }else{
          result=""+month;
         }
-        System.out.println(result);
+       
         Random rand = new Random();
         int random = rand.nextInt(10000);
         String finalResult ="TRB"+result+day+random;

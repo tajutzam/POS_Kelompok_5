@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2022 at 05:48 AM
+-- Generation Time: May 26, 2022 at 05:38 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -36,19 +36,9 @@ CREATE TABLE `beli_product` (
   `pegawai` varchar(8) NOT NULL,
   `bayar` int(32) NOT NULL,
   `kembalian` int(32) NOT NULL,
-  `bulan` int(12) NOT NULL
+  `bulan` int(12) NOT NULL,
+  `hari` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `beli_product`
---
-
-INSERT INTO `beli_product` (`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`, `grand_total`, `pegawai`, `bayar`, `kembalian`, `bulan`) VALUES
-('TRB05241492', 'S001', '2022-05-24 15:32:46', 'K003', '1674000', 'pgw231', 1600000, 93400, 5),
-('TRB05247410', 'S001', '2022-05-24 15:41:55', 'K001', '100000', 'pgw231', 100000, 0, 5),
-('TRB0525336', 'S001', '2022-05-25 02:50:32', 'K003', '712500', 'pgw231', 750000, 37500, 5),
-('TRB05253742', 'S001', '2022-05-25 00:35:03', 'K001', '1200', 'pgw231', 1300, 100, 5),
-('TRB05256559', 'S002', '2022-05-25 02:54:40', 'K002', '25000', 'pgw231', 19000, 475, 5);
 
 -- --------------------------------------------------------
 
@@ -61,21 +51,6 @@ CREATE TABLE `detail_beli_product` (
   `jumlahBeli` int(32) NOT NULL,
   `product` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `detail_beli_product`
---
-
-INSERT INTO `detail_beli_product` (`id_beliProduct`, `jumlahBeli`, `product`) VALUES
-('TRB05241492', 10, 'PRM0001'),
-('TRB05241492', 100, 'PRM0002'),
-('TRB05241492', 10, 'PRM0003'),
-('TRB05241492', 12, 'PRM0004'),
-('TRB05241492', 10, 'PRM0005'),
-('TRB05241492', 10, 'PRM0006'),
-('TRB05247410', 10, 'SBN0001'),
-('TRB05253742', 100, 'SBN0002'),
-('TRB05256559', 50, 'SMO0001');
 
 -- --------------------------------------------------------
 
@@ -132,26 +107,6 @@ CREATE TABLE `detail_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `detail_transaksi`
---
-
-INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`, `sub_pembelian`) VALUES
-('TRJ05242736', 'PRM0004', 10000, 1, 7000),
-('TRJ05242736', 'PRM0002', 12000, 1, 10000),
-('TRJ05242736', 'PRM0001', 17000, 1, 15000),
-('TRJ05243355', 'PRM0004', 10000, 1, 7000),
-('TRJ05241016', 'SBN0001', 15000, 1, 10000),
-('TRJ05241016', 'PRM0005', 17000, 1, 12000),
-('TRJ05241016', 'PRM0003', 15000, 1, 12000),
-('TRJ05241016', 'PRM0006', 22000, 1, 20000),
-('TRJ05241016', 'PRM0001', 17000, 1, 15000),
-('TRJ05241016', 'PRM0002', 12000, 1, 10000),
-('TRJ05247249', 'PRM0003', 15000, 1, 12000),
-('TRJ05253219', 'SBN0001', 15000, 1, 10000),
-('TRJ05258977', 'PRM0003', 15000, 1, 12000),
-('TRJ05252404', 'PRM0006', 22000, 1, 20000);
-
---
 -- Triggers `detail_transaksi`
 --
 DELIMITER $$
@@ -180,7 +135,31 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
 ('K001', 'SABUN', '2022-04-30 19:17:41', '2022-04-30 19:17:41'),
 ('K002', 'SAMPO', '2022-04-30 19:18:31', '2022-04-30 19:18:31'),
-('K003', 'PARFUM', '2022-05-01 09:34:25', '2022-05-01 09:34:25');
+('K003', 'PARFUM', '2022-05-01 09:34:25', '2022-05-01 09:34:25'),
+('K004', 'BARU', '2022-05-25 19:51:19', '2022-05-25 19:51:19'),
+('K005', 'SA', '2022-05-25 19:53:40', '2022-05-25 19:53:40'),
+('K006', 'Y', '2022-05-26 10:32:58', '2022-05-26 10:32:58'),
+('K007', 'SA', '2022-05-26 10:36:04', '2022-05-26 10:36:04'),
+('K008', 'KO', '2022-05-26 10:39:55', '2022-05-26 10:39:55'),
+('K009', 'S', '2022-05-26 10:40:51', '2022-05-26 10:40:51'),
+('K010', 'B', '2022-05-26 10:42:56', '2022-05-26 10:42:56'),
+('K011', 'W', '2022-05-26 10:43:14', '2022-05-26 10:43:14'),
+('K012', 'D', '2022-05-26 10:47:34', '2022-05-26 10:47:34'),
+('K013', 'TEST', '2022-05-26 10:48:32', '2022-05-26 10:48:32'),
+('K014', 'OH', '2022-05-26 10:58:20', '2022-05-26 10:58:20'),
+('K015', '1', '2022-05-26 10:59:21', '2022-05-26 10:59:21'),
+('K016', 'D', '2022-05-26 11:00:57', '2022-05-26 11:00:57'),
+('K017', 'D', '2022-05-26 11:01:49', '2022-05-26 11:01:49'),
+('K018', 'SASD', '2022-05-26 11:03:56', '2022-05-26 11:03:56'),
+('K019', 'SADASD', '2022-05-26 11:04:32', '2022-05-26 11:04:32'),
+('K020', 'ASD', '2022-05-26 11:05:20', '2022-05-26 11:05:20'),
+('K021', 'SD', '2022-05-26 11:09:51', '2022-05-26 11:09:51'),
+('K022', 'D', '2022-05-26 11:10:14', '2022-05-26 11:10:14'),
+('K023', 'AD', '2022-05-26 11:10:45', '2022-05-26 11:10:45'),
+('K024', 'ASD', '2022-05-26 11:11:15', '2022-05-26 11:11:15'),
+('K025', 'SAD', '2022-05-26 11:12:30', '2022-05-26 11:12:30'),
+('K026', 'ADS', '2022-05-26 11:14:29', '2022-05-26 11:14:29'),
+('K027', 'SA', '2022-05-26 15:38:33', '2022-05-26 15:38:33');
 
 -- --------------------------------------------------------
 
@@ -204,12 +183,8 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`, `role`, `status`, `password`) VALUES
-('pgw001', 'ucup', 'ucup', '2022-03-23 15:37:52', '2022-03-23 15:37:52', 0, '', ''),
-('PGW002', 'NAMA QW', 'qw', '2022-04-26 12:24:24', '2022-04-26 12:24:24', 1, '', 'qw'),
-('PGW003', 'SDFD DFD', 'dfd', '2022-04-26 12:35:32', '2022-04-26 12:35:32', 1, '', 'dfd'),
-('PGW004', 'AS U', 'admin', '2022-05-03 12:14:04', '2022-05-03 12:14:04', 1, '', 'admin'),
-('PGW005', 'USER 12', '12', '2022-05-03 12:14:23', '2022-05-03 12:14:23', 2, '', '12'),
-('pgw231', 'ya', 'a', '2022-05-03 14:26:11', '2022-05-03 14:26:11', 1, 'Aktif', 'a');
+('PGW001', 'ZAM ZAMI', 'kasir', '2022-05-26 17:34:55', '2022-05-26 17:34:55', 1, 'Aktif', 'kasir'),
+('PGW002', 'ZEN', 'admin', '2022-05-26 17:35:28', '2022-05-26 17:35:28', 2, 'Aktif', 'admin');
 
 -- --------------------------------------------------------
 
@@ -219,7 +194,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `u
 
 CREATE TABLE `product` (
   `kode_product` varchar(8) NOT NULL,
-  `nama_product` varchar(64) NOT NULL,
+  `nama_product` varchar(128) NOT NULL,
   `stok` int(32) NOT NULL,
   `harga_beli` int(32) NOT NULL,
   `harga_jual` int(32) NOT NULL,
@@ -230,21 +205,6 @@ CREATE TABLE `product` (
   `rusak` int(32) DEFAULT 0,
   `total_stok` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
-('PRM0001', 'Flowerbomb Eau de Parfum Spray (Viktor & Rolf)', 8, 15000, 17000, 'S001', 'K003', '2022-05-24 15:44:35', '2022-05-24 09:42:55', 0, 8),
-('PRM0002', 'Pleasures Eau de Parfum Spray (Estee Lauder)', 98, 10000, 12000, 'S001', 'K003', '2022-05-24 15:44:35', '2022-05-24 09:42:55', 0, 98),
-('PRM0003', 'Black Opium Eau de Parfum (Yves Saint Laurent)', 7, 12000, 15000, 'S001', 'K003', '2022-05-25 02:44:59', '2022-05-24 09:42:55', 0, 7),
-('PRM0004', 'Coco Mademoiselle Eau De Parfum Spray (Chanel)', 10, 7000, 10000, 'S001', 'K003', '2022-05-24 12:24:41', '2022-05-24 09:42:55', 0, 10),
-('PRM0005', 'Miss Dior Blooming Bouquet Eau de Toilette (Dior)', 9, 12000, 17000, 'S001', 'K003', '2022-05-24 15:44:35', '2022-05-24 09:42:55', 0, 9),
-('PRM0006', 'Baccarat Rouge 540 Eau de Parfum (Maison Francis Kurkdjian)', 8, 20000, 22000, 'S001', 'K003', '2022-05-25 02:45:36', '2022-05-24 09:42:55', 0, 8),
-('SBN0001', 'Lux White Impress Whitening Body Wash', 8, 10000, 15000, 'S001', 'K001', '2022-05-25 00:48:53', '2022-05-24 15:41:55', 0, 8),
-('SBN0002', 'sasdas', 99, 12, 123, 'S001', 'K001', '2022-05-25 00:35:03', '2022-05-25 00:35:03', 1, 100),
-('SMO0001', 'sunslick', 39, 500, 1000, 'S002', 'K002', '2022-05-25 02:57:00', '2022-05-25 02:57:00', 11, 50);
 
 --
 -- Triggers `product`
@@ -371,21 +331,9 @@ CREATE TABLE `transaksi` (
   `id_pegawai` varchar(8) NOT NULL,
   `kembali` int(32) NOT NULL,
   `bulan` int(32) NOT NULL,
-  `grand_modal` int(32) NOT NULL
+  `grand_modal` int(32) NOT NULL,
+  `hari` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`, `bulan`, `grand_modal`) VALUES
-('TRJ05241016', '2022-05-24 15:44:34', 98000, 100000, 'pgw231', 2000, 5, 79000),
-('TRJ05242736', '2022-05-24 12:24:13', 39000, 40000, 'pgw231', 1000, 5, 32000),
-('TRJ05243355', '2022-05-24 12:24:41', 10000, 11000, 'pgw231', 1000, 5, 7000),
-('TRJ05247249', '2022-05-24 15:45:04', 15000, 17000, 'pgw231', 2000, 5, 12000),
-('TRJ05252404', '2022-05-25 02:45:36', 19800, 20000, 'pgw231', 200, 5, 20000),
-('TRJ05253219', '2022-05-25 00:48:53', 15000, 17000, 'pgw231', 2000, 5, 10000),
-('TRJ05258977', '2022-05-25 02:46:45', 15000, 17000, 'pgw231', 2000, 6, 12000);
 
 --
 -- Indexes for dumped tables

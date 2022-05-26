@@ -394,6 +394,11 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
         btn_cancelAddBanyak.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_cancelAddBanyak.setForeground(new java.awt.Color(255, 255, 255));
         btn_cancelAddBanyak.setText("Cancel");
+        btn_cancelAddBanyak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cancelAddBanyakMouseClicked(evt);
+            }
+        });
         btn_cancelAddBanyak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelAddBanyakActionPerformed(evt);
@@ -656,6 +661,17 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
             this.total_harga.setText(String.valueOf(total));
         }
     }//GEN-LAST:event_txt_diskonKeyPressed
+
+    private void btn_cancelAddBanyakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelAddBanyakMouseClicked
+         // TODO add your handling code here:
+         this.dispose();
+         txt_bayar.setText("");
+         nama_barang_addBanyak.setText("");
+         stok_addBanyak.setText("");
+         harga_beli_addBanyak.setText("");
+         harga_jual_addBanyak.setText("");
+         rusak.setText("0");
+    }//GEN-LAST:event_btn_cancelAddBanyakMouseClicked
 
     public void setNamaSupplier(String nama){
         this.nama_supplier.setText(nama);

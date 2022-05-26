@@ -265,6 +265,11 @@ public class DataBarangTambah extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Clear");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         btn_simpanAdd.setBackground(new java.awt.Color(111, 59, 160));
         btn_simpanAdd.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -939,13 +944,19 @@ public class DataBarangTambah extends javax.swing.JFrame {
     
       String nama_product =nama_barangEdit.getText().toString();
      
-      int harga_beli =Integer.parseInt(harga_beliEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
-      int harga_jual=Integer.parseInt(harga_jualEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
           
         barangService barang = new barangService();
         String result =barang.getIdBarang(true, "", kategori_edit);
-     
-        if(kode_barang_Edit.getText().toString().equals(kode_barangLama.getText().toString())&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText().toString())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
+        
+        if(nama_barangEdit.getText().equals("")||total_stok.getText().equals("")||harga_beliEdit.getText().equals("")||harga_jualEdit.getText().equals("")){
+           JOptionPane.showMessageDialog(null, "Harap isi semua field terlebih dahulu" , "Terjadi kesalahan" ,JOptionPane.ERROR_MESSAGE);
+            
+        }else{
+           
+            int harga_beli =Integer.parseInt(harga_beliEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", ""));
+            int harga_jual=Integer.parseInt(harga_jualEdit.getText().toString().replaceAll("[^a-zA-Z0-9]", "").replaceAll("[a-zA-Z]", "")); 
+            
+            if(kode_barang_Edit.getText().toString().equals(kode_barangLama.getText().toString())&&nama_barangEdit.getText().toString().equals(namaBarangLama.getText())&&total_stok.getText().toString().equals(stok_lama.getText())&&harga_beliEdit.getText().toString().equals(harga_beliLama.getText())&&harga_jualEdit.getText().toString().equals(harga_jualLama.getText())&&barang_RusakEdit.getText().toString().equals(rusak_lama.getText().toString())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText())&&supplier_edit.getSelectedItem().toString().equals(supplierLama.getText())&&txt_stokEdit.getText().toString().equals(label_stokEdit.getText())&&kategori_edit.getSelectedItem().toString().equals(kategori_lama.getText().toString())&&nama_barangEdit.getText().equals(namaBarangLama.getText().toString())){
 //                 kode_barang_Edit.setText(this.getKodeLama());
                 
                  JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan Data, Data Sudah terbaru", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -986,6 +997,9 @@ public class DataBarangTambah extends javax.swing.JFrame {
                   br.showBarang(Dashbord.table_barang);    
                     
         }
+        }
+     
+        
       
      
     
@@ -1027,12 +1041,25 @@ public class DataBarangTambah extends javax.swing.JFrame {
          this.nama_barangEdit.setText("");
          this.harga_beliEdit.setText("");
          this.harga_jualEdit.setText("");
-         this.txt_stokEdit.setText("0");
+         this.txt_stokEdit.setText("");
          this.barang_RusakEdit.setText("0");
-         this.total_stok.setText("0");
+//         this.total_stok.setText("");
       
     }//GEN-LAST:event_btn_clearEditMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+         // TODO add your handling code here:
+         
+         this.total_stok.setText("");
+         this.txt_nama_barang.setText("");
+         this.txt_hargaJual.setText("");
+         this.txt_hargaBeli.setText("");
+         this.txt_stok.setText("");
+         
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    
+    
     public void setKodeLama(String kode){
         
         kode_barangLama.setText(kode.toUpperCase());

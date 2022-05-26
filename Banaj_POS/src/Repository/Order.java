@@ -55,7 +55,7 @@ public class Order implements OrderInterface {
 
     Object[] data = new Object[8];
     int no = 0;
-
+    Bulan bulan = new Bulan();
     //instansiasi Object yang dibutuhkan
     DatabaseInterface dt = new Database();
     ImageIcon suscesicon = new ImageIcon(getClass().getResource("/picture/checked.png"));
@@ -67,8 +67,8 @@ public class Order implements OrderInterface {
 
         tanggalSaatIni tg = new tanggalSaatIni();
         String sql = "INSERT INTO `transaksi`"
-                + "(`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`,bulan , grand_modal) "
-                + "VALUES (?,?,?,?,?,?,?,?)";
+                + "(`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`,bulan , grand_modal , hari) "
+                + "VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (Connection con = dt.conectDatabase();
                 PreparedStatement pst = con.prepareStatement(sql)) {
@@ -87,10 +87,11 @@ public class Order implements OrderInterface {
                 int month = calendar.get(Calendar.MONTH) + 1;
                 pst.setString(7, String.valueOf(month));
                 pst.setString(8, grand_modal);
+                pst.setInt(9, bulan.getindexHari());
             }
 
             pst.execute();
-            System.out.println("berhasil add");
+          
         } catch (SQLException e) {
             // JOptionPane.showMessageDialog(null, "Harap Isi field Bayar Terlebih dahulu","Terjadi kesalahan !",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -333,7 +334,7 @@ public class Order implements OrderInterface {
             print = JasperFillManager.fillReport(Report, hash, con);
 
             JasperPrintManager.printReport(print, false);
-
+            
             File fileDelete = new File("src/Report/" + fname + ".png");
             fileDelete.delete();
 
@@ -418,6 +419,8 @@ public class Order implements OrderInterface {
             if(res.next()){
               untung=res.getString("untung");
                
+            }else{
+              untung="0";
             }
         }catch(SQLException e){
             System.out.println(e);
@@ -461,8 +464,9 @@ public class Order implements OrderInterface {
             
            
             if(res.next()){
-              show+=res.getInt("untung");
-               
+              show+=res.getInt("untung");  
+            }else{
+              show=0;
             }
         }catch(SQLException e){
             System.out.println(e);
@@ -477,6 +481,8 @@ public class Order implements OrderInterface {
         model.addColumn("No");
         model.addColumn("Nama Barang");
         model.addColumn("Jumlah Terjual");
+        table.setRowHeight(30);
+        
         
         String sql="select product.nama_product ,count(detail_transaksi.kode_product) as populer from detail_transaksi join product on product.kode_product = detail_transaksi.kode_product GROUP by product.nama_product order by populer DESC limit 5";
         
@@ -493,7 +499,7 @@ public class Order implements OrderInterface {
                     
                     
                 });
-                System.out.println(res.getString("product.nama_product"));
+           
             }
             table.setModel(model);
             
