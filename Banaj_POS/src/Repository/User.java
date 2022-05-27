@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import View.Dashbord;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +25,10 @@ public class User implements UserInterface{
     DefaultTableModel model = new DefaultTableModel();
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+    
+    String username;
+    String password;
+    
     
     @Override
     public void showUser(JTable table) {
@@ -67,10 +72,7 @@ public class User implements UserInterface{
         try(Connection con = dt.conectDatabase();
             PreparedStatement pst = con.prepareStatement(sql_getIdPegawai);
             ResultSet res = pst.executeQuery(sql_getIdPegawai);){
-          
-          
             
-
             String hsl = "";
             if(res.next()){
                 String a = res.getString(1).replaceAll("[a-zA-Z]", "");
@@ -133,5 +135,40 @@ public class User implements UserInterface{
             
         }
     }
+
+    @Override
+    public void showUserYangSedangLogin(String id) {
+        
+        String sql="select nama_pegawai , username , password , update_at from pegawai where id_pegawai ='"+id+"'";
+        
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            
+            if(res.next()){
+                System.out.println("er");
+                String username = res.getString("username");
+                Dashbord.txt_username.setText(username);
+                Dashbord.txt_password.setText(res.getString("password"));
+                String namaTmp =res.getString("nama_pegawai");
+                String[] split = namaTmp.split(" ");
+                if(split.length==1){
+                    Dashbord.txt_namaDepan.setText(namaTmp);
+                }else if(split.length==2){
+                    Dashbord.txt_namaDepan.setText(split[0]);
+                    Dashbord.txt_namaBelakang.setText(split[1]);
+                }
+                Dashbord.txt_updateAtt.setText(res.getString("update_at"));
+            }else{
+                System.out.println("test");
+            }
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+    }
+    
 }
     

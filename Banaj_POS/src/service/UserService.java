@@ -47,4 +47,8 @@ public class UserService {
        } 
         return isadd;
     }
+    public void showUserYangSedangLogin(String id){
+        UserInterface user = new User();
+        user.showUserYangSedangLogin(id);
+    }
 }

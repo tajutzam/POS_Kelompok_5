@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2022 at 05:38 PM
+-- Generation Time: May 27, 2022 at 04:22 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -40,6 +40,14 @@ CREATE TABLE `beli_product` (
   `hari` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `beli_product`
+--
+
+INSERT INTO `beli_product` (`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`, `grand_total`, `pegawai`, `bayar`, `kembalian`, `bulan`, `hari`) VALUES
+('TRB05273386', 'S001', '2022-05-27 00:18:42', 'K001', '320000', 'PGW001', 320000, 0, 5, 27),
+('TRB05273507', 'S001', '2022-05-27 00:19:24', 'K001', '350000', 'PGW001', 360000, 10000, 5, 27);
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +59,14 @@ CREATE TABLE `detail_beli_product` (
   `jumlahBeli` int(32) NOT NULL,
   `product` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_beli_product`
+--
+
+INSERT INTO `detail_beli_product` (`id_beliProduct`, `jumlahBeli`, `product`) VALUES
+('TRB05273386', 10, 'SBN0001'),
+('TRB05273507', 10, 'SBN0002');
 
 -- --------------------------------------------------------
 
@@ -107,6 +123,13 @@ CREATE TABLE `detail_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `detail_transaksi`
+--
+
+INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`, `sub_pembelian`) VALUES
+('TRJ05272783', 'SBN0001', 35000, 1, 32000);
+
+--
 -- Triggers `detail_transaksi`
 --
 DELIMITER $$
@@ -135,31 +158,7 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
 ('K001', 'SABUN', '2022-04-30 19:17:41', '2022-04-30 19:17:41'),
 ('K002', 'SAMPO', '2022-04-30 19:18:31', '2022-04-30 19:18:31'),
-('K003', 'PARFUM', '2022-05-01 09:34:25', '2022-05-01 09:34:25'),
-('K004', 'BARU', '2022-05-25 19:51:19', '2022-05-25 19:51:19'),
-('K005', 'SA', '2022-05-25 19:53:40', '2022-05-25 19:53:40'),
-('K006', 'Y', '2022-05-26 10:32:58', '2022-05-26 10:32:58'),
-('K007', 'SA', '2022-05-26 10:36:04', '2022-05-26 10:36:04'),
-('K008', 'KO', '2022-05-26 10:39:55', '2022-05-26 10:39:55'),
-('K009', 'S', '2022-05-26 10:40:51', '2022-05-26 10:40:51'),
-('K010', 'B', '2022-05-26 10:42:56', '2022-05-26 10:42:56'),
-('K011', 'W', '2022-05-26 10:43:14', '2022-05-26 10:43:14'),
-('K012', 'D', '2022-05-26 10:47:34', '2022-05-26 10:47:34'),
-('K013', 'TEST', '2022-05-26 10:48:32', '2022-05-26 10:48:32'),
-('K014', 'OH', '2022-05-26 10:58:20', '2022-05-26 10:58:20'),
-('K015', '1', '2022-05-26 10:59:21', '2022-05-26 10:59:21'),
-('K016', 'D', '2022-05-26 11:00:57', '2022-05-26 11:00:57'),
-('K017', 'D', '2022-05-26 11:01:49', '2022-05-26 11:01:49'),
-('K018', 'SASD', '2022-05-26 11:03:56', '2022-05-26 11:03:56'),
-('K019', 'SADASD', '2022-05-26 11:04:32', '2022-05-26 11:04:32'),
-('K020', 'ASD', '2022-05-26 11:05:20', '2022-05-26 11:05:20'),
-('K021', 'SD', '2022-05-26 11:09:51', '2022-05-26 11:09:51'),
-('K022', 'D', '2022-05-26 11:10:14', '2022-05-26 11:10:14'),
-('K023', 'AD', '2022-05-26 11:10:45', '2022-05-26 11:10:45'),
-('K024', 'ASD', '2022-05-26 11:11:15', '2022-05-26 11:11:15'),
-('K025', 'SAD', '2022-05-26 11:12:30', '2022-05-26 11:12:30'),
-('K026', 'ADS', '2022-05-26 11:14:29', '2022-05-26 11:14:29'),
-('K027', 'SA', '2022-05-26 15:38:33', '2022-05-26 15:38:33');
+('K003', 'PARFUM', '2022-05-01 09:34:25', '2022-05-01 09:34:25');
 
 -- --------------------------------------------------------
 
@@ -183,8 +182,8 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`, `role`, `status`, `password`) VALUES
-('PGW001', 'ZAM ZAMI', 'kasir', '2022-05-26 17:34:55', '2022-05-26 17:34:55', 1, 'Aktif', 'kasir'),
-('PGW002', 'ZEN', 'admin', '2022-05-26 17:35:28', '2022-05-26 17:35:28', 2, 'Aktif', 'admin');
+('PGW001', 'ZAM ZAMI', 'kasir', '2022-05-26 17:34:55', '2022-05-26 17:34:55', 2, 'Aktif', 'kasir'),
+('PGW002', 'ZEN ZEN', 'admin', '2022-05-26 17:35:28', '2022-05-26 17:35:28', 1, 'Aktif', 'admin');
 
 -- --------------------------------------------------------
 
@@ -205,6 +204,14 @@ CREATE TABLE `product` (
   `rusak` int(32) DEFAULT 0,
   `total_stok` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
+('SBN0001', 'Dove Deeply Nourishing Body Wash', 9, 32000, 35000, 'S001', 'K001', '2022-05-27 00:19:52', '2022-05-27 00:18:42', 0, 9),
+('SBN0002', 'LUX Sakura Bloom', 10, 35000, 37000, 'S001', 'K001', '2022-05-27 00:19:24', '2022-05-27 00:19:24', 0, 10);
 
 --
 -- Triggers `product`
@@ -336,6 +343,13 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`, `bulan`, `grand_modal`, `hari`) VALUES
+('TRJ05272783', '2022-05-27 00:19:52', 35000, 35000, 'PGW001', 0, 5, 32000, 27);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -429,7 +443,9 @@ ALTER TABLE `transaksi`
 -- Constraints for table `beli_product`
 --
 ALTER TABLE `beli_product`
-  ADD CONSTRAINT `beli_product_ibfk_1` FOREIGN KEY (`pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `beli_product_ibfk_1` FOREIGN KEY (`pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `beli_product_ibfk_2` FOREIGN KEY (`kategori`) REFERENCES `kategori` (`kode_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `beli_product_ibfk_3` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`kode_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `detail_beli_product`
