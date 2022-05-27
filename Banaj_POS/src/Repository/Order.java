@@ -332,8 +332,10 @@ public class Order implements OrderInterface {
 
             JasperPrint print;
             print = JasperFillManager.fillReport(Report, hash, con);
+            JasperViewer view = new JasperViewer(print ,false);
+            view.setVisible(true);
 
-            JasperPrintManager.printReport(print, false);
+            //JasperPrintManager.printReport(print, false);
             
             File fileDelete = new File("src/Report/" + fname + ".png");
             fileDelete.delete();

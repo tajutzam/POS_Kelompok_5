@@ -273,16 +273,26 @@ public class Dashbord extends javax.swing.JFrame {
         label_setToko = new javax.swing.JLabel();
         label_setProfile = new javax.swing.JLabel();
         conten_setting = new RoundedPanel(4, new Color(255, 255, 255));
+        setting_toko = new javax.swing.JPanel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         setting_profile = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txt_username = new javax.swing.JTextField();
+        txt_password = new javax.swing.JTextField();
+        txt_namaDepan = new javax.swing.JTextField();
+        txt_konfirmasiPassword = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_namaBelakang = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txt_updateAtt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -366,23 +376,22 @@ public class Dashbord extends javax.swing.JFrame {
         frame_logo_toko.setBackground(new java.awt.Color(255, 255, 255));
         frame_logo_toko.setPreferredSize(new java.awt.Dimension(66, 66));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/6474521_dfd1fc73-70ce-4879-b4fd-96163559e491() (4).png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logo banaj ireng (1).png"))); // NOI18N
+        jLabel5.setAlignmentY(0.0F);
         jLabel5.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/6474521_dfd1fc73-70ce-4879-b4fd-96163559e491() (4).png"))); // NOI18N
 
         javax.swing.GroupLayout frame_logo_tokoLayout = new javax.swing.GroupLayout(frame_logo_toko);
         frame_logo_toko.setLayout(frame_logo_tokoLayout);
         frame_logo_tokoLayout.setHorizontalGroup(
             frame_logo_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frame_logo_tokoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         frame_logo_tokoLayout.setVerticalGroup(
             frame_logo_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frame_logo_tokoLayout.createSequentialGroup()
+            .addGroup(frame_logo_tokoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, Short.MAX_VALUE))
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         navigasi_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -1607,20 +1616,113 @@ public class Dashbord extends javax.swing.JFrame {
 
         conten_setting.setLayout(new java.awt.CardLayout());
 
+        setting_toko.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField7.setForeground(new java.awt.Color(90, 90, 90));
+        jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel15.setText("Nama Toko");
+
+        jTextField8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel16.setText("Alamat Toko");
+
+        jTextField9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField9.setForeground(new java.awt.Color(90, 90, 90));
+        jTextField9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jTextField10.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jTextField10.setForeground(new java.awt.Color(90, 90, 90));
+        jTextField10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel17.setText("No Hp");
+
+        jLabel18.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel18.setText("Terakhir Diperbarui Pada");
+
+        jButton4.setBackground(new java.awt.Color(111, 59, 160));
+        jButton4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Simpan");
+
+        javax.swing.GroupLayout setting_tokoLayout = new javax.swing.GroupLayout(setting_toko);
+        setting_toko.setLayout(setting_tokoLayout);
+        setting_tokoLayout.setHorizontalGroup(
+            setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setting_tokoLayout.createSequentialGroup()
+                .addGroup(setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(setting_tokoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(setting_tokoLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15)
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                        .addGroup(setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18))))
+                .addGap(59, 59, 59))
+        );
+
+        setting_tokoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField10, jTextField7, jTextField8, jTextField9});
+
+        setting_tokoLayout.setVerticalGroup(
+            setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(setting_tokoLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73)
+                .addGroup(setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(setting_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+
+        setting_tokoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextField10, jTextField7, jTextField8, jTextField9});
+
+        conten_setting.add(setting_toko, "card3");
+
         setting_profile.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(90, 90, 90));
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_username.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txt_username.setForeground(new java.awt.Color(90, 90, 90));
+        txt_username.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTextField2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_password.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txt_password.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTextField3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_namaDepan.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txt_namaDepan.setForeground(new java.awt.Color(90, 90, 90));
+        txt_namaDepan.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTextField4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_konfirmasiPassword.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txt_konfirmasiPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(90, 90, 90));
@@ -1630,16 +1732,17 @@ public class Dashbord extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(90, 90, 90));
         jLabel3.setText("Username");
 
-        jTextField5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_namaBelakang.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txt_namaBelakang.setForeground(new java.awt.Color(90, 90, 90));
+        txt_namaBelakang.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel4.setText("Nama Depan");
+        jLabel4.setText("Nama Belakang");
 
-        jTextField6.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(90, 90, 90));
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_updateAtt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txt_updateAtt.setForeground(new java.awt.Color(90, 90, 90));
+        txt_updateAtt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(90, 90, 90));
@@ -1675,27 +1778,27 @@ public class Dashbord extends javax.swing.JFrame {
                     .addGroup(setting_profileLayout.createSequentialGroup()
                         .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(setting_profileLayout.createSequentialGroup()
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_namaBelakang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_updateAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(setting_profileLayout.createSequentialGroup()
                                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_namaDepan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_konfirmasiPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel13)))
                             .addGroup(setting_profileLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(59, 59, 59))))
         );
 
-        setting_profileLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField1, jTextField2, jTextField3, jTextField4, jTextField5});
+        setting_profileLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_konfirmasiPassword, txt_namaBelakang, txt_namaDepan, txt_password, txt_username});
 
         setting_profileLayout.setVerticalGroup(
             setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1705,34 +1808,34 @@ public class Dashbord extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setting_profileLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_namaDepan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_konfirmasiPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField5))
+                    .addComponent(txt_updateAtt)
+                    .addComponent(txt_namaBelakang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
 
-        setting_profileLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextField1, jTextField3, jTextField4, jTextField5});
+        setting_profileLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txt_konfirmasiPassword, txt_namaBelakang, txt_namaDepan, txt_username});
 
         conten_setting.add(setting_profile, "card2");
 
@@ -2581,7 +2684,7 @@ public class Dashbord extends javax.swing.JFrame {
         ConntainerPanel.revalidate();
         
        
-         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
+        panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplay (1).png")));
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingsPurple.png")));
@@ -2602,6 +2705,8 @@ public class Dashbord extends javax.swing.JFrame {
          
         OrderService order = new OrderService();
         order.resetKeranjang();
+        UserService user = new UserService();
+        user.showUserYangSedangLogin(label_idPegawai.getText());
         
 
     }//GEN-LAST:event_panel_iconSettingMouseClicked
@@ -3394,16 +3499,26 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_boxPembelianActionPerformed
 
     private void label_setTokoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_setTokoMouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         
         label_setToko.setForeground(new Color(111, 59, 160));
         label_setProfile.setForeground(new Color(90, 90, 90));
+        
+        conten_setting.removeAll();
+        conten_setting.add(setting_toko);
+        conten_setting.repaint();
+        conten_setting.revalidate();
     }//GEN-LAST:event_label_setTokoMouseClicked
 
     private void label_setProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_setProfileMouseClicked
         // TODO add your handling code here:
-          label_setProfile.setForeground(new Color(111, 59, 160));
+        label_setProfile.setForeground(new Color(111, 59, 160));
         label_setToko.setForeground(new Color(90, 90, 90));
+        
+        conten_setting.removeAll();
+        conten_setting.add(setting_profile);
+        conten_setting.repaint();
+        conten_setting.revalidate();
     }//GEN-LAST:event_label_setProfileMouseClicked
 
     public void showBarangWhenClick(){
@@ -3612,6 +3727,7 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -3620,6 +3736,10 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -3644,12 +3764,10 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel label_bula;
     private javax.swing.JLabel label_contenBarangppuler;
     public static javax.swing.JLabel label_idPegawai;
@@ -3710,6 +3828,7 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel pengeluaran_bulan;
     private javax.swing.JLabel penghasilan_bulanIni;
     private javax.swing.JPanel setting_profile;
+    private javax.swing.JPanel setting_toko;
     private javax.swing.JLabel show_laporanPembelian;
     private javax.swing.JLabel show_laporanPenjualan;
     public static javax.swing.JTable tabel_kategori;
@@ -3727,10 +3846,16 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JTextField txt_cariKategori;
     private javax.swing.JTextField txt_cariSupplier;
     private javax.swing.JTextField txt_cariSupplier1;
+    public static javax.swing.JTextField txt_konfirmasiPassword;
+    public static javax.swing.JTextField txt_namaBelakang;
+    public static javax.swing.JTextField txt_namaDepan;
+    public static javax.swing.JTextField txt_password;
     public static javax.swing.JLabel txt_totalBrg;
     public static javax.swing.JLabel txt_totalKategori;
     private javax.swing.JLabel txt_totalReturn;
     public static javax.swing.JLabel txt_totalSupplier;
+    public static javax.swing.JTextField txt_updateAtt;
+    public static javax.swing.JTextField txt_username;
     private javax.swing.JLabel untungSebulanValue;
     private javax.swing.JLabel untung_sebulan;
     // End of variables declaration//GEN-END:variables
