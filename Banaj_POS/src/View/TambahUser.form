@@ -464,14 +464,12 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="label_editNamaDepan" min="-2" max="-2" attributes="0"/>
+                                      <Component id="label_editNama" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="label_editNamaBelakang" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                      <EmptySpace min="47" pref="162" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -508,7 +506,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btn_edit_Simpan" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton5" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="btn_edit_HapusUser" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButton6" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -547,7 +545,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label_editNamaDepan" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label_editNama" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="TXT_edit_Namadepan" min="-2" pref="32" max="-2" attributes="0"/>
@@ -566,7 +564,6 @@
                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="label_editNamaBelakang" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="label_editRole" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -594,7 +591,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btn_edit_Simpan" alignment="3" max="32767" attributes="0"/>
-                          <Component id="jButton5" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btn_edit_HapusUser" alignment="3" max="32767" attributes="0"/>
                           <Component id="jButton6" alignment="3" max="32767" attributes="0"/>
                           <Component id="jButton7" alignment="3" max="32767" attributes="0"/>
                       </Group>
@@ -803,7 +800,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_edit_SimpanMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton5">
+            <Component class="javax.swing.JButton" name="btn_edit_HapusUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2d" green="2d" red="33" type="rgb"/>
@@ -814,10 +811,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cancel"/>
+                <Property name="text" type="java.lang.String" value="Hapus"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton5MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_edit_HapusUserMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton6">
@@ -852,9 +849,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="label_editPassword">
             </Component>
-            <Component class="javax.swing.JLabel" name="label_editNamaDepan">
-            </Component>
-            <Component class="javax.swing.JLabel" name="label_editNamaBelakang">
+            <Component class="javax.swing.JLabel" name="label_editNama">
             </Component>
             <Component class="javax.swing.JLabel" name="label_editRole">
             </Component>

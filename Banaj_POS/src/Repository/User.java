@@ -30,7 +30,7 @@ public class User implements UserInterface{
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     
     @Override
-    public void showUser(JTable table) {
+    public void showUser(JTable table, String id) {
         DefaultTableModel model = new DefaultTableModel();
             model.addColumn("No");
             model.addColumn("Id Pegawai");
@@ -41,7 +41,7 @@ public class User implements UserInterface{
             model.addColumn("Password");
             
         table.setRowHeight(30);
-        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai order by id_pegawai asc";
+        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai WHERE id_pegawai!='"+id+"' order by id_pegawai asc";
         int no=0;
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
@@ -140,6 +140,7 @@ public class User implements UserInterface{
         }
     }
     
+    @Override
     public void EditUser(String id, String nama_pegawai, String username, String password, String role, String status,  String time){
     
         String sql = "UPDATE `pegawai` SET `nama_pegawai`= ?,`username`= ?,`create_at`= ?,`update_at`= ?,`role`= ?,`status`= ?,`password`= ? WHERE id_pegawai = ? " ;
@@ -163,12 +164,12 @@ public class User implements UserInterface{
         
         }
     }
-}
     @Override
-    public void deleteUser(String id ) {
-      
+    public void deleteUser(String id){
+        
         int resetData = JOptionPane.showOptionDialog(null, "Apakah Anda Yakin Ingin Menghapus User ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
         if(resetData==0){
+            
             String sql ="delete from pegawai where id_pegawai = ?";
             try(Connection con = dt.conectDatabase();
             PreparedStatement pst =con.prepareStatement(sql);)
@@ -177,11 +178,13 @@ public class User implements UserInterface{
                pst.executeUpdate();
            
                JOptionPane.showMessageDialog(null, "User Berhasil Dihapus Silahkan Refresh !", "Sukses !", JOptionPane.INFORMATION_MESSAGE,suscesicon);
-               dta.dispose();
+               
             }catch(SQLException e){
-                JOptionPane.showMessageDialog(null, "User gagal di hapus !","Eror !",JOptionPane.WARNING_MESSAGE);
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "User gagal di hapus Karena Sudah Melakukan Transaksi!","Terjadi Kesalahan !",JOptionPane.WARNING_MESSAGE);
             }
             
         }
     }
-    
+}
+
