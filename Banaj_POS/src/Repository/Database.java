@@ -30,9 +30,9 @@ public class Database implements DatabaseInterface{
     public Connection conectDatabase() {
         
         try{
-                String jdbcUrl="jdbc:mysql://localhost:3306/db_banajTest";
+                String jdbcUrl="jdbc:mysql://localhost:3306/db_banaj";
                 String jdbcUser="root";
-                String jdbcPassword="zam";
+                String jdbcPassword="";
                 mySqlCon=DriverManager.getConnection(jdbcUrl,jdbcUser,jdbcPassword );
               
             

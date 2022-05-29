@@ -3104,9 +3104,17 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void table_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_userMouseClicked
-         // TODO add your handling code here:
-         TambahUser dt = new TambahUser();
+        
+        TambahUser dt = new TambahUser();
+        
+         table_user.getSelectedRow();
+         int row = table_user.getSelectedRow();
+         String id = table_user.getValueAt(row, 1).toString();
+         System.out.println(id);
+         TambahUser.label_editId.setText(id);
+         dt.sendDataEdit("edit", TambahUser.label_editId.getText());
          dt.Action("edit");
+        
     }//GEN-LAST:event_table_userMouseClicked
 
     private void table_laporanPenjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_laporanPenjualanMouseClicked

@@ -11,8 +11,10 @@ import javax.swing.JTable;
  * @author NORMAL USER
  */
 public interface UserInterface {
-    public void showUser(JTable table);
+    public void showUser(JTable table, String id);
     public String getPrimaryKey();
     public void addUser(String id, String nama_pegawai, String username, String password, String role, String status,  String time);
     public void showUserYangSedangLogin(String id);
+    public void EditUser(String id, String nama_pegawai, String username, String password, String role, String status,  String time);
+    public void deleteUser(String id);
 }
