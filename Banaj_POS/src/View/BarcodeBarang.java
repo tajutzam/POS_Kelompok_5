@@ -119,7 +119,7 @@ public class BarcodeBarang extends javax.swing.JFrame {
          
          barangService barang = new barangService();
          String nama =nama_barangCombo.getSelectedItem().toString();
-         System.out.println(nama);
+        
          barang.cetakBarcode(nama);
          this.dispose();
          

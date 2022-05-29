@@ -11,6 +11,8 @@ import Repository.Order;
 import Repository.OrderInterface;
 import Repository.Validasi;
 import Repository.ValidasiUser;
+import Util.PlaceHolderDemo;
+import java.awt.KeyboardFocusManager;
 
 import javax.swing.JTextField;
 import service.ValidasiService;
@@ -29,6 +31,10 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setTitle("Banaj Fragrance -> Login Page");
+        username_textField.setFocusable(true);
+        
+        
+    
    
         DatabaseInterface database = new Database();
         database.conectDatabase();
@@ -101,12 +107,45 @@ public class Login extends javax.swing.JFrame {
         password_label.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         password_label.setText("PASSWORD");
 
+        username_textField.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        username_textField.setForeground(new java.awt.Color(90, 90, 90));
+        username_textField.setText("MASUKAN USERNAME");
         username_textField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        username_textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                username_textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                username_textFieldFocusLost(evt);
+            }
+        });
+        username_textField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                username_textFieldKeyPressed(evt);
+            }
+        });
 
+        pasword_textField.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        pasword_textField.setForeground(new java.awt.Color(90, 90, 90));
+        pasword_textField.setText("MASUKAN PASSWORD");
         pasword_textField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        pasword_textField.setEchoChar('\u0000');
+        pasword_textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pasword_textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pasword_textFieldFocusLost(evt);
+            }
+        });
         pasword_textField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pasword_textFieldActionPerformed(evt);
+            }
+        });
+        pasword_textField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pasword_textFieldKeyPressed(evt);
             }
         });
 
@@ -239,6 +278,7 @@ public class Login extends javax.swing.JFrame {
 
     private void pasword_textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasword_textFieldActionPerformed
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_pasword_textFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -246,7 +286,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-          // TODO add your handling code here:
+           // TODO add your handling code here:
        
       
         ValidasiService va = new ValidasiService();
@@ -268,6 +308,96 @@ public class Login extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void username_textFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_username_textFieldFocusGained
+         // TODO add your handling code here:
+         
+         PlaceHolderDemo place = new PlaceHolderDemo();
+         if(username_textField.getText().equals("MASUKAN USERNAME")){
+             username_textField.setText(null);
+             username_textField.requestFocus();
+             PlaceHolderDemo.removeAddPlaceHolder(username_textField);
+         }
+         
+         
+    }//GEN-LAST:event_username_textFieldFocusGained
+
+    private void username_textFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_username_textFieldFocusLost
+         // TODO add your handling code here:
+         
+         if(username_textField.getText().length()==0){
+             PlaceHolderDemo place = new PlaceHolderDemo();
+             place.addPlaceHolder(username_textField);
+             username_textField.setText("MASUKAN USERNAME");
+         }
+    }//GEN-LAST:event_username_textFieldFocusLost
+
+    private void pasword_textFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pasword_textFieldFocusGained
+         // TODO add your handling code here:
+         
+         if(pasword_textField.getText().equals("MASUKAN PASSWORD")){
+             pasword_textField.setText(null);
+             PlaceHolderDemo place = new PlaceHolderDemo();
+             pasword_textField.requestFocus();
+             pasword_textField.setEchoChar('*');
+             PlaceHolderDemo.removeAddPlaceHolder(pasword_textField);
+         }
+    }//GEN-LAST:event_pasword_textFieldFocusGained
+
+    private void pasword_textFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pasword_textFieldFocusLost
+         // TODO add your handling code here:
+         if(pasword_textField.getText().length()==0){
+             PlaceHolderDemo place = new PlaceHolderDemo();
+             place.addPlaceHolder(pasword_textField);
+             pasword_textField.setEchoChar('\u0000');
+             pasword_textField.setText("MASUKAN PASSWORD");
+         }
+         
+    }//GEN-LAST:event_pasword_textFieldFocusLost
+
+    private void pasword_textFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pasword_textFieldKeyPressed
+         // TODO add your handling code here:
+         
+         if(evt.getKeyCode()==evt.VK_ENTER){
+             
+        ValidasiService va = new ValidasiService();
+       
+       
+        Validasi validasi = new Validasi();
+        
+       boolean lo= va.login(username_textField.getText(), pasword_textField.getText());
+       
+       if(lo==true){
+            
+           this.dispose();
+       }else{
+           this.username_textField.setText("");
+           this.pasword_textField.setText("");
+       }
+         }
+    }//GEN-LAST:event_pasword_textFieldKeyPressed
+
+    private void username_textFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_textFieldKeyPressed
+         // TODO add your handling code here:
+         
+        if(evt.getKeyCode()==evt.VK_ENTER){
+             
+        ValidasiService va = new ValidasiService();
+       
+       
+        Validasi validasi = new Validasi();
+        
+       boolean lo= va.login(username_textField.getText(), pasword_textField.getText());
+       
+       if(lo==true){
+            
+           this.dispose();
+       }else{
+           this.username_textField.setText("");
+           this.pasword_textField.setText("");
+       }
+         }
+    }//GEN-LAST:event_username_textFieldKeyPressed
 
     /**
      * @param args the command line arguments

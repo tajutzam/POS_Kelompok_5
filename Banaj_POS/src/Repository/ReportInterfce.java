@@ -17,5 +17,6 @@ public interface ReportInterfce {
     public void showLaporanPerBulanIni(JTable table);
     public void showLaporanPerhariIni(JTable table);
     public void showLaporanPerminggu(JTable table);
+    public void cetakLaporanpenjualan(String tanggal , String sampai);
     
 }

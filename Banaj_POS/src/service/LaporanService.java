@@ -48,6 +48,8 @@ public class LaporanService {
         ReportInterfce report = new LaporanPenjualan();
         report.showLaporanPerminggu(table);
     }
-    
+    public void cetakLaporanPenjualan(String tanggal , String sampai){
+        reportPenjualan.cetakLaporanpenjualan(tanggal, sampai);
+    }
     
 }

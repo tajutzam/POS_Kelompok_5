@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2022 at 04:22 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: May 29, 2022 at 08:36 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `beli_product` (
   `id_beliProduct` varchar(11) NOT NULL,
   `supplier` varchar(8) NOT NULL,
-  `tanggal_beliProduct` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal_beliProduct` date NOT NULL,
   `kategori` varchar(8) NOT NULL,
-  `grand_total` varchar(32) NOT NULL,
+  `grand_total` int(32) NOT NULL,
   `pegawai` varchar(8) NOT NULL,
   `bayar` int(32) NOT NULL,
   `kembalian` int(32) NOT NULL,
@@ -45,8 +45,11 @@ CREATE TABLE `beli_product` (
 --
 
 INSERT INTO `beli_product` (`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`, `grand_total`, `pegawai`, `bayar`, `kembalian`, `bulan`, `hari`) VALUES
-('TRB05273386', 'S001', '2022-05-27 00:18:42', 'K001', '320000', 'PGW001', 320000, 0, 5, 27),
-('TRB05273507', 'S001', '2022-05-27 00:19:24', 'K001', '350000', 'PGW001', 360000, 10000, 5, 27);
+('TRB05273386', 'S001', '2022-05-27', 'K001', 320000, 'PGW001', 320000, 0, 5, 27),
+('TRB05273507', 'S001', '2022-05-27', 'K001', 350000, 'PGW001', 360000, 10000, 5, 27),
+('TRB05285254', 'S002', '2022-05-28', 'K002', 188000, 'PGW002', 180000, 1400, 5, 28),
+('TRB05287824', 'S001', '2022-05-28', 'K001', 150000, 'PGW002', 160000, 10000, 5, 28),
+('TRB05289264', 'S001', '2022-05-28', 'K003', 554000, 'PGW002', 555000, 1000, 5, 28);
 
 -- --------------------------------------------------------
 
@@ -66,7 +69,16 @@ CREATE TABLE `detail_beli_product` (
 
 INSERT INTO `detail_beli_product` (`id_beliProduct`, `jumlahBeli`, `product`) VALUES
 ('TRB05273386', 10, 'SBN0001'),
-('TRB05273507', 10, 'SBN0002');
+('TRB05273507', 10, 'SBN0002'),
+('TRB05287824', 10, 'SBN0003'),
+('TRB05285254', 24, 'SMO0001'),
+('TRB05285254', 12, 'SMO0002'),
+('TRB05285254', 100, 'SMO0003'),
+('TRB05285254', 100, 'SMO0004'),
+('TRB05285254', 100, 'SMO0005'),
+('TRB05289264', 7, 'PRM0001'),
+('TRB05289264', 10, 'PRM0002'),
+('TRB05289264', 10, 'PRM0003');
 
 -- --------------------------------------------------------
 
@@ -127,7 +139,8 @@ CREATE TABLE `detail_transaksi` (
 --
 
 INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`, `sub_pembelian`) VALUES
-('TRJ05272783', 'SBN0001', 35000, 1, 32000);
+('TRJ05272783', 'SBN0001', 35000, 1, 32000),
+('TRJ05281856', 'SBN0002', 37000, 1, 35000);
 
 --
 -- Triggers `detail_transaksi`
@@ -210,8 +223,17 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
+('PRM0001', 'Gatsby ', 7, 22000, 25000, 'S001', 'K003', '2022-05-28 13:58:09', '2022-05-28 13:58:09', 0, 7),
+('PRM0002', 'Casablanca', 10, 15000, 17000, 'S001', 'K003', '2022-05-28 13:58:09', '2022-05-28 13:58:09', 0, 10),
+('PRM0003', 'Baccarat 100 ml', 10, 25000, 27000, 'S001', 'K003', '2022-05-28 13:58:09', '2022-05-28 13:58:09', 0, 10),
 ('SBN0001', 'Dove Deeply Nourishing Body Wash', 9, 32000, 35000, 'S001', 'K001', '2022-05-27 00:19:52', '2022-05-27 00:18:42', 0, 9),
-('SBN0002', 'LUX Sakura Bloom', 10, 35000, 37000, 'S001', 'K001', '2022-05-27 00:19:24', '2022-05-27 00:19:24', 0, 10);
+('SBN0002', 'LUX Sakura Bloom', 9, 35000, 37000, 'S001', 'K001', '2022-05-28 11:10:26', '2022-05-27 00:19:24', 0, 9),
+('SBN0003', 'Dove Lovely', 10, 15000, 17000, 'S001', 'K001', '2022-05-28 11:15:29', '2022-05-28 11:15:29', 0, 10),
+('SMO0001', ' Shampoo Zinc Sachet 1Renceng 24Sachet', 24, 500, 1000, 'S002', 'K002', '2022-05-28 13:56:39', '2022-05-28 13:56:39', 0, 24),
+('SMO0002', ' LIFEBUOY SHAMPO SACHET 1 RENCENG 12 SACHET', 12, 500, 1000, 'S002', 'K002', '2022-05-28 13:56:39', '2022-05-28 13:56:39', 0, 12),
+('SMO0003', 'Pentene Hijau merona', 100, 500, 1000, 'S002', 'K002', '2022-05-28 13:56:39', '2022-05-28 13:56:39', 0, 100),
+('SMO0004', 'Dove Lonely', 100, 500, 1000, 'S002', 'K002', '2022-05-28 13:56:39', '2022-05-28 13:56:39', 0, 100),
+('SMO0005', 'Sunslick Kuat dan tahan lama', 100, 700, 1000, 'S002', 'K002', '2022-05-28 13:56:39', '2022-05-28 13:56:39', 0, 100);
 
 --
 -- Triggers `product`
@@ -322,7 +344,7 @@ CREATE TABLE `toko` (
 --
 
 INSERT INTO `toko` (`id_toko`, `nama_toko`, `alamat_toko`, `create_at`, `update_at`, `no_hp`) VALUES
-('TOKO01', 'BANAJ FRAGRANCE MOSLEM', 'Jl. Sumatra Gang 7 Jember', '2022-05-08 21:38:52', '2022-05-08 21:38:52', '085907185972');
+('TOKO01', 'BANAJ FRAGRANMOSLEM', 'Jl. Sumatra Gang 7 Jember', '2022-05-08 21:38:52', '2022-05-08 21:38:52', '085907185972');
 
 -- --------------------------------------------------------
 
@@ -332,7 +354,7 @@ INSERT INTO `toko` (`id_toko`, `nama_toko`, `alamat_toko`, `create_at`, `update_
 
 CREATE TABLE `transaksi` (
   `id_transaksi` varchar(11) NOT NULL,
-  `tanggal_transaksi` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal_transaksi` date NOT NULL,
   `grand_total` int(32) NOT NULL,
   `bayar` int(32) NOT NULL,
   `id_pegawai` varchar(8) NOT NULL,
@@ -347,7 +369,8 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`, `bulan`, `grand_modal`, `hari`) VALUES
-('TRJ05272783', '2022-05-27 00:19:52', 35000, 35000, 'PGW001', 0, 5, 32000, 27);
+('TRJ05272783', '2022-05-27', 35000, 35000, 'PGW001', 0, 5, 32000, 27),
+('TRJ05281856', '2022-05-28', 37000, 38000, 'PGW002', 1000, 5, 35000, 28);
 
 --
 -- Indexes for dumped tables

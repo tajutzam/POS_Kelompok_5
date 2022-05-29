@@ -40,5 +40,8 @@ public class LaporanPembelianServicce {
     public void showLaporanPerminggu(JTable table){
         report.showLaporanPerminggu(table);
     }
+    public void cetakLaporanPembelian(String dari , String sampai){
+        report.cetakLaporanpenjualan(sampai, sampai);
+    }
     
 }
