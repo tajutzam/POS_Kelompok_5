@@ -7,15 +7,22 @@ package Repository;
 
 import Util.Bulan;
 import View.TransaksiPenjualan;
+import com.barcodelib.barcode.Linear;
 import java.awt.Color;
+import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -270,6 +277,56 @@ public class LaporanPenjualan implements ReportInterfce{
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Tidak ada Transaksi pada Hari ini", "Terjadi kesalahan", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    @Override
+    public void cetakLaporanpenjualan(String tanggal, String sampai) {
+        
+        String sql = "select nama_toko , no_hp , alamat_toko from toko";
+        String nama_toko;
+        String no_hp;
+        String alamat;
+        try {
+            Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql);
+
+            if (res.next()) {
+                nama_toko = res.getString("nama_toko");
+                no_hp = res.getString("no_hp");
+                alamat = res.getString("alamat_toko");
+                System.out.println(nama_toko);
+
+            } else {
+                throw new SQLException("gagal");
+            }
+
+            String fileName = "/Report/ReportLaporanPenjualan.jasper";
+            InputStream Report;
+            Report = getClass().getResourceAsStream(fileName);
+            // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
+            HashMap hash = new HashMap();
+
+       
+           hash.put("tanggal_dari", tanggal);
+           hash.put("tanggal_sampai", sampai);
+           hash.put("alamat", alamat);
+
+        
+
+            JasperPrint print;
+            print = JasperFillManager.fillReport(Report, hash, con);
+            JasperViewer view = new JasperViewer(print ,false);
+            view.setVisible(true);
+
+            //JasperPrintManager.printReport(print, false);
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+       
     }
     
     

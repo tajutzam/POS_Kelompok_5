@@ -31,11 +31,15 @@ public class ValidasiService {
              String role= this.getId(username , pasword);
              String nama = this.getNamaUser(username, pasword);
              String id = this.getIdPegawai(username, pasword);
-             
+             tokoService toko = new tokoService();
+            
              Dashbord dh = new Dashbord(role);
+             System.out.println(toko.setNamaToko());
+             dh.setNamaToko( toko.setNamaToko());
              dh.setNamaUserLogin(nama);
              dh.setIdPegawai(id);
              dh.setVisible(true);
+             
              OrderService order = new OrderService();
              dh.setUntung(order.getUntung());
              dh.setPengeluaran(order.getPengeluaran());

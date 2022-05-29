@@ -364,6 +364,7 @@ public class KonfirmasiBayarSupplier extends javax.swing.JFrame {
         
              if(isSuces==true){
              barang.insertDataTambahBanyakProduct(id_transaksi.getText(), stok,kode_product);  
+             barang.showBarang(Dashbord.table_barang);
         }
         }
        

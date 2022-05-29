@@ -1188,7 +1188,7 @@ public class Barang implements BarangInterface{
     @Override
     public void cetakBarcode(String name) {
         
-       String sql ="select kode_product , nama_pproduct , harga_jual from product where nama_product='"+name+"'";
+       String sql ="select kode_product , nama_product , harga_jual from product where nama_product='"+name+"'";
        String kode="";
        String nama_pro="";
        String harga="";
@@ -1220,6 +1220,8 @@ public class Barang implements BarangInterface{
            barcode.renderBarcode("src/Report/"+fname+".png");
               
            hash.put("Barcode", name);
+           hash.put("Nama_barang",nama_pro);
+           hash.put("Harga","Rp."+harga);
           
            
          
@@ -1232,19 +1234,17 @@ public class Barang implements BarangInterface{
           
            
            File fileDelete= new File("src/Report/"+fname+".png");
-           if(fileDelete.delete()){
-               System.out.println("berhasil dihapus");
-          }else{
-               System.out.println("gagal dihapus");    
-           }
+           fileDelete.delete();
+          
            
-          JasperPrintManager.printReport(print, false);
-//          
-//           JasperViewer viewer=new JasperViewer(print,false);
-//         
+        //  JasperPrintManager.printReport(print, false);
+          
+          
+           JasperViewer viewer=new JasperViewer(print,false);
+         
 //           viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
 //          
-//           viewer.setVisible(true);
+           viewer.setVisible(true);
 //           viewer.setExtendedState(viewer.MAXIMIZED_BOTH);
            
            
@@ -1329,8 +1329,8 @@ public class Barang implements BarangInterface{
                         res.getString("stok"),
                         res.getString("total_stok"),
                         res.getString("rusak"),
-                        res.getString("harga_beli"),
-                        res.getString("harga_jual"),
+                        ("Rp."+res.getString("harga_beli")),
+                        ("Rp."+res.getString("harga_jual")),
                         res.getString("supplier.nama_supplier"),
                         res.getString("kategori.nama_kategori"),
                         

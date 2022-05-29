@@ -343,6 +343,11 @@ public class TambahUser extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Simpan");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(51, 45, 45));
         jButton5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -504,6 +509,11 @@ public class TambahUser extends javax.swing.JFrame {
             this.dispose();
         }       
     }//GEN-LAST:event_btn_Add_SimpanMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+         // TODO add your handling code here:
+         
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
