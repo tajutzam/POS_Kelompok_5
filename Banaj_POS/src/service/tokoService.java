@@ -23,5 +23,7 @@ public class tokoService {
     public String setNamaToko(){
         return toko.getNamaToko();
     }
-    
+    public void editToko(String nama_toko , String alamat , String no_hp ){
+        toko.editDataToko(nama_toko, alamat, no_hp);
+    }
 }

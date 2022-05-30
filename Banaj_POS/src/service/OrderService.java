@@ -448,9 +448,9 @@ public class OrderService extends barangService {
           int subTmp = Integer.parseInt(sub_total);
           int qtyTpm = Integer.parseInt(qty);
           int Result = subTmp*qtyTpm;
-          String resultFinal = String.valueOf(Result);
+        
      
-          order.insertDataOrder(id, kode, subTotal, qty ,resultFinal);
+          order.insertDataOrder(id, kode, subTotal, qty ,Result);
       }
       
   }
@@ -480,6 +480,6 @@ public class OrderService extends barangService {
   }
    public void barangPalingBanyakDiminati(JTable table){
        OrderInterface order = new Order();
-       order.barangPalingBanyakDiminati(table);
+       order.barangPalingBanyakDiminati(Dashbord.table_banyakDiminati);
    }
 }
