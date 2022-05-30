@@ -19,7 +19,7 @@ public interface OrderInterface {
     public String selectToOrder(String kode);
     public void addProductToKeranjang(String kode );
     public void insertOrder();
-    public void insertDataOrder(String id , String kode , String subTotal ,String qty , String subPembelian);
+    public void insertDataOrder(String id , String kode , String subTotal ,String qty , int subPembelian);
     public void cetakStruct(String kode ,String diskon  , String harga);
     public void cetakStructPembelian(String transaksi);
     public String showPenjualan(int indek);

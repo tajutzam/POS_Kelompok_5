@@ -255,7 +255,7 @@ public class Order implements OrderInterface {
     }
 
     @Override
-    public void insertDataOrder(String id, String kode, String subTotal, String qty, String subPembelian) {
+    public void insertDataOrder(String id, String kode, String subTotal, String qty, int subPembelian) {
         String sql = "INSERT INTO `detail_transaksi`(`id_transaksi`, `kode_product`, `sub_total`, `qty` ,sub_pembelian) VALUES (?,?,?,?,?)";
         try (Connection con = dt.conectDatabase();
                 PreparedStatement pst = con.prepareStatement(sql)) {
@@ -264,7 +264,7 @@ public class Order implements OrderInterface {
             pst.setString(2, kode);
             pst.setString(3, subTotal);
             pst.setString(4, qty);
-            pst.setString(5, subPembelian);
+            pst.setInt(5, subPembelian);
             pst.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -378,7 +378,9 @@ public class Order implements OrderInterface {
 
             JasperPrint print;
             print = JasperFillManager.fillReport(Report, hash, con);
-            JasperPrintManager.printReport(print, false);
+            JasperViewer view = new JasperViewer(print , false);
+            view.setVisible(true);
+            //JasperPrintManager.printReport(print, false);
 
         } catch (SQLException e) {
 
@@ -477,12 +479,12 @@ public class Order implements OrderInterface {
     }
 
     @Override
-    public   void barangPalingBanyakDiminati(JTable table) {
+    public void barangPalingBanyakDiminati(JTable table) {
         int no=0;
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
         model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Terjual");
+        model.addColumn("Jumlah Terjua");
         table.setRowHeight(30);
         
         
@@ -491,7 +493,11 @@ public class Order implements OrderInterface {
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql)){
-            
+            if(res.next()){
+                System.out.println(res.getString("product.nama_product"));
+            }else{
+                System.out.println("errr");
+            }
             while(res.next()){
                 no++;
                 model.addRow(new Object[]{
@@ -503,7 +509,8 @@ public class Order implements OrderInterface {
                 });
            
             }
-            table.setModel(model);
+             Dashbord.table_banyakDiminati.setModel(model);
+           
             
         }catch(SQLException e){
             System.out.println(e);

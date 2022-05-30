@@ -7,9 +7,16 @@ package Repository;
 
 import View.Dashbord;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +43,9 @@ public class Toko implements Tokointerface{
                 Dashbord.no_hpToko.setText(noHp);
                 Dashbord.update_toko.setText(update);
                 Dashbord.nama_toko.setText(namatoko);
+                Dashbord.label_nama_toko.setText(namatoko);
+                Dashbord.label_alamatTok.setText(alamat);
+                Dashbord.label_noHp.setText(noHp);
             }
             
         }catch(SQLException e){
@@ -45,9 +55,36 @@ public class Toko implements Tokointerface{
     }
 
     @Override
-    public void editDataToko() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editDataToko(String nama_toko , String alamat , String no_hp ) {
+        
+        String sql="UPDATE `toko` SET nama_toko=?,alamat_toko=?,update_at=?,no_hp=? WHERE id_toko ='TOKO01'";
+        try(Connection con = db.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sql)){
+            
+            Calendar calendar = Calendar.getInstance();
+            Date dt = calendar.getTime();
+           
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String form = format.format(dt);
+         
+            pst.setString(1, nama_toko);
+            pst.setString(2, alamat);
+            pst.setString(3, form);
+            pst.setString(4, no_hp);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil Memperbarui data toko harap login ulang !");
+            System.exit(0);
+            
+            
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+ 
     }
+    
+    
+    
 
     @Override
     public String getNamaToko() {

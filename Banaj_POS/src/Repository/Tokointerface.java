@@ -11,7 +11,7 @@ package Repository;
  */
 public interface Tokointerface {
     public void showDataToko();
-    public void editDataToko();
+    public void editDataToko(String nama_toko , String alamat , String no_hp );
     public String getNamaToko();
     
 }
