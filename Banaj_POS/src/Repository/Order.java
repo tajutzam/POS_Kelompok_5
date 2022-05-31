@@ -484,7 +484,7 @@ public class Order implements OrderInterface {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
         model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Terjua");
+        model.addColumn("Jumlah Terjual");
         table.setRowHeight(30);
         
         
@@ -493,11 +493,7 @@ public class Order implements OrderInterface {
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql)){
-            if(res.next()){
-                System.out.println(res.getString("product.nama_product"));
-            }else{
-                System.out.println("errr");
-            }
+          
             while(res.next()){
                 no++;
                 model.addRow(new Object[]{
@@ -507,6 +503,7 @@ public class Order implements OrderInterface {
                     
                     
                 });
+                System.out.println("Test");
            
             }
              Dashbord.table_banyakDiminati.setModel(model);

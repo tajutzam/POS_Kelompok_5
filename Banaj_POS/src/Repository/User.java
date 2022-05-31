@@ -31,14 +31,9 @@ public class User implements UserInterface{
     
     
     @Override
-    public void showUser(JTable table) {
-        table.setRowHeight(30);
-        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai order by id_pegawai asc";
-        int no=0;
-        try(Connection con = dt.conectDatabase();
-            Statement st = con.createStatement();
-            ResultSet res =st.executeQuery(sql)){
+    public void showUser(JTable table, String id) {
             
+     DefaultTableModel model = new DefaultTableModel();    
             model.addColumn("No");
             model.addColumn("Id Pegawai");
             model.addColumn("Nama Pegawai");
@@ -46,6 +41,13 @@ public class User implements UserInterface{
             model.addColumn("Role");
             model.addColumn("Status");
             model.addColumn("Password");
+        
+        table.setRowHeight(30);
+        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai order by id_pegawai asc";
+        int no=0;
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
             
             while(res.next()){
                 no++;
@@ -150,14 +152,19 @@ public class User implements UserInterface{
                 System.out.println("er");
                 String username = res.getString("username");
                 Dashbord.txt_username.setText(username);
+                Dashbord.label_username.setText(username);
                 Dashbord.txt_password.setText(res.getString("password"));
+                Dashbord.label_passwordLama.setText(res.getString("password"));
                 String namaTmp =res.getString("nama_pegawai");
                 String[] split = namaTmp.split(" ");
                 if(split.length==1){
                     Dashbord.txt_namaDepan.setText(namaTmp);
+                    Dashbord.label_namaDepan.setText(namaTmp);
                 }else if(split.length==2){
                     Dashbord.txt_namaDepan.setText(split[0]);
+                    Dashbord.label_namaDepan.setText(namaTmp);
                     Dashbord.txt_namaBelakang.setText(split[1]);
+                    
                 }
                 Dashbord.txt_updateAtt.setText(res.getString("update_at"));
             }else{
@@ -169,6 +176,79 @@ public class User implements UserInterface{
         }
         
     }
+     @Override
+    public void EditUser(String id, String nama_pegawai, String username, String password, String role, String status,  String time){
+    
+        String sql = "UPDATE `pegawai` SET `nama_pegawai`= ?,`username`= ?,`create_at`= ?,`update_at`= ?,`role`= ?,`status`= ?,`password`= ? WHERE id_pegawai = ? " ;
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sql)){
+            
+            pst.setString(1, nama_pegawai);
+            pst.setString(2, username);
+            pst.setString(3, time);
+            pst.setString(4, time);
+            pst.setString(5, role);
+            pst.setString(6, status);
+            pst.setString(7, password);
+            pst.setString(8, id);
+            
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil Memperbarui User , ","Succes", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+        }catch(SQLException e){
+          JOptionPane.showMessageDialog(null, "Gagal Memperbarui User"+e.getMessage(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE, eroricon);
+
+        
+        }
+    }
+    
+    @Override
+    public void deleteUser(String id){
+        
+        int resetData = JOptionPane.showOptionDialog(null, "Apakah Anda Yakin Ingin Menghapus User ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        if(resetData==0){
+            
+            String sql ="delete from pegawai where id_pegawai = ?";
+            try(Connection con = dt.conectDatabase();
+            PreparedStatement pst =con.prepareStatement(sql);)
+            {
+               pst.setString(1, id);
+               pst.executeUpdate();
+           
+               JOptionPane.showMessageDialog(null, "User Berhasil Dihapus Silahkan Refresh !", "Sukses !", JOptionPane.INFORMATION_MESSAGE,suscesicon);
+               
+            }catch(SQLException e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "User gagal di hapus Karena Sudah Melakukan Transaksi!","Terjadi Kesalahan !",JOptionPane.WARNING_MESSAGE);
+            }
+            
+        }
+    }
+
+    @Override
+    public void getRoleStatus(String id) {
+        
+        String sql ="select role , status from pegawai where id_pegawai ='PGW005'";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+              String role="";
+               String status ="";
+            if(res.next()){
+                role= res.getString("role");
+                status = res.getString("status");
+                System.out.println("role"+role);
+                System.out.println("status"+status);
+               
+                
+            }
+            Dashbord.label_role.setText(role);
+            Dashbord.label_status.setText(status);
+        }catch(SQLException e){
+            System.out.println(e); 
+        }
+    }
+    
     
 }
     

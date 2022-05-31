@@ -20,7 +20,9 @@ import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -69,6 +71,8 @@ public class Dashbord extends javax.swing.JFrame {
     OrderService order = new OrderService();
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     Date dt = new Date();
+    Timestamp time = Timestamp.valueOf(LocalDateTime.now());
+    String timeString = String.valueOf(time);
     
    
    kategoriService kate = new kategoriService();
@@ -146,9 +150,10 @@ public class Dashbord extends javax.swing.JFrame {
           panel_iconLaporan.setVisible(false);
           panel_iconManager.setVisible(false);
           panel_iconProduct.setVisible(false);
-          
+          label_setToko.setVisible(false);
           panel_laporan.setVisible(false);
           panel_manager.setVisible(false);   
+          
          
     }
         
@@ -156,6 +161,10 @@ public class Dashbord extends javax.swing.JFrame {
     this.setTanggalSaatIni(formatter.format(dt));
     order.barangPalingBanyakDiminati(table_banyakDiminati);
     
+    label_status.setVisible(false);
+    label_role.setVisible(false);
+    label_namaDepan.setVisible(false);
+    label_passwordLama.setVisible(false);
     
   
     }
@@ -296,6 +305,10 @@ public class Dashbord extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        label_username = new javax.swing.JLabel();
+        label_namaDepan = new javax.swing.JLabel();
+        label_nama_belakang = new javax.swing.JLabel();
+        label_passwordLama = new javax.swing.JLabel();
         setting_toko = new javax.swing.JPanel();
         nama_toko = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -390,6 +403,7 @@ public class Dashbord extends javax.swing.JFrame {
         label_role = new javax.swing.JLabel();
         label_idPegawai = new javax.swing.JLabel();
         toko_nama = new javax.swing.JLabel();
+        label_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 240, 245));
@@ -1747,6 +1761,19 @@ public class Dashbord extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Simpan");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        label_username.setText("jLabel26");
+
+        label_namaDepan.setText("jLabel26");
+
+        label_nama_belakang.setText("jLabel26");
+
+        label_passwordLama.setText("jLabel26");
 
         javax.swing.GroupLayout setting_profileLayout = new javax.swing.GroupLayout(setting_profile);
         setting_profile.setLayout(setting_profileLayout);
@@ -1781,6 +1808,21 @@ public class Dashbord extends javax.swing.JFrame {
                                     .addComponent(jLabel13)))
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(59, 59, 59))))
+            .addGroup(setting_profileLayout.createSequentialGroup()
+                .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(setting_profileLayout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(label_namaDepan))
+                    .addGroup(setting_profileLayout.createSequentialGroup()
+                        .addGap(315, 315, 315)
+                        .addComponent(label_nama_belakang)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(setting_profileLayout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(label_username)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_passwordLama)
+                .addGap(190, 190, 190))
         );
 
         setting_profileLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_konfirmasiPassword, txt_namaBelakang, txt_namaDepan, txt_password, txt_username});
@@ -1793,10 +1835,17 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
+                .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(setting_profileLayout.createSequentialGroup()
+                        .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addComponent(label_username)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setting_profileLayout.createSequentialGroup()
+                        .addComponent(label_passwordLama)
+                        .addGap(22, 22, 22)))
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel13))
@@ -1804,7 +1853,9 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_namaDepan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_konfirmasiPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
+                .addGap(40, 40, 40)
+                .addComponent(label_namaDepan)
+                .addGap(18, 18, 18)
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel14))
@@ -1812,7 +1863,9 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(setting_profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_updateAtt)
                     .addComponent(txt_namaBelakang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(label_nama_belakang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -2621,6 +2674,8 @@ public class Dashbord extends javax.swing.JFrame {
         toko_nama.setForeground(new java.awt.Color(255, 255, 255));
         toko_nama.setText("jLabel26");
 
+        label_status.setText("jLabel26");
+
         javax.swing.GroupLayout header_panelLayout = new javax.swing.GroupLayout(header_panel);
         header_panel.setLayout(header_panelLayout);
         header_panelLayout.setHorizontalGroup(
@@ -2630,10 +2685,16 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(header_panelLayout.createSequentialGroup()
                         .addComponent(label_page)
-                        .addGap(667, 667, 667)
-                        .addComponent(label_idPegawai)
-                        .addGap(132, 132, 132)
-                        .addComponent(label_role))
+                        .addGroup(header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(header_panelLayout.createSequentialGroup()
+                                .addGap(667, 667, 667)
+                                .addComponent(label_idPegawai)
+                                .addGap(132, 132, 132)
+                                .addComponent(label_role))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header_panelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label_status)
+                                .addGap(252, 252, 252))))
                     .addComponent(toko_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icon_user, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2655,7 +2716,9 @@ public class Dashbord extends javax.swing.JFrame {
                                 .addGroup(header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(label_role)
                                     .addComponent(label_idPegawai))
-                                .addGap(20, 20, 20))
+                                .addGap(2, 2, 2)
+                                .addComponent(label_status)
+                                .addGap(2, 2, 2))
                             .addGroup(header_panelLayout.createSequentialGroup()
                                 .addComponent(label_namaPegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -2813,7 +2876,7 @@ public class Dashbord extends javax.swing.JFrame {
         //set Text labelPage
         label_page.setText("User Management");
         UserService user = new UserService();
-        user.showUser();
+        user.showUser(table_user);
         OrderService order = new OrderService();
         order.resetKeranjang();
         
@@ -2955,7 +3018,7 @@ public class Dashbord extends javax.swing.JFrame {
         //set Text labelPage
         label_page.setText("User Management");
         UserService user = new UserService();
-        user.showUser();
+        user.showUser(table_user);
         OrderService order = new OrderService();
         order.resetKeranjang();
         
@@ -3348,11 +3411,21 @@ public class Dashbord extends javax.swing.JFrame {
          
          UserService user = new UserService();
          TambahUser.TXT_Add_IdUser.setText(user.getId());
+         
+         TambahUser.TXT_Add_CreatedAt.setText(timeString);
+         
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void table_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_userMouseClicked
          // TODO add your handling code here:
          TambahUser dt = new TambahUser();
+        
+         table_user.getSelectedRow();
+         int row = table_user.getSelectedRow();
+         String id = table_user.getValueAt(row, 1).toString();
+         System.out.println(id);
+         TambahUser.label_editId.setText(id);
+         dt.sendDataEdit("edit", TambahUser.label_editId.getText());
          dt.Action("edit");
     }//GEN-LAST:event_table_userMouseClicked
 
@@ -3956,6 +4029,54 @@ public class Dashbord extends javax.swing.JFrame {
        toko.editToko(nama_toko, alamat, no_hp);
     }//GEN-LAST:event_jButton4MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+         // TODO add your handling code here:
+         
+         String id =label_idPegawai.getText().toString();
+         String usernme = txt_username.getText();
+         String usernameLama = label_username.getText();
+         String nama_depanLama =label_namaDepan.getText();
+         String passwordLama = label_passwordLama.getText();
+         String konfirmasiPassword = txt_konfirmasiPassword.getText();
+         String namaDepan = txt_namaDepan.getText();
+         String namaBelakang =txt_namaBelakang.getText();
+         String password = txt_password.getText();
+         
+         String namaLengkap = namaDepan+" "+namaBelakang;
+         if(usernme.equals("")&&namaLengkap.equals("")&&password.equals("")){
+             
+             JOptionPane.showMessageDialog(null, "Harap isi field ");
+             
+         }else{
+                 if(namaBelakang.equals("")){
+             
+                 String replaceAll = namaLengkap.replaceAll(" ", "");
+                 System.out.println(replaceAll);
+                 System.out.println(nama_depanLama);
+                 if(usernme.equals(usernameLama)&&replaceAll.equals(nama_depanLama.replace(" ", ""))&&password.equals(passwordLama)){
+                 JOptionPane.showMessageDialog(null, "Tidak ada perubahan data " , "Terjadi Kesalahan " , JOptionPane.ERROR_MESSAGE,eroricon);
+                 }else{
+                      UserService user = new UserService();
+                      user.getStatusRole(id);
+                      user.editUseryangsedangLogin(id, replaceAll, usernme, password, label_role.getText(), label_status.getText(), timeString);
+                 }
+                 }else{
+                        if(usernme.equals(usernameLama)&&namaLengkap.equals(nama_depanLama)&&password.equals(passwordLama)){
+                        JOptionPane.showMessageDialog(null, "Tidak ada perubahan data " , "Terjadi keslahan ",JOptionPane.ERROR_MESSAGE,eroricon);  
+                        }else if(!password.equals(konfirmasiPassword)){
+                              JOptionPane.showMessageDialog(null, " Pasword dan konfirmasi password harus sama","Terjadi Kesalahan " ,JOptionPane.ERROR_MESSAGE,eroricon);          
+                        }else{
+                        UserService user = new UserService();
+                        user.getStatusRole(id);
+                        user.editUseryangsedangLogin(id, namaLengkap, usernme, password, label_role.getText(), label_status.getText(), timeString);
+                        JOptionPane.showMessageDialog(null, "Anda Harus Logout terlebih dahulu !", "Information", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+                        System.exit(0);
+             }
+
+         }
+         }
+    }//GEN-LAST:event_jButton2MouseClicked
+
     public void showBarangWhenClick(){
         
         barangService br = new barangService();
@@ -4211,7 +4332,9 @@ public class Dashbord extends javax.swing.JFrame {
     public static javax.swing.JLabel label_idPegawai;
     private javax.swing.JLabel label_laporanPemebelian;
     private javax.swing.JLabel label_laporan_penjualan;
+    public static javax.swing.JLabel label_namaDepan;
     public static javax.swing.JLabel label_namaPegawai;
+    public static javax.swing.JLabel label_nama_belakang;
     public static javax.swing.JLabel label_nama_toko;
     private javax.swing.JLabel label_navigasi_Kategori;
     private javax.swing.JLabel label_navigasi_barang;
@@ -4219,14 +4342,17 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel label_navigasi_supplier;
     public static javax.swing.JLabel label_noHp;
     private javax.swing.JLabel label_page;
+    public static javax.swing.JLabel label_passwordLama;
     public static javax.swing.JLabel label_role;
     private javax.swing.JLabel label_setProfile;
     private javax.swing.JLabel label_setToko;
+    public static javax.swing.JLabel label_status;
     private javax.swing.JLabel label_tanggal;
     private javax.swing.JLabel label_totalBarang;
     private javax.swing.JLabel label_totalBarang4;
     private javax.swing.JLabel label_totalKategori;
     private javax.swing.JLabel label_totalReturn;
+    public static javax.swing.JLabel label_username;
     public static javax.swing.JTextField nama_toko;
     private javax.swing.JPanel navigasi_panel;
     public static javax.swing.JTextField no_hpToko;
