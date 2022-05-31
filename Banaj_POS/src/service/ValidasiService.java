@@ -29,6 +29,7 @@ public class ValidasiService {
         //jika login benar maka akan mengrim data2 kedalam info login misal user yang sedang login
         if(validasi.login(username, pasword)==true){
              String role= this.getId(username , pasword);
+             System.out.println("Role"+role);
              String nama = this.getNamaUser(username, pasword);
              String id = this.getIdPegawai(username, pasword);
              tokoService toko = new tokoService();

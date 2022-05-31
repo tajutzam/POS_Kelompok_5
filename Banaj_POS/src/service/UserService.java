@@ -15,10 +15,10 @@ import javax.swing.JTable;
 public class UserService {
     UserInterface user = new User();  
     
-    public void showUser(){
-        user.showUser(Dashbord.table_user);
+    public void showUser(JTable table){
+       user.showUser(table,Dashbord.label_idPegawai.getText());
     }
-    public String getId(){
+       public String getId(){
         String kode =user.getPrimaryKey();
         return kode;
     }
@@ -28,13 +28,13 @@ public class UserService {
         boolean isadd = false;
         if(boxRole.getSelectedItem().toString().equals("Admin")){
         role = "1"; 
-        }else if(boxRole.getSelectedItem().toString().equals("User")){
+        }else if(boxRole.getSelectedItem().toString().equals("Kasir")){
         role = "2";
         }
         if(boxStatus.getSelectedItem().toString().equals("Aktive")){
-        status = "Aktive"; 
+        status = "Aktif"; 
         }else if(boxStatus.getSelectedItem().toString().equals("Tidak Aktive")){
-        status = "Tidak Aktive";
+        status = "Tidak Aktif";
         }
         if(nama_pegawai.equals("")||username.equals("")||password.equals("")){
            JOptionPane.showMessageDialog(null, "Harap Isi From dengan benar", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -51,4 +51,31 @@ public class UserService {
         UserInterface user = new User();
         user.showUserYangSedangLogin(id);
     }
+    public boolean EditUser(String id, String nama_pegawai , String username, String password, String konfirmasi_password, String role, String status,  String time){
+         
+         boolean isSucses=false;
+         
+         if(!nama_pegawai.equals("")&& !username.equals("")&& !role.equals("")&& !status.equals("")){
+             isSucses=true;
+         }else if(!password.equals(konfirmasi_password)){
+             JOptionPane.showMessageDialog(null, "Password Yang Anda Masukkan Tidak Sama", "Information", JOptionPane.INFORMATION_MESSAGE);
+             isSucses = false;
+         }
+         if(isSucses==true){
+             user.EditUser(id, nama_pegawai, username, password, role, status, time);
+         }
+         return isSucses;
+     }
+    public void editUseryangsedangLogin(String id , String nama_pegawai , String username , String password , String role , String status ,String time){
+        user.EditUser(id, nama_pegawai, username, password, role, status, time);
+    }
+     public void deleteUser(String id){
+         
+         UserInterface us = new User();
+         us.deleteUser(id);
+     }
+     public void getStatusRole(String id){
+         user.getRoleStatus(id);
+     }
+
 }
