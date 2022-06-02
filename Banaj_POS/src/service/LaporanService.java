@@ -51,5 +51,11 @@ public class LaporanService {
     public void cetakLaporanPenjualan(String tanggal , String sampai){
         reportPenjualan.cetakLaporanpenjualan(tanggal, sampai);
     }
+    public void cariLaporanBerdasarkanTransaksi(String id , JTable table){
+        
+        
+        reportPenjualan.cariLaporanBerdasarkanTransaksi(id, table);
+        
+    }
     
 }

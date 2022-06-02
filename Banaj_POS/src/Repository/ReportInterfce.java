@@ -18,5 +18,6 @@ public interface ReportInterfce {
     public void showLaporanPerhariIni(JTable table);
     public void showLaporanPerminggu(JTable table);
     public void cetakLaporanpenjualan(String tanggal , String sampai);
+    public void cariLaporanBerdasarkanTransaksi(String id_transaksi , JTable table);
     
 }

@@ -49,6 +49,7 @@ import service.tokoService;
 
 
 
+
 /**
  *
  * @author user
@@ -165,8 +166,7 @@ public class Dashbord extends javax.swing.JFrame {
     label_role.setVisible(false);
     label_namaDepan.setVisible(false);
     label_passwordLama.setVisible(false);
-    
-  
+      
     }
   
     
@@ -426,7 +426,7 @@ public class Dashbord extends javax.swing.JFrame {
             frame_logo_tokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frame_logo_tokoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2257,6 +2257,11 @@ public class Dashbord extends javax.swing.JFrame {
                 txt_cariPenjualanFocusLost(evt);
             }
         });
+        txt_cariPenjualan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_cariPenjualanKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout container_laporanPenjualanLayout = new javax.swing.GroupLayout(container_laporanPenjualan);
         container_laporanPenjualan.setLayout(container_laporanPenjualanLayout);
@@ -2384,6 +2389,11 @@ public class Dashbord extends javax.swing.JFrame {
         txt_cariPembelian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_cariPembelianActionPerformed(evt);
+            }
+        });
+        txt_cariPembelian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_cariPembelianKeyPressed(evt);
             }
         });
 
@@ -4026,7 +4036,21 @@ public class Dashbord extends javax.swing.JFrame {
        String nama_toko =Dashbord.nama_toko.getText().toString();
        String alamat = alamat_toko.getText().toString();
        String no_hp=no_hpToko.getText().toString();
-       toko.editToko(nama_toko, alamat, no_hp);
+       String nama_tokoLama= label_nama_toko.getText();
+       String alamat_tokoLama = label_alamatTok.getText();
+       String noHp_lama = label_noHp.getText();
+       
+        if(nama_toko.equals("")||alamat.equals("")||no_hp.equals("")){
+          JOptionPane.showMessageDialog(null, "Harap isi semua field terlebih dahulu", "Terjadi Kesalahan", HEIGHT, eroricon);
+        }
+        else if(nama_toko.equals("")||alamat.equals("")||no_hp.equals("")){
+           JOptionPane.showMessageDialog(null, "Harap isi semua field terlebih dahulu", "Terjadi Kesalahan", HEIGHT, eroricon);
+        }else if(nama_toko.equals(nama_tokoLama)&&alamat.equals(alamat_tokoLama)&&no_hp.equals(noHp_lama)){
+          JOptionPane.showMessageDialog(null, "Tidak ada perubahan data", "Terjadi Kesalahan", HEIGHT, eroricon);
+        }else{
+             toko.editToko(nama_toko, alamat, no_hp);
+        }
+      
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -4076,6 +4100,31 @@ public class Dashbord extends javax.swing.JFrame {
          }
          }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void txt_cariPenjualanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariPenjualanKeyPressed
+         // TODO add your handling code here:
+          
+         
+         LaporanService laporan = new LaporanService();
+         
+         if(evt.getKeyCode()==evt.VK_ENTER){
+             String kode_transaksi =txt_cariPenjualan.getText().toString();
+            laporan.cariLaporanBerdasarkanTransaksi(kode_transaksi, table_laporanPenjualan);
+         }
+    }//GEN-LAST:event_txt_cariPenjualanKeyPressed
+
+    private void txt_cariPembelianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariPembelianKeyPressed
+         // TODO add your handling code here:
+         
+         if(evt.getKeyCode()==evt.VK_ENTER){
+             
+             String id_transaksi = txt_cariPembelian.getText();
+             LaporanPembelianServicce laporan = new LaporanPembelianServicce();
+             laporan.cariLaporan(id_transaksi, table_laporanPembelian);
+             
+         }
+             
+    }//GEN-LAST:event_txt_cariPembelianKeyPressed
 
     public void showBarangWhenClick(){
         

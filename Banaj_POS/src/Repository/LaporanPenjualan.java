@@ -188,8 +188,9 @@ public class LaporanPenjualan implements ReportInterfce{
         if(indek.startsWith("0")){
             indek.replaceAll("0","");
         }
-      
-        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.hari="+indek+" ORDER by tanggal_transaksi DESC";
+        int indekBulan = bulan.getindexBulan();
+     
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.hari="+indek+" and bulan ="+indekBulan+" ORDER by tanggal_transaksi DESC";
 
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
@@ -232,24 +233,25 @@ public class LaporanPenjualan implements ReportInterfce{
         int indek = bulan.getindexHari();
         int indekK=0;
         if(indek==7){
-            indekK=30;
+            indekK=1;
         }else if(indek==6){
-            indekK=29;
+            indekK=1;
         }else if(indek==5){
-            indekK=28;
+            indekK=1;
         }else if(indek==4){
-            indekK=27;
+            indekK=1;
         }else if(indek==3){
-            indekK=26;
+            indekK=1;
         }else if(indek==2){
-            indekK=25;
+            indekK=1;
         }else if(indek==1){
-            indekK=24;
+            indekK=1;
         }else if(indek >7){
             indekK=indek-7;
         }
         
-      
+        System.out.println(indek);
+        System.out.println(indekK);
         String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.hari BETWEEN "+indekK+" and "+indek+" ORDER by tanggal_transaksi DESC;";
 
         try(Connection con = dt.conectDatabase();
@@ -327,6 +329,45 @@ public class LaporanPenjualan implements ReportInterfce{
         }
         
        
+    }
+
+    @Override
+    public void cariLaporanBerdasarkanTransaksi(String id_transaksi , JTable table) {
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("ID Transaksi");
+        model.addColumn("Nama Kasir");
+        model.addColumn("Tanggal Transaksi");
+        model.addColumn("Grand Total");
+        table.setRowHeight(30);
+        table.setForeground(new Color(90, 90, 90));
+        boolean isSuces =false;
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai where transaksi.id_transaksi ='"+id_transaksi+"' order by transaksi.tanggal_transaksi asc  ";
+        int no=0;
+        try(Connection con = dt.conectDatabase();
+                Statement st = con.createStatement();
+                ResultSet res = st.executeQuery(sql)){
+           
+            while(res.next()){
+                no++;
+                model.addRow(new Object[]{
+                 no,
+                 res.getString("id_transaksi"),
+                 res.getString("pegawai.nama_pegawai"),
+                 res.getString("tanggal_transaksi"),
+                 ("Rp."+res.getString("grand_total")),
+   
+                });
+            }
+            table.setModel(model);
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
+        
+        
     }
     
     
