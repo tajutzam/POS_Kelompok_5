@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 /**
  *
@@ -18,4 +19,6 @@ public interface UserInterface {
     public void deleteUser(String id);
     public void EditUser(String id, String nama_pegawai, String username, String password, String role, String status,  String time);
     public void getRoleStatus(String id);
+    public void cariBerdasarkanNamadanKode(String keyword , JTable table);
+    public void showBerdasarkanJcomboBox(JComboBox box);
 }

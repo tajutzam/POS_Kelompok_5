@@ -77,5 +77,12 @@ public class UserService {
      public void getStatusRole(String id){
          user.getRoleStatus(id);
      }
+     
+     public void cariBerdasarkanKodeDanNama(String keyword){
+         user.cariBerdasarkanNamadanKode(keyword, Dashbord.table_user);
+     }
+     public void showBerdasrkanStatus(JComboBox box){
+         user.showBerdasarkanJcomboBox(box);
+     }
 
 }

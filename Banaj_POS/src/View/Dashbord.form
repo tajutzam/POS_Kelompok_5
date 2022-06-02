@@ -77,7 +77,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel5" pref="40" max="32767" attributes="0"/>
+                  <Component id="jLabel5" pref="44" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -649,13 +649,13 @@
                               <Component id="comboBox_showBarang" min="-2" pref="130" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="144" max="32767" attributes="0"/>
+                              <EmptySpace pref="134" max="32767" attributes="0"/>
+                              <Component id="Restok_btn" min="-2" pref="102" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Tambah_banyakBtn" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Barcode1" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="jButton6" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="btn_TambahBarang" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
@@ -676,15 +676,15 @@
                                   <Component id="panel_cariBarang" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                                       <Component id="Tambah_banyakBtn" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jButton6" alignment="3" max="32767" attributes="0"/>
                                       <Component id="btn_TambahBarang" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="Barcode1" alignment="3" max="32767" attributes="0"/>
                                       <Component id="comboBox_showBarang" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Restok_btn" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" pref="341" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="347" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -883,24 +883,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TambahBarangActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton6">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="2d" green="2d" red="33" type="rgb"/>
-                        </Property>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Trebuchet MS" size="14" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Refresh"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton6MouseClicked"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JButton" name="Tambah_banyakBtn">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -933,6 +915,23 @@
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Barcode1MouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="Restok_btn">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="60" green="60" red="60" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Trebuchet MS" size="14" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Restok"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Restok_btnMouseClicked"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel21">
@@ -2761,7 +2760,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panel_TxtField" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="combo_box_cariUser" min="-2" pref="106" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
@@ -2777,7 +2776,7 @@
                       <Component id="panel_totalUser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                          <Component id="combo_box_cariUser" max="32767" attributes="0"/>
                           <Component id="panel_TxtField" max="32767" attributes="0"/>
                           <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -2889,8 +2888,12 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="TXT_cariUser">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TXT_cariUserKeyPressed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="TXT_cariUser.setBorder(javax.swing.BorderFactory.createEmptyBorder());"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
@@ -2946,12 +2949,15 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="combo_box_cariUser">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Aktif&quot;,&quot;Tidak Aktif&quot;})" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_box_cariUserActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -2979,10 +2985,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_containerLaporan" max="32767" attributes="0"/>
-                          <Component id="panel_navigasiLaporan" min="-2" pref="273" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="panel_containerLaporan" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="panel_navigasiLaporan" min="-2" pref="273" max="-2" attributes="0"/>
+                              <EmptySpace min="265" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2993,7 +3004,7 @@
                       <Component id="panel_navigasiLaporan" min="-2" pref="28" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="panel_containerLaporan" max="32767" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3137,7 +3148,7 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jScrollPane1" pref="587" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="590" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3255,6 +3266,7 @@
                       <Events>
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cariPenjualanFocusGained"/>
                         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cariPenjualanFocusLost"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_cariPenjualanKeyPressed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -3279,15 +3291,15 @@
                               <Component id="combo_boxPembelian" min="-2" pref="86" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="txt_cariPembelian" min="-2" pref="226" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="390" max="32767" attributes="0"/>
                               <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="JDateDariPembelian" linkSize="5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="JDateDariPembelian" linkSize="8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="jLabel29" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jDateSampaiPembelian" linkSize="5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jDateSampaiPembelian" linkSize="8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="btn_exportPembelian" min="-2" pref="92" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
@@ -3299,8 +3311,6 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btn_exportPembelian" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Component id="jDateSampaiPembelian" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="JDateDariPembelian" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                       <Component id="txt_cariPembelian" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -3309,10 +3319,14 @@
                                           <Component id="jLabel28" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jLabel29" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="JDateDariPembelian" linkSize="9" alignment="0" pref="30" max="32767" attributes="0"/>
+                                      <Component id="jLabel29" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jDateSampaiPembelian" linkSize="9" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" pref="573" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" pref="576" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -3394,13 +3408,6 @@
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_exportPembelianMouseClicked"/>
                       </Events>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="JDateDariPembelian">
-                    </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="jDateSampaiPembelian">
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jDateSampaiPembelianMouseClicked"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel28">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -3442,7 +3449,12 @@
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cariPembelianFocusGained"/>
                         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cariPembelianFocusLost"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_cariPembelianActionPerformed"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_cariPembelianKeyPressed"/>
                       </Events>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="JDateDariPembelian">
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="jDateSampaiPembelian">
                     </Component>
                   </SubComponents>
                 </Container>

@@ -1150,7 +1150,6 @@ public class Barang implements BarangInterface{
             ResultSet res =st.executeQuery(sql)){
             
           while(res.next()){
-              System.out.println("aaaaa");
               box.addItem(res.getString("nama_product"));
           }
             

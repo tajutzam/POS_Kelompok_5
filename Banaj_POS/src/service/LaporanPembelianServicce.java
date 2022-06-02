@@ -43,5 +43,8 @@ public class LaporanPembelianServicce {
     public void cetakLaporanPembelian(String dari , String sampai){
         report.cetakLaporanpenjualan(sampai, sampai);
     }
+    public void cariLaporan(String id_transaksi , JTable table){
+        report.cariLaporanBerdasarkanTransaksi(id_transaksi, table);
+    }
     
 }
