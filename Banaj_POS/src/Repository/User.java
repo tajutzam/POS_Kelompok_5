@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -248,6 +249,99 @@ public class User implements UserInterface{
             System.out.println(e); 
         }
     }
+
+    @Override
+    public void cariBerdasarkanNamadanKode(String keyword , JTable table) {
+        
+         DefaultTableModel model = new DefaultTableModel();    
+            model.addColumn("No");
+            model.addColumn("Id Pegawai");
+            model.addColumn("Nama Pegawai");
+            model.addColumn("Username");
+            model.addColumn("Role");
+            model.addColumn("Status");
+            model.addColumn("Password");
+        
+        table.setRowHeight(30);
+        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai where nama_pegawai like '%"+keyword+"%' or id_pegawai like '%"+keyword+"%' order by id_pegawai asc";
+        int no=0;
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            boolean isSuces=false;
+            while(res.next()){
+                isSuces=true;
+                no++;
+                model.addRow(new Object[]{
+                no,
+                res.getString("id_pegawai"),
+                res.getString("nama_pegawai"),
+                res.getString("username"),
+                res.getString("role"),
+                res.getString("status"),
+                res.getString("password")        
+                });     
+            }
+            if(isSuces==false){
+               
+                JOptionPane.showMessageDialog(null, "Gagal Menemukan data", "Data Tidak ada dalam data", JOptionPane.INFORMATION_MESSAGE, eroricon);
+                Dashbord.TXT_cariUser.setText("");
+                
+            }
+            table.setModel(model);
+            
+        }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
+        }   
+        
+    }
+
+    @Override
+    public void showBerdasarkanJcomboBox(JComboBox box ) {
+        
+         DefaultTableModel model = new DefaultTableModel();    
+            model.addColumn("No");
+            model.addColumn("Id Pegawai");
+            model.addColumn("Nama Pegawai");
+            model.addColumn("Username");
+            model.addColumn("Role");
+            model.addColumn("Status");
+            model.addColumn("Password");
+        String keyword = box.getSelectedItem().toString();
+        Dashbord.table_user.setRowHeight(30);
+        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai where status ='"+keyword+"' order by id_pegawai asc";
+        int no=0;
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res =st.executeQuery(sql)){
+            boolean isSuces=false;
+            while(res.next()){
+                isSuces=true;
+                no++;
+                model.addRow(new Object[]{
+                no,
+                res.getString("id_pegawai"),
+                res.getString("nama_pegawai"),
+                res.getString("username"),
+                res.getString("role"),
+                res.getString("status"),
+                res.getString("password")        
+                });     
+            }
+            
+            if(isSuces==false){
+               JOptionPane.showMessageDialog(null, "Gagal Menemukan data", "Data Tidak ada dalam data", JOptionPane.INFORMATION_MESSAGE, eroricon);
+
+            }
+            Dashbord.table_user.setModel(model);
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }   
+    }
+    
+    
     
     
 }

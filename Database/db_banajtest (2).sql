@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Bulan Mei 2022 pada 05.52
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 8.0.10
+-- Generation Time: Jun 02, 2022 at 07:31 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `beli_product`
+-- Table structure for table `beli_product`
 --
 
 CREATE TABLE `beli_product` (
@@ -40,19 +40,10 @@ CREATE TABLE `beli_product` (
   `bulan` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `beli_product`
---
-
-INSERT INTO `beli_product` (`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`, `grand_total`, `pegawai`, `bayar`, `kembalian`, `hari`, `bulan`) VALUES
-('TRB05301630', 'S001', '2022-05-30', 'K001', 10000, 'PGW004', 15000, 5000, 30, 5),
-('TRB05308236', 'S001', '2022-05-30', 'K002', 20000, 'PGW004', 25000, 5000, 30, 5),
-('TRB05308712', 'S001', '2022-05-30', 'K001', 20000, 'PGW004', 20000, 0, 30, 5);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_beli_product`
+-- Table structure for table `detail_beli_product`
 --
 
 CREATE TABLE `detail_beli_product` (
@@ -61,19 +52,10 @@ CREATE TABLE `detail_beli_product` (
   `product` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `detail_beli_product`
---
-
-INSERT INTO `detail_beli_product` (`id_beliProduct`, `jumlahBeli`, `product`) VALUES
-('TRB05301630', 10, 'SBN0001'),
-('TRB05308236', 10, 'SMO0001'),
-('TRB05308712', 10, 'SBN0002');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_retur`
+-- Table structure for table `detail_retur`
 --
 
 CREATE TABLE `detail_retur` (
@@ -82,34 +64,10 @@ CREATE TABLE `detail_retur` (
   `jumlah_rusak` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `detail_retur`
---
-
-INSERT INTO `detail_retur` (`id_returSupplier`, `product`, `jumlah_rusak`) VALUES
-('TR20611103', 'SM0003', 1),
-('TR25121045', 'SM0003', 1),
-('TR41126549', 'SM0003', 1),
-('TR11638646', 'SM0004', 11),
-('TR27982731', 'SM0003', 1),
-('TR36500376', 'SM0004', 11),
-('TR55881626', 'SM0001', 1),
-('TR7861542', 'SBK0011', 1),
-('TR20748453', 'SBN0011', 1),
-('TR68891552', 'SMO0002', 1),
-('TR44378962', 'SMO0003', 1),
-('TR44338136', 'SBN0012', 1),
-('TR46104636', 'SBN0013', 1),
-('TR25235012', 'SBN0014', 1),
-('TR35328049', 'SBN0015', 1),
-('TR11479720', 'SBN0018', 1),
-('TR2471787', 'SBN0018', 1),
-('TR6204850', 'SBN0020', 12);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_transaksi`
+-- Table structure for table `detail_transaksi`
 --
 
 CREATE TABLE `detail_transaksi` (
@@ -121,14 +79,7 @@ CREATE TABLE `detail_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `detail_transaksi`
---
-
-INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`, `sub_pembelian`) VALUES
-('TRJ05304577', 'SMO0001', '2500', 1, 2000);
-
---
--- Trigger `detail_transaksi`
+-- Triggers `detail_transaksi`
 --
 DELIMITER $$
 CREATE TRIGGER `kurang_stok` BEFORE INSERT ON `detail_transaksi` FOR EACH ROW update product
@@ -139,7 +90,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -150,7 +101,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
@@ -162,7 +113,7 @@ INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_a
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -177,21 +128,17 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`, `role`, `status`, `password`) VALUES
-('pgw001', 'ucup', 'ucup', '2022-03-23 15:37:52', '2022-03-23 15:37:52', 0, '', ''),
-('PGW002', 'NAMA QW', 'qw', '2022-04-26 12:24:24', '2022-04-26 12:24:24', 1, '', 'qw'),
-('PGW003', 'SDFD DFD', 'dfd', '2022-04-26 12:35:32', '2022-04-26 12:35:32', 1, '', 'dfd'),
-('PGW004', 'ZEN', 'admin', '2022-05-03 12:14:04', '2022-05-03 12:14:04', 1, 'Aktif', 'admin'),
-('PGW005', 'USER 12', '12', '2022-05-03 12:14:23', '2022-05-03 12:14:23', 2, '', '12'),
-('pgw231', 'ya', 'a', '2022-05-03 14:26:11', '2022-05-03 14:26:11', 1, '', 'a');
+('PGW004', 'ZEN ZEN', 'admin', '2022-05-03 12:14:04', '2022-05-03 12:14:04', 1, 'Aktif', 'admin'),
+('PGW005', 'ZAM ZAMI', 'KASIR', '2022-06-02 23:38:25', '2022-06-02 23:38:25', 2, 'Aktif', 'KASIR');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -209,16 +156,17 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
 ('SBN0001', 'sabun', 8, 1000, 1500, 'S001', 'K001', '2022-05-30 01:58:31', '2022-05-30 01:21:23', 0, 8),
-('SBN0002', 'sabun banaj 2', 10, 2000, 3000, 'S001', 'K001', '2022-05-30 02:19:44', '2022-05-30 02:19:44', 0, 10),
-('SMO0001', 'sampo', 9, 2000, 2500, 'S001', 'K002', '2022-05-30 02:06:06', '2022-05-30 01:30:54', 0, 9);
+('SBN0002', 'sabun banaj e', 8, 2000, 3000, 'S001', 'K001', '2022-06-02 17:27:56', '2022-06-02 17:27:56', 0, 8),
+('SBN0003', 'sabun as', 9, 1000, 1500, 'S001', 'K001', '2022-06-02 17:28:02', '2022-06-02 17:28:02', 0, 9),
+('SBN0004', 'asd', 12, 123, 1234, 'S001', 'K001', '2022-06-02 17:28:22', '2022-06-02 17:28:22', 0, 12);
 
 --
--- Trigger `product`
+-- Triggers `product`
 --
 DELIMITER $$
 CREATE TRIGGER `delete_retur` BEFORE UPDATE ON `product` FOR EACH ROW DELETE from detail_retur where jumlah_rusak =0
@@ -228,7 +176,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `retur_customer`
+-- Table structure for table `retur_customer`
 --
 
 CREATE TABLE `retur_customer` (
@@ -239,7 +187,7 @@ CREATE TABLE `retur_customer` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `retur_supplier`
+-- Table structure for table `retur_supplier`
 --
 
 CREATE TABLE `retur_supplier` (
@@ -248,43 +196,10 @@ CREATE TABLE `retur_supplier` (
   `id_returSupplier` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `retur_supplier`
---
-
-INSERT INTO `retur_supplier` (`kode_supplier`, `tanggal_rtr`, `id_returSupplier`) VALUES
-('S001', '2022-05-16 10:01:50', 'TR11479720'),
-('S001', '2022-04-24 05:36:56', 'TR11638646'),
-('S001', '2022-04-24 05:26:41', 'TR20611103'),
-('S001', '2022-05-14 05:48:09', 'TR20748453'),
-('S001', '2022-04-22 02:51:32', 'TR22503483'),
-('S001', '2022-05-16 10:01:56', 'TR2471787'),
-('S001', '2022-04-24 05:29:10', 'TR25121045'),
-('S001', '2022-05-16 09:55:22', 'TR25235012'),
-('S001', '2022-04-24 05:37:41', 'TR27982731'),
-('S001', '2022-05-16 09:55:23', 'TR35328049'),
-('S001', '2022-04-24 05:38:04', 'TR36500376'),
-('S001', '2022-04-24 05:29:37', 'TR41126549'),
-('S001', '2022-05-16 09:52:09', 'TR44338136'),
-('S001', '2022-05-16 09:42:28', 'TR44378962'),
-('S001', '2022-05-16 09:52:11', 'TR46104636'),
-('S001', '2022-04-24 05:39:50', 'TR55881626'),
-('S001', '2022-05-16 10:11:35', 'TR6204850'),
-('S001', '2022-04-20 05:42:44', 'TR62166744'),
-('S001', '2022-04-24 05:12:52', 'TR63713657'),
-('S001', '2022-05-01 02:35:18', 'TR66484943'),
-('S001', '2022-04-24 05:18:54', 'TR68143153'),
-('S001', '2022-05-16 09:42:24', 'TR68891552'),
-('S001', '2022-04-24 05:09:41', 'TR77425670'),
-('S001', '2022-04-25 13:06:19', 'TR7861542'),
-('S001', '2022-04-24 05:18:30', 'TR94679531'),
-('S001', '2022-04-24 05:04:09', 'TR95120590'),
-('S001', '2022-04-20 05:11:12', 'TR96146366');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `supplier`
+-- Table structure for table `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -295,7 +210,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `supplier`
+-- Dumping data for table `supplier`
 --
 
 INSERT INTO `supplier` (`kode_supplier`, `nama_supplier`, `create_at`, `update_at`) VALUES
@@ -305,7 +220,7 @@ INSERT INTO `supplier` (`kode_supplier`, `nama_supplier`, `create_at`, `update_a
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `toko`
+-- Table structure for table `toko`
 --
 
 CREATE TABLE `toko` (
@@ -318,7 +233,7 @@ CREATE TABLE `toko` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `toko`
+-- Dumping data for table `toko`
 --
 
 INSERT INTO `toko` (`id_toko`, `nama_toko`, `alamat_toko`, `create_at`, `update_at`, `no_hp`) VALUES
@@ -327,7 +242,7 @@ INSERT INTO `toko` (`id_toko`, `nama_toko`, `alamat_toko`, `create_at`, `update_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -343,19 +258,11 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`, `grand_modal`, `bulan`, `hari`) VALUES
-('TRJ0530276', '2022-05-30', 2500, 3000, 'PGW004', 500, 2000, 5, 30),
-('TRJ05304577', '2022-05-30', 2500, 3000, 'PGW004', 500, 2000, 5, 30);
-
---
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `beli_product`
+-- Indexes for table `beli_product`
 --
 ALTER TABLE `beli_product`
   ADD PRIMARY KEY (`id_beliProduct`),
@@ -363,40 +270,40 @@ ALTER TABLE `beli_product`
   ADD KEY `kategori` (`kategori`);
 
 --
--- Indeks untuk tabel `detail_beli_product`
+-- Indexes for table `detail_beli_product`
 --
 ALTER TABLE `detail_beli_product`
   ADD KEY `id_beliProduct` (`id_beliProduct`),
   ADD KEY `product` (`product`);
 
 --
--- Indeks untuk tabel `detail_retur`
+-- Indexes for table `detail_retur`
 --
 ALTER TABLE `detail_retur`
   ADD KEY `retur_sup` (`id_returSupplier`);
 
 --
--- Indeks untuk tabel `detail_transaksi`
+-- Indexes for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
   ADD KEY `id_transaksi` (`id_transaksi`),
   ADD KEY `kode_product` (`kode_product`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`kode_kategori`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indeks untuk tabel `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`kode_product`),
@@ -404,89 +311,89 @@ ALTER TABLE `product`
   ADD KEY `kategori` (`kategori`);
 
 --
--- Indeks untuk tabel `retur_customer`
+-- Indexes for table `retur_customer`
 --
 ALTER TABLE `retur_customer`
   ADD KEY `id_transaksi` (`id_transaksi`);
 
 --
--- Indeks untuk tabel `retur_supplier`
+-- Indexes for table `retur_supplier`
 --
 ALTER TABLE `retur_supplier`
   ADD PRIMARY KEY (`id_returSupplier`),
   ADD KEY `rtr_sup` (`kode_supplier`);
 
 --
--- Indeks untuk tabel `supplier`
+-- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`kode_supplier`);
 
 --
--- Indeks untuk tabel `toko`
+-- Indexes for table `toko`
 --
 ALTER TABLE `toko`
   ADD PRIMARY KEY (`id_toko`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `beli_product`
+-- Constraints for table `beli_product`
 --
 ALTER TABLE `beli_product`
   ADD CONSTRAINT `beli_product_ibfk_1` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`kode_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `beli_product_ibfk_2` FOREIGN KEY (`kategori`) REFERENCES `kategori` (`kode_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_beli_product`
+-- Constraints for table `detail_beli_product`
 --
 ALTER TABLE `detail_beli_product`
   ADD CONSTRAINT `detail_beli_product_ibfk_1` FOREIGN KEY (`id_beliProduct`) REFERENCES `beli_product` (`id_beliProduct`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detail_beli_product_ibfk_2` FOREIGN KEY (`product`) REFERENCES `product` (`kode_product`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_retur`
+-- Constraints for table `detail_retur`
 --
 ALTER TABLE `detail_retur`
   ADD CONSTRAINT `retur_sup` FOREIGN KEY (`id_returSupplier`) REFERENCES `retur_supplier` (`id_returSupplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_transaksi`
+-- Constraints for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
   ADD CONSTRAINT `detail_transaksi_ibfk_2` FOREIGN KEY (`kode_product`) REFERENCES `product` (`kode_product`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detail_transaksi_ibfk_3` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `product`
+-- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`kode_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`kategori`) REFERENCES `kategori` (`kode_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `retur_customer`
+-- Constraints for table `retur_customer`
 --
 ALTER TABLE `retur_customer`
   ADD CONSTRAINT `retur_customer_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `retur_supplier`
+-- Constraints for table `retur_supplier`
 --
 ALTER TABLE `retur_supplier`
   ADD CONSTRAINT `rtr_sup` FOREIGN KEY (`kode_supplier`) REFERENCES `supplier` (`kode_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `transaksi`
+-- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`);
