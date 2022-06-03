@@ -5,6 +5,7 @@
  */
 package service;
 
+import View.KonfirmasiBayarUpdate;
 import Repository.Order;
 import Repository.OrderInterface;
 import View.Dashbord;
@@ -223,7 +224,7 @@ public class OrderService extends barangService {
        
         } 
        }else if(opsi.equals("beli")){
-           String sub = bayar.setSubtotal();
+       String sub = bayar.setSubtotal();
        String subTotal=KonfirmasiBayarSupplier.txt_SubTotal.getText();
         int diskon = 0;
         String nilai_input_diskon = KonfirmasiBayarSupplier.txt_diskon.getText().replaceAll("[^0-9]", "");
@@ -368,7 +369,52 @@ public class OrderService extends barangService {
       return kembalian;
      
   }
-  
+     public boolean bayar(String bayar , KonfirmasiBayarUpdate byr , String id){
+       
+      boolean close =false;
+    
+     
+      
+      int kembalian=0;
+      int total=Integer.parseInt(KonfirmasiBayarUpdate.txt_totalHarga.getText());
+   
+      if(bayar.equals("")){
+          jop("Harap isi Field dengan angka !");
+          close=false;
+      }else
+      {
+         int bayarInt = Integer.parseInt(bayar);
+          if(bayarInt < total){
+          jop("Total Bayar Customer Kurang !");
+          
+          close=false;
+          }
+          else{
+              
+               
+          kembalian=bayarInt-total;  
+          TransaksiBerhasilSupplier transaksi = new TransaksiBerhasilSupplier();
+          transaksi.setIdTransaksi(id);
+          transaksi.action();
+         
+          String kembaliString = String.format("%-,10d\n", kembalian);
+          TransaksiBerhasilSupplier.txt_kembalian.setText(kembaliString);
+          close=true;
+          }
+        // JOptionPane.showMessageDialog(null, "Berhasil Menambah Barang", "Succes", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+        
+
+         
+      }
+      
+      if(close==false){
+          /* bayar="";*/
+      }else{
+          byr.dispose();
+      }
+      return close;
+     
+  }
  
    public boolean bayar(String bayar , KonfirmasiBayarSupplier byr , String id){
        
@@ -432,6 +478,8 @@ public class OrderService extends barangService {
       
  
   }
+  
+  
   public void insertDataOrder( JTable table){
       OrderInterface order = new Order();
       

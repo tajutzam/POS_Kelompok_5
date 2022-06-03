@@ -65,44 +65,51 @@ public class Dashbord extends javax.swing.JFrame {
     String time_update;
     String kode_supplier;
     
+    //
     Dimension dimAx = Toolkit.getDefaultToolkit().getScreenSize();
     Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     OrderService order = new OrderService();
+    //SIMPLE DATE FORMAT UNTUK KEBUTUHAN TANGGAL
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     Date dt = new Date();
+    //MENDAPATKAN WAKTU SAAT INI
     Timestamp time = Timestamp.valueOf(LocalDateTime.now());
     String timeString = String.valueOf(time);
+    
+    //MEMBUAT OBJECT
     UserService user = new UserService();
-   
     kategoriService kate = new kategoriService();
     Bulan bulan = new Bulan();
     barangService br = new barangService();
     PlaceHolderDemo place = new PlaceHolderDemo();
  
+    //CONSTRUKTOR
     public Dashbord(String role) {
         
         initComponents();
+        //SET DEFAULT SIZE
         this.setSize(1366,768);
+        //SET SIZE MENURUT UKURAN LAPTOP
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setMaximumSize(dimAx);
         this.setMinimumSize(dimIn);
         this.setBackground(new Color(255,255,255));
-            txt_cariDataOrder.requestFocus();
-        //set tinggi tabel
+        //REQUEST FOCUS WHEN
+        txt_cariDataOrder.requestFocus();
+        //SET DESIGN TABLE
         table_barang.setRowHeight(30);
         tabel_kategori.setRowHeight(30);
         table_supplier.setRowHeight(30);
         table_return.setRowHeight(30);
-       
-        
-        
+
         //meletakan pada tengah
         this.setLocationRelativeTo(null);
         //visibilitas icon
         //br.addItemInCombobox(comboBox_showBarang);
-      
+        
+        //SET ICON
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplayPurple.png")));
@@ -115,13 +122,16 @@ public class Dashbord extends javax.swing.JFrame {
         ConntainerPanel.add(panel_contenDashbord);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
+        
+        //MEMANGGIL FUNGSI CHART        
         showChart();
         kate.showKategori(tabel_kategori);
         br.showKategoriRealTime(tabel_kategori);
         
-         label_bula.setText("Total Penjualan "+bulan.getBulan());
-         untung_sebulan.setText("Laba Penjualan "+bulan.getBulan());
-         pengeluaran_bulan.setText("Biaya Operasional "+bulan.getBulan());
+        //SET VALUE LABEL PADA DASHBORD
+        label_bula.setText("Total Penjualan "+bulan.getBulan());
+        untung_sebulan.setText("Laba Penjualan "+bulan.getBulan());
+        pengeluaran_bulan.setText("Biaya Operasional "+bulan.getBulan());
          
         //setting height in table
         tabel_kategori.setRowHeight(30);
@@ -144,7 +154,22 @@ public class Dashbord extends javax.swing.JFrame {
         //setVisibilitas idpegawai login
         label_idPegawai.setVisible(true);
         label_namaPegawai.setVisible(true);
-       
+        label_idPegawai.setVisible(false);
+        this.setTanggalSaatIni(formatter.format(dt));
+        order.barangPalingBanyakDiminati(table_banyakDiminati);
+        this.label_nama_toko.setVisible(false);
+        this.label_alamatTok.setVisible(false);
+        this.label_noHp.setVisible(false);
+        this.label_username.setVisible(false);
+        this.label_namaDepan.setVisible(false);
+        this.label_nama_belakang.setVisible(false);
+        this.label_passwordLama.setVisible(false);
+
+        label_status.setVisible(false);
+        label_role.setVisible(false);
+        label_namaDepan.setVisible(false);
+        label_passwordLama.setVisible(false);
+
         //visibilitas hak akses user login
         if(role.equals("2")){
           panel_product.setVisible(false);
@@ -153,23 +178,15 @@ public class Dashbord extends javax.swing.JFrame {
           panel_iconProduct.setVisible(false);
           label_setToko.setVisible(false);
           panel_laporan.setVisible(false);
-          panel_manager.setVisible(false);   
-          
-         
-    }
-        
-    label_idPegawai.setVisible(false);
-    this.setTanggalSaatIni(formatter.format(dt));
-    order.barangPalingBanyakDiminati(table_banyakDiminati);
+          panel_manager.setVisible(false);    
+        }
+       
     
-    label_status.setVisible(false);
-    label_role.setVisible(false);
-    label_namaDepan.setVisible(false);
-    label_passwordLama.setVisible(false);
+  
       
     }
   
-    
+    //PENERAPAN GETTER DAN  SETTER
     public void setNamaUserLogin(String nama){
        label_namaPegawai.setText(nama);
     }
@@ -185,7 +202,17 @@ public class Dashbord extends javax.swing.JFrame {
     public void setNamaToko(String id){
        this.toko_nama.setText(id);
     }
+    
+     public void setPengeluaran(String kode){
+        this.pengeluaranSebulan.setText("Rp."+kode);
+     }
+     public void setUntung(String kode){
+        this.untungSebulanValue.setText("Rp."+kode);
+     }
 
+     public void setPenghasilanBulanIni(String penghasilan){
+        this.penghasilan_bulanIni.setText("Rp."+penghasilan);
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -2811,13 +2838,8 @@ public class Dashbord extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_icon_dashbordMouseClicked
-
-     public void setPengeluaran(String kode){
-        this.pengeluaranSebulan.setText("Rp."+kode);
-     }
-     public void setUntung(String kode){
-        this.untungSebulanValue.setText("Rp."+kode);
-     }
+    
+    
     
     private void panel_iconProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconProductMouseClicked
            // TODO add your handling code here:
@@ -2867,11 +2889,6 @@ public class Dashbord extends javax.swing.JFrame {
          
         br.showBarang(table_barang);
       
-       
-       
-//        
-//      
-        
     }//GEN-LAST:event_panel_iconProductMouseClicked
 
     private void panel_iconManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconManagerMouseClicked
@@ -2891,16 +2908,14 @@ public class Dashbord extends javax.swing.JFrame {
           
         //set Text labelPage
         label_page.setText("User Management");
-        UserService user = new UserService();
+//        UserService user = new UserService();
         user.showUser(table_user);
         OrderService order = new OrderService();
         order.resetKeranjang();
         
     }//GEN-LAST:event_panel_iconManagerMouseClicked
 
-    public void setPenghasilanBulanIni(String penghasilan){
-        this.penghasilan_bulanIni.setText("Rp."+penghasilan);
-    }
+    
     private void panel_iconLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconLaporanMouseClicked
          // TODO add your handling code here:
         ConntainerPanel.removeAll();
@@ -2927,7 +2942,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_containerLaporan.repaint();
         panel_containerLaporan.revalidate();
         
-        OrderService order = new OrderService();
+        
         order.resetKeranjang();
         LaporanService laporan = new LaporanService();
         laporan.showLaporanToTable(table_laporanPenjualan);
@@ -3005,9 +3020,8 @@ public class Dashbord extends javax.swing.JFrame {
         label_setProfile.setForeground(new Color(111, 59, 160));
 //        
          
-        OrderService order = new OrderService();
+       
         order.resetKeranjang();
-        UserService user = new UserService();
         user.showUserYangSedangLogin(label_idPegawai.getText());
         tokoService toko = new tokoService();
         toko.showDataToko();
@@ -3029,8 +3043,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerPurple.png")));
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
-        
-          
+ 
         //set Text labelPage
         label_page.setText("User Management");
         UserService user = new UserService();
@@ -3054,7 +3067,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
-        OrderService order = new OrderService();
+       
         order.resetKeranjang();
         
         this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
@@ -3110,15 +3123,14 @@ public class Dashbord extends javax.swing.JFrame {
         
         //set Text labelPage
         label_page.setText("Manajemen Product");
-        barangService br = new barangService();
-        kategoriService kate = new kategoriService();
+       
         supplierService sup = new supplierService();
         kate.showKategori(tabel_kategori);
         sup.showSupplier(table_supplier);
        
         br.showBarang(table_barang);
         br.deleteBarangWhenStokHabis();
-        OrderService order = new OrderService();
+        
         order.resetKeranjang();
         
         
@@ -3180,7 +3192,7 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_panel_iconManagerMouseEntered
 
     private void label_navigasi_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_barangMouseClicked
-          // TODO add your handling code here:
+        
          // txt_cariBrng.setText("");
           txt_cariKategori.setText("");
           txt_cariBrng.setText("");
@@ -3206,11 +3218,12 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_label_navigasi_barangMouseClicked
 
     private void label_navigasi_KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_KategoriMouseClicked
-           // TODO add your handling code here:
-         //visibiliras label navigasi
-         txt_cariKategori.setText("");
-         txt_cariBrng.setText("");
-         txt_cariSupplier.setText("");
+          
+        
+          //visibiliras label navigasi
+          txt_cariKategori.setText("");
+          txt_cariBrng.setText("");
+          txt_cariSupplier.setText("");
           label_navigasi_barang.setForeground(new Color(90, 90, 90));
           label_navigasi_Kategori.setForeground(new Color(111, 59, 160));
           label_navigasi_supplier.setForeground(new Color(90, 90, 90));
@@ -3226,10 +3239,11 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_label_navigasi_KategoriMouseClicked
 
     private void label_navigasi_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_supplierMouseClicked
-         // TODO add your handling code here:
-           txt_cariKategori.setText("");
-         txt_cariBrng.setText("");
-         txt_cariSupplier.setText("");
+
+        
+          txt_cariKategori.setText("");
+          txt_cariBrng.setText("");
+          txt_cariSupplier.setText("");
           label_navigasi_barang.setForeground(new Color(90, 90, 90));
           label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
           label_navigasi_supplier.setForeground(new Color(111, 59, 160));
@@ -3257,16 +3271,16 @@ public class Dashbord extends javax.swing.JFrame {
           conten_manajemen.repaint();
           conten_manajemen.revalidate();
           
-          barangService br = new barangService();
+         
           br.showReturSupplier(table_return);
     }//GEN-LAST:event_label_navigasi_returnMouseClicked
 
     private void comboBox_showBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showBarangActionPerformed
          // TODO add your handling code here:
         
-        barangService barang = new barangService();
+        
         String nama_kategori = comboBox_showBarang.getSelectedItem().toString();
-        barang.cariBarangBerdasarkanKategori(nama_kategori);
+        br.cariBarangBerdasarkanKategori(nama_kategori);
         
     }//GEN-LAST:event_comboBox_showBarangActionPerformed
 

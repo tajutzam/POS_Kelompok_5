@@ -1348,6 +1348,159 @@ public class Barang implements BarangInterface{
         
         
     }
+
+    @Override
+    public String getStok(String nama_product) {
+        
+        String sql ="select stok from product where nama_product='"+nama_product+"'";
+        String stok="";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            
+            
+            if(res.next()){
+                stok=res.getString("stok");
+            }
+            
+        }catch(SQLException e){
+            
+        }
+        return stok;
+    }
+
+    @Override
+    public String getKodeBarang(JComboBox box) {
+        
+        String kode="";
+        String sql="select kode_product from product where nama_product='"+box.getSelectedItem().toString()+"'";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                kode=res.getString("kode_product");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return kode;
+    }
+    
+    @Override
+    public String getHargaBeli(String kode){
+        String harga="";
+        
+        String sql="select harga_beli from product where kode_product ='"+kode+"'";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            
+            if(res.next()){
+                harga=res.getString("harga_beli");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        return harga;
+        
+    }
+
+    @Override
+    public String getKodeSuppp(String nama) {
+        
+        String kode="";
+        
+        String sql ="select supplier from product where kode_product ='"+nama+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                kode=res.getString("supplier");
+            }
+        }catch(SQLException e){
+            
+        }
+        return kode;
+        
+    }
+
+    @Override
+    public String getKodeKategori(String kode) {
+         String kategori="";
+        
+        String sql ="select kategori from product where kode_product ='"+kode+"'";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                kategori=res.getString("kategori");
+            }
+        }catch(SQLException e){
+            
+        }
+        return kategori;
+    }
+
+    @Override
+    public boolean updateStok(String kode , int stok) {
+        
+        String sqlStok ="select total_stok from product where kode_product ='"+kode+"'";
+        int stokTmp=0;
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sqlStok)){
+            
+            if(res.next()){
+                stokTmp=res.getInt("total_stok");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        
+        String sqlStokTersedia="select stok from product where kode_product='"+kode+"'";
+          int stokTersedia=0;
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res =st.executeQuery(sqlStokTersedia)){
+          
+            if(res.next()){
+                stokTersedia=res.getInt("stok");
+            }
+        }catch(SQLException e){
+            
+        }
+        
+        String sql ="update product set stok =?,  total_stok =? where kode_product =?";
+        
+        boolean isSuses=false;
+        
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sql)){
+            pst.setInt(1, stok+stokTersedia);
+            System.out.println(stokTmp);
+            pst.setInt(2, stok+stokTmp);
+            pst.setString(3, kode);
+            pst.execute();
+            isSuses=true;
+        }catch(SQLException e){
+            isSuses=false;
+            System.out.println(e);
+            
+        }
+        return isSuses;
+    }
+    
+    
+    
     
     
     

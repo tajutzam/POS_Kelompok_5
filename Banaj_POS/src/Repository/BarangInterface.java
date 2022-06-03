@@ -43,4 +43,11 @@ public interface BarangInterface {
    public void cetakBarcode(String name);
    public void cariBarangBerdasarkanKategori(String keyword);
    public void cetakBeliBarang(String id);
+   public String getStok(String nama_product);
+   public String getKodeBarang(JComboBox box);
+   public String getHargaBeli(String kode);
+   public String getKodeSuppp(String nama);
+   public String getKodeKategori(String kode);
+   
+   public boolean updateStok(String kode , int stok);
 }

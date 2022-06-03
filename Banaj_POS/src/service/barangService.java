@@ -311,4 +311,23 @@ public class barangService {
        
     }
   
+    public String getStok(String nama){
+       return barang.getStok(nama);
+    }
+    public String getHargaBeli(String nama){
+        return barang.getHargaBeli(nama);
+    }
+    public String getKodeBarang(JComboBox box){
+        return barang.getKodeBarang(box);
+    }
+    public String getKodeSupplier(String kode){
+        return barang.getKodeSuppp(kode);
+    }
+    public String getKodeKategori(String kode){
+        return barang.getKodeKategori(kode);
+    }
+    public boolean updateStok(String kode , int stok){
+        
+        return barang.updateStok(kode, stok);
+    }
 }

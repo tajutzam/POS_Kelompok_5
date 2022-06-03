@@ -81,6 +81,8 @@ public class DataBarangTambah extends javax.swing.JFrame {
         update_atEdit.setEnabled(false);
         total_stok.setEnabled(false);
         label_stokEdit.setVisible(false);
+        this.txt_stokEdit.setEnabled(false);
+        this.barang_RusakEdit.setEnabled(false);
         
         
         
