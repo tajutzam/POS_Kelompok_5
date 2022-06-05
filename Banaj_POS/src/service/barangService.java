@@ -130,6 +130,7 @@ public class barangService {
         BarangInterface barang = new Barang();
         
         barang.deleteBarang(kode, dta);
+        showBarang(Dashbord.table_barang);
 
     }
     public static void main(String[] args) {
@@ -255,7 +256,7 @@ public class barangService {
               JOptionPane.showMessageDialog(null, kata, "Terjadi Kesalahan !", JOptionPane.ERROR_MESSAGE, eroricon); 
          }
          else{
-              barang.TambahBarangBanyak(kode, nama, stok.replaceAll("[^0-9]", ""), harga_beli.replaceAll("[^0-9]", ""), harga_jual.replaceAll("[^0-9]", ""), rusak.replaceAll("[^0-9]", ""), box);
+              barang.TambahBarangBanyak(kode, nama, stok.replaceAll("[^0-9]", ""), harga_beli.replaceAll("[^0-9]", ""), harga_jual.replaceAll("[^0-9]", ""), box);
          }
      }
      else{
@@ -332,5 +333,14 @@ public class barangService {
     }
     public void addReturn(){
         
+    }
+    public String getNamaBarang(String kode){
+        return barang.getNamaBarang(kode);
+    }
+    public int getRusak(String kode){
+        return barang.getBarangRusak(kode);
+    }
+    public void updateRetur(String kode , String rusak , String opsi , String rusakNew){
+        barang.updateReturnAndBarang(kode, rusak ,opsi,rusakNew);
     }
 }

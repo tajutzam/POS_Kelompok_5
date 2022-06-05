@@ -180,6 +180,7 @@ public class Supplier implements SupplierInterface{
             pst.setString(3, kode);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Berhasil Memperbarui supplier !","Success !", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+            showSuplier(Dashbord.table_supplier);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Gagal Mengedit Supplier"+e.getMessage(), "Informasi", JOptionPane.INFORMATION_MESSAGE ,eroricon );
         }

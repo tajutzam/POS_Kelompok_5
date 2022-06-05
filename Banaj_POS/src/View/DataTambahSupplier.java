@@ -63,6 +63,7 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         txt_createAtt.setEnabled(false);
         id_supEdit.setEnabled(false);
         update_atEdit.setEnabled(false);
+        this.nama_supLama.setVisible(false);
     }
 
     /**
@@ -94,7 +95,6 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         update_atEdit = new javax.swing.JTextField();
         btn_simpanEdit = new javax.swing.JButton();
         btn_cancelEdit = new javax.swing.JButton();
-        btn_hapusEdit = new javax.swing.JButton();
         btn_clearEdit = new javax.swing.JButton();
         nama_supLama = new javax.swing.JLabel();
         navigasi_panel = new RoundedPanel(8, new Color(255, 255, 255));
@@ -251,21 +251,6 @@ public class DataTambahSupplier extends javax.swing.JFrame {
             }
         });
 
-        btn_hapusEdit.setBackground(new java.awt.Color(204, 0, 0));
-        btn_hapusEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        btn_hapusEdit.setForeground(new java.awt.Color(255, 255, 255));
-        btn_hapusEdit.setText("Hapus");
-        btn_hapusEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_hapusEditMouseClicked(evt);
-            }
-        });
-        btn_hapusEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_hapusEditActionPerformed(evt);
-            }
-        });
-
         btn_clearEdit.setBackground(new java.awt.Color(96, 96, 96));
         btn_clearEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_clearEdit.setForeground(new java.awt.Color(255, 255, 255));
@@ -291,7 +276,6 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                         .addComponent(nama_supLama)
                         .addGap(157, 157, 157)))
                 .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_hapusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_clearEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cancelEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(82, 82, 82))
@@ -317,14 +301,13 @@ public class DataTambahSupplier extends javax.swing.JFrame {
                 .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conten_editPanelLayout.createSequentialGroup()
-                        .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_cancelEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nama_supLama))
-                        .addGap(27, 27, 27)
-                        .addComponent(btn_clearEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btn_hapusEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                        .addComponent(nama_supLama)
+                        .addGap(33, 33, 33)
+                        .addComponent(btn_cancelEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
+                .addGap(27, 27, 27)
+                .addComponent(btn_clearEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
             .addGroup(conten_editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(conten_editPanelLayout.createSequentialGroup()
                     .addGap(60, 60, 60)
@@ -440,10 +423,6 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_cancelEditActionPerformed
 
-    private void btn_hapusEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_hapusEditActionPerformed
-
     private void btn_clearEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearEditActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_clearEditActionPerformed
@@ -479,19 +458,6 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_simpanEditMouseClicked
-
-    private void btn_hapusEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusEditMouseClicked
-        // TODO add your handling code here:
-        
-        supplierService suplier = new supplierService();
-        String kode = id_supEdit.getText().toString();
-        int resetData = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Ingin Menghapus Supplier ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        if(resetData==0){
-            suplier.deleteSupplier(kode, this);
-        }
-        suplier.showSupplier(Dashbord.table_supplier);
-        
-    }//GEN-LAST:event_btn_hapusEditMouseClicked
 
     /**
      * @param args the command line arguments
@@ -613,7 +579,6 @@ public class DataTambahSupplier extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancelEdit;
     private javax.swing.JButton btn_clearEdit;
-    private javax.swing.JButton btn_hapusEdit;
     private javax.swing.JButton btn_simpanEdit;
     public static javax.swing.JPanel contenPanel;
     private javax.swing.JPanel conten_editPanel;

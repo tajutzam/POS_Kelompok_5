@@ -87,7 +87,7 @@ public class supplierService {
           SupplierInterface sup = new Supplier();
           
           sup.deleteSupplier(kode);
-          dt.dispose();
+         
       }
       public String getNamaSupplier(String kode){
           SupplierInterface sup = new Supplier();

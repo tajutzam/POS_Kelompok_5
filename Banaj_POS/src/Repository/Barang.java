@@ -84,7 +84,7 @@ public class Barang implements BarangInterface{
         model.addColumn("Nama Barang");
         model.addColumn("Stok Tersedia");
         model.addColumn("Total Stok");
-        model.addColumn("Barang Rusak");
+      
         model.addColumn("Harga Beli");
         model.addColumn("Harga Jual");
         model.addColumn("Kategori");
@@ -152,9 +152,9 @@ public class Barang implements BarangInterface{
                     model.addColumn("No");
                     model.addColumn("Kode Barang");
                     model.addColumn("Nama Barang");
-                    model.addColumn("Stok Tersedia");
+                 
                     model.addColumn("Total Stok");
-                    model.addColumn("Barang Rusak");
+                  
                     model.addColumn("Harga Beli");
                     model.addColumn("Harga Jual");
                     model.addColumn("Supplier");
@@ -168,8 +168,8 @@ public class Barang implements BarangInterface{
                         no,res.getString("kode_product"),
                         res.getString("nama_product"),
                         res.getString("stok"),
-                        res.getString("total_stok"),
-                        res.getString("rusak"),
+                     
+                      
                         ("Rp."+res.getString("harga_beli")),
                         ("Rp."+ res.getString("harga_jual")),
                         res.getString("supplier.nama_supplier"),
@@ -729,7 +729,7 @@ public class Barang implements BarangInterface{
             pst.setInt(2, stok);
             pst.setInt(3, harga_beli);
             pst.setInt(4, harga_jual);
-            System.out.println(kode_kategori);
+        
             pst.setString(5, kode_supplier);
             pst.setString(6, kode_kategori);
             pst.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
@@ -769,7 +769,7 @@ public class Barang implements BarangInterface{
                pst.executeUpdate();
            
                JOptionPane.showMessageDialog(null, "Product Berhasil Dihapus Silahkan Refresh !", "Sukses !", JOptionPane.INFORMATION_MESSAGE,suscesicon);
-               dta.dispose();
+                showBarang(Dashbord.table_barang, "barang");
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null, "Product gagal di hapus !","Eror !",JOptionPane.WARNING_MESSAGE);
             }
@@ -864,9 +864,9 @@ public class Barang implements BarangInterface{
                   model.addColumn("No");
                   model.addColumn("Kode Barang");
                   model.addColumn("Nama Barang");
-                  model.addColumn("Stok Tersedia");
+                 
                   model.addColumn("Total Stok");
-                  model.addColumn("Barang Rusak");
+              
                   model.addColumn("Harga Beli");
                   model.addColumn("Harga Jual");
                   model.addColumn("Supplier");
@@ -891,10 +891,10 @@ public class Barang implements BarangInterface{
                      res.getString("kode_product"),
                         res.getString("nama_product"),
                         res.getString("stok"),
-                        res.getString("total_stok"),
-                        res.getString("rusak"),
-                        res.getString("harga_beli"),
-                        res.getString("harga_jual"),
+                       
+                      
+                        ("Rp."+res.getString("harga_beli")),
+                        ("Rp."+res.getString("harga_jual")),
                         res.getString("supplier.nama_supplier"),
                         res.getString("kategori.nama_kategori"),
                     }
@@ -934,7 +934,7 @@ public class Barang implements BarangInterface{
     }
 
     @Override
-    public void TambahBarangBanyak(String kode , String nama , String stok , String harga_beli , String harga_jual , String rusak , String kategori) {
+    public void TambahBarangBanyak(String kode , String nama , String stok , String harga_beli , String harga_jual ,  String kategori) {
        
         String kode_kategori="";
        
@@ -951,20 +951,20 @@ public class Barang implements BarangInterface{
             System.out.println(e.getMessage());
         }
         int totalStok =Integer.parseInt(stok);
-        int rusakInt =Integer.parseInt(rusak);
+      
         
         
-        int stokTersedia=totalStok-rusakInt;
+        int stokTersedia=totalStok;
         int no =model.getRowCount()+1;
         data[0]=no;
         data[1]=kode;
         data[2]=nama;
-        data[3]=stokTersedia;
-        data[4]=stok;
-        data[5]=rusak;
-        data[6]=harga_beli;
-        data[7]=harga_jual;
-        data[8]=kategori;
+       
+        data[3]=stok;
+       
+        data[4]=harga_beli;
+        data[5]=harga_jual;
+        data[6]=kategori;
         
         
         model.addRow(data);
@@ -1490,6 +1490,7 @@ public class Barang implements BarangInterface{
             pst.setInt(2, stok+stokTmp);
             pst.setString(3, kode);
             pst.execute();
+            showBarang(Dashbord.table_barang, "barang");
             isSuses=true;
         }catch(SQLException e){
             isSuses=false;
@@ -1497,6 +1498,85 @@ public class Barang implements BarangInterface{
             
         }
         return isSuses;
+    }
+
+    @Override
+    public String getNamaBarang(String kode) {
+        String nama="";
+        String sql="select nama_product from product where kode_product='"+kode+"'";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                nama=res.getString("nama_product");
+            }
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return nama;
+    }
+
+    @Override
+    public int getBarangRusak(String kode) {
+        
+        int stok=0;
+        
+        String sql ="select rusak from product where kode_product='"+kode+"'";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st =con.createStatement();
+            ResultSet res = st.executeQuery(sql)){
+            
+            if(res.next()){
+                stok=res.getInt("rusak");
+            }
+            
+        }catch(SQLException e){
+            
+        }
+        return stok;
+    }
+
+    @Override
+    public void updateReturnAndBarang(String kode , String jumlahRusak , String opsi , String rusakNew) {
+        
+        String sqlDetRetur="update detail_retur set jumlah_rusak=? where product=?";
+        String sqlProduct ="update product set rusak=? , stok = stok+rusak , rusak=total_stok -stok where kode_product=?";
+        String sqlProductKurang ="update product set rusak=? , stok = stok-rusak where kode_product=?";
+        
+        try(Connection con = dt.conectDatabase();
+            PreparedStatement pst = con.prepareStatement(sqlDetRetur);
+            Connection cone = dt.conectDatabase() ;
+            PreparedStatement pstPro = cone.prepareStatement(sqlProduct);
+            Connection coneq = dt.conectDatabase();
+            PreparedStatement pstMin = coneq.prepareCall(sqlProductKurang)){
+            
+            pst.setString(1, jumlahRusak);
+             pst.setString(2, kode);
+            pst.execute();
+           
+            if(opsi.equals("besar-rusak")){
+                pstMin.setString(1, rusakNew);
+                pstMin.setString(2, kode);
+                pstMin.execute();
+            }else if(opsi.equals("kecil-rusak")){
+                   pstPro.setString(1, rusakNew);
+            pstPro.setString(2, kode);
+              pstPro.execute();
+            
+            }
+         
+           
+          
+            JOptionPane.showMessageDialog(null, "Berhasil update");
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        
     }
     
     

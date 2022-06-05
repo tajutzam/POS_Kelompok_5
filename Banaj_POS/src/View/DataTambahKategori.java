@@ -102,7 +102,6 @@ public class DataTambahKategori extends javax.swing.JFrame {
         btn_simpanKategoriEdit = new javax.swing.JButton();
         brn_cancelEditKategori = new javax.swing.JButton();
         btn_clearEditKategori = new javax.swing.JButton();
-        btn_hapusKategori = new javax.swing.JButton();
         kode_lama = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         label_editNamaKategori = new javax.swing.JLabel();
@@ -276,21 +275,6 @@ public class DataTambahKategori extends javax.swing.JFrame {
             }
         });
 
-        btn_hapusKategori.setBackground(new java.awt.Color(204, 0, 0));
-        btn_hapusKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        btn_hapusKategori.setForeground(new java.awt.Color(255, 255, 255));
-        btn_hapusKategori.setText("Hapus");
-        btn_hapusKategori.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_hapusKategoriMouseClicked(evt);
-            }
-        });
-        btn_hapusKategori.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_hapusKategoriActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout conten_editLayout = new javax.swing.GroupLayout(conten_edit);
         conten_edit.setLayout(conten_editLayout);
         conten_editLayout.setHorizontalGroup(
@@ -324,7 +308,6 @@ public class DataTambahKategori extends javax.swing.JFrame {
                             .addGap(84, 84, 84)
                             .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btn_simpanKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_hapusKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btn_clearEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
@@ -348,10 +331,8 @@ public class DataTambahKategori extends javax.swing.JFrame {
                         .addComponent(TXT_namaKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(label_updateAtkategoriEdit)
-                        .addGap(11, 11, 11)
-                        .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TXT_updateAtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_hapusKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)
+                        .addComponent(TXT_updateAtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(conten_editLayout.createSequentialGroup()
                         .addComponent(btn_simpanKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -439,10 +420,6 @@ public class DataTambahKategori extends javax.swing.JFrame {
         TXT_createAt.setText("");
     }//GEN-LAST:event_btn_clearEditKategoriActionPerformed
 
-    private void btn_hapusKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusKategoriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_hapusKategoriActionPerformed
-
     private void btn_clearEditKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clearEditKategoriMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_clearEditKategoriMouseClicked
@@ -478,17 +455,6 @@ public class DataTambahKategori extends javax.swing.JFrame {
           katSer.showKategori(Dashbord.tabel_kategori);
          
     }//GEN-LAST:event_btn_simpanKategoriEditMouseClicked
-
-    private void btn_hapusKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusKategoriMouseClicked
-         // TODO add your handling code here:
-         String kode =TXT_kodeKategoriEdit.getText();
-         kategoriService kategori = new kategoriService();
-         System.out.println(kode);
-         
-            kategori.deleteKategori(kode , this);  
-         
-            kategori.showKategori(Dashbord.tabel_kategori);
-    }//GEN-LAST:event_btn_hapusKategoriMouseClicked
 
     /**
      * @param args the command line arguments
@@ -630,7 +596,6 @@ public class DataTambahKategori extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelKategori;
     private javax.swing.JButton btn_clearEditKategori;
     private javax.swing.JButton btn_clearKategori;
-    private javax.swing.JButton btn_hapusKategori;
     private javax.swing.JButton btn_simpanKategoriEdit;
     private javax.swing.JButton btn_simpanTambahKategori;
     private javax.swing.JPanel contenPanel;

@@ -43,6 +43,12 @@ public class TambahUser extends javax.swing.JFrame {
         TXT_Add_CreatedAt.setText(time);
         TXT_Add_CreatedAt.setEnabled(false);
         TXT_edit_UpdateAt.setEditable(false);
+        this.label_editNama.setVisible(false);
+        this.label_editPassword.setVisible(false);
+        this.label_editRole.setVisible(false);
+        this.label_editStatus.setVisible(false);
+        this.label_editUsername.setVisible(false);
+        this.label_editId.setVisible(false);
     }
 
     public void Action(String opsi){
