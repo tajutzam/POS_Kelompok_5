@@ -266,9 +266,8 @@ public class Kategori implements KategoriInterface{
             {
                pst.setString(1, kode);
                pst.executeUpdate();
-           
                JOptionPane.showMessageDialog(null, "Product Berhasil Dihapus Silahkan Refresh !", "Sukses !", JOptionPane.INFORMATION_MESSAGE,suscesicon);
-               dta.dispose();
+               showKategori(Dashbord.tabel_kategori);
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null, "Product gagal di hapus !","Eror !",JOptionPane.WARNING_MESSAGE);
             }

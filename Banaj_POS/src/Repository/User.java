@@ -340,6 +340,32 @@ public class User implements UserInterface{
             System.out.println(e.getMessage());
         }   
     }
+
+    @Override
+    public String getTotalUser() {
+        String total="";
+        String sql="select count(*) as total from pegawai";
+        
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+             ResultSet res=st.executeQuery(sql))
+        {
+            
+            if(res.next()){
+              total=res.getString("total");
+            }
+            
+            
+        }catch(SQLException e){
+            
+        }
+        
+        
+        
+        
+        return total;
+    }
+    
     
     
     

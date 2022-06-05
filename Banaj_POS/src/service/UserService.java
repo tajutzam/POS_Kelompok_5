@@ -84,5 +84,8 @@ public class UserService {
      public void showBerdasrkanStatus(JComboBox box){
          user.showBerdasarkanJcomboBox(box);
      }
+     public String getTotalUser(){
+        return user.getTotalUser();
+     }
 
 }

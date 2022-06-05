@@ -489,14 +489,12 @@
                                       <Component id="TXT_edit_PasswordBaru" alignment="0" pref="257" max="32767" attributes="0"/>
                                       <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="TXT_edit_KonfirmasiPassword" alignment="0" pref="257" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="label_editRole" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="combo_edit_Role" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="label_editRole" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="combo_edit_Role" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">

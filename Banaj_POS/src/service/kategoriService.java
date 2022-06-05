@@ -92,10 +92,10 @@ public class kategoriService {
          
        
      }
-     public void deleteKategori(String kode , DataTambahKategori dts){
+     public void deleteKategori(String kode ){
         KategoriInterface ka = new Kategori();
-        ka.deleteKategori(kode , dts);
-         dts.dispose();
+        ka.deleteKategori(kode ,new DataTambahKategori());
+       
      }
      public String hitungTotalKategori(){
          String total =kategori.hitungTotalKategori();

@@ -320,7 +320,6 @@
                                   <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="btn_simpanKategoriEdit" alignment="1" min="-2" pref="88" max="-2" attributes="0"/>
-                                      <Component id="btn_hapusKategori" min="-2" pref="88" max="-2" attributes="0"/>
                                       <Component id="btn_clearEditKategori" min="-2" pref="88" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -352,11 +351,8 @@
                               <Component id="TXT_namaKategoriEdit" min="-2" pref="33" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="label_updateAtkategoriEdit" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="TXT_updateAtKategori" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="btn_hapusKategori" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="TXT_updateAtKategori" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btn_simpanKategoriEdit" min="-2" pref="32" max="-2" attributes="0"/>
@@ -473,24 +469,6 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_clearEditKategoriMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearEditKategoriActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btn_hapusKategori">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="cc" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="14" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Hapus"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_hapusKategoriMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_hapusKategoriActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="kode_lama">

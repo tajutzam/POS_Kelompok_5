@@ -54,7 +54,7 @@ import service.tokoService;
  *
  * @author user
  */
-public class Dashbord extends javax.swing.JFrame {
+public  class Dashbord extends javax.swing.JFrame {
 
     /**
      * Creates new form Dashbord
@@ -65,44 +65,52 @@ public class Dashbord extends javax.swing.JFrame {
     String time_update;
     String kode_supplier;
     
+    //
     Dimension dimAx = Toolkit.getDefaultToolkit().getScreenSize();
     Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     OrderService order = new OrderService();
+    //SIMPLE DATE FORMAT UNTUK KEBUTUHAN TANGGAL
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     Date dt = new Date();
+    //MENDAPATKAN WAKTU SAAT INI
     Timestamp time = Timestamp.valueOf(LocalDateTime.now());
     String timeString = String.valueOf(time);
+    
+    //MEMBUAT OBJECT
     UserService user = new UserService();
-   
     kategoriService kate = new kategoriService();
     Bulan bulan = new Bulan();
     barangService br = new barangService();
     PlaceHolderDemo place = new PlaceHolderDemo();
  
+    //CONSTRUKTOR
     public Dashbord(String role) {
         
         initComponents();
+        //SET DEFAULT SIZE
         this.setSize(1366,768);
+        //SET SIZE MENURUT UKURAN LAPTOP
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setMaximumSize(dimAx);
         this.setMinimumSize(dimIn);
         this.setBackground(new Color(255,255,255));
-            txt_cariDataOrder.requestFocus();
-        //set tinggi tabel
+        //REQUEST FOCUS WHEN
+        txt_cariDataOrder.requestFocus();
+        //SET DESIGN TABLE
         table_barang.setRowHeight(30);
         tabel_kategori.setRowHeight(30);
         table_supplier.setRowHeight(30);
         table_return.setRowHeight(30);
-       
-        
-        
+        btn_rturCustomer.setVisible(false);
+
         //meletakan pada tengah
         this.setLocationRelativeTo(null);
         //visibilitas icon
         //br.addItemInCombobox(comboBox_showBarang);
-      
+        
+        //SET ICON
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplayPurple.png")));
@@ -115,14 +123,18 @@ public class Dashbord extends javax.swing.JFrame {
         ConntainerPanel.add(panel_contenDashbord);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
+        
+        //MEMANGGIL FUNGSI CHART        
         showChart();
         kate.showKategori(tabel_kategori);
         br.showKategoriRealTime(tabel_kategori);
         
-         label_bula.setText("Total Penjualan "+bulan.getBulan());
-         untung_sebulan.setText("Laba Penjualan "+bulan.getBulan());
-         pengeluaran_bulan.setText("Biaya Operasional "+bulan.getBulan());
-         
+        //SET VALUE LABEL PADA DASHBORD
+        label_bula.setText("Total Penjualan "+bulan.getBulan());
+        untung_sebulan.setText("Laba Penjualan "+bulan.getBulan());
+        pengeluaran_bulan.setText("Biaya Operasional "+bulan.getBulan());
+         this.contenReturn.setVisible(false);
+         this.label_navigasi_return.setVisible(false);
         //setting height in table
         tabel_kategori.setRowHeight(30);
         table_barang.setRowHeight(30);
@@ -144,7 +156,23 @@ public class Dashbord extends javax.swing.JFrame {
         //setVisibilitas idpegawai login
         label_idPegawai.setVisible(true);
         label_namaPegawai.setVisible(true);
-       
+        label_idPegawai.setVisible(false);
+        this.setTanggalSaatIni(formatter.format(dt));
+        order.barangPalingBanyakDiminati(table_banyakDiminati);
+        this.label_nama_toko.setVisible(false);
+        this.label_alamatTok.setVisible(false);
+        this.label_noHp.setVisible(false);
+        this.label_username.setVisible(false);
+        this.label_namaDepan.setVisible(false);
+        this.label_nama_belakang.setVisible(false);
+        this.label_passwordLama.setVisible(false);
+
+        label_status.setVisible(false);
+        label_role.setVisible(false);
+        btn_tambahReturn.setVisible(false);
+        label_namaDepan.setVisible(false);
+        label_passwordLama.setVisible(false);
+
         //visibilitas hak akses user login
         if(role.equals("2")){
           panel_product.setVisible(false);
@@ -153,28 +181,24 @@ public class Dashbord extends javax.swing.JFrame {
           panel_iconProduct.setVisible(false);
           label_setToko.setVisible(false);
           panel_laporan.setVisible(false);
-          panel_manager.setVisible(false);   
-          
-         
-    }
-        
-    label_idPegawai.setVisible(false);
-    this.setTanggalSaatIni(formatter.format(dt));
-    order.barangPalingBanyakDiminati(table_banyakDiminati);
+          panel_manager.setVisible(false);    
+        }
+       
     
-    label_status.setVisible(false);
-    label_role.setVisible(false);
-    label_namaDepan.setVisible(false);
-    label_passwordLama.setVisible(false);
+        //interact dashbord content
+       
       
     }
   
-    
+    //PENERAPAN GETTER DAN  SETTER
     public void setNamaUserLogin(String nama){
        label_namaPegawai.setText(nama);
     }
     public void setIdPegawai(String id){
        label_idPegawai.setText(id);
+    }
+    public void setTotalUser(String total){
+        this.txt_totalUser.setText(total);
     }
     
     
@@ -185,7 +209,17 @@ public class Dashbord extends javax.swing.JFrame {
     public void setNamaToko(String id){
        this.toko_nama.setText(id);
     }
+    
+     public void setPengeluaran(String kode){
+        this.pengeluaranSebulan.setText("Rp."+kode);
+     }
+     public void setUntung(String kode){
+        this.untungSebulanValue.setText("Rp."+kode);
+     }
 
+     public void setPenghasilanBulanIni(String penghasilan){
+        this.penghasilan_bulanIni.setText("Rp."+penghasilan);
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -268,8 +302,16 @@ public class Dashbord extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         table_supplier = new javax.swing.JTable();
         btn_tambahSupplier = new javax.swing.JButton();
-        panel_info = new RoundedPanel(8, new Color(255, 255, 255));
-        jLabel12 = new javax.swing.JLabel();
+        panel_info = new RoundedPanel(10, new Color(255, 255, 255));
+        panel_configurasi_barang = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        panel_configurasi_supplier = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        panel_configurasi_kategori = new javax.swing.JPanel();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         panel_contenKasir = new javax.swing.JPanel();
         panel_cariKasir = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel22 = new javax.swing.JLabel();
@@ -284,7 +326,7 @@ public class Dashbord extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         table_belanja = new javax.swing.JTable();
         btn_resetKeranjang = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_rturCustomer = new javax.swing.JButton();
         hapusOrder = new javax.swing.JButton();
         panel_contenSetting = new javax.swing.JPanel();
         panel_navigasi = new RoundedPanel(8, new Color(255, 255, 255));
@@ -326,7 +368,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_totalUser = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        txt_totalUser = new javax.swing.JLabel();
         panel_TxtField = new RoundedPanel(8, new Color(255, 255, 255));
         TXT_cariUser = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -959,7 +1001,7 @@ public class Dashbord extends javax.swing.JFrame {
                         .addComponent(jLabel21)
                         .addComponent(Restok_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenBarang, "card9");
@@ -1096,7 +1138,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(panel_cariKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_TambahBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
             .addGroup(contenKategoriLayout.createSequentialGroup()
                 .addComponent(panel_totalKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -1111,7 +1153,7 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(panel_cariKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_TambahBarang1))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenKategori, "card3");
@@ -1228,7 +1270,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(panel_totalReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1010, 1010, 1010))
             .addGroup(contenReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
                 .addGroup(contenReturnLayout.createSequentialGroup()
                     .addComponent(panel_cariReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1244,7 +1286,7 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(panel_cariReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tambahReturn))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -1359,7 +1401,7 @@ public class Dashbord extends javax.swing.JFrame {
         contenSupplier.setLayout(contenSupplierLayout);
         contenSupplierLayout.setHorizontalGroup(
             contenSupplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
             .addGroup(contenSupplierLayout.createSequentialGroup()
                 .addComponent(panel_cariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1378,31 +1420,162 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(panel_cariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tambahSupplier, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
         );
 
         conten_manajemen.add(contenSupplier, "card4");
 
-        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel12.setText("Klik Pada Tabel Untuk Mengedit ");
+        panel_info.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout panel_infoLayout = new javax.swing.GroupLayout(panel_info);
-        panel_info.setLayout(panel_infoLayout);
-        panel_infoLayout.setHorizontalGroup(
-            panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_infoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addContainerGap(1037, Short.MAX_VALUE))
+        panel_configurasi_barang.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton5.setBackground(new java.awt.Color(204, 0, 0));
+        jButton5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("HAPUS");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(111, 59, 160));
+        jButton6.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("EDIT");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_configurasi_barangLayout = new javax.swing.GroupLayout(panel_configurasi_barang);
+        panel_configurasi_barang.setLayout(panel_configurasi_barangLayout);
+        panel_configurasi_barangLayout.setHorizontalGroup(
+            panel_configurasi_barangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_configurasi_barangLayout.createSequentialGroup()
+                .addContainerGap(957, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        panel_infoLayout.setVerticalGroup(
-            panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_infoLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+
+        panel_configurasi_barangLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton5, jButton6});
+
+        panel_configurasi_barangLayout.setVerticalGroup(
+            panel_configurasi_barangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_configurasi_barangLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(panel_configurasi_barangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        panel_configurasi_barangLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton5, jButton6});
+
+        panel_info.add(panel_configurasi_barang, "card4");
+
+        panel_configurasi_supplier.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton7.setBackground(new java.awt.Color(204, 0, 0));
+        jButton7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("HAPUS");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+
+        jButton8.setBackground(new java.awt.Color(111, 59, 160));
+        jButton8.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("EDIT");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_configurasi_supplierLayout = new javax.swing.GroupLayout(panel_configurasi_supplier);
+        panel_configurasi_supplier.setLayout(panel_configurasi_supplierLayout);
+        panel_configurasi_supplierLayout.setHorizontalGroup(
+            panel_configurasi_supplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_configurasi_supplierLayout.createSequentialGroup()
+                .addContainerGap(957, Short.MAX_VALUE)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        panel_configurasi_supplierLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton7, jButton8});
+
+        panel_configurasi_supplierLayout.setVerticalGroup(
+            panel_configurasi_supplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_configurasi_supplierLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(panel_configurasi_supplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panel_configurasi_supplierLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton7, jButton8});
+
+        panel_info.add(panel_configurasi_supplier, "card3");
+
+        panel_configurasi_kategori.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton9.setBackground(new java.awt.Color(204, 0, 0));
+        jButton9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("HAPUS");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
+
+        jButton10.setBackground(new java.awt.Color(111, 59, 160));
+        jButton10.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("EDIT");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_configurasi_kategoriLayout = new javax.swing.GroupLayout(panel_configurasi_kategori);
+        panel_configurasi_kategori.setLayout(panel_configurasi_kategoriLayout);
+        panel_configurasi_kategoriLayout.setHorizontalGroup(
+            panel_configurasi_kategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_configurasi_kategoriLayout.createSequentialGroup()
+                .addContainerGap(957, Short.MAX_VALUE)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        panel_configurasi_kategoriLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton10, jButton9});
+
+        panel_configurasi_kategoriLayout.setVerticalGroup(
+            panel_configurasi_kategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_configurasi_kategoriLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(panel_configurasi_kategoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panel_configurasi_kategoriLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton10, jButton9});
+
+        panel_info.add(panel_configurasi_kategori, "card4");
 
         javax.swing.GroupLayout panel_contenBarangLayout = new javax.swing.GroupLayout(panel_contenBarang);
         panel_contenBarang.setLayout(panel_contenBarangLayout);
@@ -1411,20 +1584,22 @@ public class Dashbord extends javax.swing.JFrame {
             .addGroup(panel_contenBarangLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(conten_manajemen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_contenBarangLayout.createSequentialGroup()
+                        .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panel_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panel_contenBarangLayout.setVerticalGroup(
             panel_contenBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_contenBarangLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_contenBarangLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel_navigasiBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addComponent(conten_manajemen, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_info, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(conten_manajemen, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(panel_info, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
 
@@ -1554,7 +1729,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_infoHargaLayout.setHorizontalGroup(
             panel_infoHargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_infoHargaLayout.createSequentialGroup()
-                .addContainerGap(1027, Short.MAX_VALUE)
+                .addContainerGap(1029, Short.MAX_VALUE)
                 .addComponent(btn_Bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -1597,7 +1772,7 @@ public class Dashbord extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Return Customer");
+        btn_rturCustomer.setText("Return Customer");
 
         hapusOrder.setBackground(new java.awt.Color(51, 45, 45));
         hapusOrder.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -1619,7 +1794,7 @@ public class Dashbord extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(hapusOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_rturCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_contenKasirLayout.createSequentialGroup()
@@ -1633,6 +1808,9 @@ public class Dashbord extends javax.swing.JFrame {
                                 .addComponent(panel_hasilCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
+
+        panel_contenKasirLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_resetKeranjang, hapusOrder});
+
         panel_contenKasirLayout.setVerticalGroup(
             panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_contenKasirLayout.createSequentialGroup()
@@ -1643,7 +1821,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_rturCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hapusOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
@@ -1651,6 +1829,8 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(panel_infoHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
+
+        panel_contenKasirLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btn_resetKeranjang, hapusOrder});
 
         ConntainerPanel.add(panel_contenKasir, "card9");
 
@@ -1860,7 +2040,7 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(txt_namaBelakang))
                 .addGap(41, 41, 41)
                 .addComponent(label_nama_belakang)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -1974,7 +2154,7 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(label_noHp))
                 .addGap(55, 55, 55)
                 .addComponent(label_alamatTok)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -2015,9 +2195,9 @@ public class Dashbord extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerPurple.png"))); // NOI18N
         jLabel8.setToolTipText("");
 
-        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(90, 90, 90));
-        jLabel9.setText("1024");
+        txt_totalUser.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        txt_totalUser.setForeground(new java.awt.Color(90, 90, 90));
+        txt_totalUser.setText("1024");
 
         javax.swing.GroupLayout panel_totalUserLayout = new javax.swing.GroupLayout(panel_totalUser);
         panel_totalUser.setLayout(panel_totalUserLayout);
@@ -2032,7 +2212,7 @@ public class Dashbord extends javax.swing.JFrame {
                     .addGroup(panel_totalUserLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
+                        .addComponent(txt_totalUser)
                         .addGap(42, 42, 42))))
         );
         panel_totalUserLayout.setVerticalGroup(
@@ -2042,7 +2222,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(panel_totalUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
+                    .addComponent(txt_totalUser)
                     .addComponent(jLabel8))
                 .addContainerGap())
         );
@@ -2117,7 +2297,7 @@ public class Dashbord extends javax.swing.JFrame {
             .addGroup(panel_contenManageUserLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(panel_contenManageUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
                     .addGroup(panel_contenManageUserLayout.createSequentialGroup()
                         .addComponent(panel_totalUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -2140,7 +2320,7 @@ public class Dashbord extends javax.swing.JFrame {
                     .addComponent(panel_TxtField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addGap(29, 29, 29))
         );
 
@@ -2273,7 +2453,7 @@ public class Dashbord extends javax.swing.JFrame {
         container_laporanPenjualan.setLayout(container_laporanPenjualanLayout);
         container_laporanPenjualanLayout.setHorizontalGroup(
             container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
             .addGroup(container_laporanPenjualanLayout.createSequentialGroup()
                 .addComponent(show_laporanPenjualan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2401,7 +2581,7 @@ public class Dashbord extends javax.swing.JFrame {
         container_laporanPembelian.setLayout(container_laporanPembelianLayout);
         container_laporanPembelianLayout.setHorizontalGroup(
             container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
             .addGroup(container_laporanPembelianLayout.createSequentialGroup()
                 .addComponent(show_laporanPembelian)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2585,10 +2765,10 @@ public class Dashbord extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_contenBarangppuler, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(label_contenBarangppuler, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                 .addGap(41, 41, 41))
         );
         jPanel6Layout.setVerticalGroup(
@@ -2597,7 +2777,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(label_contenBarangppuler)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE))
         );
 
         untung_sebulan.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -2619,7 +2799,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(icon_penjualanSebulan)
-                        .addGap(81, 81, 81)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(untungSebulanValue))
                     .addComponent(untung_sebulan))
                 .addGap(42, 42, 42))
@@ -2649,7 +2829,7 @@ public class Dashbord extends javax.swing.JFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE))
+                    .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(36, 36, 36))
@@ -2803,21 +2983,35 @@ public class Dashbord extends javax.swing.JFrame {
         showChart();
         OrderService order = new OrderService();
         order.resetKeranjang();
-        
-        this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+        boolean isNull =Boolean.parseBoolean( untungSebulanValue.getText());
         this.setPengeluaran(order.getPengeluaran());
-        this.setUntung(order.getUntung());
+        if(isNull==false){
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            this.setUntung(order.getUntung());  
+        }else{
+            if(order.getUntung().startsWith("-")){
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            System.out.println("deasd");
+            this.setUntung(kode_lama);
+                    
+            untungSebulanValue.setText("Masih Rugi Rp."+order.getUntung().replaceAll("-", "")); 
+        }
+        else{
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            this.setUntung(order.getUntung());    
+        }
+        }
+       
+        
        
         
         
     }//GEN-LAST:event_icon_dashbordMouseClicked
-
-     public void setPengeluaran(String kode){
-        this.pengeluaranSebulan.setText("Rp."+kode);
-     }
-     public void setUntung(String kode){
-        this.untungSebulanValue.setText("Rp."+kode);
-     }
+    
+    
     
     private void panel_iconProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconProductMouseClicked
            // TODO add your handling code here:
@@ -2829,6 +3023,11 @@ public class Dashbord extends javax.swing.JFrame {
         conten_manajemen.add(contenBarang);
         conten_manajemen.repaint();
         conten_manajemen.revalidate();
+        
+        panel_info.removeAll();
+          panel_info.add(panel_configurasi_barang);
+          panel_info.repaint();
+          panel_info.revalidate();
         
         PlaceHolderDemo placeholder = new PlaceHolderDemo();
         if(txt_cariBrng.getText().equals("")){
@@ -2867,11 +3066,6 @@ public class Dashbord extends javax.swing.JFrame {
          
         br.showBarang(table_barang);
       
-       
-       
-//        
-//      
-        
     }//GEN-LAST:event_panel_iconProductMouseClicked
 
     private void panel_iconManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconManagerMouseClicked
@@ -2891,16 +3085,15 @@ public class Dashbord extends javax.swing.JFrame {
           
         //set Text labelPage
         label_page.setText("User Management");
-        UserService user = new UserService();
+//        UserService user = new UserService();
         user.showUser(table_user);
         OrderService order = new OrderService();
         order.resetKeranjang();
+        this.setTotalUser(user.getTotalUser());
         
     }//GEN-LAST:event_panel_iconManagerMouseClicked
 
-    public void setPenghasilanBulanIni(String penghasilan){
-        this.penghasilan_bulanIni.setText("Rp."+penghasilan);
-    }
+    
     private void panel_iconLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconLaporanMouseClicked
          // TODO add your handling code here:
         ConntainerPanel.removeAll();
@@ -2927,7 +3120,7 @@ public class Dashbord extends javax.swing.JFrame {
         panel_containerLaporan.repaint();
         panel_containerLaporan.revalidate();
         
-        OrderService order = new OrderService();
+        
         order.resetKeranjang();
         LaporanService laporan = new LaporanService();
         laporan.showLaporanToTable(table_laporanPenjualan);
@@ -3005,9 +3198,8 @@ public class Dashbord extends javax.swing.JFrame {
         label_setProfile.setForeground(new Color(111, 59, 160));
 //        
          
-        OrderService order = new OrderService();
+       
         order.resetKeranjang();
-        UserService user = new UserService();
         user.showUserYangSedangLogin(label_idPegawai.getText());
         tokoService toko = new tokoService();
         toko.showDataToko();
@@ -3018,7 +3210,7 @@ public class Dashbord extends javax.swing.JFrame {
     private void panel_managerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_managerMouseClicked
         // TODO add your handling code here:
         
-        ConntainerPanel.removeAll();
+       ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenManageUser);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
@@ -3033,31 +3225,55 @@ public class Dashbord extends javax.swing.JFrame {
           
         //set Text labelPage
         label_page.setText("User Management");
-        UserService user = new UserService();
+//        UserService user = new UserService();
         user.showUser(table_user);
         OrderService order = new OrderService();
         order.resetKeranjang();
+        this.setTotalUser(user.getTotalUser());
         
     }//GEN-LAST:event_panel_managerMouseClicked
 
     private void panel_dashbordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_dashbordMouseClicked
         // TODO add your handling code here:
-        
         ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenDashbord);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
         
+        //visibilitas
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfume.png")));
         icon_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cart (1).png")));
         icon_dashbord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/airplayPurple.png")));
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
+        
+        //set Label Page
+        label_page.setText("Dashbord");
+        showChart();
         OrderService order = new OrderService();
         order.resetKeranjang();
-        
-        this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+        boolean isNull =Boolean.parseBoolean( untungSebulanValue.getText());
+        this.setPengeluaran(order.getPengeluaran());
+        if(isNull==false){
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            this.setUntung(order.getUntung());  
+        }else{
+            if(order.getUntung().startsWith("-")){
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            System.out.println("deasd");
+            this.setUntung(kode_lama);
+                    
+            untungSebulanValue.setText("Masih Rugi Rp."+order.getUntung().replaceAll("-", "")); 
+        }
+        else{
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            this.setUntung(order.getUntung());    
+        }
+        }
     }//GEN-LAST:event_panel_dashbordMouseClicked
 
     private void panel_kasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kasirMouseClicked
@@ -3093,6 +3309,10 @@ public class Dashbord extends javax.swing.JFrame {
         conten_manajemen.add(contenBarang);
         conten_manajemen.repaint();
         conten_manajemen.revalidate();
+        panel_info.removeAll();
+          panel_info.add(panel_configurasi_barang);
+          panel_info.repaint();
+          panel_info.revalidate();
         
         
         //visibilitas icon
@@ -3110,15 +3330,14 @@ public class Dashbord extends javax.swing.JFrame {
         
         //set Text labelPage
         label_page.setText("Manajemen Product");
-        barangService br = new barangService();
-        kategoriService kate = new kategoriService();
+       
         supplierService sup = new supplierService();
         kate.showKategori(tabel_kategori);
         sup.showSupplier(table_supplier);
        
         br.showBarang(table_barang);
         br.deleteBarangWhenStokHabis();
-        OrderService order = new OrderService();
+        
         order.resetKeranjang();
         
         
@@ -3180,7 +3399,7 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_panel_iconManagerMouseEntered
 
     private void label_navigasi_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_barangMouseClicked
-          // TODO add your handling code here:
+        
          // txt_cariBrng.setText("");
           txt_cariKategori.setText("");
           txt_cariBrng.setText("");
@@ -3195,6 +3414,11 @@ public class Dashbord extends javax.swing.JFrame {
           conten_manajemen.repaint();
           conten_manajemen.revalidate();
           
+          panel_info.removeAll();
+          panel_info.add(panel_configurasi_barang);
+          panel_info.repaint();
+          panel_info.revalidate();
+          
           barangService barang = new barangService();
           barang.showBarang(table_barang);
           
@@ -3206,11 +3430,12 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_label_navigasi_barangMouseClicked
 
     private void label_navigasi_KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_KategoriMouseClicked
-           // TODO add your handling code here:
-         //visibiliras label navigasi
-         txt_cariKategori.setText("");
-         txt_cariBrng.setText("");
-         txt_cariSupplier.setText("");
+           
+        
+          //visibiliras label navigasi
+          txt_cariKategori.setText("");
+          txt_cariBrng.setText("");
+          txt_cariSupplier.setText("");
           label_navigasi_barang.setForeground(new Color(90, 90, 90));
           label_navigasi_Kategori.setForeground(new Color(111, 59, 160));
           label_navigasi_supplier.setForeground(new Color(90, 90, 90));
@@ -3220,16 +3445,21 @@ public class Dashbord extends javax.swing.JFrame {
           conten_manajemen.add(contenKategori);
           conten_manajemen.repaint();
           conten_manajemen.revalidate();
+          panel_info.removeAll();
+          panel_info.add(panel_configurasi_kategori);
+          panel_info.repaint();
+          panel_info.revalidate();
           
           kategoriService kt = new kategoriService();
           kt.showKategori(tabel_kategori);
     }//GEN-LAST:event_label_navigasi_KategoriMouseClicked
 
     private void label_navigasi_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_supplierMouseClicked
-         // TODO add your handling code here:
-           txt_cariKategori.setText("");
-         txt_cariBrng.setText("");
-         txt_cariSupplier.setText("");
+
+        
+          txt_cariKategori.setText("");
+          txt_cariBrng.setText("");
+          txt_cariSupplier.setText("");
           label_navigasi_barang.setForeground(new Color(90, 90, 90));
           label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
           label_navigasi_supplier.setForeground(new Color(111, 59, 160));
@@ -3239,34 +3469,21 @@ public class Dashbord extends javax.swing.JFrame {
           conten_manajemen.add(contenSupplier);
           conten_manajemen.repaint();
           conten_manajemen.revalidate();
+          panel_info.removeAll();
+          panel_info.add(panel_configurasi_supplier);
+          panel_info.repaint();
+          panel_info.revalidate();
           
           supplierService su = new supplierService();
           su.showSupplier(table_supplier);
     }//GEN-LAST:event_label_navigasi_supplierMouseClicked
 
-    private void label_navigasi_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_returnMouseClicked
-          // TODO add your handling code here:
-         
-          label_navigasi_barang.setForeground(new Color(90, 90, 90));
-          label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
-          label_navigasi_supplier.setForeground(new Color(90, 90, 90));
-          label_navigasi_return.setForeground(new Color(111, 59, 160));
-          
-          conten_manajemen.removeAll();
-          conten_manajemen.add(contenReturn);
-          conten_manajemen.repaint();
-          conten_manajemen.revalidate();
-          
-          barangService br = new barangService();
-          br.showReturSupplier(table_return);
-    }//GEN-LAST:event_label_navigasi_returnMouseClicked
-
     private void comboBox_showBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showBarangActionPerformed
          // TODO add your handling code here:
         
-        barangService barang = new barangService();
+        
         String nama_kategori = comboBox_showBarang.getSelectedItem().toString();
-        barang.cariBarangBerdasarkanKategori(nama_kategori);
+        br.cariBarangBerdasarkanKategori(nama_kategori);
         
     }//GEN-LAST:event_comboBox_showBarangActionPerformed
 
@@ -3363,27 +3580,16 @@ public class Dashbord extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_TambahBarang1ActionPerformed
 
-    private void btn_tambahReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahReturnMouseClicked
-         // TODO add your handling code here:
-        dataTambahReturn dt = new dataTambahReturn();
-        dt.Action("add");
-      
-    }//GEN-LAST:event_btn_tambahReturnMouseClicked
-
-    private void btn_tambahReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahReturnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_tambahReturnActionPerformed
-
     private void table_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_supplierMouseClicked
           // TODO add your handling code here:
-        
-         DataTambahSupplier suplier = new DataTambahSupplier();
-         suplier.Action("edit");
-         
-         supplierService supService = new supplierService();
-         String kode_sup= supService.setKodeSupplierEdit(kode_supplier, table_supplier);
-         suplier.tampilkanDataKeForm("edit", kode_sup);
-         
+//        
+//         DataTambahSupplier suplier = new DataTambahSupplier();
+//         suplier.Action("edit");
+//         
+//         supplierService supService = new supplierService();
+//         String kode_sup= supService.setKodeSupplierEdit(kode_supplier, table_supplier);
+//         suplier.tampilkanDataKeForm("edit", kode_sup);
+//         
          
          
         
@@ -3395,15 +3601,15 @@ public class Dashbord extends javax.swing.JFrame {
     private void tabel_kategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_kategoriMouseClicked
          // TODO add your handling code here:
         
-         System.out.println(kode_kategori);
-         DataTambahKategori dt = new DataTambahKategori();
-         kategoriService kategori = new kategoriService();
-         kode_kategori =kategori.setKodeLamaKategoriEdit(kode_kategori, tabel_kategori);
-        
-         dt.setKodeKategoriLama(kode_kategori);
-         System.out.println(kode_kategori);
-         dt.editKategori("edit", kode_kategori);
-         dt.Action("edit");
+//         System.out.println(kode_kategori);
+//         DataTambahKategori dt = new DataTambahKategori();
+//         kategoriService kategori = new kategoriService();
+//         kode_kategori =kategori.setKodeLamaKategoriEdit(kode_kategori, tabel_kategori);
+//        
+//         dt.setKodeKategoriLama(kode_kategori);
+//         System.out.println(kode_kategori);
+//         dt.editKategori("edit", kode_kategori);
+//         dt.Action("edit");
          
     }//GEN-LAST:event_tabel_kategoriMouseClicked
 
@@ -3414,12 +3620,6 @@ public class Dashbord extends javax.swing.JFrame {
     }
      
   
-    private void table_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_returnMouseClicked
-         // TODO add your handling code here:
-        dataTambahReturn dt = new dataTambahReturn();
-        dt.Action("edit");
-    }//GEN-LAST:event_table_returnMouseClicked
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
          // TODO add your handling code here:
          TambahUser dt = new TambahUser();
@@ -3501,23 +3701,23 @@ public class Dashbord extends javax.swing.JFrame {
 
     private void table_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_barangMouseClicked
          // TODO add your handling code here:
-        DataBarangTambah dt = new DataBarangTambah();
-        DataBarangTambah.id_transaksi.setVisible(false);
-        DataBarangTambah.labelTransaksi.setVisible(false);
-        dt.Action("edit");
-       
-        int row =table_barang.getSelectedRow();
-        
-        String kode_lama=table_barang.getValueAt(row, 1).toString();
-        dt.setKodeLama(kode_lama);
-        System.out.println("kode "+ kode_lama);
-        if(dt.getKodeLama().equals("")){
-            
-            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan, Tidak ada product dalam data", "Eror", JOptionPane.OK_OPTION);
-            dt.dispose();
-        }else{
-            dt.editBarang("edit",kode_lama);
-        }
+//        DataBarangTambah dt = new DataBarangTambah();
+//        DataBarangTambah.id_transaksi.setVisible(false);
+//        DataBarangTambah.labelTransaksi.setVisible(false);
+//        dt.Action("edit");
+//       
+//        int row =table_barang.getSelectedRow();
+//        
+//        String kode_lama=table_barang.getValueAt(row, 1).toString();
+//        dt.setKodeLama(kode_lama);
+//        System.out.println("kode "+ kode_lama);
+//        if(dt.getKodeLama().equals("")){
+//            
+//            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan, Tidak ada product dalam data", "Eror", JOptionPane.OK_OPTION);
+//            dt.dispose();
+//        }else{
+//            dt.editBarang("edit",kode_lama);
+//        }
 
     }//GEN-LAST:event_table_barangMouseClicked
 
@@ -3683,9 +3883,9 @@ public class Dashbord extends javax.swing.JFrame {
                         Order.tbOrder.removeRow(table_belanja.getSelectedRow());
                     }
                 }
-            }else{
+             }else{
                 JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris !", "Terjadi Kesalahan !", JOptionPane.INFORMATION_MESSAGE);
-            }
+             }
     }//GEN-LAST:event_hapusOrderMouseClicked
 
     private void txt_cariBrngKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariBrngKeyPressed
@@ -4140,6 +4340,182 @@ public class Dashbord extends javax.swing.JFrame {
      
     }//GEN-LAST:event_Restok_btnMouseClicked
 
+    private void label_navigasi_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_returnMouseClicked
+        // TODO add your handling code here:
+
+        label_navigasi_barang.setForeground(new Color(90, 90, 90));
+        label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
+        label_navigasi_supplier.setForeground(new Color(90, 90, 90));
+        label_navigasi_return.setForeground(new Color(111, 59, 160));
+
+        conten_manajemen.removeAll();
+        conten_manajemen.add(contenReturn);
+        conten_manajemen.repaint();
+        conten_manajemen.revalidate();
+
+        br.showReturSupplier(table_return);
+    }//GEN-LAST:event_label_navigasi_returnMouseClicked
+
+    private void table_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_returnMouseClicked
+        // TODO add your handling code here:
+        dataTambahReturn dt = new dataTambahReturn();
+        
+        int row = table_return.getSelectedRow();
+        String kode = table_return.getValueAt(row, 3).toString();
+        System.out.println(kode);
+        String nama = br.getNamaBarang(kode);
+        String stok = br.getStok(nama);
+        System.out.println(stok);
+        dt.setTxtNamaEdit(nama);
+        dt.setKodeEdit(kode);
+        int rusak = br.getRusak(kode);
+        String rusakString = String.valueOf(rusak);
+        dt.setBarangRusak(rusakString);
+        dt.setStok(stok);
+        dt.setRusakLama(rusakString);
+        dt.Action("edit");
+    }//GEN-LAST:event_table_returnMouseClicked
+
+    private void btn_tambahReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahReturnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_tambahReturnActionPerformed
+
+    private void btn_tambahReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahReturnMouseClicked
+        // TODO add your handling code here:
+        dataTambahReturn dt = new dataTambahReturn();
+        barangService barang = new barangService();
+        barang.showBarangCombo(dataTambahReturn.nama_barangReturnAdd);
+        dt.Action("add");
+
+    }//GEN-LAST:event_btn_tambahReturnMouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+          // TODO add your handling code here:
+        String kode_lama="";
+        int row = table_barang.getSelectedRow();
+       
+        if(row>=0){
+        DataBarangTambah dt = new DataBarangTambah();
+        DataBarangTambah.id_transaksi.setVisible(false);
+        DataBarangTambah.labelTransaksi.setVisible(false);
+        dt.Action("edit");
+       
+       
+       
+        kode_lama=table_barang.getValueAt(row, 1).toString();
+        dt.setKodeLama(kode_lama);
+        System.out.println("kode "+ kode_lama);
+        if(kode_lama.equals("")){
+            
+            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan, Tidak ada product dalam data", "Eror", JOptionPane.OK_OPTION);
+            dt.dispose();
+        }else{
+            dt.editBarang("edit",kode_lama);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+        }
+         
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+         // TODO add your handling code here:
+         
+          
+         int row = table_barang.getSelectedRow();
+         if(row>=0){
+             String kode = table_barang.getValueAt(row, 1).toString();
+               barangService br = new barangService();
+               br.deleteBarang(kode, null);
+            
+         }else {
+                         JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+
+         }
+       
+         
+       
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        
+        int row = table_supplier.getSelectedRow();
+        if(row>=0){
+             supplierService suplier = new supplierService();
+             String kode = table_supplier.getValueAt(row, 1).toString();
+        int resetData = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Ingin Menghapus Supplier ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        if(resetData==0){
+            suplier.deleteSupplier(kode, null);
+        }
+        suplier.showSupplier(Dashbord.table_supplier);
+        }else{
+                        JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+
+        }
+        
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        // TODO add your handling code here:
+        
+        int row =table_supplier.getSelectedRow();
+        if(row>=0){
+           DataTambahSupplier suplier = new DataTambahSupplier();
+           suplier.Action("edit");
+          
+         supplierService supService = new supplierService();
+         String kode_sup= table_supplier.getValueAt(row, 1).toString();
+         suplier.tampilkanDataKeForm("edit", kode_sup); 
+        }else{
+            JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+         // TODO add your handling code here:
+         int row=tabel_kategori.getSelectedRow();
+         if(row>=0){
+                         
+             String kode =tabel_kategori.getValueAt(row, 1).toString();
+             kategoriService kategori = new kategoriService();
+         
+         
+            kategori.deleteKategori(kode );  
+         
+            kategori.showKategori(Dashbord.tabel_kategori);
+             
+             
+             
+             
+
+         }else{
+                          JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+
+         }
+    }//GEN-LAST:event_jButton9MouseClicked
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        // TODO add your handling code here:
+         
+        int row = tabel_kategori.getSelectedRow();
+        if(row>=0){
+             System.out.println(kode_kategori);
+         DataTambahKategori dt = new DataTambahKategori();
+         kategoriService kategori = new kategoriService();
+         kode_kategori =kategori.setKodeLamaKategoriEdit(kode_kategori, tabel_kategori);
+        
+         dt.setKodeKategoriLama(kode_kategori);
+         System.out.println(kode_kategori);
+         dt.editKategori("edit", kode_kategori);
+         dt.Action("edit"); 
+        }else{
+              JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+
+        }
+       
+    }//GEN-LAST:event_jButton10MouseClicked
+
     public void showBarangWhenClick(){
         
         barangService br = new barangService();
@@ -4312,6 +4688,7 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JButton btn_exportPembelian;
     private javax.swing.JButton btn_exportPenjualan;
     private javax.swing.JButton btn_resetKeranjang;
+    private javax.swing.JButton btn_rturCustomer;
     private javax.swing.JButton btn_tambahReturn;
     private javax.swing.JButton btn_tambahSupplier;
     public static javax.swing.JComboBox<String> comboBox_showBarang;
@@ -4343,16 +4720,20 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel icon_totalReturn;
     private javax.swing.JLabel icon_user;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private com.toedter.calendar.JDateChooser jDateDari;
     private com.toedter.calendar.JDateChooser jDateSampai;
     private com.toedter.calendar.JDateChooser jDateSampaiPembelian;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -4375,7 +4756,6 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -4426,6 +4806,9 @@ public class Dashbord extends javax.swing.JFrame {
     private javax.swing.JPanel panel_cariReturn;
     private javax.swing.JPanel panel_cariSupplier;
     private javax.swing.JPanel panel_chart;
+    private javax.swing.JPanel panel_configurasi_barang;
+    private javax.swing.JPanel panel_configurasi_kategori;
+    private javax.swing.JPanel panel_configurasi_supplier;
     private javax.swing.JPanel panel_containerLaporan;
     private javax.swing.JPanel panel_contenBarang;
     private javax.swing.JPanel panel_contenDashbord;
@@ -4487,6 +4870,7 @@ public class Dashbord extends javax.swing.JFrame {
     public static javax.swing.JLabel txt_totalKategori;
     private javax.swing.JLabel txt_totalReturn;
     public static javax.swing.JLabel txt_totalSupplier;
+    private javax.swing.JLabel txt_totalUser;
     public static javax.swing.JTextField txt_updateAtt;
     public static javax.swing.JTextField txt_username;
     private javax.swing.JLabel untungSebulanValue;

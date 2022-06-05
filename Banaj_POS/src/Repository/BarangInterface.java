@@ -31,7 +31,7 @@ public interface BarangInterface {
    public boolean cariBarang(String keyword);
    public void deleteBarang();
    public String getIdSupplier(String kode);
-   public void TambahBarangBanyak(String kode , String nama , String stok , String harga_beli , String harga_jual , String rusak ,  String kategori);
+   public void TambahBarangBanyak(String kode , String nama , String stok , String harga_beli , String harga_jual ,  String kategori);
    public String getIdBarangTambahBanyak(boolean bol , JComboBox box , JTable tb);
    public void insertDataTambahBanyakProduct(String a , String b , String c);
    public String getKodeKategori(JComboBox box);
@@ -43,4 +43,14 @@ public interface BarangInterface {
    public void cetakBarcode(String name);
    public void cariBarangBerdasarkanKategori(String keyword);
    public void cetakBeliBarang(String id);
+   public String getStok(String nama_product);
+   public String getKodeBarang(JComboBox box);
+   public String getHargaBeli(String kode);
+   public String getKodeSuppp(String nama);
+   public String getKodeKategori(String kode);
+   
+   public boolean updateStok(String kode , int stok);
+   public String getNamaBarang(String kode);
+   public int getBarangRusak(String kode);
+   public void updateReturnAndBarang(String kode , String jumlahRUsak, String opsi,String rusakNew);
 }

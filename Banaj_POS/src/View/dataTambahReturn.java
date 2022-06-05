@@ -13,8 +13,10 @@ import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import service.barangService;
 
 /**
  *
@@ -30,6 +32,27 @@ public class dataTambahReturn extends javax.swing.JFrame {
         initComponents();
         
         this.setResizable(false);
+        kode_addReturn.setEnabled(false);
+        this.kode_barangReturn.setEnabled(false);
+        this.txt_namaReturnEdit.setEnabled(false);
+        this.stokEdit.setVisible(true);
+    }
+    
+    
+    public void setTxtNamaEdit(String nama){
+        this.txt_namaReturnEdit.setText(nama);
+    }
+    public void setKodeEdit(String kode){
+        this.kode_barangReturn.setText(kode);
+    }
+    public void setBarangRusak(String kode){
+        this.jumlah_barangRusak.setText(kode);
+    }
+    public void setStok(String kode){
+      this.stokEdit.setText(kode);
+    }
+    public void setRusakLama(String kode){
+        this.rusakLama.setText(kode);
     }
 
     /**
@@ -48,7 +71,6 @@ public class dataTambahReturn extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         kode_barangReturn = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        nama_barangReturn = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jumlah_barangRusak = new javax.swing.JTextField();
         simpan_editReturn = new javax.swing.JButton();
@@ -56,6 +78,9 @@ public class dataTambahReturn extends javax.swing.JFrame {
         btn_clearReturn = new javax.swing.JButton();
         statusReturn = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
+        txt_namaReturnEdit = new javax.swing.JTextField();
+        stokEdit = new javax.swing.JLabel();
+        rusakLama = new javax.swing.JLabel();
         returnTambah = new RoundedPanel(8, new Color(255, 255, 255));
         jLabel2 = new javax.swing.JLabel();
         kode_addReturn = new javax.swing.JTextField();
@@ -66,6 +91,8 @@ public class dataTambahReturn extends javax.swing.JFrame {
         btn_simpanAddReturn = new javax.swing.JButton();
         btn_cancelAddreturn = new javax.swing.JButton();
         btn_clearAddreturn = new javax.swing.JButton();
+        stokAdd = new javax.swing.JLabel();
+        supplier = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,8 +130,6 @@ public class dataTambahReturn extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(90, 90, 90));
         jLabel9.setText("Nama Barang");
 
-        nama_barangReturn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(90, 90, 90));
         jLabel10.setText("Jumlah Barang");
@@ -115,6 +140,11 @@ public class dataTambahReturn extends javax.swing.JFrame {
         simpan_editReturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         simpan_editReturn.setForeground(new java.awt.Color(255, 255, 255));
         simpan_editReturn.setText("Simpan");
+        simpan_editReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                simpan_editReturnMouseClicked(evt);
+            }
+        });
         simpan_editReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 simpan_editReturnActionPerformed(evt);
@@ -149,11 +179,18 @@ public class dataTambahReturn extends javax.swing.JFrame {
             }
         });
 
-        statusReturn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baik", "Masih Rusak" }));
+        statusReturn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masih Rusak", "Baik" }));
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(90, 90, 90));
         jLabel11.setText("Status");
+
+        txt_namaReturnEdit.setText("jTextField1");
+        txt_namaReturnEdit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        stokEdit.setText("jLabel1");
+
+        rusakLama.setText("jLabel1");
 
         javax.swing.GroupLayout returnEditLayout = new javax.swing.GroupLayout(returnEdit);
         returnEdit.setLayout(returnEditLayout);
@@ -167,15 +204,23 @@ public class dataTambahReturn extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel9)
                             .addComponent(jLabel8)
-                            .addComponent(kode_barangReturn)
-                            .addComponent(nama_barangReturn, 0, 250, Short.MAX_VALUE)
-                            .addComponent(jumlah_barangRusak))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                            .addComponent(kode_barangReturn, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(jumlah_barangRusak)
+                            .addComponent(txt_namaReturnEdit))
                         .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(simpan_editReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_cancelEditReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_clearReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77))
+                            .addGroup(returnEditLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addComponent(rusakLama)
+                                .addGap(18, 18, 18)
+                                .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(simpan_editReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_cancelEditReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_clearReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(77, 77, 77))
+                            .addGroup(returnEditLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(stokEdit)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(returnEditLayout.createSequentialGroup()
                         .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -194,16 +239,19 @@ public class dataTambahReturn extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nama_barangReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cancelEditReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_cancelEditReturn, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(txt_namaReturnEdit))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel10)
+                .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(stokEdit))
                 .addGap(18, 18, 18)
                 .addGroup(returnEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jumlah_barangRusak, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_clearReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_clearReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rusakLama))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +270,11 @@ public class dataTambahReturn extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(90, 90, 90));
         jLabel3.setText("Nama Barang");
 
-        nama_barangReturnAdd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nama_barangReturnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nama_barangReturnAddActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(90, 90, 90));
@@ -234,6 +286,11 @@ public class dataTambahReturn extends javax.swing.JFrame {
         btn_simpanAddReturn.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_simpanAddReturn.setForeground(new java.awt.Color(255, 255, 255));
         btn_simpanAddReturn.setText("Simpan");
+        btn_simpanAddReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_simpanAddReturnMouseClicked(evt);
+            }
+        });
         btn_simpanAddReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_simpanAddReturnActionPerformed(evt);
@@ -265,6 +322,10 @@ public class dataTambahReturn extends javax.swing.JFrame {
             }
         });
 
+        stokAdd.setText("jLabel1");
+
+        supplier.setText("jLabel1");
+
         javax.swing.GroupLayout returnTambahLayout = new javax.swing.GroupLayout(returnTambah);
         returnTambah.setLayout(returnTambahLayout);
         returnTambahLayout.setHorizontalGroup(
@@ -284,6 +345,12 @@ public class dataTambahReturn extends javax.swing.JFrame {
                     .addComponent(btn_cancelAddreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_clearAddreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, returnTambahLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(supplier)
+                .addGap(67, 67, 67)
+                .addComponent(stokAdd)
+                .addGap(232, 232, 232))
         );
         returnTambahLayout.setVerticalGroup(
             returnTambahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +373,11 @@ public class dataTambahReturn extends javax.swing.JFrame {
                 .addGroup(returnTambahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jumlahReturnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_clearAddreturn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(returnTambahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stokAdd)
+                    .addComponent(supplier))
+                .addGap(21, 21, 21))
         );
 
         MainConten.add(returnTambah, "card2");
@@ -355,6 +426,7 @@ public class dataTambahReturn extends javax.swing.JFrame {
             MainConten.repaint();
             MainConten.revalidate();
             label_navigasi.setText("Barang Return > Tambah return");
+            barangService barang = new barangService();
             this.setVisible(true);
         }
     }
@@ -395,6 +467,70 @@ public class dataTambahReturn extends javax.swing.JFrame {
          // TODO add your handling code here:4
          this.dispose();
     }//GEN-LAST:event_btn_cancelEditReturnMouseClicked
+
+    private void nama_barangReturnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_barangReturnAddActionPerformed
+         // TODO add your handling code here:
+         
+         barangService barang = new barangService();
+         String kode=barang.getKodeBarang(nama_barangReturnAdd);
+         kode_addReturn.setText(kode);
+         stokAdd.setText(barang.getStok(nama_barangReturnAdd.getSelectedItem().toString()));
+         supplier.setText(barang.getKodeSupplier(kode));
+    }//GEN-LAST:event_nama_barangReturnAddActionPerformed
+
+    private void btn_simpanAddReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanAddReturnMouseClicked
+         // TODO add your handling code here:
+         
+         if(stokAdd.equals("")){
+             JOptionPane.showMessageDialog(null, "Harap isi stok");
+         }else{
+            int stokInt = Integer.parseInt(stokAdd.getText());
+            int stokBaru = Integer.parseInt(jumlahReturnAdd.getText());
+            
+            if(stokInt>=stokBaru){
+                JOptionPane.showMessageDialog(null, "Barang rusak lebih banyak dari stok");
+                
+            }else{
+                //insert retur
+                barangService barang = new barangService();
+                
+            }
+         }
+         
+         
+    }//GEN-LAST:event_btn_simpanAddReturnMouseClicked
+
+    private void simpan_editReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpan_editReturnMouseClicked
+         // TODO add your handling code here:
+         
+          barangService barang = new barangService();
+         
+         if(jumlah_barangRusak.getText().equals("")){
+             
+         }else{
+             int rusak = Integer.parseInt(jumlah_barangRusak.getText());
+             int stokLama = Integer.parseInt(stokEdit.getText());
+             int rusakLama = Integer.parseInt(this.rusakLama.getText());
+             if(rusak>=stokLama){
+                 JOptionPane.showMessageDialog(null, "Barang rusak lebih banyak dari stok","Terjadi Kesalahan",JOptionPane.ERROR_MESSAGE);
+             }else{
+                //update retur supplier
+                if(rusak>rusakLama){
+                    System.out.println("oke");
+                    int result = rusak-rusakLama;
+                    String resultInt = String.valueOf(result);
+                    barang.updateRetur(kode_barangReturn.getText(), jumlah_barangRusak.getText(),"besar-rusak",resultInt);
+                }else{
+                    
+                    barang.updateRetur(kode_barangReturn.getText(), jumlah_barangRusak.getText(),"kecil-rusak" , jumlah_barangRusak.getText());
+ 
+                }
+                
+                
+                 
+             }
+         }
+    }//GEN-LAST:event_simpan_editReturnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -519,12 +655,16 @@ public class dataTambahReturn extends javax.swing.JFrame {
     private javax.swing.JTextField kode_addReturn;
     private javax.swing.JTextField kode_barangReturn;
     private javax.swing.JLabel label_navigasi;
-    private javax.swing.JComboBox<String> nama_barangReturn;
-    private javax.swing.JComboBox<String> nama_barangReturnAdd;
+    public static javax.swing.JComboBox<String> nama_barangReturnAdd;
     private javax.swing.JPanel panelNavigasi;
     private javax.swing.JPanel returnEdit;
     private javax.swing.JPanel returnTambah;
+    private javax.swing.JLabel rusakLama;
     private javax.swing.JButton simpan_editReturn;
     private javax.swing.JComboBox<String> statusReturn;
+    public static javax.swing.JLabel stokAdd;
+    private javax.swing.JLabel stokEdit;
+    private javax.swing.JLabel supplier;
+    private javax.swing.JTextField txt_namaReturnEdit;
     // End of variables declaration//GEN-END:variables
 }
