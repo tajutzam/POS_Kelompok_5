@@ -372,7 +372,7 @@ public class Order implements OrderInterface {
             // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
             HashMap hash = new HashMap();
             hash.put("nama_toko", nama_toko);
-            hash.put("nohp", no_hp);
+            hash.put("nohp", "Telp / Wa : "+no_hp);
             hash.put("alamat", alamat);
             hash.put("transaksi", transaksi);
 

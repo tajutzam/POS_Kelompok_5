@@ -21,4 +21,5 @@ public interface UserInterface {
     public void getRoleStatus(String id);
     public void cariBerdasarkanNamadanKode(String keyword , JTable table);
     public void showBerdasarkanJcomboBox(JComboBox box);
+    public String getTotalUser();
 }

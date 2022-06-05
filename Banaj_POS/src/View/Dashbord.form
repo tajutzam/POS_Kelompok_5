@@ -3749,7 +3749,7 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="icon_penjualanSebulan" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="untungSebulanValue" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="untung_sebulan" min="-2" max="-2" attributes="0"/>

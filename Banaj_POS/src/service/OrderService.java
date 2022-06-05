@@ -288,6 +288,41 @@ public class OrderService extends barangService {
          res_diskon=Integer.parseInt(subTotal);
        
         } 
+       }else if(opsi.equals("update")){
+        String sub = bayar.setSubtotal();
+        String subTotal=KonfirmasiBayarUpdate.txt_SubTotal.getText();
+        int diskon = 0;
+        String nilai_input_diskon = KonfirmasiBayarUpdate.txt_diskon.getText().replaceAll("[^0-9]", "");
+     
+        if(!nilai_input_diskon.equals("")){
+            diskon = Integer.parseInt(nilai_input_diskon);
+            if(diskon >100){
+                jop("Diskon tidak boleh lebih 100");
+                 KonfirmasiBayarUpdate.txt_diskon.setText("");
+                
+                 res_diskon=Integer.parseInt(subTotal);
+                 
+                 this.setTotalHarga(Integer.parseInt(subTotal));
+                 
+            }else{
+                 int totalBelanja=Integer.parseInt(KonfirmasiBayarUpdate.txt_totalHarga.getText());
+                 int diskon_new = totalBelanja*diskon/100;
+                 res_diskon = totalBelanja-diskon_new;
+          
+            }
+           
+        }else if(nilai_input_diskon.equals("")){
+          
+            res_diskon=Integer.parseInt(subTotal);
+           
+        }else{
+            
+              
+         res_diskon=Integer.parseInt(subTotal);
+       
+        } 
+           
+           
        }
        
 

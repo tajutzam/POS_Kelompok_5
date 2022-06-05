@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="210" pageHeight="842" columnWidth="170" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="cc2b6a0b-bbeb-4e8e-ab41-09d831d8bc72">
 	<property name="ireport.zoom" value="2.3579476910000023"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="196"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="nama_toko" class="java.lang.String"/>
 	<parameter name="nohp" class="java.lang.String"/>
 	<parameter name="alamat" class="java.lang.String"/>
@@ -48,21 +48,21 @@
 			<textField>
 				<reportElement x="0" y="1" width="170" height="14" uuid="f0a64590-26fa-4996-b04f-e3a670ea1874"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nama_toko}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="14" width="170" height="15" uuid="d3a093ea-eaff-486f-9ae6-15b720f0e3e2"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="Times New Roman" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nohp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="28" width="170" height="21" uuid="fbd36867-7d62-418f-88f8-83a0904527fe"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman"/>
+					<font fontName="Times New Roman" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{alamat}]]></textFieldExpression>
 			</textField>

@@ -1294,7 +1294,7 @@ public class DataBarangTambah extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> supplier_edit;
     private javax.swing.JTextField total_stok;
     private javax.swing.JTextField txt_addAt;
-    public static javax.swing.JTextField txt_barangRusak;
+    private javax.swing.JTextField txt_barangRusak;
     public static javax.swing.JTextField txt_hargaBeli;
     public static javax.swing.JTextField txt_hargaJual;
     public static javax.swing.JTextField txt_kodeBarang;

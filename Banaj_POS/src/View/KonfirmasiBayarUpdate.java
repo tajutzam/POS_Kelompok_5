@@ -481,7 +481,8 @@ public class KonfirmasiBayarUpdate extends javax.swing.JFrame {
         
         if(evt.getKeyCode()==evt.VK_ENTER){
             OrderService order = new OrderService();
-            int total =order.hitungTotalHarga("beli");
+            int total =order.hitungTotalHarga("update");
+            
             this.txt_totalHarga.setText(String.valueOf(total));
         }
         

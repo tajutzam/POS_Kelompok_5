@@ -330,4 +330,7 @@ public class barangService {
         
         return barang.updateStok(kode, stok);
     }
+    public void addReturn(){
+        
+    }
 }

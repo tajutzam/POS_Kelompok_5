@@ -54,7 +54,7 @@ import service.tokoService;
  *
  * @author user
  */
-public class Dashbord extends javax.swing.JFrame {
+public  class Dashbord extends javax.swing.JFrame {
 
     /**
      * Creates new form Dashbord
@@ -182,7 +182,8 @@ public class Dashbord extends javax.swing.JFrame {
         }
        
     
-  
+        //interact dashbord content
+       
       
     }
   
@@ -2646,7 +2647,7 @@ public class Dashbord extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(icon_penjualanSebulan)
-                        .addGap(81, 81, 81)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(untungSebulanValue))
                     .addComponent(untung_sebulan))
                 .addGap(42, 42, 42))
@@ -2830,10 +2831,24 @@ public class Dashbord extends javax.swing.JFrame {
         showChart();
         OrderService order = new OrderService();
         order.resetKeranjang();
+        boolean isNull =Boolean.parseBoolean( untungSebulanValue.getText());
+        if(isNull==false){
+          
+        }else{
+             if(order.getUntung().startsWith("-")){
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            System.out.println("deasd");
+            untungSebulanValue.setText("Masih Rugi Rp."+order.getUntung().replaceAll("-", "")); 
+        }
+        else{
+            this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
+            this.setPengeluaran(order.getPengeluaran());
+            this.setUntung(order.getUntung());    
+        }
+        }
+       
         
-        this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
-        this.setPengeluaran(order.getPengeluaran());
-        this.setUntung(order.getUntung());
        
         
         
@@ -3258,23 +3273,6 @@ public class Dashbord extends javax.swing.JFrame {
           su.showSupplier(table_supplier);
     }//GEN-LAST:event_label_navigasi_supplierMouseClicked
 
-    private void label_navigasi_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_returnMouseClicked
-          // TODO add your handling code here:
-         
-          label_navigasi_barang.setForeground(new Color(90, 90, 90));
-          label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
-          label_navigasi_supplier.setForeground(new Color(90, 90, 90));
-          label_navigasi_return.setForeground(new Color(111, 59, 160));
-          
-          conten_manajemen.removeAll();
-          conten_manajemen.add(contenReturn);
-          conten_manajemen.repaint();
-          conten_manajemen.revalidate();
-          
-         
-          br.showReturSupplier(table_return);
-    }//GEN-LAST:event_label_navigasi_returnMouseClicked
-
     private void comboBox_showBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showBarangActionPerformed
          // TODO add your handling code here:
         
@@ -3377,17 +3375,6 @@ public class Dashbord extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_TambahBarang1ActionPerformed
 
-    private void btn_tambahReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahReturnMouseClicked
-         // TODO add your handling code here:
-        dataTambahReturn dt = new dataTambahReturn();
-        dt.Action("add");
-      
-    }//GEN-LAST:event_btn_tambahReturnMouseClicked
-
-    private void btn_tambahReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahReturnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_tambahReturnActionPerformed
-
     private void table_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_supplierMouseClicked
           // TODO add your handling code here:
         
@@ -3428,12 +3415,6 @@ public class Dashbord extends javax.swing.JFrame {
     }
      
   
-    private void table_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_returnMouseClicked
-         // TODO add your handling code here:
-        dataTambahReturn dt = new dataTambahReturn();
-        dt.Action("edit");
-    }//GEN-LAST:event_table_returnMouseClicked
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
          // TODO add your handling code here:
          TambahUser dt = new TambahUser();
@@ -4153,6 +4134,41 @@ public class Dashbord extends javax.swing.JFrame {
          barang.showBarangCombo(Restok.combo_restok);
      
     }//GEN-LAST:event_Restok_btnMouseClicked
+
+    private void label_navigasi_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_returnMouseClicked
+        // TODO add your handling code here:
+
+        label_navigasi_barang.setForeground(new Color(90, 90, 90));
+        label_navigasi_Kategori.setForeground(new Color(90, 90, 90));
+        label_navigasi_supplier.setForeground(new Color(90, 90, 90));
+        label_navigasi_return.setForeground(new Color(111, 59, 160));
+
+        conten_manajemen.removeAll();
+        conten_manajemen.add(contenReturn);
+        conten_manajemen.repaint();
+        conten_manajemen.revalidate();
+
+        br.showReturSupplier(table_return);
+    }//GEN-LAST:event_label_navigasi_returnMouseClicked
+
+    private void table_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_returnMouseClicked
+        // TODO add your handling code here:
+        dataTambahReturn dt = new dataTambahReturn();
+        dt.Action("edit");
+    }//GEN-LAST:event_table_returnMouseClicked
+
+    private void btn_tambahReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahReturnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_tambahReturnActionPerformed
+
+    private void btn_tambahReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahReturnMouseClicked
+        // TODO add your handling code here:
+        dataTambahReturn dt = new dataTambahReturn();
+        barangService barang = new barangService();
+        barang.showBarangCombo(dataTambahReturn.nama_barangReturnAdd);
+        dt.Action("add");
+
+    }//GEN-LAST:event_btn_tambahReturnMouseClicked
 
     public void showBarangWhenClick(){
         
