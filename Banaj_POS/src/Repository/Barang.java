@@ -82,7 +82,7 @@ public class Barang implements BarangInterface{
         model.addColumn("No");
         model.addColumn("Kode Barang");
         model.addColumn("Nama Barang");
-        model.addColumn("Stok Tersedia");
+      
         model.addColumn("Total Stok");
       
         model.addColumn("Harga Beli");
@@ -984,6 +984,7 @@ public class Barang implements BarangInterface{
             pst.setString(2, jumlah);
             pst.setString(3, product);
             pst.execute();
+            showBarang(Dashbord.table_barang, "barang");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

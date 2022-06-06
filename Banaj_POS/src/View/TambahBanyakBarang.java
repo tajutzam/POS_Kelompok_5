@@ -42,6 +42,8 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
         this.kode_barang_addBnyak.setEditable(false);
         this.label_idSupplier.setVisible(false);
         this.rusak.setVisible(false);
+        this.label_Kode_kategori.setVisible(false);
+        this.label_subTotal.setVisible(false);
     }
     String kode_kategori ;
 
@@ -63,6 +65,7 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
     }
     public void setIdSupplier(String id){
         this.label_idSupplier.setText(id);
+        
     }
 
     /**
@@ -478,9 +481,9 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
              barangService barang = new barangService();
              int totalInt =0;
               for(int i=0; i<tabel_addBanyak.getRowCount();i++){
-                 String harga_beli=tabel_addBanyak.getValueAt(i, 6).toString();
-                 String stok_beli =tabel_addBanyak.getValueAt(i, 4).toString();
-                 int hargaInt = Integer.parseInt(harga_beli);
+                 String harga_beli=tabel_addBanyak.getValueAt(i, 4).toString();
+                 String stok_beli =tabel_addBanyak.getValueAt(i, 3).toString();
+                  int hargaInt = Integer.parseInt(harga_beli);
                  int stokInt =Integer.parseInt(stok_beli);
                  int totalString =hargaInt*stokInt;
                  totalInt+=totalString;
@@ -495,8 +498,8 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
             int total=0; 
             for(int i=0; i< tabel_addBanyak.getRowCount();i++){
                 
-                String harga_beli=tabel_addBanyak.getValueAt(i, 6).toString();
-                String stok=tabel_addBanyak.getValueAt(i, 4).toString();
+                String harga_beli=tabel_addBanyak.getValueAt(i, 4).toString();
+                String stok=tabel_addBanyak.getValueAt(i,3).toString();
                 int stokTmp =Integer.parseInt(stok);
                 int totalTmp=Integer.parseInt(harga_beli);
                  int name = totalTmp*stokTmp;
@@ -539,17 +542,17 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
 
                     String nama=tabel_addBanyak.getValueAt(i, 2).toString();
                     String kode_product=tabel_addBanyak.getValueAt(i, 1).toString();
-                    String harga_beli=tabel_addBanyak.getValueAt(i, 6).toString();
-                    String harga_jual=tabel_addBanyak.getValueAt(i, 7).toString();
-                    String stok=tabel_addBanyak.getValueAt(i, 4).toString();
-                    String barang_rusak=tabel_addBanyak.getValueAt(i,5 ).toString();
+                    String harga_beli=tabel_addBanyak.getValueAt(i, 4).toString();
+                    String harga_jual=tabel_addBanyak.getValueAt(i, 5).toString();
+                    String stok=tabel_addBanyak.getValueAt(i, 3).toString();
+//                    String barang_rusak=tabel_addBanyak.getValueAt(i,5 ).toString();
                     String kategori=label_Kode_kategori.getText();
                     String supplier=label_idSupplier.getText();
 
                 
               //   barang.addBarang(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier);
                 
-                     isSuces=barang.addBarangBanyak(nama, kode_product, harga_beli, harga_jual, stok, barang_rusak, kategori, supplier, dt);
+                     isSuces=barang.addBarangBanyak(nama, kode_product, harga_beli, harga_jual, stok, "0", kategori, supplier, dt);
                      barang.insertDataTambahBanyakProduct(id_transaksiBeli.getText(), stok, kode_product);  
                     }
                 }

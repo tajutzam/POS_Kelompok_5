@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 07:31 PM
+-- Generation Time: Jun 06, 2022 at 07:56 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -40,6 +40,20 @@ CREATE TABLE `beli_product` (
   `bulan` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `beli_product`
+--
+
+INSERT INTO `beli_product` (`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`, `grand_total`, `pegawai`, `bayar`, `kembalian`, `hari`, `bulan`) VALUES
+('TRB0653434', 'S001', '2022-06-05', 'K001', 125000, 'PGW004', 125000, 0, 5, 6),
+('TRB065457', 'S001', '2022-06-05', 'K001', 500000, 'PGW004', 500000, 0, 5, 6),
+('TRB0655884', 'S001', '2022-06-05', 'K001', 1476, 'PGW004', 1500, 24, 5, 6),
+('TRB0655920', 'S001', '2022-06-05', 'K001', 500000, 'PGW004', 500000, 0, 5, 6),
+('TRB0655998', 'S001', '2022-06-05', 'K001', 600000, 'PGW004', 600000, 0, 5, 6),
+('TRB0657367', 'S001', '2022-06-05', 'K001', 984, 'PGW004', 1000, 16, 5, 6),
+('TRB0663527', 'S001', '2022-06-06', 'K002', 250000, 'PGW004', 250000, 0, 6, 6),
+('TRB0664206', 'S001', '2022-06-06', 'K002', 50000, 'PGW004', 50000, 0, 6, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +66,22 @@ CREATE TABLE `detail_beli_product` (
   `product` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `detail_beli_product`
+--
+
+INSERT INTO `detail_beli_product` (`id_beliProduct`, `jumlahBeli`, `product`) VALUES
+('TRB0655998', 20, 'DON0001'),
+('TRB0655920', 20, 'DON0002'),
+('TRB065457', 20, 'DON0003'),
+('TRB0653434', 5, 'DON0003'),
+('TRB0664206', 100, 'SMO0001'),
+('TRB0663527', 100, 'SMO0002'),
+('TRB0663527', 100, 'SMO0003'),
+('TRB0663527', 100, 'SMO0004'),
+('TRB0663527', 100, 'SMO0005'),
+('TRB0663527', 100, 'SMO0006');
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +93,17 @@ CREATE TABLE `detail_retur` (
   `product` varchar(32) NOT NULL,
   `jumlah_rusak` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_retur`
+--
+
+INSERT INTO `detail_retur` (`id_returSupplier`, `product`, `jumlah_rusak`) VALUES
+('TR19104324', 'SBN0002', 1),
+('TR65013380', 'SBN0003', 3),
+('TR7366848', 'SBN0004', 4),
+('TR55321240', 'SBN0005', 2),
+('TR86494290', 'SBN0003', 2);
 
 -- --------------------------------------------------------
 
@@ -77,6 +118,17 @@ CREATE TABLE `detail_transaksi` (
   `qty` int(32) NOT NULL,
   `sub_pembelian` int(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_transaksi`
+--
+
+INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`, `sub_pembelian`) VALUES
+('TRJ0652970', 'DON0003', '30000', 1, 25000),
+('TRJ065711', 'DON0003', '30000', 1, 25000),
+('TRJ0652331', 'DON0003', '30000', 1, 25000),
+('TRJ0655294', 'DON0003', '30000', 1, 25000),
+('TRJ0654968', 'DON0003', '30000', 1, 25000);
 
 --
 -- Triggers `detail_transaksi`
@@ -105,10 +157,8 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
-('K001', 'SABUN', '2022-04-30 19:17:41', '2022-04-30 19:17:41'),
-('K002', 'SAMPO', '2022-04-30 19:18:31', '2022-04-30 19:18:31'),
-('K003', 'PARFUM', '2022-05-01 09:34:25', '2022-05-01 09:34:25'),
-('K004', 'KATEGORI BARU', '2022-05-16 14:31:24', '2022-05-16 14:31:24');
+('K001', 'DEODORAN', '2022-06-05 17:02:15', '2022-06-05 17:02:15'),
+('K002', 'SAMPO', '2022-06-05 17:02:22', '2022-06-05 17:02:22');
 
 -- --------------------------------------------------------
 
@@ -133,7 +183,7 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`, `role`, `status`, `password`) VALUES
 ('PGW004', 'ZEN ZEN', 'admin', '2022-05-03 12:14:04', '2022-05-03 12:14:04', 1, 'Aktif', 'admin'),
-('PGW005', 'ZAM ZAMI', 'KASIR', '2022-06-02 23:38:25', '2022-06-02 23:38:25', 2, 'Aktif', 'KASIR');
+('PGW005', 'ZAM ZAM', 'KASIR', '2022-06-05 08:41:51', '2022-06-05 08:41:51', 1, 'Aktif', 'KASIR');
 
 -- --------------------------------------------------------
 
@@ -160,10 +210,15 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
-('SBN0001', 'sabun', 8, 1000, 1500, 'S001', 'K001', '2022-05-30 01:58:31', '2022-05-30 01:21:23', 0, 8),
-('SBN0002', 'sabun banaj e', 8, 2000, 3000, 'S001', 'K001', '2022-06-02 17:27:56', '2022-06-02 17:27:56', 0, 8),
-('SBN0003', 'sabun as', 9, 1000, 1500, 'S001', 'K001', '2022-06-02 17:28:02', '2022-06-02 17:28:02', 0, 9),
-('SBN0004', 'asd', 12, 123, 1234, 'S001', 'K001', '2022-06-02 17:28:22', '2022-06-02 17:28:22', 0, 12);
+('DON0001', 'DEO DUPA WANGY SUSU', 20, 30000, 35000, 'S001', 'K001', '2022-06-05 10:04:24', '2022-06-05 10:04:24', 0, 20),
+('DON0002', 'DEO WANGY EXOTIS', 20, 25000, 30000, 'S001', 'K001', '2022-06-05 10:05:18', '2022-06-05 10:05:18', 0, 20),
+('DON0003', 'DEO ROLL MULTIFUNGSI', 20, 25000, 30000, 'S001', 'K001', '2022-06-05 10:23:55', '2022-06-05 10:08:38', 0, 20),
+('SMO0001', 'SUNSLIK', 100, 500, 1000, 'S001', 'K002', '2022-06-06 12:11:55', '2022-06-06 12:11:55', 0, 100),
+('SMO0002', 'PENTENE', 100, 500, 1000, 'S001', 'K002', '2022-06-06 12:17:24', '2022-06-06 12:17:24', 0, 100),
+('SMO0003', 'ZINK', 100, 500, 1000, 'S001', 'K002', '2022-06-06 12:17:24', '2022-06-06 12:17:24', 0, 100),
+('SMO0004', 'EMERON', 100, 500, 1000, 'S001', 'K002', '2022-06-06 12:17:24', '2022-06-06 12:17:24', 0, 100),
+('SMO0005', 'DOVE', 100, 500, 1000, 'S001', 'K002', '2022-06-06 12:17:24', '2022-06-06 12:17:24', 0, 100),
+('SMO0006', 'LIVEBOY', 100, 500, 1000, 'S001', 'K002', '2022-06-06 12:17:24', '2022-06-06 12:17:24', 0, 100);
 
 --
 -- Triggers `product`
@@ -196,6 +251,17 @@ CREATE TABLE `retur_supplier` (
   `id_returSupplier` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `retur_supplier`
+--
+
+INSERT INTO `retur_supplier` (`kode_supplier`, `tanggal_rtr`, `id_returSupplier`) VALUES
+('S001', '2022-06-05 05:46:23', 'TR19104324'),
+('S001', '2022-06-05 05:57:38', 'TR55321240'),
+('S001', '2022-06-05 05:50:08', 'TR65013380'),
+('S001', '2022-06-05 05:54:51', 'TR7366848'),
+('S001', '2022-06-05 06:11:26', 'TR86494290');
+
 -- --------------------------------------------------------
 
 --
@@ -215,7 +281,7 @@ CREATE TABLE `supplier` (
 
 INSERT INTO `supplier` (`kode_supplier`, `nama_supplier`, `create_at`, `update_at`) VALUES
 ('S001', 'banaj supplier 1', '2022-04-19 20:00:44', '2022-04-19 20:00:44'),
-('S002', 'supplier fragnace', '2022-04-25 20:30:21', '2022-04-30 19:02:15');
+('S002', 'PARFUM STORE', '2022-06-05 16:56:08', '2022-06-05 16:56:08');
 
 -- --------------------------------------------------------
 
@@ -256,6 +322,17 @@ CREATE TABLE `transaksi` (
   `bulan` int(12) NOT NULL,
   `hari` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`, `grand_modal`, `bulan`, `hari`) VALUES
+('TRJ0652331', '2022-06-05', 30000, 30000, 'PGW004', 0, 25000, 6, 5),
+('TRJ0652970', '2022-06-05', 27000, 30000, 'PGW004', 3000, 25000, 6, 5),
+('TRJ0654968', '2022-06-05', 30000, 30000, 'PGW004', 0, 25000, 6, 5),
+('TRJ0655294', '2022-06-05', 30000, 30000, 'PGW004', 0, 25000, 6, 5),
+('TRJ065711', '2022-06-05', 30000, 30000, 'PGW004', 0, 25000, 6, 5);
 
 --
 -- Indexes for dumped tables

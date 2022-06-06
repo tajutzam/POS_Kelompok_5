@@ -9,6 +9,7 @@ import Repository.Order;
 import Util.Bulan;
 import Util.Id;
 import Util.PlaceHolderDemo;
+import static View.TambahUser.label_editId;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -376,6 +377,8 @@ public  class Dashbord extends javax.swing.JFrame {
         table_user = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         combo_box_cariUser = new javax.swing.JComboBox<>();
+        btnHapusUSer = new javax.swing.JButton();
+        btn_editUser = new javax.swing.JButton();
         panel_contenLaporan = new javax.swing.JPanel();
         panel_navigasiLaporan = new RoundedPanel(8, Color.white);
         label_laporan_penjualan = new javax.swing.JLabel();
@@ -947,7 +950,7 @@ public  class Dashbord extends javax.swing.JFrame {
             }
         });
 
-        Restok_btn.setBackground(new java.awt.Color(96, 96, 96));
+        Restok_btn.setBackground(new java.awt.Color(100, 100, 100));
         Restok_btn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         Restok_btn.setForeground(new java.awt.Color(255, 255, 255));
         Restok_btn.setText("Restok");
@@ -1014,6 +1017,9 @@ public  class Dashbord extends javax.swing.JFrame {
         txt_cariKategori.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txt_cariKategoriFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cariKategoriFocusLost(evt);
             }
         });
         txt_cariKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -1296,7 +1302,16 @@ public  class Dashbord extends javax.swing.JFrame {
 
         txt_cariSupplier.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         txt_cariSupplier.setForeground(new java.awt.Color(90, 90, 90));
+        txt_cariSupplier.setText("Masukan Nama Supplier");
         txt_cariSupplier.setBorder(null);
+        txt_cariSupplier.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_cariSupplierFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cariSupplierFocusLost(evt);
+            }
+        });
         txt_cariSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_cariSupplierKeyPressed(evt);
@@ -2227,6 +2242,17 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        TXT_cariUser.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        TXT_cariUser.setForeground(new java.awt.Color(90, 90, 90));
+        TXT_cariUser.setText("Masukan Nama Atau ID User");
+        TXT_cariUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TXT_cariUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TXT_cariUserFocusLost(evt);
+            }
+        });
         TXT_cariUser.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TXT_cariUserKeyPressed(evt);
@@ -2234,6 +2260,12 @@ public  class Dashbord extends javax.swing.JFrame {
         });
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/magnifying-glass.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_TxtFieldLayout = new javax.swing.GroupLayout(panel_TxtField);
         panel_TxtField.setLayout(panel_TxtFieldLayout);
@@ -2290,6 +2322,29 @@ public  class Dashbord extends javax.swing.JFrame {
             }
         });
 
+        btnHapusUSer.setBackground(new java.awt.Color(204, 0, 0));
+        btnHapusUSer.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        btnHapusUSer.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapusUSer.setText("Hapus");
+        btnHapusUSer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHapusUSerMouseClicked(evt);
+            }
+        });
+
+        btn_editUser.setBackground(new java.awt.Color(111, 59, 160));
+        btn_editUser.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        btn_editUser.setForeground(new java.awt.Color(255, 255, 255));
+        btn_editUser.setText("Edit");
+        btn_editUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_editUserMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_editUserMouseEntered(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_contenManageUserLayout = new javax.swing.GroupLayout(panel_contenManageUser);
         panel_contenManageUser.setLayout(panel_contenManageUserLayout);
         panel_contenManageUserLayout.setHorizontalGroup(
@@ -2306,6 +2361,10 @@ public  class Dashbord extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(combo_box_cariUser, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_editUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnHapusUSer, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -2315,10 +2374,12 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(panel_totalUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panel_contenManageUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panel_contenManageUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(combo_box_cariUser)
                     .addComponent(panel_TxtField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_editUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHapusUSer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addGap(29, 29, 29))
@@ -3029,13 +3090,11 @@ public  class Dashbord extends javax.swing.JFrame {
           panel_info.repaint();
           panel_info.revalidate();
         
-        PlaceHolderDemo placeholder = new PlaceHolderDemo();
-        if(txt_cariBrng.getText().equals("")){
-             PlaceHolderDemo place = new PlaceHolderDemo();
-             place.addPlaceHolder(txt_cariBrng);
-        }
-        placeholder.addPlaceHolder(txt_cariBrng);
-        
+       
+         Font font = txt_cariBrng.getFont();
+          txt_cariBrng.setFont(font);
+          txt_cariBrng.setForeground(new Color(90, 90, 90));
+          txt_cariBrng.setText("Masukan Nama atau Kode Barang");
         
         //visibilitas icon
         panel_iconProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/parfumePurple.png")));
@@ -3069,7 +3128,7 @@ public  class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_panel_iconProductMouseClicked
 
     private void panel_iconManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_iconManagerMouseClicked
-         // TODO add your handling code here:
+          // TODO add your handling code here:
         ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenManageUser);
         ConntainerPanel.repaint();
@@ -3090,6 +3149,11 @@ public  class Dashbord extends javax.swing.JFrame {
         OrderService order = new OrderService();
         order.resetKeranjang();
         this.setTotalUser(user.getTotalUser());
+        Font font = TXT_cariUser.getFont();
+        TXT_cariUser.setFont(font);
+        TXT_cariUser.setText("Masukan Nama Atau ID User");
+        
+        
         
     }//GEN-LAST:event_panel_iconManagerMouseClicked
 
@@ -3210,7 +3274,8 @@ public  class Dashbord extends javax.swing.JFrame {
     private void panel_managerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_managerMouseClicked
         // TODO add your handling code here:
         
-       ConntainerPanel.removeAll();
+           // TODO add your handling code here:
+        ConntainerPanel.removeAll();
         ConntainerPanel.add(panel_contenManageUser);
         ConntainerPanel.repaint();
         ConntainerPanel.revalidate();
@@ -3230,6 +3295,11 @@ public  class Dashbord extends javax.swing.JFrame {
         OrderService order = new OrderService();
         order.resetKeranjang();
         this.setTotalUser(user.getTotalUser());
+        Font font = TXT_cariUser.getFont();
+        TXT_cariUser.setFont(font);
+        TXT_cariUser.setText("Masukan Nama Atau ID User");
+        
+        
         
     }//GEN-LAST:event_panel_managerMouseClicked
 
@@ -3424,7 +3494,10 @@ public  class Dashbord extends javax.swing.JFrame {
           
           String total = barang.hitungTotal();
           txt_totalBrg.setText(total);
-         
+           Font font = txt_cariBrng.getFont();
+          txt_cariBrng.setFont(font);
+          txt_cariBrng.setForeground(new Color(90, 90, 90));
+          txt_cariBrng.setText("Masukan Nama atau Kode Barang");
          
          
     }//GEN-LAST:event_label_navigasi_barangMouseClicked
@@ -3452,6 +3525,10 @@ public  class Dashbord extends javax.swing.JFrame {
           
           kategoriService kt = new kategoriService();
           kt.showKategori(tabel_kategori);
+          Font font = txt_cariKategori.getFont();
+          txt_cariKategori.setFont(font);
+          txt_cariKategori.setForeground(new Color(90, 90, 90));
+          txt_cariKategori.setText("Masukan Nama Kategori");
     }//GEN-LAST:event_label_navigasi_KategoriMouseClicked
 
     private void label_navigasi_supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_navigasi_supplierMouseClicked
@@ -3476,6 +3553,11 @@ public  class Dashbord extends javax.swing.JFrame {
           
           supplierService su = new supplierService();
           su.showSupplier(table_supplier);
+          
+                    Font font = txt_cariSupplier.getFont();
+          txt_cariSupplier.setFont(font);
+          txt_cariSupplier.setForeground(new Color(90, 90, 90));
+          txt_cariSupplier.setText("Masukan Nama Supplier");
     }//GEN-LAST:event_label_navigasi_supplierMouseClicked
 
     private void comboBox_showBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showBarangActionPerformed
@@ -3634,15 +3716,15 @@ public  class Dashbord extends javax.swing.JFrame {
 
     private void table_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_userMouseClicked
          // TODO add your handling code here:
-         TambahUser dt = new TambahUser();
-        
-         table_user.getSelectedRow();
-         int row = table_user.getSelectedRow();
-         String id = table_user.getValueAt(row, 1).toString();
-         System.out.println(id);
-         TambahUser.label_editId.setText(id);
-         dt.sendDataEdit("edit", TambahUser.label_editId.getText());
-         dt.Action("edit");
+//         TambahUser dt = new TambahUser();
+//        
+//         table_user.getSelectedRow();
+//         int row = table_user.getSelectedRow();
+//         String id = table_user.getValueAt(row, 1).toString();
+//         System.out.println(id);
+//         TambahUser.label_editId.setText(id);
+//         dt.sendDataEdit("edit", TambahUser.label_editId.getText());
+//         dt.Action("edit");
     }//GEN-LAST:event_table_userMouseClicked
 
     private void table_laporanPenjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_laporanPenjualanMouseClicked
@@ -4054,21 +4136,16 @@ public  class Dashbord extends javax.swing.JFrame {
     private void txt_cariBrngFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cariBrngFocusGained
          // TODO add your handling code here:
          
-         if(txt_cariBrng.getText().equals("Masukan Nama atau kode barang")){
-             txt_cariBrng.setText(null);
-             txt_cariBrng.requestFocus();
-             PlaceHolderDemo.removeAddPlaceHolder(txt_cariBrng);
-         }
-         
+         txt_cariBrng.setText(null);
+         txt_cariBrng.requestFocus();
     }//GEN-LAST:event_txt_cariBrngFocusGained
 
     private void txt_cariBrngFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cariBrngFocusLost
         // TODO add your handling code here:
-        if(txt_cariBrng.getText().length()==0){
-            PlaceHolderDemo place = new PlaceHolderDemo();
-            place.addPlaceHolder(txt_cariBrng);
-            txt_cariBrng.setText("Masukan Nama atau kode barang");
-        }
+          Font font = txt_cariBrng.getFont();
+          txt_cariBrng.setFont(font);
+          txt_cariBrng.setForeground(new Color(90, 90, 90));
+          txt_cariBrng.setText("Masukan Nama atau Kode Barang");
     }//GEN-LAST:event_txt_cariBrngFocusLost
 
     private void txt_cariDataOrderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cariDataOrderFocusGained
@@ -4093,12 +4170,9 @@ public  class Dashbord extends javax.swing.JFrame {
 
     private void txt_cariKategoriFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cariKategoriFocusGained
         // TODO add your handling code here:
-        if(txt_cariKategori.getText().equals("Masukan Nama kategori")){
-            txt_cariKategori.setText(null);
-            txt_cariKategori.requestFocus();
-            PlaceHolderDemo.removeAddPlaceHolder(txt_cariKategori);
-        }
-
+      txt_cariKategori.setText(null);
+      txt_cariKategori.requestFocus();
+      
     }//GEN-LAST:event_txt_cariKategoriFocusGained
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
@@ -4516,6 +4590,100 @@ public  class Dashbord extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton10MouseClicked
 
+    private void txt_cariKategoriFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cariKategoriFocusLost
+         // TODO add your handling code here:
+                   Font font = txt_cariKategori.getFont();
+          txt_cariKategori.setFont(font);
+          txt_cariKategori.setForeground(new Color(90, 90, 90));
+          txt_cariKategori.setText("Masukan Nama Kategori");
+    }//GEN-LAST:event_txt_cariKategoriFocusLost
+
+    private void txt_cariSupplierFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cariSupplierFocusLost
+        // TODO add your handling code here:
+                  Font font = txt_cariSupplier.getFont();
+          txt_cariSupplier.setFont(font);
+          txt_cariSupplier.setForeground(new Color(90, 90, 90));
+          txt_cariSupplier.setText("Masukan Nama Supplier");
+    }//GEN-LAST:event_txt_cariSupplierFocusLost
+
+    private void txt_cariSupplierFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cariSupplierFocusGained
+        // TODO add your handling code here:
+         txt_cariSupplier.setText(null);
+        txt_cariSupplier.requestFocus();
+        
+           
+    }//GEN-LAST:event_txt_cariSupplierFocusGained
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        String txt_cari =TXT_cariUser.getText();
+         user.cariBerdasarkanKodeDanNama(txt_cari);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void btnHapusUSerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusUSerMouseClicked
+        // TODO add your handling code here:
+        int row=table_user.getSelectedRow();
+        if(row>=0){
+            String id = table_user.getValueAt(row, 1).toString();
+              UserService user = new UserService();
+        System.out.println(id);
+        
+        user.deleteUser(id);
+        user.showUser(Dashbord.table_user);
+        }else{
+                                     JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+
+        }
+       
+   
+    }//GEN-LAST:event_btnHapusUSerMouseClicked
+
+    private void btn_editUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editUserMouseClicked
+        // TODO add your handling code here:
+        
+         TambahUser dt = new TambahUser();
+         
+         int rowW= table_user.getSelectedRow();
+         
+         if(rowW>=0){
+            table_user.getSelectedRow();
+            int row = table_user.getSelectedRow();
+            String id = table_user.getValueAt(row, 1).toString();
+            System.out.println(id);
+            TambahUser.label_editId.setText(id);
+            dt.sendDataEdit("edit", TambahUser.label_editId.getText());
+            dt.Action("edit");
+             
+         }else{
+                         JOptionPane.showMessageDialog(null, "Harap Pilih Salah Satu Baris pada table", "Eror", JOptionPane.OK_OPTION);
+
+             
+         }
+        
+        
+    }//GEN-LAST:event_btn_editUserMouseClicked
+
+    private void btn_editUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editUserMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editUserMouseEntered
+
+    private void TXT_cariUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXT_cariUserFocusLost
+        // TODO add your handling code here:
+             // TODO add your handling code here:
+    
+        Font font = TXT_cariUser.getFont();
+        TXT_cariUser.setFont(font);
+        TXT_cariUser.setText("Masukan Nama Atau ID User");
+        
+        
+    }//GEN-LAST:event_TXT_cariUserFocusLost
+
+    private void TXT_cariUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TXT_cariUserFocusGained
+        // TODO add your handling code here:
+        TXT_cariUser.setText(null);
+        TXT_cariUser.requestFocus();
+    }//GEN-LAST:event_TXT_cariUserFocusGained
+
     public void showBarangWhenClick(){
         
         barangService br = new barangService();
@@ -4682,9 +4850,11 @@ public  class Dashbord extends javax.swing.JFrame {
     public static javax.swing.JTextField TXT_cariUser;
     private javax.swing.JButton Tambah_banyakBtn;
     public static javax.swing.JTextField alamat_toko;
+    private javax.swing.JButton btnHapusUSer;
     private javax.swing.JButton btn_Bayar;
     private javax.swing.JButton btn_TambahBarang;
     private javax.swing.JButton btn_TambahBarang1;
+    private javax.swing.JButton btn_editUser;
     private javax.swing.JButton btn_exportPembelian;
     private javax.swing.JButton btn_exportPenjualan;
     private javax.swing.JButton btn_resetKeranjang;
