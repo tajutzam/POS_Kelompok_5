@@ -49,6 +49,7 @@ public class TambahUser extends javax.swing.JFrame {
         this.label_editStatus.setVisible(false);
         this.label_editUsername.setVisible(false);
         this.label_editId.setVisible(false);
+        
     }
 
     public void Action(String opsi){
@@ -121,7 +122,6 @@ public class TambahUser extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         combo_edit_Status = new javax.swing.JComboBox<>();
         btn_edit_Simpan = new javax.swing.JButton();
-        btn_edit_Hapus = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         label_editUsername = new javax.swing.JLabel();
@@ -385,25 +385,20 @@ public class TambahUser extends javax.swing.JFrame {
             }
         });
 
-        btn_edit_Hapus.setBackground(new java.awt.Color(51, 45, 45));
-        btn_edit_Hapus.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        btn_edit_Hapus.setForeground(new java.awt.Color(255, 255, 255));
-        btn_edit_Hapus.setText("Hapus");
-        btn_edit_Hapus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_edit_HapusMouseClicked(evt);
-            }
-        });
-
         jButton6.setBackground(new java.awt.Color(96, 96, 96));
         jButton6.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Clear");
 
-        jButton7.setBackground(new java.awt.Color(204, 0, 0));
+        jButton7.setBackground(new java.awt.Color(51, 45, 45));
         jButton7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Cancel");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenEditUserLayout = new javax.swing.GroupLayout(contenEditUser);
         contenEditUser.setLayout(contenEditUserLayout);
@@ -443,12 +438,11 @@ public class TambahUser extends javax.swing.JFrame {
                                 .addComponent(TXT_edit_PasswordBaru, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                                 .addComponent(jLabel15)
                                 .addComponent(TXT_edit_KonfirmasiPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                                .addGroup(contenEditUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contenEditUserLayout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(label_editRole))
-                                    .addComponent(combo_edit_Role, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(contenEditUserLayout.createSequentialGroup()
+                                    .addComponent(jLabel16)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(label_editRole))
+                                .addComponent(combo_edit_Role, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(contenEditUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contenEditUserLayout.createSequentialGroup()
                                     .addComponent(jLabel17)
@@ -458,8 +452,6 @@ public class TambahUser extends javax.swing.JFrame {
                     .addGroup(contenEditUserLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_edit_Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_edit_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -524,7 +516,6 @@ public class TambahUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(contenEditUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_edit_Simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_edit_Hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -555,17 +546,6 @@ public class TambahUser extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_edit_HapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_edit_HapusMouseClicked
-        // TODO add your handling code here:
-        String id = label_editId.getText().toString();
-        UserService user = new UserService();
-        System.out.println(id);
-        
-        user.deleteUser(id);
-        user.showUser(Dashbord.table_user);
-        this.dispose();
-    }//GEN-LAST:event_btn_edit_HapusMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
@@ -652,6 +632,11 @@ public class TambahUser extends javax.swing.JFrame {
     private void TXT_Add_CreatedAtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXT_Add_CreatedAtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TXT_Add_CreatedAtActionPerformed
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+         // TODO add your handling code here:
+         this.dispose();
+    }//GEN-LAST:event_jButton7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -797,7 +782,6 @@ public class TambahUser extends javax.swing.JFrame {
     private javax.swing.JTextField TXT_edit_UpdateAt;
     private javax.swing.JTextField TXT_edit_Username;
     private javax.swing.JButton btn_Add_Simpan;
-    private javax.swing.JButton btn_edit_Hapus;
     private javax.swing.JButton btn_edit_Simpan;
     private javax.swing.JComboBox<String> combo_Add_Role;
     private javax.swing.JComboBox<String> combo_Add_Status;

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="210" pageHeight="842" columnWidth="170" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="cc2b6a0b-bbeb-4e8e-ab41-09d831d8bc72">
 	<property name="ireport.zoom" value="2.3579476910000023"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="132"/>
 	<parameter name="nama_toko" class="java.lang.String"/>
 	<parameter name="nohp" class="java.lang.String"/>
 	<parameter name="alamat" class="java.lang.String"/>
@@ -147,7 +147,7 @@
 				<textFieldExpression><![CDATA[$F{nama_product}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="108" y="0" width="62" height="19" uuid="e463cc8b-5164-4c01-bfb0-963716a83739"/>
+				<reportElement x="130" y="0" width="40" height="19" uuid="e463cc8b-5164-4c01-bfb0-963716a83739"/>
 				<textElement>
 					<font fontName="Times New Roman" size="8"/>
 				</textElement>
@@ -171,7 +171,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="59" y="2" width="111" height="1" uuid="161fca46-def3-47df-b3cb-108dbe951a09"/>
+				<reportElement x="73" y="2" width="97" height="1" uuid="161fca46-def3-47df-b3cb-108dbe951a09"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
@@ -184,25 +184,25 @@
 				<textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="59" y="3" width="49" height="19" uuid="79958f62-d397-4f94-8fb6-a6f3defb7707"/>
+				<reportElement x="73" y="3" width="35" height="19" uuid="79958f62-d397-4f94-8fb6-a6f3defb7707"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Total      :		:]]></text>
+				<text><![CDATA[Total      :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="59" y="22" width="49" height="20" uuid="c911b63e-bb82-4c3e-a6eb-469203f6ac0e"/>
+				<reportElement x="73" y="22" width="35" height="20" uuid="c911b63e-bb82-4c3e-a6eb-469203f6ac0e"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Bayar     :		:]]></text>
+				<text><![CDATA[Bayar     :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="59" y="42" width="49" height="20" uuid="21598199-08a4-43d9-8cc8-cddb38f15f5c"/>
+				<reportElement x="72" y="43" width="36" height="20" uuid="21598199-08a4-43d9-8cc8-cddb38f15f5c"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Kembali :		:]]></text>
+				<text><![CDATA[Kembali :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="108" y="22" width="62" height="20" uuid="203bf0ec-2197-4756-afbf-97d05becccbb"/>
