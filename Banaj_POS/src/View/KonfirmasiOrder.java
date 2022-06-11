@@ -34,6 +34,7 @@ public class KonfirmasiOrder extends javax.swing.JFrame {
         txt_kodeProduct.setEnabled(false);
         txt_namaProductOrder.setEditable(false);
         txt_qty.requestFocus();
+        this.setTitle("Konfirmasi Order");
         
         
     }

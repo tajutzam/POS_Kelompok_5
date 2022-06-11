@@ -51,6 +51,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setTitle("Tambah Kategori");
         
      
         TXT_kategori.setText(kategori.getPrimaryKey());

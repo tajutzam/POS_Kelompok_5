@@ -160,7 +160,8 @@ public class Supplier implements SupplierInterface{
             pst.setString(3, time);
             pst.setString(4, time);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Berhasil Menambahkan Supplier, "+" "+ nama_suppllier, "Success !", JOptionPane.INFORMATION_MESSAGE, suscesicon);
+            JOptionPane.showMessageDialog(null, "Berhasil Menambahkan Supplier, "+" "+ nama_suppllier, "Success !",
+                    JOptionPane.INFORMATION_MESSAGE, suscesicon);
 
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Gagal Menambahkan Supplier"+e.getMessage(), "Informasi", JOptionPane.INFORMATION_MESSAGE);

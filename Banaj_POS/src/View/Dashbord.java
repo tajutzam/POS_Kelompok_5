@@ -108,6 +108,7 @@ public  class Dashbord extends javax.swing.JFrame {
 
         //meletakan pada tengah
         this.setLocationRelativeTo(null);
+        this.setTitle("Banaj Aplication");
         //visibilitas icon
         //br.addItemInCombobox(comboBox_showBarang);
         
@@ -264,7 +265,13 @@ public  class Dashbord extends javax.swing.JFrame {
         txt_cariBrng = new javax.swing.JTextField();
         icon_cariBarang = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        table_barang = new javax.swing.JTable();
+        table_barang =  new javax.swing.JTable(){
+
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         btn_TambahBarang = new javax.swing.JButton();
         Tambah_banyakBtn = new javax.swing.JButton();
         Barcode1 = new javax.swing.JButton();
@@ -276,7 +283,13 @@ public  class Dashbord extends javax.swing.JFrame {
         icon_cariKategori = new javax.swing.JLabel();
         btn_TambahBarang1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tabel_kategori = new javax.swing.JTable();
+        tabel_kategori = new javax.swing.JTable(){
+
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         panel_totalKategori = new RoundedPanel(8, new Color(255, 255, 255));
         label_totalKategori = new javax.swing.JLabel();
         txt_totalKategori = new javax.swing.JLabel();
@@ -301,7 +314,13 @@ public  class Dashbord extends javax.swing.JFrame {
         txt_totalSupplier = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        table_supplier = new javax.swing.JTable();
+        table_supplier =  new javax.swing.JTable(){
+
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         btn_tambahSupplier = new javax.swing.JButton();
         panel_info = new RoundedPanel(10, new Color(255, 255, 255));
         panel_configurasi_barang = new javax.swing.JPanel();
@@ -321,11 +340,23 @@ public  class Dashbord extends javax.swing.JFrame {
         panel_hasilCari = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        table_cariBelanja = new javax.swing.JTable();
+        table_cariBelanja =  new javax.swing.JTable(){
+
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         panel_infoHarga = new RoundedPanel(8, new Color(255, 255, 255));
         btn_Bayar = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        table_belanja = new javax.swing.JTable();
+        table_belanja =  new javax.swing.JTable(){
+
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         btn_resetKeranjang = new javax.swing.JButton();
         btn_rturCustomer = new javax.swing.JButton();
         hapusOrder = new javax.swing.JButton();
@@ -374,7 +405,13 @@ public  class Dashbord extends javax.swing.JFrame {
         TXT_cariUser = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        table_user = new javax.swing.JTable();
+        table_user = new javax.swing.JTable(){
+
+            private static final long serialVersionUID = 1L;
+            public boolean isCellEditable(int row , int column){
+                return false;
+            }
+        };
         jButton1 = new javax.swing.JButton();
         combo_box_cariUser = new javax.swing.JComboBox<>();
         btnHapusUSer = new javax.swing.JButton();
@@ -3065,7 +3102,7 @@ public  class Dashbord extends javax.swing.JFrame {
             this.setUntung(order.getUntung());    
         }
         }
-       
+        order.barangPalingBanyakDiminati(table_banyakDiminati);
         
        
         
@@ -3333,7 +3370,7 @@ public  class Dashbord extends javax.swing.JFrame {
             if(order.getUntung().startsWith("-")){
             this.setPenghasilanBulanIni(order.showPenjualan(bulan.getindexBulan()));
             this.setPengeluaran(order.getPengeluaran());
-            System.out.println("deasd");
+           
             this.setUntung(kode_lama);
                     
             untungSebulanValue.setText("Masih Rugi Rp."+order.getUntung().replaceAll("-", "")); 
@@ -3344,6 +3381,7 @@ public  class Dashbord extends javax.swing.JFrame {
             this.setUntung(order.getUntung());    
         }
         }
+         order.barangPalingBanyakDiminati(table_banyakDiminati);
     }//GEN-LAST:event_panel_dashbordMouseClicked
 
     private void panel_kasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kasirMouseClicked
@@ -4811,13 +4849,7 @@ public  class Dashbord extends javax.swing.JFrame {
        
           data.setValue(order.showPenjualanint(i), "Total Laba Penjualan", bulan.getBulan(i));
     }
-     
-    
  
-    
-    
-   
-      
     JFreeChart barChart = ChartFactory.createBarChart3D("Perbandingan Laba Penjualan", "Perbulan", "Laba", data, PlotOrientation.VERTICAL, false, true, false);
     barChart.getTitle().setFont(new Font("Tahoma", Font.PLAIN, 16));
     CategoryPlot plot = barChart.getCategoryPlot();

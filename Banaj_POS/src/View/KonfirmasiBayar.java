@@ -30,6 +30,7 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         txt_bayar.requestFocus();
+        this.setTitle("Konfirmasi Bayar");
     }
     /** This method is called from within the constructor to
      * initialize the form.

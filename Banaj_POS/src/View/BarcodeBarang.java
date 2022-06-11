@@ -27,6 +27,7 @@ public class BarcodeBarang extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setTitle("Cetak Barcode");
     }
     public void action(){
         this.setVisible(true);
