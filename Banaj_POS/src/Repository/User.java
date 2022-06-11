@@ -230,7 +230,7 @@ public class User implements UserInterface{
     @Override
     public void getRoleStatus(String id) {
         
-        String sql ="select role , status from pegawai where id_pegawai ='PGW005'";
+        String sql ="select role , status from pegawai where id_pegawai ='"+id+"'";
         
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
@@ -241,6 +241,7 @@ public class User implements UserInterface{
                 role= res.getString("role");
                 status = res.getString("status");
                 System.out.println("role"+role);
+                
                 System.out.println("status"+status);
                
                 

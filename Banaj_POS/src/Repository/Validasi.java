@@ -85,6 +85,8 @@ public class Validasi implements ValidasiUser{
                 
                 String status =res.getString("status");
                 String role = res.getString("role");
+                
+                Dashbord.label_role.setText(role);
                 String id = res.getString("id_pegawai");
                 String nama=res.getString("nama_pegawai");
                     //jika user aktif maka bisa login
@@ -136,6 +138,7 @@ public class Validasi implements ValidasiUser{
         {
           if(res.next()){
               id = res.getString("role");
+              Dashbord.label_role.setText(id);
             
           }else{
               throw new SQLException();
