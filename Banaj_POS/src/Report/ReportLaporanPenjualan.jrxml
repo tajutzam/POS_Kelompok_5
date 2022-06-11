@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="157266fd-6117-4d6f-a6d0-9ba7cd82b3df">
 	<property name="ireport.zoom" value="1.2100000000000006"/>
-	<property name="ireport.x" value="74"/>
+	<property name="ireport.x" value="106"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="tanggal_dari" class="java.lang.String"/>
 	<parameter name="tanggal_sampai" class="java.lang.String">
@@ -153,20 +153,20 @@ order by transaksi.tanggal_transaksi asc]]>
 	<summary>
 		<band height="105" splitType="Stretch">
 			<staticText>
-				<reportElement x="288" y="7" width="120" height="20" uuid="b9f5377e-d61d-4812-baa6-7ef57eaaac4d"/>
-				<textElement textAlignment="Center">
+				<reportElement x="386" y="7" width="65" height="20" uuid="b9f5377e-d61d-4812-baa6-7ef57eaaac4d"/>
+				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[Grand Total Laporan    :]]></text>
+				<text><![CDATA[Grand Total :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="288" y="6" width="267" height="1" uuid="73a8fe56-8281-40e6-9e73-c83721452793"/>
+				<reportElement x="386" y="6" width="169" height="1" uuid="73a8fe56-8281-40e6-9e73-c83721452793"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="408" y="6" width="132" height="20" uuid="253ebc2a-cac5-4fef-8d9d-3edde52480cd"/>
+				<reportElement x="451" y="6" width="89" height="20" uuid="253ebc2a-cac5-4fef-8d9d-3edde52480cd"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman"/>
 				</textElement>

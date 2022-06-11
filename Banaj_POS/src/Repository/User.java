@@ -205,7 +205,8 @@ public class User implements UserInterface{
     @Override
     public void deleteUser(String id){
         
-        int resetData = JOptionPane.showOptionDialog(null, "Apakah Anda Yakin Ingin Menghapus User ?", "Informasi !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        int resetData = JOptionPane.showOptionDialog(null, "Apakah Anda Yakin Ingin Menghapus User ?", "Informasi !", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
         if(resetData==0){
             
             String sql ="delete from pegawai where id_pegawai = ?";
@@ -219,7 +220,8 @@ public class User implements UserInterface{
                
             }catch(SQLException e){
                 System.out.println(e);
-                JOptionPane.showMessageDialog(null, "User gagal di hapus Karena Sudah Melakukan Transaksi!","Terjadi Kesalahan !",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "User gagal di hapus Karena Sudah Melakukan Transaksi!","Terjadi Kesalahan !"
+                        ,JOptionPane.WARNING_MESSAGE);
             }
             
         }

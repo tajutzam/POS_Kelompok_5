@@ -1,57 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2da7659-99c7-47cd-aa25-9961701946dd">
-	<queryString language="SQL">
-		<![CDATA[select * from beli_product]]>
+	<property name="ireport.zoom" value="1.3310000000000035"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tanggal_dari" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tanggal_sampai" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="alamat" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select pegawai.nama_pegawai , beli_product.id_beliProduct , supplier.nama_supplier , beli_product.tanggal_beliProduct , kategori.nama_kategori , beli_product.grand_total from supplier join beli_product on supplier.kode_supplier = beli_product.supplier join kategori on beli_product.kategori = kategori.kode_kategori join pegawai on pegawai.id_pegawai = beli_product.pegawai where beli_product.tanggal_beliProduct between $P{tanggal_dari} and $P{tanggal_sampai} order by beli_product.tanggal_beliProduct asc
+]]>
 	</queryString>
+	<field name="nama_pegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_beliProduct" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="nama_supplier" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tanggal_beliProduct" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_beliProduct" class="java.lang.String">
+	<field name="nama_kategori" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="grand_total" class="java.lang.String">
+	<field name="grand_total" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nama_pegawai" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="bayar" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="kembalian" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="jumlahBeli" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nama_product" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{grand_total}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="31" uuid="c1c34965-b917-424d-84fc-54ed9fb6a402"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[LAPORAN BIAYA OPERASIONAL BANAJ FRAGRANCE STORE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="31" width="555" height="33" uuid="c94c6319-c662-4778-ac89-4a5164895ca5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{alamat}]]></textFieldExpression>
+			</textField>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="5" width="555" height="1" uuid="64550f26-c257-4717-a01e-6ab96d869ccf"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="6" width="358" height="20" uuid="0212ad25-8602-4bf8-b289-da46999f4180"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Laporan Transaksi Pembelian barang pada toko Banaj Fragrance Store pada tanggal ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="358" y="6" width="71" height="20" uuid="2e188663-ea95-47ca-a547-b023872bde56"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tanggal_dari}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="429" y="6" width="33" height="20" uuid="f333690e-33a5-4426-bbc8-96b47f42b2d8"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Sampai]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="462" y="6" width="48" height="20" uuid="d508e2dc-9e04-40e0-94fd-3561a81d8285"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tanggal_sampai}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="26" width="555" height="1" uuid="fcae41b8-4965-4c14-b300-49d4bd88a090"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="2" width="100" height="20" forecolor="#000000" uuid="7d177e54-a8f4-4e31-9039-8328a198b04d"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Id Transaksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="2" width="100" height="20" forecolor="#000000" uuid="d90c9eb6-f210-40fe-91ac-4bc539f6151b"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Nama Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="2" width="100" height="20" forecolor="#000000" uuid="96431e9a-b0c0-4aa2-968f-3fb0ddee6249"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[tanggal Beli]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="2" width="74" height="20" forecolor="#000000" uuid="d4fcee1e-9ae1-4906-96f2-397c123803e1"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Nama Kasir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="494" y="2" width="61" height="20" forecolor="#000000" uuid="1315d9d6-a012-4eac-93e6-a941cd76b017"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="24" width="555" height="1" uuid="03b4b7f0-0078-40f3-8dd7-9437d5777536"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="100" height="20" forecolor="#5A5A5A" uuid="66b31fe0-c024-467b-baa5-093450c2780c"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_beliProduct}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="100" height="20" forecolor="#5A5A5A" uuid="2a14374e-ef18-4cbd-8c22-94a3ad678ae3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_supplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="0" width="100" height="20" forecolor="#5A5A5A" uuid="c695748d-7dd6-4c92-8190-c66a5ff2fe45"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal_beliProduct}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="0" width="74" height="20" forecolor="#5A5A5A" uuid="76034923-56eb-4f2c-9b16-234851d90564"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_pegawai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="0" width="61" height="20" forecolor="#5A5A5A" uuid="603d69a3-cd7d-4df9-9189-fcd173f1a527"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="46" splitType="Stretch">
+			<line>
+				<reportElement x="406" y="0" width="149" height="1" uuid="1999d065-5e6e-4c44-a9d7-3383a32149c5"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="406" y="14" width="74" height="20" uuid="b865aa73-184a-4311-8ad1-a24dd6aea4ab"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Grand Total :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="494" y="14" width="61" height="20" uuid="ab27c579-f76e-4a1f-a324-1dad23be927b"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+		</band>
 	</summary>
 </jasperReport>

@@ -29,6 +29,7 @@ public class Validasi implements ValidasiUser{
     private String idPegawaiBaru;
     private String role;
     private String nama;
+    Login login = new Login();
 
     public String getIdPegawaiBaru() {
         return idPegawaiBaru;
@@ -69,10 +70,8 @@ public class Validasi implements ValidasiUser{
    
     @Override
     public boolean login(String username , String password) {
-    
-        
-   
-      Login login = new Login();
+
+      //Sql Validasi 
       String sqlLogin = "SELECT * FROM pegawai WHERE username ='"+username+"' AND password ='"+password+"'";
       boolean isLogin=false;
        
@@ -81,35 +80,33 @@ public class Validasi implements ValidasiUser{
             ResultSet res = st.executeQuery(sqlLogin);
             ){ 
             if(!username.equals("")&&!password.equals("")){
-            
+            //jika data ada maka masuk control statment
             if(res.next()){
                 
                 String status =res.getString("status");
                 String role = res.getString("role");
-             
-                
                 String id = res.getString("id_pegawai");
                 String nama=res.getString("nama_pegawai");
-                
-             
-                
+                    //jika user aktif maka bisa login
                     if(status.equals("Aktif")){
                     JOptionPane.showMessageDialog(login, "Berhasil Login ", "Sukses", JOptionPane.INFORMATION_MESSAGE, suscesicon);
-                    
                     isLogin =true;
+                    //jika tidak maka tidak bisa login
                 }else{
                     JOptionPane.showMessageDialog(login, "Tidak Bisa Login, Akun Anda Non Aktif!", "Terjasi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
                     isLogin=false;
                 }
+                //Jika data tidak ada maka muncul pop up
                 }else{
                     JOptionPane.showMessageDialog(login, "Username dan Password salah!", "Terjasi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
                     isLogin=false;
                 }
+            //jika field kosong
             }else{
                 JOptionPane.showMessageDialog(login, "Harap Isi Field Terlebih Dahulu!", "Terjasi Kesalahan", JOptionPane.INFORMATION_MESSAGE, eroricon);
                 isLogin=false;
             }
-        
+        //exeption pada sql
         }catch(SQLException e){
                      JOptionPane.showMessageDialog(login, e.getMessage(), "Terjadi Kesalahan!", JOptionPane.WARNING_MESSAGE);
         }
