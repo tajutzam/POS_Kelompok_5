@@ -30,6 +30,7 @@ public class KonfirmasiSupplier extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setTitle("Konfirmasi Penyuplai");
         
     }
     

@@ -44,6 +44,7 @@ public class TambahBanyakBarang extends javax.swing.JFrame {
         this.rusak.setVisible(false);
         this.label_Kode_kategori.setVisible(false);
         this.label_subTotal.setVisible(false);
+        this.setTitle("Tambah Barang");
     }
     String kode_kategori ;
 

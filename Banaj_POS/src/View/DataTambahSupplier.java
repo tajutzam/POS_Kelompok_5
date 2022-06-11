@@ -64,6 +64,7 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         id_supEdit.setEnabled(false);
         update_atEdit.setEnabled(false);
         this.nama_supLama.setVisible(false);
+        this.setTitle("Tambah Supplier");
     }
 
     /**

@@ -1277,9 +1277,8 @@ public class Barang implements BarangInterface{
                   model.addColumn("No");
                   model.addColumn("Kode Barang");
                   model.addColumn("Nama Barang");
-                  model.addColumn("Stok Tersedia");
                   model.addColumn("Total Stok");
-                  model.addColumn("Barang Rusak");
+             
                   model.addColumn("Harga Beli");
                   model.addColumn("Harga Jual");
                   model.addColumn("Supplier");
@@ -1302,8 +1301,7 @@ public class Barang implements BarangInterface{
                      res.getString("kode_product"),
                         res.getString("nama_product"),
                         res.getString("stok"),
-                        res.getString("total_stok"),
-                        res.getString("rusak"),
+                   
                         ("Rp."+res.getString("harga_beli")),
                         ("Rp."+res.getString("harga_jual")),
                         res.getString("supplier.nama_supplier"),

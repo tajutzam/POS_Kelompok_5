@@ -108,6 +108,7 @@ public  class Dashbord extends javax.swing.JFrame {
 
         //meletakan pada tengah
         this.setLocationRelativeTo(null);
+        this.setTitle("Banaj Aplication");
         //visibilitas icon
         //br.addItemInCombobox(comboBox_showBarang);
         

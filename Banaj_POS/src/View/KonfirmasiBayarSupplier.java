@@ -52,6 +52,7 @@ public class KonfirmasiBayarSupplier extends javax.swing.JFrame {
         label_rusak.setVisible(false);
         label_stok.setVisible(false);
         label_supplier.setVisible(false);
+        this.setTitle("Konfirmasi Bayar");
 
     }
     /** This method is called from within the constructor to

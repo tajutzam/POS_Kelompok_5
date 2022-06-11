@@ -30,7 +30,7 @@ public class Login extends javax.swing.JFrame {
    
     public Login() {
         initComponents();
-        this.setTitle("Banaj Fragrance -> Login Page");
+        this.setTitle("Login Page");
         username_textField.setFocusable(true);
         
         

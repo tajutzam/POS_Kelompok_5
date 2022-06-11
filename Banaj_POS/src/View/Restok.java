@@ -65,6 +65,7 @@ public class Restok extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setTitle("Restok Barang");
         
     }
     

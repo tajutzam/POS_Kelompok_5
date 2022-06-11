@@ -49,6 +49,7 @@ public class TambahUser extends javax.swing.JFrame {
         this.label_editStatus.setVisible(false);
         this.label_editUsername.setVisible(false);
         this.label_editId.setVisible(false);
+        this.setTitle("Tambah User");
         
     }
 
