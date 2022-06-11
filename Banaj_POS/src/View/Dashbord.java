@@ -4384,7 +4384,7 @@ public  class Dashbord extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Tidak ada perubahan data " , "Terjadi Kesalahan " , JOptionPane.ERROR_MESSAGE,eroricon);
                  }else{
                       UserService user = new UserService();
-                      user.getStatusRole(id);
+                     user.getStatusRole(id);
                       user.editUseryangsedangLogin(id, replaceAll, usernme, password, label_role.getText(), label_status.getText(), timeString);
                  }
                  }else{
@@ -4395,6 +4395,8 @@ public  class Dashbord extends javax.swing.JFrame {
                         }else{
                         UserService user = new UserService();
                         user.getStatusRole(id);
+                            System.out.println(label_role.getText());
+                        
                         user.editUseryangsedangLogin(id, namaLengkap, usernme, password, label_role.getText(), label_status.getText(), timeString);
                         JOptionPane.showMessageDialog(null, "Anda Harus Logout terlebih dahulu !", "Information", JOptionPane.INFORMATION_MESSAGE, suscesicon);
                         System.exit(0);

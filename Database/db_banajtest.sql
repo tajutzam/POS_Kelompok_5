@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2022 at 12:49 PM
+-- Generation Time: Jun 11, 2022 at 05:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -122,8 +122,8 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`, `role`, `status`, `password`) VALUES
-('PGW004', 'ZEN ZEN', 'admin', '2022-05-03 12:14:04', '2022-05-03 12:14:04', 1, 'Aktif', 'admin'),
-('PGW005', 'ZAM ZAM', 'KASIR', '2022-06-05 08:41:51', '2022-06-05 08:41:51', 1, 'Aktif', 'KASIR');
+('PGW004', 'ZEN ZEN', 'admin', '2022-06-11 22:16:58', '2022-06-11 22:16:58', 1, 'Aktif', 'admin'),
+('PGW005', 'ZAM ZAMI', 'KASIR', '2022-06-11 22:17:24', '2022-06-11 22:17:24', 2, 'Aktif', 'KASIR');
 
 -- --------------------------------------------------------
 
