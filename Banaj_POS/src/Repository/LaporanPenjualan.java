@@ -280,6 +280,7 @@ public class LaporanPenjualan implements ReportInterfce{
             }
             String fileName = "/Report/ReportLaporanPenjualan.jasper";
             InputStream Report;
+            
             Report = getClass().getResourceAsStream(fileName);
             // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
             HashMap hash = new HashMap();

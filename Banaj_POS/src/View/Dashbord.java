@@ -9,7 +9,6 @@ import Repository.Order;
 import Util.Bulan;
 import Util.Id;
 import Util.PlaceHolderDemo;
-import static View.TambahUser.label_editId;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
