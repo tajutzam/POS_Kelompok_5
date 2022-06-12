@@ -50,6 +50,24 @@ public class Barang implements BarangInterface{
        
     }
 
+    public Bulan getBulan() {
+        return bulan;
+    }
+
+    public Database getDt() {
+        return dt;
+    }
+
+    public tanggalSaatIni getTg() {
+        return tg;
+    }
+
+    public ImageIcon getEroricon() {
+        return eroricon;
+    }
+    
+    
+
     @Override
     public void insertTransaksiBeli(String id , String supplier , String tanggal , String kategori , int total , String bayar , String kembalian) {
         
@@ -1197,26 +1215,15 @@ public class Barang implements BarangInterface{
            hash.put("Barcode", name);
            hash.put("Nama_barang",nama_pro);
            hash.put("Harga","Rp."+harga);
-          
-           
-         
            hash.put("barcode_path","src/Report/"+fname+".png");
-           
-           
-       
+    
            JasperPrint print;
            print = JasperFillManager.fillReport(Report, hash, con);
-          
-           
+        
            File fileDelete= new File("src/Report/"+fname+".png");
-           fileDelete.delete();
-          
-           
-        //  JasperPrintManager.printReport(print, false);
-          
-          
-           JasperViewer viewer=new JasperViewer(print,false);
-         
+           fileDelete.delete();           
+        //  JasperPrintManager.printReport(print, false);  
+           JasperViewer viewer=new JasperViewer(print,false);        
 //           viewer.setZoomRatio(Component.CENTER_ALIGNMENT);
 //          
            viewer.setVisible(true);

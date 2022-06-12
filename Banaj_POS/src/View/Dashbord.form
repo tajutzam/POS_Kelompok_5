@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="navigasi_panel" min="-2" max="-2" attributes="0"/>
+                  <Component id="navigasi_panel" max="32767" attributes="0"/>
                   <Component id="frame_logo_toko" min="-2" pref="85" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -1900,12 +1900,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="hapusOrder" linkSize="17" min="-2" pref="156" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="btn_rturCustomer" min="-2" pref="159" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btn_resetKeranjang" linkSize="17" min="-2" pref="135" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="943" max="-2" attributes="0"/>
+                              <Component id="hapusOrder" min="-2" pref="156" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_resetKeranjang" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -1913,7 +1911,7 @@
                                   <Component id="jScrollPane7" max="32767" attributes="0"/>
                                   <Component id="panel_infoHarga" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="panel_cariKasir" min="-2" max="-2" attributes="0"/>
+                                      <Component id="panel_cariKasir" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                                       <Component id="panel_hasilCari" max="32767" attributes="0"/>
                                   </Group>
@@ -1933,10 +1931,9 @@
                           <Component id="panel_hasilCari" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_resetKeranjang" linkSize="18" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="btn_rturCustomer" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="hapusOrder" linkSize="18" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_resetKeranjang" linkSize="18" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="hapusOrder" linkSize="18" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane7" pref="237" max="32767" attributes="0"/>
@@ -1961,7 +1958,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="362" max="32767" attributes="0"/>
+                                  <EmptySpace pref="370" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="txt_cariDataOrder" max="32767" attributes="0"/>
@@ -2205,11 +2202,6 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_resetKeranjangMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_resetKeranjangActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btn_rturCustomer">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Return Customer"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="hapusOrder">
               <Properties>

@@ -9,7 +9,6 @@ import Repository.Order;
 import Util.Bulan;
 import Util.Id;
 import Util.PlaceHolderDemo;
-import static View.TambahUser.label_editId;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -104,7 +103,7 @@ public  class Dashbord extends javax.swing.JFrame {
         tabel_kategori.setRowHeight(30);
         table_supplier.setRowHeight(30);
         table_return.setRowHeight(30);
-        btn_rturCustomer.setVisible(false);
+       
 
         //meletakan pada tengah
         this.setLocationRelativeTo(null);
@@ -358,7 +357,6 @@ public  class Dashbord extends javax.swing.JFrame {
             }
         };
         btn_resetKeranjang = new javax.swing.JButton();
-        btn_rturCustomer = new javax.swing.JButton();
         hapusOrder = new javax.swing.JButton();
         panel_contenSetting = new javax.swing.JPanel();
         panel_navigasi = new RoundedPanel(8, new Color(255, 255, 255));
@@ -1707,7 +1705,7 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addGroup(panel_cariKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_cariKasirLayout.createSequentialGroup()
                         .addComponent(jLabel22)
-                        .addContainerGap(362, Short.MAX_VALUE))
+                        .addContainerGap(370, Short.MAX_VALUE))
                     .addGroup(panel_cariKasirLayout.createSequentialGroup()
                         .addComponent(txt_cariDataOrder)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1824,8 +1822,6 @@ public  class Dashbord extends javax.swing.JFrame {
             }
         });
 
-        btn_rturCustomer.setText("Return Customer");
-
         hapusOrder.setBackground(new java.awt.Color(51, 45, 45));
         hapusOrder.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         hapusOrder.setForeground(new java.awt.Color(255, 255, 255));
@@ -1843,26 +1839,21 @@ public  class Dashbord extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_contenKasirLayout.createSequentialGroup()
                 .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panel_contenKasirLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(943, 943, 943)
                         .addComponent(hapusOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_rturCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                     .addGroup(panel_contenKasirLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane7)
                             .addComponent(panel_infoHarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel_contenKasirLayout.createSequentialGroup()
-                                .addComponent(panel_cariKasir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panel_cariKasir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(70, 70, 70)
                                 .addComponent(panel_hasilCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
-
-        panel_contenKasirLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_resetKeranjang, hapusOrder});
-
         panel_contenKasirLayout.setVerticalGroup(
             panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_contenKasirLayout.createSequentialGroup()
@@ -1871,9 +1862,8 @@ public  class Dashbord extends javax.swing.JFrame {
                     .addComponent(panel_cariKasir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel_hasilCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_contenKasirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_resetKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_rturCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hapusOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
@@ -3037,7 +3027,7 @@ public  class Dashbord extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(navigasi_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(navigasi_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(frame_logo_toko, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ConntainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4892,7 +4882,6 @@ public  class Dashbord extends javax.swing.JFrame {
     private javax.swing.JButton btn_exportPembelian;
     private javax.swing.JButton btn_exportPenjualan;
     private javax.swing.JButton btn_resetKeranjang;
-    private javax.swing.JButton btn_rturCustomer;
     private javax.swing.JButton btn_tambahReturn;
     private javax.swing.JButton btn_tambahSupplier;
     public static javax.swing.JComboBox<String> comboBox_showBarang;
