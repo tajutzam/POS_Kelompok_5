@@ -170,6 +170,11 @@ public class DataTambahKategori extends javax.swing.JFrame {
         btn_clearKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_clearKategori.setForeground(new java.awt.Color(255, 255, 255));
         btn_clearKategori.setText("Clear");
+        btn_clearKategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_clearKategoriMouseClicked(evt);
+            }
+        });
         btn_clearKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_clearKategoriActionPerformed(evt);
@@ -287,7 +292,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
                         .addComponent(label_kodeKategoriEdit)
                         .addGap(75, 75, 75)
                         .addComponent(kode_lama))
-                    .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, conten_editLayout.createSequentialGroup()
                             .addComponent(label_namaKategoriEdit)
                             .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,9 +301,7 @@ public class DataTambahKategori extends javax.swing.JFrame {
                                     .addComponent(jLabel1))
                                 .addGroup(conten_editLayout.createSequentialGroup()
                                     .addGap(69, 69, 69)
-                                    .addComponent(label_editNamaKategori)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                            .addComponent(brn_cancelEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label_editNamaKategori))))
                         .addGroup(conten_editLayout.createSequentialGroup()
                             .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -309,7 +312,8 @@ public class DataTambahKategori extends javax.swing.JFrame {
                             .addGap(84, 84, 84)
                             .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btn_simpanKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_clearEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btn_clearEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(brn_cancelEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         conten_editLayout.setVerticalGroup(
@@ -328,18 +332,17 @@ public class DataTambahKategori extends javax.swing.JFrame {
                             .addComponent(label_namaKategoriEdit)
                             .addComponent(jLabel1)
                             .addComponent(label_editNamaKategori))
-                        .addGap(12, 12, 12)
-                        .addComponent(TXT_namaKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TXT_namaKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(brn_cancelEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(label_updateAtkategoriEdit)
-                        .addGap(12, 12, 12)
-                        .addComponent(TXT_updateAtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(conten_editLayout.createSequentialGroup()
-                        .addComponent(btn_simpanKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(brn_cancelEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btn_clearEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(11, 11, 11)
+                        .addGroup(conten_editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TXT_updateAtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_clearEditKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btn_simpanKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
 
@@ -422,7 +425,8 @@ public class DataTambahKategori extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clearEditKategoriActionPerformed
 
     private void btn_clearEditKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clearEditKategoriMouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
+         this.TXT_namaKategoriEdit.setText("");
     }//GEN-LAST:event_btn_clearEditKategoriMouseClicked
 
     private void btn_simpanTambahKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanTambahKategoriMouseClicked
@@ -456,6 +460,12 @@ public class DataTambahKategori extends javax.swing.JFrame {
           katSer.showKategori(Dashbord.tabel_kategori);
          
     }//GEN-LAST:event_btn_simpanKategoriEditMouseClicked
+
+    private void btn_clearKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clearKategoriMouseClicked
+         // TODO add your handling code here:
+         
+         this.TXT_namaKategori.setText("");
+    }//GEN-LAST:event_btn_clearKategoriMouseClicked
 
     /**
      * @param args the command line arguments

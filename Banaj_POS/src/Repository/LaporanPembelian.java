@@ -6,6 +6,7 @@
 package Repository;
 
 import Util.Bulan;
+import Util.DateApp;
 import View.TransaksiPembelian1;
 import java.awt.Color;
 import java.io.InputStream;
@@ -28,6 +29,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class LaporanPembelian implements  ReportInterfce{
  
     DatabaseInterface dt = new Database();
+    Barang barang = new Barang();
     
     @Override
     public boolean showLaporanToTable(JTable table) {
@@ -182,30 +184,12 @@ public class LaporanPembelian implements  ReportInterfce{
         model.addColumn("Nama Kategori");
         table.setRowHeight(30);
         table.setForeground(new Color(90, 90, 90));
+     
         
-         Bulan bulan = new Bulan();
-        int indek = bulan.getindexHari();
-        int indekK=0;
-        if(indek==7){
-            indekK=1;
-        }else if(indek==6){
-            indekK=1;
-        }else if(indek==5){
-            indekK=1;
-        }else if(indek==4){
-            indekK=1;
-        }else if(indek==3){
-            indekK=1;
-        }else if(indek==2){
-            indekK=1;
-        }else if(indek==1){
-            indekK=1;
-        }else if(indek >7){
-            indekK=indek-7;
-        }
-        
-       
-        String sql ="select pegawai.nama_pegawai , beli_product.id_beliProduct , supplier.nama_supplier , beli_product.tanggal_beliProduct , kategori.nama_kategori , beli_product.grand_total from supplier join beli_product on supplier.kode_supplier = beli_product.supplier join kategori on beli_product.kategori = kategori.kode_kategori join pegawai on pegawai.id_pegawai = beli_product.pegawai where beli_product.hari between "+indekK+" and "+indek+" order by beli_product.tanggal_beliProduct desc ";
+        DateApp date = new DateApp();
+        String tanggalSaatini = date.getTanggal();
+        String tanggalSeminggu = date.getTanggalMinggu();
+        String sql ="select pegawai.nama_pegawai , beli_product.id_beliProduct , supplier.nama_supplier , beli_product.tanggal_beliProduct , kategori.nama_kategori , beli_product.grand_total from supplier join beli_product on supplier.kode_supplier = beli_product.supplier join kategori on beli_product.kategori = kategori.kode_kategori join pegawai on pegawai.id_pegawai = beli_product.pegawai where beli_product.tanggal_beliProduct between '"+tanggalSeminggu+"' and '"+tanggalSaatini+"' order by beli_product.tanggal_beliProduct desc ";
         int no=0;
         try(Connection con = dt.conectDatabase();
                 Statement st = con.createStatement();
@@ -248,10 +232,10 @@ public class LaporanPembelian implements  ReportInterfce{
         model.addColumn("Nama Kategori");
         table.setRowHeight(30);
         table.setForeground(new Color(90, 90, 90));
-        Bulan bulan = new Bulan();
-        int indexBulan = bulan.getindexHari();
-         int indekBulan =bulan.getindexBulan();
-        String sql ="select pegawai.nama_pegawai , beli_product.id_beliProduct , supplier.nama_supplier , beli_product.tanggal_beliProduct , kategori.nama_kategori , beli_product.grand_total from supplier join beli_product on supplier.kode_supplier = beli_product.supplier join kategori on beli_product.kategori = kategori.kode_kategori join pegawai on pegawai.id_pegawai = beli_product.pegawai where beli_product.hari ="+indexBulan+" and bulan ="+indekBulan+" order by beli_product.tanggal_beliProduct desc";
+       
+        DateApp date = new DateApp();
+        String tanggalSaatIni = date.getTanggal();
+        String sql ="select pegawai.nama_pegawai , beli_product.id_beliProduct , supplier.nama_supplier , beli_product.tanggal_beliProduct , kategori.nama_kategori , beli_product.grand_total from supplier join beli_product on supplier.kode_supplier = beli_product.supplier join kategori on beli_product.kategori = kategori.kode_kategori join pegawai on pegawai.id_pegawai = beli_product.pegawai where beli_product.tanggal_beliProduct ='"+tanggalSaatIni+"'  order by beli_product.tanggal_beliProduct desc";
         int no=0;
         try(Connection con = dt.conectDatabase();
                 Statement st = con.createStatement();
@@ -283,8 +267,7 @@ public class LaporanPembelian implements  ReportInterfce{
 
     @Override
     public void cetakLaporanpenjualan(String tanggal, String sampai) {
-        
-          
+ 
         String sql = "select nama_toko , no_hp , alamat_toko from toko";
         String nama_toko;
         String no_hp;
@@ -303,28 +286,19 @@ public class LaporanPembelian implements  ReportInterfce{
             } else {
                 throw new SQLException("gagal");
             }
-
             String fileName = "/Report/ReportLaporanPembelian.jasper";
             InputStream Report;
             Report = getClass().getResourceAsStream(fileName);
             // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
-            HashMap hash = new HashMap();
-
-       
+            HashMap hash = new HashMap();     
            hash.put("tanggal_dari", tanggal);
            hash.put("tanggal_sampai", sampai);
            hash.put("alamat", alamat);
-
-        
-
             JasperPrint print;
             print = JasperFillManager.fillReport(Report, hash, con);
             JasperViewer view = new JasperViewer(print ,false);
             view.setVisible(true);
-
-            //JasperPrintManager.printReport(print, false);
-            
-            
+            //JasperPrintManager.printReport(print, false);     
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -346,8 +320,8 @@ public class LaporanPembelian implements  ReportInterfce{
         model.addColumn("Nama Kategori");
         table.setRowHeight(30);
         table.setForeground(new Color(90, 90, 90));
-        
-        String sql ="select pegawai.nama_pegawai , beli_product.id_beliProduct , supplier.nama_supplier , beli_product.tanggal_beliProduct , kategori.nama_kategori , beli_product.grand_total from supplier join beli_product on supplier.kode_supplier = beli_product.supplier join kategori on beli_product.kategori = kategori.kode_kategori join pegawai on pegawai.id_pegawai = beli_product.pegawai where beli_product.id_beliProduct ='"+id_transaksi+"'order by beli_product.tanggal_beliProduct asc ";
+ 
+        String sql ="select pegawai.nama_pegawai , beli_product.id_beliProduct , supplier.nama_supplier , beli_product.tanggal_beliProduct , kategori.nama_kategori , beli_product.grand_total from supplier join beli_product on supplier.kode_supplier = beli_product.supplier join kategori on beli_product.kategori = kategori.kode_kategori join pegawai on pegawai.id_pegawai = beli_product.pegawai where beli_product.id_beliProduct like '%"+id_transaksi+"%'order by beli_product.tanggal_beliProduct asc ";
         int no=0;
         try(Connection con = dt.conectDatabase();
                 Statement st = con.createStatement();
@@ -370,12 +344,19 @@ public class LaporanPembelian implements  ReportInterfce{
                     
                 });
             }
+            
+            if(isSuces==false){
+                showLaporanToTable(table);
+                                JOptionPane.showMessageDialog(null, "Gagal Menemukan Data", "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE, barang.getEroricon() );
+
+//                 table.setModel(model);
+                 showLaporanToTable(table);
+            }
             table.setModel(model);
         }catch(SQLException e){
-            table.setModel(model);
-            showLaporanToTable(table);
+           
          
-            JOptionPane.showMessageDialog(table, isSuces);
+            JOptionPane.showMessageDialog(null , "Gagal Menemukan Transaksi");
           
         }  
         

@@ -149,6 +149,11 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout conten_tambahPanelLayout = new javax.swing.GroupLayout(conten_tambahPanel);
         conten_tambahPanel.setLayout(conten_tambahPanelLayout);
@@ -256,6 +261,11 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         btn_clearEdit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_clearEdit.setForeground(new java.awt.Color(255, 255, 255));
         btn_clearEdit.setText("Clear");
+        btn_clearEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_clearEditMouseClicked(evt);
+            }
+        });
         btn_clearEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_clearEditActionPerformed(evt);
@@ -459,6 +469,16 @@ public class DataTambahSupplier extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_simpanEditMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+         // TODO add your handling code here:
+         this.txt_nama_supplierAdd.setText("");
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void btn_clearEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clearEditMouseClicked
+         // TODO add your handling code here:
+         this.namaSup_edit.setText("");
+    }//GEN-LAST:event_btn_clearEditMouseClicked
 
     /**
      * @param args the command line arguments

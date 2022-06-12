@@ -53,7 +53,7 @@ public class Order implements OrderInterface {
     static public DefaultTableModel model = new DefaultTableModel();
     static public DefaultTableModel tbOrder = new DefaultTableModel();
 
-    Object[] data = new Object[8];
+   
     int no = 0;
     Bulan bulan = new Bulan();
     //instansiasi Object yang dibutuhkan
@@ -61,6 +61,14 @@ public class Order implements OrderInterface {
     ImageIcon suscesicon = new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon = new ImageIcon(getClass().getResource("/picture/warning.png"));
 
+    
+   private Object[] data = new Object[8];
+    public Object[] getData() {
+        return data;
+    }
+
+    
+    
     //this overide method in paretnt
     @Override
     public void addIdTransaksi(String id, String grandTotal, String bayar, String idPegawai, String kembali, String grand_modal) {
@@ -283,7 +291,6 @@ public class Order implements OrderInterface {
 
     @Override
     public void cetakStruct(String kode, String diskon, String harga) {
-
         String sql = "select nama_toko , no_hp , alamat_toko from toko";
         String nama_toko;
         String no_hp;
@@ -298,24 +305,20 @@ public class Order implements OrderInterface {
                 no_hp = res.getString("no_hp");
                 alamat = res.getString("alamat_toko");
                 System.out.println(nama_toko);
-
             } else {
                 throw new SQLException("gagal");
             }
-
             String fileName = "/Report/ReporPenjualan.jasper";
             InputStream Report;
             Report = getClass().getResourceAsStream(fileName);
             // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
             HashMap hash = new HashMap();
-
             Linear barcode = new Linear();
             barcode.setType(Linear.CODE128A);
             barcode.setData(kode);
             barcode.setI(11.0f);
             String fname = kode;
             barcode.renderBarcode("src/Report/" + fname + ".png");
-
             hash.put("kode", kode);
             hash.put("nama_toko", nama_toko);
             hash.put("no_hp", no_hp);
@@ -325,18 +328,14 @@ public class Order implements OrderInterface {
                 hash.put("diskon", "0" + "%");
             } else {
                 hash.put("diskon", diskon + "%");
-
             }
-
             hash.put("barcode_path", "src/Report/" + fname + ".png");
-
             JasperPrint print;
             print = JasperFillManager.fillReport(Report, hash, con);
 //            JasperViewer view = new JasperViewer(print ,false);
 //            view.setVisible(true);
 
-            JasperPrintManager.printReport(print, false);
-            
+            JasperPrintManager.printReport(print, false); 
             File fileDelete = new File("src/Report/" + fname + ".png");
             fileDelete.delete();
 
@@ -347,7 +346,6 @@ public class Order implements OrderInterface {
 
     @Override
     public void cetakStructPembelian(String transaksi) {
-
         String sql = "select nama_toko , no_hp , alamat_toko from toko";
         String nama_toko;
         String no_hp;
@@ -386,7 +384,6 @@ public class Order implements OrderInterface {
         } catch (JRException ex) {
             Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override

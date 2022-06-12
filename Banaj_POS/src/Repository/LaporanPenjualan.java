@@ -6,6 +6,7 @@
 package Repository;
 
 import Util.Bulan;
+import Util.DateApp;
 import View.TransaksiPenjualan;
 import com.barcodelib.barcode.Linear;
 import java.awt.Color;
@@ -185,12 +186,10 @@ public class LaporanPenjualan implements ReportInterfce{
         
         Bulan bulan = new Bulan();
         String indek = String.valueOf(bulan.getindexHari());
-        if(indek.startsWith("0")){
-            indek.replaceAll("0","");
-        }
-        int indekBulan = bulan.getindexBulan();
-     
-        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.hari="+indek+" and bulan ="+indekBulan+" ORDER by tanggal_transaksi DESC";
+       
+         DateApp date = new DateApp();
+        String tanggalSaatIni = date.getTanggal();
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.tanggal_transaksi='"+tanggalSaatIni+"' ORDER by tanggal_transaksi DESC";
 
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
@@ -228,31 +227,11 @@ public class LaporanPenjualan implements ReportInterfce{
         model.addColumn("Nama Kasir");
         model.addColumn("Tanggal Transaksi");
         model.addColumn("Grand Total");
-        
-        Bulan bulan = new Bulan();
-        int indek = bulan.getindexHari();
-        int indekK=0;
-        if(indek==7){
-            indekK=1;
-        }else if(indek==6){
-            indekK=1;
-        }else if(indek==5){
-            indekK=1;
-        }else if(indek==4){
-            indekK=1;
-        }else if(indek==3){
-            indekK=1;
-        }else if(indek==2){
-            indekK=1;
-        }else if(indek==1){
-            indekK=1;
-        }else if(indek >7){
-            indekK=indek-7;
-        }
-        
-        System.out.println(indek);
-        System.out.println(indekK);
-        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.hari BETWEEN "+indekK+" and "+indek+" ORDER by tanggal_transaksi DESC;";
+   
+        DateApp date = new DateApp();
+        String tanggalSaatini = date.getTanggal();
+        String tanggalSeminggu = date.getTanggalMinggu();
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai  where transaksi.tanggal_transaksi BETWEEN '"+tanggalSeminggu+"' and '"+tanggalSaatini+"' ORDER by tanggal_transaksi DESC;";
 
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
@@ -282,8 +261,7 @@ public class LaporanPenjualan implements ReportInterfce{
     }
 
     @Override
-    public void cetakLaporanpenjualan(String tanggal, String sampai) {
-        
+    public void cetakLaporanpenjualan(String tanggal, String sampai) {       
         String sql = "select nama_toko , no_hp , alamat_toko from toko";
         String nama_toko;
         String no_hp;
@@ -292,38 +270,27 @@ public class LaporanPenjualan implements ReportInterfce{
             Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
-
             if (res.next()) {
                 nama_toko = res.getString("nama_toko");
                 no_hp = res.getString("no_hp");
                 alamat = res.getString("alamat_toko");
                 System.out.println(nama_toko);
-
             } else {
                 throw new SQLException("gagal");
             }
-
             String fileName = "/Report/ReportLaporanPenjualan.jasper";
             InputStream Report;
             Report = getClass().getResourceAsStream(fileName);
             // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
             HashMap hash = new HashMap();
-
-       
            hash.put("tanggal_dari", tanggal);
            hash.put("tanggal_sampai", sampai);
            hash.put("alamat", alamat);
-
-        
-
             JasperPrint print;
             print = JasperFillManager.fillReport(Report, hash, con);
             JasperViewer view = new JasperViewer(print ,false);
             view.setVisible(true);
-
-            //JasperPrintManager.printReport(print, false);
-            
-            
+            //JasperPrintManager.printReport(print, false);           
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -333,7 +300,7 @@ public class LaporanPenjualan implements ReportInterfce{
 
     @Override
     public void cariLaporanBerdasarkanTransaksi(String id_transaksi , JTable table) {
-        
+        Barang barang = new Barang();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
         model.addColumn("ID Transaksi");
@@ -343,13 +310,14 @@ public class LaporanPenjualan implements ReportInterfce{
         table.setRowHeight(30);
         table.setForeground(new Color(90, 90, 90));
         boolean isSuces =false;
-        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai where transaksi.id_transaksi ='"+id_transaksi+"' order by transaksi.tanggal_transaksi asc  ";
+        String sql="select transaksi.id_transaksi , pegawai.nama_pegawai ,transaksi.tanggal_transaksi , transaksi.grand_total from pegawai join transaksi on pegawai.id_pegawai = transaksi.id_pegawai where transaksi.id_transaksi like '%"+id_transaksi+"%' order by transaksi.tanggal_transaksi asc  ";
         int no=0;
         try(Connection con = dt.conectDatabase();
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
            
             while(res.next()){
+                isSuces=true;
                 no++;
                 model.addRow(new Object[]{
                  no,
@@ -359,6 +327,10 @@ public class LaporanPenjualan implements ReportInterfce{
                  ("Rp."+res.getString("grand_total")),
    
                 });
+            }
+            
+            if(isSuces==false){
+                JOptionPane.showMessageDialog(null, "Gagal Menemukan Data", "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE, barang.getEroricon() );
             }
             table.setModel(model);
         }catch(SQLException e){

@@ -266,6 +266,7 @@
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_clearKategoriMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearKategoriActionPerformed"/>
               </Events>
             </Component>
@@ -292,7 +293,7 @@
                               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                               <Component id="kode_lama" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="label_namaKategoriEdit" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -305,8 +306,6 @@
                                           <Component id="label_editNamaKategori" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="135" max="32767" attributes="0"/>
-                                  <Component id="brn_cancelEditKategori" min="-2" pref="88" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -321,6 +320,7 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="btn_simpanKategoriEdit" alignment="1" min="-2" pref="88" max="-2" attributes="0"/>
                                       <Component id="btn_clearEditKategori" min="-2" pref="88" max="-2" attributes="0"/>
+                                      <Component id="brn_cancelEditKategori" min="-2" pref="88" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -347,20 +347,20 @@
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="label_editNamaKategori" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="TXT_namaKategoriEdit" min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="TXT_namaKategoriEdit" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="brn_cancelEditKategori" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="label_updateAtkategoriEdit" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="TXT_updateAtKategori" min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="TXT_updateAtKategori" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btn_clearEditKategori" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btn_simpanKategoriEdit" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="brn_cancelEditKategori" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="btn_clearEditKategori" min="-2" pref="32" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btn_simpanKategoriEdit" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="105" max="32767" attributes="0"/>
                   </Group>

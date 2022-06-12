@@ -22,13 +22,38 @@ import javax.swing.table.DefaultTableModel;
  * @author NORMAL USER
  */
 public class User implements UserInterface{
-    DatabaseInterface dt = new Database();
-    DefaultTableModel model = new DefaultTableModel();
+    private DatabaseInterface dt = new Database();
+    private DefaultTableModel model = new DefaultTableModel();
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     
-    String username;
-    String password;
+    private String username;
+    private String password;
+
+    public DatabaseInterface getDt() {
+        return dt;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    
+    
+    
+    
     
     
     @Override
@@ -156,6 +181,7 @@ public class User implements UserInterface{
                 Dashbord.label_username.setText(username);
                 Dashbord.txt_password.setText(res.getString("password"));
                 Dashbord.label_passwordLama.setText(res.getString("password"));
+                Dashbord.txt_konfirmasiPassword.setText(res.getString("password"));
                 String namaTmp =res.getString("nama_pegawai");
                 String[] split = namaTmp.split(" ");
                 if(split.length==1){

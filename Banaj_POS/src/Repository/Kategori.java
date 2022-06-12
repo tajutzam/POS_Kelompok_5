@@ -23,12 +23,26 @@ import javax.swing.table.DefaultTableModel;
  * @author user
  */
 public class Kategori implements KategoriInterface{
-        DatabaseInterface dt = new Database();
-        DefaultTableModel model = new DefaultTableModel();
-        ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
-        ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+        private DatabaseInterface dt = new Database();
+       private DefaultTableModel model = new DefaultTableModel();
+        private ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
+       private  ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
 
+    public DatabaseInterface getDt() {
+        return dt;
+    }
+
+    public ImageIcon getEroricon() {
+        return eroricon;
+    }
+
+     
+        
+        
         @Override
+        
+       
+        
     public String getCodeKategori(JComboBox box) {
     
         
