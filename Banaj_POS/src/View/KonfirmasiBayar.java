@@ -284,22 +284,39 @@ public class KonfirmasiBayar extends javax.swing.JFrame {
      
        OrderService order = new OrderService();
        String bayar = txt_bayar.getText();
+        System.out.println("bayar"+bayar);
         
-       long kembalian = order.bayar( bayar, this);
-       String kembaliy =String.valueOf(kembalian);
+    
      
        String idTransaksi= tx_idTransaksi.getText();
       
        String grandTotal = txt_totalHarga.getText();
   
        String id_pegawai=Dashbord.label_idPegawai.getText();
-     
-       order.addTransaksi(idTransaksi, grandTotal, bayar, id_pegawai,kembaliy);
+       if(txt_bayar.getText().equals("")){
+           order.jop("Harap Isi field bayar Terlebih dahulu");
+       }else{
+            long kembalian = order.bayar( bayar, this);
+            String kembaliy =String.valueOf(kembalian);
+            
+            
+            int bayarint = Integer.parseInt(bayar);
+            int totalInt = Integer.parseInt(grandTotal);
+            
+            if(bayarint<totalInt){
+                order.jop("Total Bayar Customer Kurang !");
+            }else{
+                 order.addTransaksi(idTransaksi, grandTotal, bayar, id_pegawai,kembaliy);
        order.insertDataOrder(Dashbord.table_belanja);
        order.resetKeranjang();
        barangService br = new barangService();
        br.showBarang(table_barang);
        br.deleteBarangWhenStokHabis();
+            }
+            
+            
+       }
+      
       
        
        
