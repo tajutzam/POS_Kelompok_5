@@ -345,7 +345,7 @@ public class OrderService extends barangService {
           }else{
           int bayarInt = Integer.parseInt(bayar);
                 if(bayarInt < total){
-                jop("Total Bayar Customer Kurang !");
+          
           
                 close=false;
                 } else{
@@ -366,6 +366,7 @@ public class OrderService extends barangService {
       
       if(close==false){
           /* bayar="";*/
+          
       }else{
           byr.dispose();
       }

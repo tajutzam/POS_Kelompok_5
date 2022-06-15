@@ -33,6 +33,7 @@ public class Restok extends javax.swing.JFrame {
     private String kode;
     private String supplier;
     private String kategori;
+    
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
     public String getHarga_beli() {
@@ -255,9 +256,7 @@ public class Restok extends javax.swing.JFrame {
          this.setSupplier(barang.getKodeSupplier(this.getKode()));
          this.setKategori(barang.getKodeKategori(this.getKode()));
          
-       
-         
-         
+
          
     }//GEN-LAST:event_combo_restokActionPerformed
 

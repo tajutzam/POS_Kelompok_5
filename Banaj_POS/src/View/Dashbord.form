@@ -32,7 +32,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="navigasi_panel" max="32767" attributes="0"/>
-                  <Component id="frame_logo_toko" min="-2" pref="85" max="-2" attributes="0"/>
+                  <Component id="frame_logo_toko" pref="85" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ConntainerPanel" max="32767" attributes="0"/>
@@ -70,7 +70,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel5" alignment="1" pref="85" max="32767" attributes="0"/>
+              <Component id="jLabel5" alignment="1" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -3933,9 +3933,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane10" alignment="1" pref="361" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="label_contenBarangppuler" pref="310" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="label_contenBarangppuler" min="-2" pref="332" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3986,7 +3986,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="5a" green="5a" red="5a" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Barang Paling Banyak diminati"/>
+                    <Property name="text" type="java.lang.String" value="Barang Paling Banyak diminati Bulan Ini"/>
                   </Properties>
                 </Component>
               </SubComponents>

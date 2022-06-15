@@ -356,6 +356,7 @@ public class KonfirmasiBayarSupplier extends javax.swing.JFrame {
         System.out.println("stok"+stok);
         System.out.println("rusak"+barangRusak);
         System.out.println();
+        
         if(isAdd==true){
              String kembalianS=TransaksiBerhasilSupplier.txt_kembalian.getText().replaceAll(",", "");
 

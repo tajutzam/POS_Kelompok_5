@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.stream.Stream;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -291,11 +292,14 @@ public class LaporanPembelian implements  ReportInterfce{
             Report = getClass().getResourceAsStream(fileName);
             // File namaile = newgetClass().getResourceAsStream("/View/ReporPenjualan.jasper");
             HashMap hash = new HashMap();     
-           hash.put("tanggal_dari", tanggal);
-           hash.put("tanggal_sampai", sampai);
-           hash.put("alamat", alamat);
+            hash.put("tanggal_dari", tanggal);
+            hash.put("tanggal_sampai", sampai);
+            hash.put("alamat", alamat);
+            
             JasperPrint print;
+            
             print = JasperFillManager.fillReport(Report, hash, con);
+            
             JasperViewer view = new JasperViewer(print ,false);
             view.setVisible(true);
             //JasperPrintManager.printReport(print, false);     

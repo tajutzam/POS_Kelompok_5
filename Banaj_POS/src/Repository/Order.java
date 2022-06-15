@@ -483,12 +483,14 @@ public class Order implements OrderInterface {
         model.addColumn("Jumlah Terjual");
         table.setRowHeight(30);
         
+        int indekbulan = bulan.getindexBulan();
+        System.out.println("bulan"+indekbulan);
+        String sql="select product.nama_product ,count(detail_transaksi.kode_product) as populer from detail_transaksi join product on product.kode_product = detail_transaksi.kode_product GROUP by product.nama_product where transaksi.bulan ='"+indekbulan+"'order by populer DESC limit 5";
         
-        String sql="select product.nama_product ,count(detail_transaksi.kode_product) as populer from detail_transaksi join product on product.kode_product = detail_transaksi.kode_product GROUP by product.nama_product order by populer DESC limit 5";
-        
+        String sql2="SELECT product.nama_product , COUNT(detail_transaksi.kode_product) as populer FROM detail_transaksi join product on product.kode_product=detail_transaksi.kode_product JOIN transaksi on detail_transaksi.id_transaksi =transaksi.id_transaksi where transaksi.bulan ="+indekbulan+" group by product.nama_product order by populer desc limit 5";
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
-            ResultSet res = st.executeQuery(sql)){
+            ResultSet res = st.executeQuery(sql2)){
           
             while(res.next()){
                 no++;
