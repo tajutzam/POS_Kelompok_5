@@ -625,8 +625,20 @@ public class TambahUser extends javax.swing.JFrame {
          }
          System.out.println("username baru :"+username_baru);
          System.out.println("username lama : "+ username_lama);
+         System.out.println("Pasword baru  :"+password_baru);
+         System.out.println("Password lama :"+password_lama);
+         System.out.println("nama baru :"+nama_baru);
+         System.out.println("Nama lama :"+nama_lama);
+         System.out.println(role_baru);
+         System.out.println(role_lama);
+         System.out.println(statusEdit);
+         System.out.println(status_lama);
+         System.out.println(roleEdit);
          
-          if(username_baru.equals(username_lama)&& password_baru.equals(password_lama)&& password_baru.equals("")&& nama_baru.equals(nama_lama)&& roleEdit.equals(role_lama)&& statusEdit.equals(status_lama)){
+
+         
+         
+          if(username_baru.equals(username_lama)&& password_baru.equals(password_lama)|| password_baru.equals("")&& nama_baru.equals(nama_lama)&& roleEdit.equals(role_lama)&& statusEdit.equals(status_lama)){
             JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan Data", "Information", JOptionPane.INFORMATION_MESSAGE);
           }else{
             if(TXT_edit_PasswordBaru.getText().equals("")){
