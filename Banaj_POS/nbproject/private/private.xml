@@ -3,39 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/KonfirmasiBayarUpdate.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/TambahBanyakBarang.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/BarcodeBarang.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Kategori.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/service/UserService.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/Login.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/TransaksiBerhasil.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/LaporanPenjualan.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/User.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Order.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/ReportInterfce.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/DataTambahSupplier.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/SupplierInterface.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/KonfirmasiBayar.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/Restok.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/dataTambahReturn.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/KonfirmasiOrder.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/KategoriInterface.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Util/DateApp.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/DataTambahKategori.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/TambahUser.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/Dashbord.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/ValidasiUser.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Barang.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/KonfirmasiSupplier.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Validasi.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/UserInterface.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/BarangInterface.java</file>
             <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/OrderInterface.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Supplier.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/KonfirmasiBayarSupplier.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/LaporanPembelian.java</file>
-            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/View/DataBarangTambah.java</file>
+            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Toko.java</file>
+            <file>file:/D:/ProjectSemster2Revisi/POS_Kelompok_5/Banaj_POS/src/Repository/Order.java</file>
         </group>
     </open-files>
 </project-private>
