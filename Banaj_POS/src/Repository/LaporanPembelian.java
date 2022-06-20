@@ -29,6 +29,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class LaporanPembelian implements  ReportInterfce{
  
+    //pholimorpisme
     DatabaseInterface dt = new Database();
     Barang barang = new Barang();
     
@@ -148,9 +149,9 @@ public class LaporanPembelian implements  ReportInterfce{
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
              
-            
+            boolean isSucses=false;
             while(res.next()){
-               
+               isSucses=true;
                  no++;
                  model.addRow(new Object[]{
                  no,
@@ -163,6 +164,11 @@ public class LaporanPembelian implements  ReportInterfce{
                  
                     
                     
+                });
+            }
+            if(isSucses==false){
+                model.addRow(new Object[]{
+                    "Tidak ada transaksi Pada bulan Ini"
                 });
             }
             table.setModel(model);
@@ -196,9 +202,9 @@ public class LaporanPembelian implements  ReportInterfce{
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
              
-            
+            boolean isSuces=false;
             while(res.next()){
-               
+                isSuces=true;
                  no++;
                  model.addRow(new Object[]{
                  no,
@@ -211,6 +217,12 @@ public class LaporanPembelian implements  ReportInterfce{
                  
                     
                     
+                });
+            }
+            
+            if(isSuces==false){
+                model.addRow(new Object[]{
+                    "Tidak ada Transaksi Pada Minggu Ini"
                 });
             }
             table.setModel(model);
@@ -242,9 +254,9 @@ public class LaporanPembelian implements  ReportInterfce{
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
              
-            
+            boolean isSuces=false;
             while(res.next()){
-               
+               isSuces=true;
                  no++;
                  model.addRow(new Object[]{
                  no,
@@ -257,6 +269,11 @@ public class LaporanPembelian implements  ReportInterfce{
                  
                     
                     
+                });
+            }
+            if(isSuces==false){
+                model.addRow(new Object[]{
+                    "Tidak ada Transaksi Pada hari Ini"
                 });
             }
             table.setModel(model);

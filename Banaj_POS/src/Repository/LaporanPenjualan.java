@@ -150,9 +150,10 @@ public class LaporanPenjualan implements ReportInterfce{
             Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
          
-          
+              boolean isSucses=false;
               int no=0;
                 while(res.next()){
+                    isSucses=true;
                      no++;
                      model.addRow(new Object[]{
                      no,
@@ -161,13 +162,14 @@ public class LaporanPenjualan implements ReportInterfce{
                  res.getString("tanggal_transaksi"),
                  ("Rp."+res.getString("grand_total")),
 
-                });
-       
-            
-            
+                });   
         }
-            table.setModel(model);
-            
+                if(isSucses==false){
+                         model.addRow(new Object[]{
+                             "Tidak ada transaksi pada bulan ini"
+                         });
+                }
+                table.setModel(model);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Tidak ada Transaksi pada bulan ini", "Terjadi kesalahan", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -195,9 +197,10 @@ public class LaporanPenjualan implements ReportInterfce{
             Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
          
-          
+              boolean isSuces=false;
               int no=0;
                 while(res.next()){
+                    isSuces=true;
                      no++;
                      model.addRow(new Object[]{
                      no,
@@ -211,6 +214,11 @@ public class LaporanPenjualan implements ReportInterfce{
             
             
         }
+                if(isSuces==false){
+                    model.addRow(new Object[]{
+                        "Tidak ada transaksi pada hari ini"
+                    });
+                }
             table.setModel(model);
             
         }catch(SQLException e){
@@ -237,9 +245,10 @@ public class LaporanPenjualan implements ReportInterfce{
             Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
          
-          
+              boolean isSuces=false;
               int no=0;
                 while(res.next()){
+                    isSuces=true;
                      no++;
                      model.addRow(new Object[]{
                      no,
@@ -253,6 +262,11 @@ public class LaporanPenjualan implements ReportInterfce{
             
             
         }
+                if(isSuces==false){
+                    model.addRow(new Object[]{
+                        "Tidak ada transaksi pada minggu ini"
+                    });
+                }
             table.setModel(model);
             
         }catch(SQLException e){

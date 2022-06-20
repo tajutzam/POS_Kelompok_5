@@ -96,7 +96,7 @@ public class OrderService extends barangService {
     
   
   public void addProductToKeranjang(JTable table){
- 
+      //pholimorpisme
       OrderInterface order = new Order();  
      
       int selectedRow=Dashbord.table_cariBelanja.getSelectedRow();
@@ -566,4 +566,20 @@ public class OrderService extends barangService {
        OrderInterface order = new Order();
        order.barangPalingBanyakDiminati(Dashbord.table_banyakDiminati);
    }
+   public String showKategoriPalingBanyakDiminati(){
+       OrderInterface order = new Order();
+       return order.showKategoriPalingBanyakDiminati();
+   }
+    public void barangPalingBanyakDiminatiKategori(JTable table){
+        OrderInterface order = new Order();
+        order.barangPalingBanyakDiminatiKategori(table);
+    }
+    public void barangPalingBanyakDiminatikeyword(String keyword , JTable table){
+        OrderInterface order = new Order();
+        order.barangPalingBanyakDiminatikeyword(keyword, table);
+    }
+      public String getSaranStokMenurutBulanI(String kategori, String product){
+          OrderInterface order = new Order();
+          return order.getSaranStokMenurutBulanI(kategori, product);
+      }
 }

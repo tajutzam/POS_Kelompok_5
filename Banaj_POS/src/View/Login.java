@@ -164,7 +164,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel2.setText("Lupa Password Hubungi Administrator");
+        jLabel2.setText("Lupa Password Silahkan Hubungi Administrator");
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel3.setText("Built with ");
@@ -268,9 +268,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-           // TODO add your handling code here:
+            // TODO add your handling code here:
        
-      
+        //membuat object dari class validasi service
         ValidasiService va = new ValidasiService();
        
        

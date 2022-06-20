@@ -24,12 +24,8 @@ public class LaporanService {
        reportPenjualan.showLaporanToTable(table);
        if(table.getRowCount()==0){
                                   JOptionPane.showMessageDialog(null, "Belum Ada Transaksi Pembelian Product Terjadi !" , "Information" , JOptionPane.INFORMATION_MESSAGE);
-
        }
        
-          
-      
-      
     }
     public void showLaporanPenjualan(JTable table , String id){
         

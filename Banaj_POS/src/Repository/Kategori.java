@@ -342,11 +342,31 @@ public class Kategori implements KategoriInterface{
         }
         return  isSucses;
     }
+
+    @Override
+    public String getCodeKategoriMost(JComboBox box) {
+          String kode ="";
+        
+        String sql ="select kode_kategori from kategori where nama_kategori = '"+box.getSelectedItem()+"' ";
+        try(Connection con = dt.conectDatabase();
+                Statement st = con.createStatement();
+                ResultSet res =st.executeQuery(sql)){
+            
+            while (res.next()) {
+
+                kode = res.getString("kode_kategori");
+                
+            }
+            
+        }catch(SQLException e){
+        }
+        return kode;
+    }
+    
     
      
-        
-    }
-  
+     
+}
     
     
       

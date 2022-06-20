@@ -65,6 +65,7 @@ public  class Dashbord extends javax.swing.JFrame {
     String time_update;
     String kode_supplier;
     
+    
     //
     Dimension dimAx = Toolkit.getDefaultToolkit().getScreenSize();
     Dimension dimIn = Toolkit.getDefaultToolkit().getBestCursorSize(1366, 768);
@@ -184,6 +185,7 @@ public  class Dashbord extends javax.swing.JFrame {
           panel_laporan.setVisible(false);
           panel_manager.setVisible(false);    
         }
+        this.setLabelNamaKategori(order.showKategoriPalingBanyakDiminati());
        
     
         //interact dashbord content
@@ -200,6 +202,9 @@ public  class Dashbord extends javax.swing.JFrame {
     }
     public void setTotalUser(String total){
         this.txt_totalUser.setText(total);
+    }
+    public void setLabelNamaKategori(String kode){
+        this.label_namaKt.setText(kode);
     }
     
     
@@ -475,6 +480,10 @@ public  class Dashbord extends javax.swing.JFrame {
         untung_sebulan = new javax.swing.JLabel();
         icon_penjualanSebulan = new javax.swing.JLabel();
         untungSebulanValue = new javax.swing.JLabel();
+        jPanel5 = new RoundedPanel(8, new Color(255, 255, 255));
+        pengeluaran_bulan1 = new javax.swing.JLabel();
+        icon_totalReturn1 = new javax.swing.JLabel();
+        label_namaKt = new javax.swing.JLabel();
         header_panel = new RoundedPanel(0, new Color(111, 59, 160));
         label_page = new javax.swing.JLabel();
         icon_user = new javax.swing.JLabel();
@@ -880,6 +889,7 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        comboBox_showBarang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua" }));
         comboBox_showBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBox_showBarangActionPerformed(evt);
@@ -2342,7 +2352,7 @@ public  class Dashbord extends javax.swing.JFrame {
             }
         });
 
-        combo_box_cariUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktif","Tidak Aktif"}));
+        combo_box_cariUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua","Aktif","Tidak Aktif"}));
         combo_box_cariUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_box_cariUserActionPerformed(evt);
@@ -2484,7 +2494,7 @@ public  class Dashbord extends javax.swing.JFrame {
         show_laporanPenjualan.setForeground(new java.awt.Color(90, 90, 90));
         show_laporanPenjualan.setText("Tampilkan Per");
 
-        combo_boxPenjualan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bulan", "Minggu", "Hari" }));
+        combo_boxPenjualan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Bulan", "Minggu", "Hari" }));
         combo_boxPenjualan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_boxPenjualanActionPerformed(evt);
@@ -2541,7 +2551,7 @@ public  class Dashbord extends javax.swing.JFrame {
         container_laporanPenjualan.setLayout(container_laporanPenjualanLayout);
         container_laporanPenjualanLayout.setHorizontalGroup(
             container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
             .addGroup(container_laporanPenjualanLayout.createSequentialGroup()
                 .addComponent(show_laporanPenjualan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2567,21 +2577,22 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addGroup(container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(container_laporanPenjualanLayout.createSequentialGroup()
                         .addGroup(container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(show_laporanPenjualan)
-                                    .addComponent(combo_boxPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jDateSampai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_exportPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(container_laporanPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jDateDari, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(container_laporanPenjualanLayout.createSequentialGroup()
+                                .addComponent(show_laporanPenjualan)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateDari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateSampai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_exportPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, container_laporanPenjualanLayout.createSequentialGroup()
                         .addComponent(txt_cariPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(container_laporanPenjualanLayout.createSequentialGroup()
+                        .addComponent(combo_boxPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE))
         );
 
         panel_containerLaporan.add(container_laporanPenjualan, "card2");
@@ -2618,7 +2629,7 @@ public  class Dashbord extends javax.swing.JFrame {
         show_laporanPembelian.setForeground(new java.awt.Color(90, 90, 90));
         show_laporanPembelian.setText("Tampilkan Per");
 
-        combo_boxPembelian.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bulan", "Minggu", "Hari" }));
+        combo_boxPembelian.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Bulan", "Minggu", "Hari" }));
         combo_boxPembelian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_boxPembelianActionPerformed(evt);
@@ -2669,14 +2680,14 @@ public  class Dashbord extends javax.swing.JFrame {
         container_laporanPembelian.setLayout(container_laporanPembelianLayout);
         container_laporanPembelianLayout.setHorizontalGroup(
             container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1255, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
             .addGroup(container_laporanPembelianLayout.createSequentialGroup()
                 .addComponent(show_laporanPembelian)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(combo_boxPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txt_cariPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 390, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JDateDariPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2697,18 +2708,17 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_exportPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_cariPembelian, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(show_laporanPembelian)
-                            .addComponent(combo_boxPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(show_laporanPembelian)
+                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(container_laporanPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(JDateDariPembelian, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                         .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jDateSampaiPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                    .addComponent(jDateSampaiPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_boxPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_cariPembelian, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2737,7 +2747,7 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addComponent(panel_navigasiLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_containerLaporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ConntainerPanel.add(panel_contenLaporan, "card12");
@@ -2815,7 +2825,7 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(icon_totalReturn)
                     .addComponent(pengeluaranSebulan))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panel_chart = new RoundedPanel(8, new Color(255, 255, 255));
@@ -2865,7 +2875,7 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(label_contenBarangppuler)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE))
         );
 
         untung_sebulan.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -2904,6 +2914,51 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
+
+        pengeluaran_bulan1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        pengeluaran_bulan1.setForeground(new java.awt.Color(90, 90, 90));
+        pengeluaran_bulan1.setText("Kategori Paling Laris");
+
+        icon_totalReturn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/categories.png"))); // NOI18N
+
+        label_namaKt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        label_namaKt.setForeground(new java.awt.Color(90, 90, 90));
+        label_namaKt.setText("10000");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(pengeluaran_bulan1)
+                        .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(icon_totalReturn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_namaKt)
+                        .addGap(43, 43, 43))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pengeluaran_bulan1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(icon_totalReturn1)
+                    .addComponent(label_namaKt))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panel_contenDashbordLayout = new javax.swing.GroupLayout(panel_contenDashbord);
         panel_contenDashbord.setLayout(panel_contenDashbordLayout);
         panel_contenDashbordLayout.setHorizontalGroup(
@@ -2912,25 +2967,30 @@ public  class Dashbord extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_contenDashbordLayout.createSequentialGroup()
+                        .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36))
+                    .addGroup(panel_contenDashbordLayout.createSequentialGroup()
                         .addComponent(icon_penghasilanSebulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(36, 36, 36))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panel_contenDashbordLayout.setVerticalGroup(
             panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_contenDashbordLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(icon_penghasilanSebulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(icon_penghasilanSebulan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
                 .addGroup(panel_contenDashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_chart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -3065,7 +3125,7 @@ public  class Dashbord extends javax.swing.JFrame {
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
-        
+         this.setLabelNamaKategori(order.showKategoriPalingBanyakDiminati());
         //set Label Page
         label_page.setText("Dashbord");
         showChart();
@@ -3344,7 +3404,7 @@ public  class Dashbord extends javax.swing.JFrame {
         panel_iconSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/settingWhite.png")));
         panel_iconLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/pulse (1).png")));
         panel_iconManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/managerWhite.png")));
-        
+         this.setLabelNamaKategori(order.showKategoriPalingBanyakDiminati());
         //set Label Page
         label_page.setText("Dashbord");
         showChart();
@@ -3589,11 +3649,15 @@ public  class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_label_navigasi_supplierMouseClicked
 
     private void comboBox_showBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_showBarangActionPerformed
-         // TODO add your handling code here:
+          // TODO add your handling code here:
         
-        
-        String nama_kategori = comboBox_showBarang.getSelectedItem().toString();
+        if(comboBox_showBarang.getSelectedIndex()==0){
+            br.showBarang(table_barang);
+        }else{
+             String nama_kategori = comboBox_showBarang.getSelectedItem().toString();
         br.cariBarangBerdasarkanKategori(nama_kategori);
+        }
+       
         
     }//GEN-LAST:event_comboBox_showBarangActionPerformed
 
@@ -4109,8 +4173,12 @@ public  class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_panel_iconProductMouseEntered
 
     private void combo_boxPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_boxPenjualanActionPerformed
-         // TODO add your handling code here:
-         LaporanService laporan = new LaporanService();
+          // TODO add your handling code here:
+            LaporanService laporan = new LaporanService();
+         if(combo_boxPenjualan.getSelectedIndex()==0){
+             laporan.showLaporanToTable(table_laporanPenjualan);
+         }else 
+       
          if(combo_boxPenjualan.getSelectedItem().equals("Bulan")){
              laporan.showLaporanPerbulan(table_laporanPenjualan);
          }else if(combo_boxPenjualan.getSelectedItem().equals("Hari")){
@@ -4122,7 +4190,11 @@ public  class Dashbord extends javax.swing.JFrame {
 
     private void combo_boxPembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_boxPembelianActionPerformed
          // TODO add your handling code here:
+         
          LaporanPembelianServicce laporan = new LaporanPembelianServicce();
+         if(combo_boxPembelian.getSelectedIndex()==0){
+             laporan.showLaporanToTable(table_laporanPembelian);
+         }else
          if(combo_boxPembelian.getSelectedItem().equals("Bulan")){
              laporan.showLaporanPerbulan(table_laporanPembelian);
          }else if(combo_boxPembelian.getSelectedItem().equals("Hari")){
@@ -4269,7 +4341,7 @@ public  class Dashbord extends javax.swing.JFrame {
                       LaporanPembelianServicce laporan = new LaporanPembelianServicce();
                       System.out.println(dariResult);
                       System.out.println(sampaiResult);
-                      laporan.cetakLaporanPembelian(dariResult, sampaiResult);
+                      laporan.cetakLaporanPembelian(dariResult , sampaiResult);
                       
                }
          }
@@ -4432,7 +4504,12 @@ public  class Dashbord extends javax.swing.JFrame {
 
     private void combo_box_cariUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_box_cariUserActionPerformed
          // TODO add your handling code here:
-         user.showBerdasrkanStatus(combo_box_cariUser);
+         if(combo_box_cariUser.getSelectedIndex()==0){
+             user.showUser(table_user);
+         }else{
+              user.showBerdasrkanStatus(combo_box_cariUser);
+         }
+        
          
     }//GEN-LAST:event_combo_box_cariUserActionPerformed
 
@@ -4669,7 +4746,7 @@ public  class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusUSerMouseClicked
 
     private void btn_editUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editUserMouseClicked
-        // TODO add your handling code here:
+       // TODO add your handling code here:
         
          TambahUser dt = new TambahUser();
          
@@ -4713,6 +4790,15 @@ public  class Dashbord extends javax.swing.JFrame {
         TXT_cariUser.setText(null);
         TXT_cariUser.requestFocus();
     }//GEN-LAST:event_TXT_cariUserFocusGained
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        // TODO add your handling code here:
+        kategori_mostPupuler kategori = new kategori_mostPupuler();
+     
+        barangService barang = new barangService();
+       barang.addItemInCombobox(kategori_mostPupuler.comboKategori);
+        kategori.Action();
+    }//GEN-LAST:event_jPanel5MouseClicked
 
     public void showBarangWhenClick(){
         
@@ -4911,6 +4997,7 @@ public  class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel icon_penjualanSebulan;
     private javax.swing.JLabel icon_return;
     private javax.swing.JLabel icon_totalReturn;
+    private javax.swing.JLabel icon_totalReturn1;
     private javax.swing.JLabel icon_user;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -4950,6 +5037,7 @@ public  class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -4969,6 +5057,7 @@ public  class Dashbord extends javax.swing.JFrame {
     private javax.swing.JLabel label_laporanPemebelian;
     private javax.swing.JLabel label_laporan_penjualan;
     public static javax.swing.JLabel label_namaDepan;
+    private javax.swing.JLabel label_namaKt;
     public static javax.swing.JLabel label_namaPegawai;
     public static javax.swing.JLabel label_nama_belakang;
     public static javax.swing.JLabel label_nama_toko;
@@ -5032,6 +5121,7 @@ public  class Dashbord extends javax.swing.JFrame {
     private javax.swing.JPanel panel_totalUser;
     private javax.swing.JLabel pengeluaranSebulan;
     private javax.swing.JLabel pengeluaran_bulan;
+    private javax.swing.JLabel pengeluaran_bulan1;
     private javax.swing.JLabel penghasilan_bulanIni;
     private javax.swing.JPanel setting_profile;
     private javax.swing.JPanel setting_toko;

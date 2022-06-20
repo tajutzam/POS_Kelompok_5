@@ -69,13 +69,14 @@ public class User implements UserInterface{
             model.addColumn("Password");
         
         table.setRowHeight(30);
-        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai order by id_pegawai asc";
+        String sql="select id_pegawai, nama_pegawai, username, role, status, password from pegawai where id_pegawai !='"+Dashbord.label_idPegawai.getText()+"' order by id_pegawai asc";
         int no=0;
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
             ResultSet res =st.executeQuery(sql)){
-            
+            boolean isSuces=false;
             while(res.next()){
+                isSuces=true;
                 no++;
                 model.addRow(new Object[]{
                 no,
@@ -86,6 +87,11 @@ public class User implements UserInterface{
                 res.getString("status"),
                 res.getString("password")        
                 });     
+            }
+            if(isSuces==false){
+                model.addRow(new Object[]{
+                    "Tidak ada data user selain user yang sedang login"
+                });
             }
             table.setModel(model);
             
@@ -360,6 +366,9 @@ public class User implements UserInterface{
             }
             
             if(isSuces==false){
+                model.addRow(new Object[]{
+                    "Tidak ada data User"
+                });
                JOptionPane.showMessageDialog(null, "Gagal Menemukan data", "Data Tidak ada dalam data", JOptionPane.INFORMATION_MESSAGE, eroricon);
 
             }
