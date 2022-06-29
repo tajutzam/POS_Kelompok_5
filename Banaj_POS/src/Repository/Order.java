@@ -541,10 +541,15 @@ public class Order implements OrderInterface {
         try(Connection con = dt.conectDatabase();
             Statement st =con.createStatement();
              ResultSet res = st.executeQuery(kat)){
+            boolean isSuces=false;
             if(res.next()){
+                isSuces=true;
                 nama=res.getString("kategori.nama_kategori");
             }
             
+            if(isSuces==false){
+                nama="Belum Terjual";
+            }
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -663,14 +668,11 @@ public class Order implements OrderInterface {
             boolean isSuces=false;
             while(res.next()){
                 isSuces=true;
-                result=res.getString("populer");
-               
+                result=res.getString("populer");               
             }
             if(isSuces==false){
                 result="Disarankan Tidak Restok"; 
             }
-             
-
         }catch(SQLException e){
             System.out.println(e);
         }

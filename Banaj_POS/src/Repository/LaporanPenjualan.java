@@ -54,7 +54,9 @@ public class LaporanPenjualan implements ReportInterfce{
                 Statement st = con.createStatement();
                 ResultSet res = st.executeQuery(sql)){
            
+           
             while(res.next()){
+                isSuces=true;
                 no++;
                 model.addRow(new Object[]{
                  no,
@@ -65,6 +67,11 @@ public class LaporanPenjualan implements ReportInterfce{
                  
                     
                     
+                });
+            }
+            if(isSuces==false){
+                model.addRow(new Object[]{
+                    "Tidak ada transaksi"
                 });
             }
             table.setModel(model);

@@ -56,6 +56,7 @@ public class LaporanPembelian implements  ReportInterfce{
              
             
             while(res.next()){
+                
                  isSuces=true;
                  no++;
                  model.addRow(new Object[]{
@@ -69,6 +70,11 @@ public class LaporanPembelian implements  ReportInterfce{
                  
                     
                     
+                });
+            }
+            if(isSuces=false){
+                model.addRow(new Object[]{
+                    "Tidak ada transaksi"
                 });
             }
             table.setModel(model);

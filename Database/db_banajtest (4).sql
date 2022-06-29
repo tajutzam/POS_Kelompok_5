@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 08:20 PM
+-- Generation Time: Jun 23, 2022 at 05:00 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -45,11 +45,12 @@ CREATE TABLE `beli_product` (
 --
 
 INSERT INTO `beli_product` (`id_beliProduct`, `supplier`, `tanggal_beliProduct`, `kategori`, `grand_total`, `pegawai`, `bayar`, `kembalian`, `hari`, `bulan`) VALUES
-('TRB06122760', 'S001', '2022-06-12', 'K001', 1200000, 'PGW004', 1080000, 0, 12, 6),
-('TRB06123948', 'S001', '2022-06-12', 'K002', 1500000, 'PGW004', 1500000, 0, 12, 6),
-('TRB06125714', 'S001', '2022-06-12', 'K001', 360000, 'PGW004', 360000, 0, 12, 6),
-('TRB06126058', 'S002', '2022-06-12', 'K004', 520000, 'PGW004', 520000, 0, 12, 6),
-('TRB06127797', 'S001', '2022-06-12', 'K005', 630000, 'PGW004', 630000, 0, 12, 6);
+('TRB06235589', 'S001', '2022-06-23', 'K002', 900000, 'PGW004', 900000, 0, 23, 6),
+('TRB06235765', 'S001', '2022-06-23', 'K005', 1050000, 'PGW004', 1050000, 0, 23, 6),
+('TRB06236874', 'S001', '2022-06-23', 'K001', 300000, 'PGW004', 300000, 0, 23, 6),
+('TRB06237679', 'S001', '2022-06-23', 'K003', 800000, 'PGW004', 800000, 0, 23, 6),
+('TRB06237913', 'S001', '2022-06-23', 'K001', 300000, 'PGW004', 300000, 0, 23, 6),
+('TRB062382', 'S001', '2022-06-23', 'K001', 300000, 'PGW004', 300000, 0, 23, 6);
 
 -- --------------------------------------------------------
 
@@ -68,20 +69,16 @@ CREATE TABLE `detail_beli_product` (
 --
 
 INSERT INTO `detail_beli_product` (`id_beliProduct`, `jumlahBeli`, `product`) VALUES
-('TRB06125714', 12, 'DON0001'),
-('TRB06122760', 10, 'DON0002'),
-('TRB06122760', 10, 'DON0003'),
-('TRB06122760', 10, 'DON0004'),
-('TRB06122760', 10, 'DON0005'),
-('TRB06123948', 10, 'PFM0001'),
-('TRB06123948', 10, 'PFM0002'),
-('TRB06123948', 10, 'PFM0003'),
-('TRB06123948', 10, 'PFM0004'),
-('TRB06126058', 10, 'SAO0001'),
-('TRB06126058', 10, 'SAO0002'),
-('TRB06127797', 10, 'CNR0001'),
-('TRB06127797', 10, 'CNR0002'),
-('TRB06127797', 10, 'CNR0003');
+('TRB062382', 10, 'DON0001'),
+('TRB06236874', 10, 'DON0002'),
+('TRB06237679', 10, 'SAO0001'),
+('TRB06237679', 10, 'SAO0002'),
+('TRB06237679', 10, 'SAO0003'),
+('TRB06235589', 10, 'PRM0001'),
+('TRB06235589', 10, 'PRM0002'),
+('TRB06235765', 10, 'SBN0001'),
+('TRB06235765', 10, 'SBN0002'),
+('TRB06235765', 10, 'SBN0003');
 
 -- --------------------------------------------------------
 
@@ -106,41 +103,25 @@ CREATE TABLE `detail_transaksi` (
   `kode_product` varchar(8) NOT NULL,
   `sub_total` varchar(32) NOT NULL,
   `qty` int(32) NOT NULL,
-  `sub_pembelian` int(64) NOT NULL
+  `sub_pembelian` int(64) NOT NULL,
+  `kode_kategori` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`, `sub_pembelian`) VALUES
-('TRJ06126738', 'DON0001', '35000', 1, 30000),
-('TRJ06125826', 'PFM0002', '45000', 1, 40000),
-('TRJ06125826', 'CNR0003', '25000', 1, 23000),
-('TRJ06125826', 'CNR0002', '22000', 1, 20000),
-('TRJ06125826', 'PFM0003', '35000', 1, 30000),
-('TRJ06125826', 'SAO0001', '30000', 1, 27000),
-('TRJ06125826', 'SAO0002', '30000', 1, 25000),
-('TRJ05121112', 'DON0005', '35000', 1, 30000),
-('TRJ05121112', 'PFM0001', '50000', 1, 45000),
-('TRJ05121112', 'PFM0002', '45000', 1, 40000),
-('TRJ05121112', 'PFM0003', '35000', 1, 30000),
-('TRJ05121112', 'CNR0002', '22000', 1, 20000),
-('TRJ05121112', 'CNR0003', '25000', 1, 23000),
-('TRJ06126418', 'CNR0002', '22000', 1, 20000),
-('TRJ06126418', 'SAO0001', '30000', 1, 27000),
-('TRJ06126418', 'SAO0002', '30000', 1, 25000),
-('TRJ06126418', 'DON0002', '35000', 1, 30000),
-('TRJ06126418', 'DON0001', '35000', 1, 30000),
-('TRJ06126418', 'DON0003', '35000', 1, 30000),
-('TRJ06126418', 'PFM0004', '40000', 1, 35000),
-('TRJ03121469', 'CNR0002', '22000', 1, 20000),
-('TRJ06128389', 'CNR0002', '22000', 1, 20000),
-('TRJ02121872', 'PFM0003', '35000', 1, 30000),
-('TRJ06126412', 'SAO0001', '30000', 1, 27000),
-('TRJ04121145', 'SAO0002', '30000', 1, 25000),
-('TRJ06126617', 'SAO0002', '30000', 1, 25000),
-('TRJ01122168', 'SAO0002', '30000', 1, 25000);
+INSERT INTO `detail_transaksi` (`id_transaksi`, `kode_product`, `sub_total`, `qty`, `sub_pembelian`, `kode_kategori`) VALUES
+('TRJ06238476', 'SAO0001', '30000', 1, 25000, 'K003'),
+('TRJ06238476', 'SAO0002', '30000', 1, 25000, 'K003'),
+('TRJ06233102', 'PRM0002', '47000', 1, 45000, 'K002'),
+('TRJ06233102', 'PRM0001', '50000', 1, 45000, 'K002'),
+('TRJ06233102', 'DON0002', '35000', 1, 30000, 'K001'),
+('TRJ06233102', 'DON0001', '35000', 1, 30000, 'K001'),
+('TRJ06233102', 'SAO0003', '35000', 1, 30000, 'K003'),
+('TRJ06233102', 'SBN0001', '37000', 1, 35000, 'K005'),
+('TRJ06233102', 'SBN0002', '37000', 1, 35000, 'K005'),
+('TRJ06233102', 'SBN0003', '37000', 1, 35000, 'K005');
 
 --
 -- Triggers `detail_transaksi`
@@ -169,13 +150,11 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`, `create_at`, `update_at`) VALUES
-('K001', 'DEODORAN', '2022-06-12 12:03:57', '2022-06-12 12:03:57'),
-('K002', 'PAFRUM', '2022-06-12 15:32:38', '2022-06-12 15:32:38'),
-('K003', 'LULUR', '2022-06-12 15:33:02', '2022-06-12 15:33:02'),
-('K004', 'SHAMPO', '2022-06-12 15:33:26', '2022-06-12 15:33:26'),
-('K005', 'CONDISIONER', '2022-06-12 15:34:42', '2022-06-12 15:34:42'),
-('K006', 'MASKER WAJAH', '2022-06-12 15:35:34', '2022-06-12 15:35:34'),
-('K007', 'SABUN', '2022-06-12 15:35:45', '2022-06-12 15:35:45');
+('K001', 'DEODORAN', '2022-06-23 17:20:04', '2022-06-23 17:20:04'),
+('K002', 'PARFUM', '2022-06-23 17:39:14', '2022-06-23 17:39:14'),
+('K003', 'SHAMPO', '2022-06-23 17:39:23', '2022-06-23 17:39:23'),
+('K004', 'LULUR', '2022-06-23 17:39:31', '2022-06-23 17:39:31'),
+('K005', 'SABUN', '2022-06-23 17:39:40', '2022-06-23 17:39:40');
 
 -- --------------------------------------------------------
 
@@ -200,7 +179,7 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `create_at`, `update_at`, `role`, `status`, `password`) VALUES
 ('PGW004', 'ZENN ZEN', 'admin', '2022-06-12 16:57:33', '2022-06-12 16:57:33', 1, 'Aktif', 'admin'),
-('PGW005', 'ZAM ZAMI', 'KASIR', '2022-06-12 16:14:37', '2022-06-12 16:14:37', 2, 'Aktif', 'kasir');
+('PGW005', 'ZAM ZAMI', 'kasir', '2022-06-23 17:45:45', '2022-06-23 17:45:45', 2, 'Aktif', 'kasir');
 
 -- --------------------------------------------------------
 
@@ -227,20 +206,16 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`kode_product`, `nama_product`, `stok`, `harga_beli`, `harga_jual`, `supplier`, `kategori`, `create_at`, `update_at`, `rusak`, `total_stok`) VALUES
-('CNR0001', 'conditioner banaj beauty care', 10, 20000, 22000, 'S001', 'K005', '2022-06-12 08:47:12', '2022-06-12 08:47:12', 0, 10),
-('CNR0002', 'condisioner banaj varian dupa', 5, 20000, 22000, 'S001', 'K005', '2022-06-12 08:49:53', '2022-06-12 08:47:12', 0, 5),
-('CNR0003', 'condisioner banaj varian jeruk', 8, 23000, 25000, 'S001', 'K005', '2022-06-12 08:48:42', '2022-06-12 08:47:12', 0, 8),
-('DON0001', 'DEODORAN ', 10, 30000, 35000, 'S001', 'K001', '2022-06-12 08:49:11', '2022-06-12 05:04:31', 0, 10),
-('DON0002', 'deo roll on', 9, 30000, 35000, 'S001', 'K001', '2022-06-12 08:49:11', '2022-06-12 08:38:50', 0, 9),
-('DON0003', 'deo roll on dupa', 9, 30000, 35000, 'S001', 'K001', '2022-06-12 08:49:11', '2022-06-12 08:38:50', 0, 9),
-('DON0004', 'deo roll on jeruk', 10, 30000, 35000, 'S001', 'K001', '2022-06-12 08:38:50', '2022-06-12 08:38:50', 0, 10),
-('DON0005', 'deo roll on rempah', 9, 30000, 35000, 'S001', 'K001', '2022-06-12 08:48:42', '2022-06-12 08:38:50', 0, 9),
-('PFM0001', 'parfum premium banaj beauty care', 9, 45000, 50000, 'S001', 'K002', '2022-06-12 08:48:42', '2022-06-12 08:42:09', 0, 9),
-('PFM0002', 'parfum aisyah banaj', 8, 40000, 45000, 'S001', 'K002', '2022-06-12 08:48:42', '2022-06-12 08:42:09', 0, 8),
-('PFM0003', 'Sabrina Parfum Banaj', 7, 30000, 35000, 'S001', 'K002', '2022-06-12 08:50:02', '2022-06-12 08:42:09', 0, 7),
-('PFM0004', 'Parfum Man Banaj', 9, 35000, 40000, 'S001', 'K002', '2022-06-12 08:49:11', '2022-06-12 08:42:09', 0, 9),
-('SAO0001', 'Shampo Banaj Beauty Care', 7, 27000, 30000, 'S002', 'K004', '2022-06-12 08:50:16', '2022-06-12 08:45:12', 0, 7),
-('SAO0002', 'shampo herbal banaj', 5, 25000, 30000, 'S002', 'K004', '2022-06-12 08:50:42', '2022-06-12 08:45:12', 0, 5);
+('DON0001', 'DEO ROLL ON 25 ML DEODORANT BANAJ BEAUTY CARE', 9, 30000, 35000, 'S001', 'K001', '2022-06-23 10:50:37', '2022-06-23 10:36:24', 0, 9),
+('DON0002', 'DEO BANAJ', 9, 30000, 35000, 'S001', 'K001', '2022-06-23 10:50:37', '2022-06-23 10:38:58', 0, 9),
+('PRM0001', 'PARFUM PREMIUM BANAJ BEAUTY CARE', 9, 45000, 50000, 'S001', 'K002', '2022-06-23 10:50:37', '2022-06-23 10:42:39', 0, 9),
+('PRM0002', 'Parfum Banaj-Parfum All in 1', 9, 45000, 47000, 'S001', 'K002', '2022-06-23 10:50:37', '2022-06-23 10:42:39', 0, 9),
+('SAO0001', 'Shampo Herbal Banaj', 9, 25000, 30000, 'S001', 'K003', '2022-06-23 10:49:55', '2022-06-23 10:41:12', 0, 9),
+('SAO0002', 'shampo banaj varian dupa', 9, 25000, 30000, 'S001', 'K003', '2022-06-23 10:49:55', '2022-06-23 10:41:12', 0, 9),
+('SAO0003', 'shampo banaj varian susu', 9, 30000, 35000, 'S001', 'K003', '2022-06-23 10:50:37', '2022-06-23 10:41:12', 0, 9),
+('SBN0001', 'Sabun banaj', 9, 35000, 37000, 'S001', 'K005', '2022-06-23 10:50:37', '2022-06-23 10:44:50', 0, 9),
+('SBN0002', 'Sabun rempah ', 9, 35000, 37000, 'S001', 'K005', '2022-06-23 10:50:37', '2022-06-23 10:44:50', 0, 9),
+('SBN0003', 'Sabun susu dupa', 9, 35000, 37000, 'S001', 'K005', '2022-06-23 10:50:37', '2022-06-23 10:44:50', 0, 9);
 
 --
 -- Triggers `product`
@@ -291,8 +266,7 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`kode_supplier`, `nama_supplier`, `create_at`, `update_at`) VALUES
-('S001', 'DEODORAN SUPPLIER', '2022-06-12 12:04:09', '2022-06-12 12:04:09'),
-('S002', 'banaj', '2022-06-12 15:35:54', '2022-06-12 15:35:54');
+('S001', 'BANAJ', '2022-06-23 17:35:45', '2022-06-23 17:35:45');
 
 -- --------------------------------------------------------
 
@@ -339,17 +313,8 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `grand_total`, `bayar`, `id_pegawai`, `kembali`, `grand_modal`, `bulan`, `hari`) VALUES
-('TRJ01122168', '2022-01-12', 30000, 3232230, 'PGW004', 3202230, 25000, 1, 12),
-('TRJ02121872', '2022-02-12', 35000, 23000, 'PGW004', 0, 30000, 2, 12),
-('TRJ03121469', '2022-03-12', 22000, 25000, 'PGW004', 3000, 20000, 3, 12),
-('TRJ04121145', '2022-04-12', 30000, 32000, 'PGW004', 2000, 25000, 4, 12),
-('TRJ05121112', '2022-05-12', 212000, 215000, 'PGW004', 3000, 188000, 5, 12),
-('TRJ06125826', '2022-06-12', 187000, 200000, 'PGW004', 13000, 165000, 6, 12),
-('TRJ06126412', '2022-06-12', 30000, 30000, 'PGW004', 0, 27000, 6, 12),
-('TRJ06126418', '2022-06-12', 227000, 230000, 'PGW004', 3000, 197000, 6, 12),
-('TRJ06126617', '2022-06-12', 30000, 30000, 'PGW004', 0, 25000, 6, 12),
-('TRJ06126738', '2022-06-12', 35000, 25000, 'PGW004', 0, 30000, 6, 12),
-('TRJ06128389', '2022-06-12', 22000, 22000, 'PGW004', 0, 20000, 6, 12);
+('TRJ06233102', '2022-06-23', 313000, 313000, 'PGW004', 0, 285000, 6, 23),
+('TRJ06238476', '2022-06-23', 60000, 60000, 'PGW004', 0, 50000, 6, 23);
 
 --
 -- Indexes for dumped tables
@@ -381,7 +346,8 @@ ALTER TABLE `detail_retur`
 --
 ALTER TABLE `detail_transaksi`
   ADD KEY `id_transaksi` (`id_transaksi`),
-  ADD KEY `kode_product` (`kode_product`);
+  ADD KEY `kode_product` (`kode_product`),
+  ADD KEY `kode_kategori` (`kode_kategori`);
 
 --
 -- Indexes for table `kategori`
@@ -465,7 +431,8 @@ ALTER TABLE `detail_retur`
 --
 ALTER TABLE `detail_transaksi`
   ADD CONSTRAINT `detail_transaksi_ibfk_2` FOREIGN KEY (`kode_product`) REFERENCES `product` (`kode_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detail_transaksi_ibfk_3` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detail_transaksi_ibfk_3` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_transaksi_ibfk_4` FOREIGN KEY (`kode_kategori`) REFERENCES `kategori` (`kode_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`
