@@ -9,11 +9,13 @@ import Util.Id;
 import Util.idBeliProduct;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import service.OrderService;
@@ -36,6 +38,7 @@ public class Restok extends javax.swing.JFrame {
     
     ImageIcon suscesicon =  new ImageIcon(getClass().getResource("/picture/checked.png"));
     ImageIcon eroricon =  new ImageIcon(getClass().getResource("/picture/warning.png"));
+    OrderService order = new OrderService();
     public String getHarga_beli() {
         return harga_beli;
     }
@@ -72,8 +75,27 @@ public class Restok extends javax.swing.JFrame {
     
    //fungsi untuk menampilkan frame 
     public void Action(){
+        if(combo_restok.getSelectedIndex()==0){
+          
+            setLabel_stok_lama("Pilih Barang Dulu");
+            setTxt_saranRestok("Pilih Barang Dulu");
+            txt_saranRestok.setForeground(new Color(90, 90, 90));
+            Font font = new Font("Trebuchet MS", Font.BOLD,12);
+            txt_saranRestok.setFont(font);
+        }
         this.setVisible(true);
+        
     }
+
+    public  void setLabel_stok_lama(String keyword) {
+       this.label_stok_lama.setText(keyword);
+    }
+
+    public void setTxt_saranRestok(String stok) {
+       this.txt_saranRestok.setText(stok);
+    }
+    
+    
 
     public String getSupplier() {
         return supplier;
@@ -114,6 +136,8 @@ public class Restok extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txt_tambahStok = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txt_saranRestok = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -138,6 +162,7 @@ public class Restok extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        combo_restok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Terlebih Dahulu" }));
         combo_restok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_restokActionPerformed(evt);
@@ -172,19 +197,33 @@ public class Restok extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(90, 90, 90));
+        jLabel5.setText("Saran Restok Minimal");
+
+        txt_saranRestok.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        txt_saranRestok.setText("jLabel6");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(combo_restok, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(label_stok_lama)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_tambahStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(112, 112, 112)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(combo_restok, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(label_stok_lama)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_saranRestok))
+                        .addComponent(jLabel4)
+                        .addComponent(txt_tambahStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,9 +241,13 @@ public class Restok extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(combo_restok, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jLabel3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
                 .addGap(8, 8, 8)
-                .addComponent(label_stok_lama)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_stok_lama)
+                    .addComponent(txt_saranRestok))
                 .addGap(10, 10, 10)
                 .addComponent(jLabel4)
                 .addGap(8, 8, 8)
@@ -244,6 +287,12 @@ public class Restok extends javax.swing.JFrame {
     private void combo_restokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_restokActionPerformed
          // TODO add your handling code here:
          
+         if(combo_restok.getSelectedIndex()==0){
+             this.setTxt_saranRestok("Pilih Barang dulu");
+             this.setLabel_stok_lama("Pilih Barang dulu");
+         }else{
+             
+         
          String nama_product = combo_restok.getSelectedItem().toString();
          
          barangService barang = new barangService();
@@ -255,8 +304,9 @@ public class Restok extends javax.swing.JFrame {
          this.setStokTambah(txt_tambahStok.getText());
          this.setSupplier(barang.getKodeSupplier(this.getKode()));
          this.setKategori(barang.getKodeKategori(this.getKode()));
+         this.setTxt_saranRestok(order.getSaranStokMenurutBulanI(this.getKategori(), this.getKode()));
          
-
+         }
          
     }//GEN-LAST:event_combo_restokActionPerformed
 
@@ -266,6 +316,11 @@ public class Restok extends javax.swing.JFrame {
          KonfirmasiBayarUpdate bayar = new KonfirmasiBayarUpdate();
          OrderService order = new OrderService();
          barangService barang = new barangService();
+         if(combo_restok.getSelectedIndex()==0){
+          JOptionPane.showMessageDialog(null, "Harap Pilih Field Terlebih Dahulu!", "Information", JOptionPane.INFORMATION_MESSAGE ,eroricon );
+         }else{
+             
+         
          if(txt_tambahStok.getText().equals("")){
              JOptionPane.showMessageDialog(null, "Harap Isi Field Tambah Stok Terlebih Dahulu !", "Information", JOptionPane.INFORMATION_MESSAGE ,eroricon );
          }else{
@@ -288,6 +343,7 @@ public class Restok extends javax.swing.JFrame {
              bayar.setIdTransaksi(idBeli);
             
             
+         }
          }
          
         
@@ -385,9 +441,11 @@ public class Restok extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public static javax.swing.JLabel label_stok_lama;
+    private javax.swing.JLabel txt_saranRestok;
     public static javax.swing.JTextField txt_tambahStok;
     // End of variables declaration//GEN-END:variables
 }

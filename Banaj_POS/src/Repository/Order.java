@@ -11,6 +11,7 @@ import View.Dashbord;
 import View.KonfirmasiBayar;
 import View.KonfirmasiOrder;
 import static View.KonfirmasiOrder.txt_qty;
+import View.kategori_mostPupuler;
 import com.barcodelib.barcode.Linear;
 import java.awt.Color;
 import java.awt.Component;
@@ -264,7 +265,20 @@ public class Order implements OrderInterface {
 
     @Override
     public void insertDataOrder(String id, String kode, String subTotal, String qty, int subPembelian) {
-        String sql = "INSERT INTO `detail_transaksi`(`id_transaksi`, `kode_product`, `sub_total`, `qty` ,sub_pembelian) VALUES (?,?,?,?,?)";
+        
+        String kat ="select kategori from product where kode_product ='"+kode+"'";
+        String sql = "INSERT INTO `detail_transaksi`(`id_transaksi`, `kode_product`, `sub_total`, `qty` ,sub_pembelian , kode_kategori) VALUES (?,?,?,?,?,?)";
+        String kode_kategori="";
+        try(Connection con =dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(kat)){
+            if(res.next()){
+                kode_kategori=res.getString("kategori");
+            }
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
         try (Connection con = dt.conectDatabase();
                 PreparedStatement pst = con.prepareStatement(sql)) {
 
@@ -273,6 +287,7 @@ public class Order implements OrderInterface {
             pst.setString(3, subTotal);
             pst.setString(4, qty);
             pst.setInt(5, subPembelian);
+            pst.setString(6 ,kode_kategori );
             pst.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -332,10 +347,10 @@ public class Order implements OrderInterface {
             hash.put("barcode_path", "src/Report/" + fname + ".png");
             JasperPrint print;
             print = JasperFillManager.fillReport(Report, hash, con);
-//            JasperViewer view = new JasperViewer(print ,false);
-//            view.setVisible(true);
+            JasperViewer view = new JasperViewer(print ,false);
+            view.setVisible(true);
 
-            JasperPrintManager.printReport(print, false); 
+           // JasperPrintManager.printReport(print, false); 
             File fileDelete = new File("src/Report/" + fname + ".png");
             fileDelete.delete();
 
@@ -376,8 +391,10 @@ public class Order implements OrderInterface {
 
             JasperPrint print;
             print = JasperFillManager.fillReport(Report, hash, con);
-          
-            JasperPrintManager.printReport(print, false);
+            JasperViewer view = new JasperViewer(print);
+            view.setVisible(true);
+            
+        //    JasperPrintManager.printReport(print, false);
 
         } catch (SQLException e) {
 
@@ -484,10 +501,10 @@ public class Order implements OrderInterface {
         table.setRowHeight(30);
         
         int indekbulan = bulan.getindexBulan();
-        System.out.println("bulan"+indekbulan);
+       
         String sql="select product.nama_product ,count(detail_transaksi.kode_product) as populer from detail_transaksi join product on product.kode_product = detail_transaksi.kode_product GROUP by product.nama_product where transaksi.bulan ='"+indekbulan+"'order by populer DESC limit 5";
         
-        String sql2="SELECT product.nama_product , COUNT(detail_transaksi.kode_product) as populer FROM detail_transaksi join product on product.kode_product=detail_transaksi.kode_product JOIN transaksi on detail_transaksi.id_transaksi =transaksi.id_transaksi where transaksi.bulan ="+indekbulan+" group by product.nama_product order by populer desc limit 5";
+        String sql2="SELECT product.nama_product , COUNT(detail_transaksi.kode_product) as populer FROM detail_transaksi join product on product.kode_product=detail_transaksi.kode_product JOIN transaksi on detail_transaksi.id_transaksi =transaksi.id_transaksi where transaksi.bulan ="+indekbulan+" group by product.nama_product order by populer desc limit 5 ";
         try(Connection con = dt.conectDatabase();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql2)){
@@ -501,7 +518,7 @@ public class Order implements OrderInterface {
                     
                     
                 });
-                System.out.println("Test");
+             
            
             }
              Dashbord.table_banyakDiminati.setModel(model);
@@ -510,10 +527,162 @@ public class Order implements OrderInterface {
         }catch(SQLException e){
             System.out.println(e);
         }
+       
         
         
         
         
     }
+
+    @Override
+    public String showKategoriPalingBanyakDiminati() {
+        String kat="select kategori.nama_kategori , count(detail_transaksi.kode_kategori) as jml_kategori  from kategori join detail_transaksi on kategori.kode_kategori= detail_transaksi.kode_kategori GROUP by kategori.nama_kategori order by jml_kategori DESC LIMIT 1";
+        String nama="";
+        try(Connection con = dt.conectDatabase();
+            Statement st =con.createStatement();
+             ResultSet res = st.executeQuery(kat)){
+            boolean isSuces=false;
+            if(res.next()){
+                isSuces=true;
+                nama=res.getString("kategori.nama_kategori");
+            }
+            
+            if(isSuces==false){
+                nama="Belum Terjual";
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return nama;
+    }
+
+    @Override
+    public void showKategoritotable() {
+        
+        
+    }
+     public void barangPalingBanyakDiminatiKategori(JTable table) {
+        int no=0;
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah Terjual");
+        table.setRowHeight(30);
+        
+        int indekbulan = bulan.getindexBulan();
+        System.out.println("bulan"+indekbulan);
+        String sql="select product.nama_product ,count(detail_transaksi.kode_product) as populer from detail_transaksi join product on product.kode_product = detail_transaksi.kode_product GROUP by product.nama_product where transaksi.bulan ='"+indekbulan+"'order by populer DESC limit 5";
+        
+        String sql2="SELECT product.nama_product , COUNT(detail_transaksi.kode_product) as populer FROM detail_transaksi join product on product.kode_product=detail_transaksi.kode_product JOIN transaksi on detail_transaksi.id_transaksi =transaksi.id_transaksi group by product.nama_product order by populer desc limit 5 ";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql2)){
+          
+            while(res.next()){
+                no++;
+                model.addRow(new Object[]{
+                    no,
+                    res.getString("product.nama_product"),
+                    res.getString("populer")
+                    
+                    
+                });
+              
+           
+            }
+              kategori_mostPupuler.table_barangMost.setModel(model);
+             
+           
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+       
+        
+        
+        
+        
+    }
+
+    @Override
+    public void barangPalingBanyakDiminatikeyword(String keyword, JTable table) {
+        int no=0;
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah Terjual");
+        table.setRowHeight(30);
+        
+        int indekbulan = bulan.getindexBulan();
+        System.out.println("bulan"+indekbulan);
+        String sql="select product.nama_product ,count(detail_transaksi.kode_product) as populer from detail_transaksi join product on product.kode_product = detail_transaksi.kode_product GROUP by product.nama_product where transaksi.bulan ='"+indekbulan+"'order by populer DESC limit 5";
+        
+        String sql2="SELECT product.nama_product , COUNT(detail_transaksi.kode_product) as populer FROM detail_transaksi join product on product.kode_product=detail_transaksi.kode_product JOIN transaksi on detail_transaksi.id_transaksi =transaksi.id_transaksi where detail_transaksi.kode_kategori ='"+keyword+"' group by product.nama_product order by populer desc ";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql2)){
+            boolean isSuces=false;
+            while(res.next()){
+                isSuces=true;
+                no++;
+                model.addRow(new Object[]{
+                    no,
+                    res.getString("product.nama_product"),
+                    res.getString("populer")
+                    
+                    
+                });
+         
+           
+            }
+            
+              
+              kategori_mostPupuler.table_barangMost.setModel(model);
+              if(isSuces==false){
+                  model.addRow(new Object[]{
+                    "Tidak ada product Terbeli"
+                });
+              }
+             
+           
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+       
+        
+    }
+
+    @Override
+    public String getSaranStokMenurutBulanI(String kategori, String product) {
+        String result="";
+        
+    
+        
+        int indekbulan = bulan.getindexBulan();
+        System.out.println("bulan"+indekbulan);        
+        String sql2="SELECT product.nama_product , COUNT(detail_transaksi.kode_product) as populer FROM detail_transaksi join product on product.kode_product=detail_transaksi.kode_product JOIN transaksi on detail_transaksi.id_transaksi =transaksi.id_transaksi where detail_transaksi.kode_kategori ='"+kategori+"' and product.kode_product='"+product+"' and bulan ='"+indekbulan+"' group by product.nama_product order by populer desc ";
+        try(Connection con = dt.conectDatabase();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql2)){
+            boolean isSuces=false;
+            while(res.next()){
+                isSuces=true;
+                result=res.getString("populer");               
+            }
+            if(isSuces==false){
+                result="Disarankan Tidak Restok"; 
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+       
+    return result;    
+        
+    }
+    
+     
+   
+    
   
 }

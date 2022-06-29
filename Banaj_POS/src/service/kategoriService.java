@@ -11,6 +11,7 @@ import View.Dashbord;
 import View.DataBarangTambah;
 import View.DataTambahKategori;
 import View.DataTambahSupplier;
+import View.kategori_mostPupuler;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.InputMismatchException;
@@ -120,6 +121,10 @@ public class kategoriService {
      public String getKodeKategori(){
          KategoriInterface kategori = new Kategori();
          return kategori.getCodeKategori(DataBarangTambah.combo_kategori);
+     }
+      public String getKodeKategorimost(){
+       
+         return kategori.getCodeKategoriMost(kategori_mostPupuler.comboKategori);
      }
     
 }

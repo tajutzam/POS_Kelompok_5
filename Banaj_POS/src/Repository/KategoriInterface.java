@@ -20,6 +20,8 @@ import javax.swing.JTable;
 public interface KategoriInterface {
     
     public String getCodeKategori(JComboBox box);
+        
+    public String getCodeKategoriMost(JComboBox box);
     public void showKategori(JTable table);
     public void addKategori(String nama , String kode , String time);
     public String getPrimaryKey();

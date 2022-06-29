@@ -41,7 +41,7 @@ public class LaporanPembelianServicce {
         report.showLaporanPerminggu(table);
     }
     public void cetakLaporanPembelian(String dari , String sampai){
-        report.cetakLaporanpenjualan(sampai, sampai);
+        report.cetakLaporanpenjualan(dari , sampai);
     }
     public void cariLaporan(String id_transaksi , JTable table){
         report.cariLaporanBerdasarkanTransaksi(id_transaksi, table);

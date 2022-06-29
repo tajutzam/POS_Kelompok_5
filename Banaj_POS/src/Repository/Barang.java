@@ -1286,7 +1286,7 @@ public class Barang implements BarangInterface{
               
           }
           
-         
+          boolean isSuces=false;
           String sql="select product.kode_product,product.nama_product, product.harga_jual,product.harga_beli,product.stok,product.rusak , product.total_stok, supplier.nama_supplier,kategori.nama_kategori from product join kategori on product.kategori = kategori.kode_kategori join supplier on product.supplier = supplier.kode_supplier where  kode_kategori like '%"+kodeKategori+"%' order by product.kode_product asc";
        
           try(Connection con = dt.conectDatabase();
@@ -1296,6 +1296,7 @@ public class Barang implements BarangInterface{
             {
                  int no=1;
                  while(res.next()){
+                     isSuces=true;
                     model.addRow(new Object[]{                   
                      no,
                      res.getString("kode_product"),
@@ -1309,6 +1310,12 @@ public class Barang implements BarangInterface{
                     });
                     no++;
                 }
+                 if(isSuces==false){
+                     
+                     model.addRow(new Object[]{
+                         "Tidak Ada data Product"
+                     });
+                 }
                 Dashbord.table_barang.setModel(model);
             }catch(SQLException e){
               System.out.println(e);

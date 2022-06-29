@@ -28,5 +28,11 @@ public interface OrderInterface {
     public String getPengeluaran();
     public int showPenjualanint(int indek);
     public void barangPalingBanyakDiminati(JTable table);
+    public String showKategoriPalingBanyakDiminati();
+    public void showKategoritotable();
+    public void barangPalingBanyakDiminatiKategori(JTable table);
+    public void barangPalingBanyakDiminatikeyword(String keyword , JTable table);
+    public String getSaranStokMenurutBulanI(String kategori , String product);
+    
   
 }
