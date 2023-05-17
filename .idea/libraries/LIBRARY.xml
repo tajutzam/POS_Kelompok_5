@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="LIBRARY">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY/LIBRARY/zxing-j2se-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY/LIBRARY/barcode.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY/LIBRARY/qrgen-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY/LIBRARY/zxing-core-1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

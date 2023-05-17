@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="LIBRARY IREPORT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/commons-javaflow-20060411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/commons-digester-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/itextpdf-5.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/groovy-all-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/jasperreports-5.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/mysql-connector-java-5.1.23-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/commons-logging-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/iText-2.1.7.js2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/commons-beanutils-1.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT/LIBRARY IREPORT/beansbinding-1.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

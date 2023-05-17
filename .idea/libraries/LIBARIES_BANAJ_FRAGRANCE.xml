@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="LIBARIES BANAJ FRAGRANCE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/mail.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

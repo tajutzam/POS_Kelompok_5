@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/jcalendar-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY-IREPORT.zip!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/LIBRARY.zip!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/jar_files.zip!/" />
+      <root url="jar://$PROJECT_DIR$/LIBARIES BANAJ FRAGRANCE/lib/jcommon-1.0.17.jar.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="200" pageHeight="842" columnWidth="160" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="09220bd7-3c15-454a-98b6-b486a80de47e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Barcode" class="java.lang.String"/>
+	<parameter name="barcode_path" class="java.lang.String"/>
+	<parameter name="Nama_barang" class="java.lang.String"/>
+	<parameter name="Harga" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select kode_product from product where nama_product =$P{Barcode}]]>
+	</queryString>
+	<field name="kode_product" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="128" splitType="Stretch">
+			<image scaleImage="RealSize">
+				<reportElement isPrintRepeatedValues="false" x="9" y="0" width="143" height="88" uuid="ff6b383f-a420-47e6-a047-86279c831253"/>
+				<imageExpression><![CDATA[$P{barcode_path}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="9" y="88" width="100" height="20" uuid="660f3fc0-b8f6-47bb-9f70-851b927c37da"/>
+				<textFieldExpression><![CDATA[$P{Nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9" y="108" width="100" height="20" uuid="e2e17326-d2d1-44d3-9038-89579b4ceb04"/>
+				<textFieldExpression><![CDATA[$P{Harga}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

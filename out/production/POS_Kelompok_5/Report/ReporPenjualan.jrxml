@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="210" pageHeight="842" columnWidth="75" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="2796c06a-fde4-4369-ac22-accf1311783c">
+	<property name="ireport.zoom" value="2.8531167061100042"/>
+	<property name="ireport.x" value="2"/>
+	<property name="ireport.y" value="336"/>
+	<parameter name="kode" class="java.lang.String"/>
+	<parameter name="nama_toko" class="java.lang.String"/>
+	<parameter name="no_hp" class="java.lang.String"/>
+	<parameter name="alamat" class="java.lang.String"/>
+	<parameter name="diskon" class="java.lang.String"/>
+	<parameter name="nama_kasir" class="java.lang.String"/>
+	<parameter name="harga_total" class="java.lang.String"/>
+	<parameter name="barcode_path" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT transaksi.id_transaksi , pegawai.nama_pegawai , detail_transaksi.sub_total,product.harga_jual, detail_transaksi.qty , transaksi.tanggal_transaksi , transaksi.grand_total , transaksi.bayar , transaksi.kembali  , product.nama_product from detail_transaksi join transaksi on detail_transaksi.id_transaksi = transaksi.id_transaksi JOIN product ON detail_transaksi.kode_product = product.kode_product join pegawai on transaksi.id_pegawai=pegawai.id_pegawai where transaksi.id_transaksi=$P{kode}]]>
+	</queryString>
+	<field name="id_transaksi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_pegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sub_total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga_jual" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_transaksi" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grand_total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bayar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kembali" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_product" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="190" height="20" forecolor="#5A5A5A" uuid="89eafa68-b92b-4d8c-9461-473ffd82bede"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nama_toko}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="190" height="21" forecolor="#5A5A5A" uuid="4326f656-b4a1-47bc-ba24-2e5a11fa443f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{no_hp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="41" width="190" height="20" forecolor="#5A5A5A" uuid="d4cf44b0-c4f0-4358-adbe-8ad434df9373"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{alamat}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="67" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="190" height="1" uuid="4637880d-1fb8-45ae-ba2a-00bc102a62a8"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="3" y="1" width="89" height="20" forecolor="#5A5A5A" uuid="b011e8dc-010e-49ce-9355-4f05732eb73f"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[ID Transaksi	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="21" width="89" height="20" forecolor="#5A5A5A" uuid="e59eee19-c04f-4a06-aba2-f5690c67dc42"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Tanggal Transaksi	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="92" y="1" width="88" height="20" forecolor="#5A5A5A" uuid="8cafb3c7-4818-4320-b946-e332e1524be0"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_transaksi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="21" width="88" height="20" forecolor="#5A5A5A" uuid="dd5fe5f0-5a44-4509-ab56-e51629648922"/>
+				<textFieldExpression><![CDATA[$F{tanggal_transaksi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="41" width="89" height="20" forecolor="#5A5A5A" uuid="51982ae4-44e0-4701-8e09-b82f13146f45"/>
+				<text><![CDATA[Kasir		:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="61" width="190" height="1" uuid="68b8dc41-0a7b-4b66-88af-4d9fd2dc68ff"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="92" y="42" width="88" height="20" forecolor="#5A5A5A" uuid="d2d7807c-0b7a-4b64-8c7f-f4e000ed3136"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_pegawai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="0" width="52" height="20" forecolor="#5A5A5A" uuid="4157eb9c-690b-4642-a209-462679c63f7e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="0" width="27" height="20" forecolor="#5A5A5A" uuid="c252ad50-e588-491b-9a5c-c85c777ab719"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="0" width="39" height="20" forecolor="#5A5A5A" uuid="9d95b388-530a-46de-aa1e-596854eeaad2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{harga_jual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="48" height="20" forecolor="#5A5A5A" uuid="f972ba2a-543d-48d1-8777-658648bd5272"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="185" splitType="Prevent">
+			<line>
+				<reportElement x="65" y="0" width="125" height="1" uuid="fdcebe81-3427-4b46-aa4a-5f390dccee38"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="65" y="40" width="61" height="20" forecolor="#5A5A5A" uuid="b537f4aa-fea5-4495-9d02-694808d17f91"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Total Bayar  :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="60" width="61" height="20" forecolor="#5A5A5A" uuid="bd503652-4b93-4cf6-9b52-6199cc497093"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Bayar Tunai  :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="80" width="61" height="20" forecolor="#5A5A5A" uuid="590c08e6-caf2-42b3-a903-ec3bf0eaf50f"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Kembalian    : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="142" y="40" width="48" height="20" forecolor="#5A5A5A" uuid="378183e5-4a72-47e7-a5b2-3ad213ea3a24"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="60" width="49" height="20" forecolor="#5A5A5A" uuid="dbbd5dbd-b6c8-4dd8-b414-70a666736251"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bayar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="80" width="49" height="20" forecolor="#5A5A5A" uuid="e42e65b6-fff0-4e74-8750-af282c702991"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kembali}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="118" width="190" height="21" forecolor="#5A5A5A" uuid="86ad4845-e72e-4fac-8639-b4136308b9b4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[Harap Periksa barang anda kembali,barang yang sudah dibeli tidak bisa dikembalikan , Terimakasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="20" width="61" height="20" forecolor="#5A5A5A" uuid="664a6d2c-854a-4d3b-b457-d07e53d20f69"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Diskon         : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="142" y="20" width="48" height="20" forecolor="#5A5A5A" uuid="a6dfb3d8-0dd4-4376-92cb-b18a2bb9d1ad"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{diskon}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="107" width="187" height="1" uuid="6a698699-3444-496c-a441-5515dee7a309"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="65" y="2" width="61" height="15" forecolor="#5A5A5A" uuid="fae30f82-a345-4f47-88da-2e3598a6fffc"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Harga Total  : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="141" y="2" width="49" height="15" forecolor="#5A5A5A" uuid="398a4f98-993a-439c-bfba-e54598fedbd3"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{harga_total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="65" y="17" width="125" height="1" uuid="5e46e669-b83b-4123-8e12-d8f73ce6eaf0"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<image scaleImage="RealSize">
+				<reportElement x="36" y="139" width="126" height="45" uuid="836fa8f0-787b-4516-ae83-143ee70000d6"/>
+				<imageExpression><![CDATA[$P{barcode_path}]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>
